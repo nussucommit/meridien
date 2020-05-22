@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'bookings.apps.BookingsConfig',
+    'emailtemplates.apps.EmailtemplatesConfig',
+    'items.apps.ItemsConfig',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -47,7 +52,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  
+    'django.middleware.common.CommonMiddleware',  
 ]
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:4200',
+)
 
 ROOT_URLCONF = 'meridien.urls'
 
@@ -76,9 +88,9 @@ WSGI_APPLICATION = 'meridien.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'testdb',
+        'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': '123',
+        'PASSWORD': 'sooperuser',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 	'bookings.apps.BookingConfig',
 	'emailtemplates.apps.EmailtemplatesConfig',
 	'items.apps.ItemsConfig',
-	'corsheaders'
+	'corsheaders',
 ]
 
 MIDDLEWARE = [

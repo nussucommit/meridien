@@ -5,9 +5,9 @@ from items.models import Item
 class BookedItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = BookedItem
-        field = '__all__'
+        fields = '__all__'
         
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        field = '__all__'
+        fields = '__all__'

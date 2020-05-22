@@ -4,4 +4,4 @@ from emailtemplates.models import EmailTemplate
 class EmailtemplateSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmailTemplate
-        field = '__all__'
+        fields = '__all__'

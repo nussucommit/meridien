@@ -6,4 +6,4 @@ class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         booked_items = BookedItemSerializer(many=True)
         model = Booking
-        field = '__all__'
+        fields = '__all__'

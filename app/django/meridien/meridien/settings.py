@@ -37,11 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
+	'rest_framework',
 	'bookings.apps.BookingConfig',
 	'emailtemplates.apps.EmailtemplatesConfig',
 	'items.apps.ItemsConfig',
-	'corsheaders'
+	'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 	'corsheaders.middleware.CorsMiddleware',  
-    'django.middleware.common.CommonMiddleware', 
+	'django.middleware.common.CommonMiddleware', 
 ]
 
 CORS_ORIGIN_ALLOW_ALL = False

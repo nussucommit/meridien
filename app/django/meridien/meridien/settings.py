@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'bookings.apps.BookingConfig',
+    'bookings.apps.BookingsConfig',
     'emailtemplates.apps.EmailtemplatesConfig',
     'items.apps.ItemsConfig',
     'corsheaders',
@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',  
+    'django.middleware.common.CommonMiddleware',  
     'django.middleware.common.CommonMiddleware', 
 ]
 

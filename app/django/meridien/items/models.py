@@ -8,3 +8,4 @@ class Item(models.Model):
 class BookedItem(models.Model):
     name = models.ForeignKey(Item, on_delete=models.SET('Deleted Item'))
     quantity = models.PositiveIntegerField(default=0)
+    status = models.CharField(max_length=256, blank=False, default='N/A')

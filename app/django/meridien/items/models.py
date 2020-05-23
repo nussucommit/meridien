@@ -3,6 +3,10 @@ from django.db import models
 class Item(models.Model):
     name = models.CharField(max_length=256, blank=False)
     quantity = models.PositiveIntegerField(default=0)
+    brand = models.CharField(max_length=256, default='-')
+    remarks = models.TextField(default='-')
+    category = models.CharField(max_length=256, default='-')
+    deposit = models.PositiveIntegerField(default=0)
     
 class BookedItem(models.Model):
     ACCEPTED = ('ACC', 'Accepted')

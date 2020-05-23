@@ -1,7 +1,6 @@
 from django.db import models
 from items.models import BookedItem
 
-# Create your models here.
 class Booking(models.Model):
     name = models.CharField(max_length=256, blank=False)
     email = models.EmailField(blank=False)

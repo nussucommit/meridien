@@ -1,3 +1,15 @@
-from django.shortcuts import render
+from bookings.models import *
+from bookings.serializers import *
+from django.views.decorators.csrf import csrf_exempt
 
-# Create your views here.
+import sys
+sys.path.append('../')
+from meridien import views_template
+
+@csrf_exempt
+def booking_list(request):
+    return obj_list(request, Booking, BookingSerializer)
+
+@csrf_exempt
+def booking_detail(request, pk):
+    return obj_detail(request, pk, Booking, BookingSerializer)

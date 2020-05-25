@@ -1,5 +1,5 @@
-from bookings.models import *
-from bookings.serializers import *
+from bookings.models import Booking
+from bookings.serializers import BookingSerializer
 from django.views.decorators.csrf import csrf_exempt
 
 import sys

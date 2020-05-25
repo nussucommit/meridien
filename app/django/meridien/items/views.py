@@ -1,5 +1,5 @@
-from items.models import *
-from items.serializers import *
+from items.models import Item, BookedItem
+from items.serializers import ItemSerializer, BookedItemSerializer
 from django.views.decorators.csrf import csrf_exempt
 
 import sys

@@ -1,6 +1,6 @@
 from django.db import models
-from django.core.validators import *
-from datetime import *
+from django.core.validators import MinValueValidator, MaxValueValidator
+from datetime import date
 
 class Booking(models.Model):
     name = models.CharField(max_length=256, blank=False, default='N/A')

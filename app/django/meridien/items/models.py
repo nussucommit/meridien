@@ -1,4 +1,5 @@
 from django.db import models
+from bookings.models import Booking
 
 class Item(models.Model):
     name = models.CharField(max_length=256, blank=False)
@@ -18,7 +19,8 @@ class BookedItem(models.Model):
         REJECTED,
         PENDING
     ]
-
-    name = models.ForeignKey(Item, on_delete=models.SET('Deleted Item'))
+    
+    booking_source = models.ForeignKey(Booking, on_delete=models.CASCADE)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE) #if the item is no longer offered, just put up an announcement or smth liddat
     quantity = models.PositiveIntegerField(default=0)
     status = models.CharField(max_length=32, blank=False, default=PENDING)

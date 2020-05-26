@@ -8,6 +8,9 @@ class Item(models.Model):
     remarks = models.TextField(default='-')
     category = models.CharField(max_length=256, default='-')
     deposit = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.name
     
 class BookedItem(models.Model):
     ACCEPTED = 'ACC'
@@ -24,3 +27,6 @@ class BookedItem(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE) #if the item is no longer offered, just put up an announcement or smth liddat
     quantity = models.PositiveIntegerField(default=0)
     status = models.CharField(max_length=32, blank=False, choices=BOOKING_STATUSES, default=PENDING)
+
+    def __str__(self):
+        return f"Booking for {self.quantity} {self.item.name}"

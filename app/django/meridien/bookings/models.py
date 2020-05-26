@@ -22,3 +22,6 @@ class Booking(models.Model):
     loan_end_time = models.DateField(blank=False, default=date.fromtimestamp(0))
     deposit_left = models.DecimalField(default=0.00, decimal_places=2, max_digits=10, validators=[MinValueValidator(0.00), MaxValueValidator(200.00)])
     status = models.CharField(max_length=32, blank=False, choices=PROCESS_STATUSES, default=PENDING)
+
+    def __str__(self):
+        return f"Booking by {self.name} made on {self.time_booked.strftime('%Y-%m-%d %H:%M')}"

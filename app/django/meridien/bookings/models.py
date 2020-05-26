@@ -3,14 +3,14 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from datetime import date
 
 class Booking(models.Model):
-    ACCEPTED = ('ACC', 'Accepted')
-    REJECTED = ('REJ', 'Rejected')
-    PENDING = ('PEN', 'Pending')
+    PENDING = 'PEN'
+    EVALUATING = 'EVA'
+    PROCESSED = 'PRO'
 
-    BOOKING_STATUSES = [
-        ACCEPTED,
-        REJECTED,
-        PENDING
+    PROCESS_STATUSES = [
+        (PENDING, 'Pending'),
+        (EVALUATING, 'Evaluating'),
+        (PROCESSED, 'Processed'),
     ]
     
     name = models.CharField(max_length=256, blank=False, default='N/A')
@@ -21,4 +21,4 @@ class Booking(models.Model):
     loan_start_time = models.DateField(blank=False, default=date.fromtimestamp(0))
     loan_end_time = models.DateField(blank=False, default=date.fromtimestamp(0))
     deposit_left = models.DecimalField(default=0.00, decimal_places=2, max_digits=10, validators=[MinValueValidator(0.00), MaxValueValidator(200.00)])
-    status = models.CharField(max_length=32, blank=False, default=PENDING)
+    status = models.CharField(max_length=32, blank=False, choices=PROCESS_STATUSES, default=PENDING)

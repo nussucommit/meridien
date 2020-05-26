@@ -23,7 +23,7 @@ class BookedItem(models.Model):
         (PENDING, 'Pending')
     ]
     
-    booking_source = models.ForeignKey(Booking, on_delete=models.CASCADE)
+    booking_source = models.ForeignKey(Booking, on_delete=models.CASCADE, related_name='booked_items')
     item = models.ForeignKey(Item, on_delete=models.CASCADE) #if the item is no longer offered, just put up an announcement or smth liddat
     quantity = models.PositiveIntegerField(default=0)
     status = models.CharField(max_length=32, blank=False, choices=BOOKING_STATUSES, default=PENDING)

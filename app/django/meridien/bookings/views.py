@@ -8,8 +8,8 @@ from meridien import views_template
 
 @csrf_exempt
 def booking_list(request):
-    return obj_list(request, Booking, BookingSerializer)
+    return views_template.obj_list(request, Booking, BookingSerializer)
 
 @csrf_exempt
 def booking_detail(request, pk):
-    return obj_detail(request, pk, Booking, BookingSerializer)
+    return views_template.obj_detail(request, pk, Booking, BookingSerializer)

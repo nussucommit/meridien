@@ -10,17 +10,17 @@ class Item(models.Model):
     deposit = models.PositiveIntegerField(default=0)
     
 class BookedItem(models.Model):
-    ACCEPTED = ('ACC', 'Accepted')
-    REJECTED = ('REJ', 'Rejected')
-    PENDING = ('PEN', 'Pending')
+    ACCEPTED = 'ACC'
+    REJECTED = 'REJ'
+    PENDING = 'PEN'
 
     BOOKING_STATUSES = [
-        ACCEPTED,
-        REJECTED,
-        PENDING
+        (ACCEPTED, 'Accepted'),
+        (REJECTED, 'Rejected'),
+        (PENDING, 'Pending')
     ]
     
     booking_source = models.ForeignKey(Booking, on_delete=models.CASCADE)
     item = models.ForeignKey(Item, on_delete=models.CASCADE) #if the item is no longer offered, just put up an announcement or smth liddat
     quantity = models.PositiveIntegerField(default=0)
-    status = models.CharField(max_length=32, blank=False, default=PENDING)
+    status = models.CharField(max_length=32, blank=False, choices=BOOKING_STATUSES, default=PENDING)

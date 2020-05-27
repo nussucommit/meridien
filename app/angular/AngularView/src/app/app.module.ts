@@ -4,26 +4,39 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+
+import { CreateItemComponent } from './create-item/create-item.component';
+import { ItemDetailsComponent } from './item-details/item-details.component';
+import { BookingDetailsComponent } from './booking-details/booking-details.component';
+import { ItemListComponent } from './item-list/item-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CreateItemComponent,
+    ItemDetailsComponent,
+    BookingDetailsComponent,
+    ItemListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule
   ],
-  exports: [ MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule ],
+  exports: [ MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule ],
   providers: [],
   bootstrap: [AppComponent]
 })

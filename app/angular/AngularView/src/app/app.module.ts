@@ -17,6 +17,7 @@ import { CreateItemComponent } from './create-item/create-item.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
 import { ItemListComponent } from './item-list/item-list.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ItemListComponent } from './item-list/item-list.component';
     CreateItemComponent,
     ItemDetailsComponent,
     BookingDetailsComponent,
-    ItemListComponent
+    ItemListComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

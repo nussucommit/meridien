@@ -1,11 +1,36 @@
+<style>
+.column-left {
+  float: left;
+  width: 75%;
+}
+.column-right {
+  float: right;
+  width: 25%;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.long-input {
+  width: 100%;
+}
+</style>
+
 <div style="padding:20px">
-<h1>Items List</h1>
-
-<mat-form-field appearance="legacy">
-  <mat-label>Filter Items</mat-label>
-  <input matInput (keyup)="applyFilter($event)">
+<div class="row">
+<div class="column-left">
+<h1 style="padding-top:15px">Items List</h1>
+</div>
+<div class="column-right">
+<mat-form-field class="long-input" appearance="outline">
+  <mat-label>Search Items</mat-label>
+  <input matInput (keyup)="applyFilter($event.target.value)">
+  <mat-icon matSuffix>search</mat-icon>
 </mat-form-field>
-
+</div>
+</div>
+<br>
 <mat-table [dataSource]="items" class="mat-elevation-z8">
     <ng-container  matColumnDef="id">
         <mat-header-cell *matHeaderCellDef>S/N</mat-header-cell>

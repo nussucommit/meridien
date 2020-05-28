@@ -40,8 +40,9 @@ export class ItemListComponent implements OnInit {
         });
   }
   
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+  applyFilter(filterValue: string) {
+    this.items.filterPredicate = 
+      (data: Items, filter: string) => data.name.indexOf(filter) != -1;
     this.items.filter = filterValue.trim().toLowerCase();
   }
 }

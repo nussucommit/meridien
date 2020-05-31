@@ -15,6 +15,10 @@ export class ItemsService {
     return this.http.get(`${this.baseUrl}/`);
   }
   
+  getItem(id: number): Observable<Object> {
+    return this.http.get(`${this.baseUrl}/${id}`);
+  }
+  
   createItem(item: Object): Observable<Object> {
     return this.http.post(`${this.baseUrl}/`, item);
   }

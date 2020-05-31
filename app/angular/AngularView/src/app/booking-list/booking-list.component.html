@@ -1,0 +1,59 @@
+
+<div style="padding:20px">
+<h1 style="padding:15px">Booking List</h1>
+<style>
+.w-40{
+    max-width: 40px;
+}
+
+.w-100{
+    max-width: 100px;
+}
+</style>
+
+<mat-table [dataSource]="bookings" class="mat-elevation-z8">
+    <ng-container  matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef [ngClass]="'w-40'">S/N</mat-header-cell>
+        <mat-cell *matCellDef="let booking" [ngClass]="'w-40'">{{booking.id}}</mat-cell>
+    </ng-container>
+    <ng-container  matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let booking">{{booking.name}}</mat-cell>
+    </ng-container>
+    <ng-container  matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+        <mat-cell *matCellDef="let booking">{{booking.email}}</mat-cell>
+    </ng-container>
+    <ng-container  matColumnDef="organization">
+        <mat-header-cell *matHeaderCellDef>Organization</mat-header-cell>
+        <mat-cell *matCellDef="let booking">{{booking.organization}}</mat-cell>
+    </ng-container>
+    <!-- Eh I don't think reason is necessary to be flash for the whole world lol
+    <ng-container  matColumnDef="reason">
+        <mat-header-cell *matHeaderCellDef>Purpose</mat-header-cell>
+        <mat-cell *matCellDef="let booking">{{booking.reason}}</mat-cell>
+    </ng-container>
+    -->
+    <!--<ng-container  matColumnDef="time_booked">
+        <mat-header-cell *matHeaderCellDef>Time Booked</mat-header-cell>
+        <mat-cell *matCellDef="let booking">{{booking.time_booked}}</mat-cell>
+    </ng-container>-->
+    <ng-container  matColumnDef="loan_start_time">
+        <mat-header-cell *matHeaderCellDef>Loan date</mat-header-cell>
+        <mat-cell *matCellDef="let booking">{{booking.loan_start_time|date: 'd MMMM yyyy'}}</mat-cell>
+    </ng-container>
+    <ng-container  matColumnDef="loan_end_time">
+        <mat-header-cell *matHeaderCellDef>Return date</mat-header-cell>
+        <mat-cell *matCellDef="let booking">{{booking.loan_end_time|date: 'd MMMM yyyy'}}</mat-cell>
+    </ng-container>
+    <ng-container  matColumnDef="deposit_left">
+        <mat-header-cell *matHeaderCellDef>Deposit Left (S$)</mat-header-cell>
+        <mat-cell *matCellDef="let booking">{{booking.deposit_left}}</mat-cell>
+    </ng-container>
+    <ng-container  matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef [ngClass]="'w-100'">Status</mat-header-cell>
+        <mat-cell *matCellDef="let booking" [ngClass]="'w-100'">{{booking.status}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
+    <mat-row *matRowDef="let booking; columns: tableColumns;" (click)=openDialog(booking)></mat-row>
+</mat-table>

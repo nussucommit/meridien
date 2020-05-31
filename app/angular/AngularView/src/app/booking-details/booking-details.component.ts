@@ -9,7 +9,7 @@ export class BookingDetailsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
 }

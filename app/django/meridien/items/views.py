@@ -21,3 +21,11 @@ def booked_item_list(request):
 @csrf_exempt
 def booked_item_detail(request, pk):
     return views_template.obj_detail(request, pk, BookedItem, BookedItemSerializer)
+
+@csrf_exempt    
+def booked_item_from_booking_id(request, booking_id):
+    items = BookedItem.objects.filter(booking_source=booking_id)
+    
+    if request.method == 'GET':
+        booked_item_serializer = BookedItemSerializer(items, many=True)
+        return JsonResponse(booked_item_serializer.data, safe=False)

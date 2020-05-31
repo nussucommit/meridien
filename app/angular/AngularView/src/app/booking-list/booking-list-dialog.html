@@ -1,0 +1,64 @@
+<style>
+.column-left {
+  float: left;
+  width: 50%;
+}
+.column-right {
+  float: right;
+  width: 50%;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+<h1 mat-dialog-title>Booking #{{booking_data.id}}</h1>
+
+<div mat-dialog-content class="row">
+<div class="column-left">
+  <h2 style="color:#777777">Booking details</h2>
+  <mat-label>Booked by: {{booking_data.name}}</mat-label>
+  <br>
+  <mat-label>Email: {{booking_data.email}}</mat-label>
+  <br>
+  <mat-label>Organization: {{booking_data.organization}}</mat-label>
+  <br>
+  <mat-label>Time booked: {{booking_data.time_booked|date: 'd MMM yyyy HH:mm:ss'}}</mat-label>
+  <br>
+  <mat-label>Purpose: {{booking_data.reason}}</mat-label>
+  <br>
+  <mat-label>Loan date: {{booking_data.loan_start_time|date: 'd MMM yyyy'}}</mat-label>
+  <br>
+  <mat-label>Return date: {{booking_data.loan_end_time|date: 'd MMM yyyy'}}</mat-label>
+  <br>
+  <mat-label>Deposit left: ${{booking_data.deposit_left}}</mat-label>
+  <br>
+  <mat-label>Status: {{booking_data.status}}</mat-label>
+  <br>
+</div>
+<div class="column-right">
+  <h2 style="color:#777777">Items</h2>
+  <mat-table style="margin-top:-20px" [dataSource]=booking_data.booked_items>
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Item </mat-header-cell>
+    <mat-cell *matCellDef="let booked_item"> {{booked_item.item.name}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="quantity">
+    <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+    <mat-cell *matCellDef="let booked_item"> {{booked_item.quantity}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+    <mat-cell *matCellDef="let booked_item"> {{booked_item.status}} </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="tableColumnsBookedItems"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: tableColumnsBookedItems;"></mat-row>
+  </mat-table>
+</div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button>Edit</button>
+  <button mat-button>Delete </button>
+  <button mat-button (click)="onOkClicked()">OK</button>
+</div>

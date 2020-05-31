@@ -12,12 +12,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { CreateItemComponent } from './create-item/create-item.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
 import { ItemListComponent } from './item-list/item-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { BookingListComponent, BookingListDialog } from './booking-list/booking-list.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ItemDetailsComponent,
     BookingDetailsComponent,
     ItemListComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    BookingListComponent,
+    BookingListDialog
   ],
   imports: [
     BrowserModule,
@@ -38,9 +42,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
-  exports: [ MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule, MatIconModule ],
+  exports: [ MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule, MatIconModule, MatDialogModule ],
   providers: [],
   bootstrap: [AppComponent]
 })

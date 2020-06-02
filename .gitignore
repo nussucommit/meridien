@@ -117,6 +117,7 @@ testem.log
 /typings
 requirements.txt
 settings.py
+/migrations
 
 # e2e
 /e2e/*.js
@@ -125,3 +126,4 @@ settings.py
 # System Files
 .DS_Store
 Thumbs.db
+app/django/meridien/items/migrations/0004_auto_20200602_2138.py

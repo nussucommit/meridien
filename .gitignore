@@ -117,6 +117,7 @@ testem.log
 /typings
 requirements.txt
 settings.py
+migrations
 
 # e2e
 /e2e/*.js

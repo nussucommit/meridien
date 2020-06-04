@@ -1,11 +1,11 @@
 <style>
 .column-left {
   float: left;
-  width: 75%;
+  width: 20%;
 }
 .column-right {
   float: right;
-  width: 25%;
+  width: 80%;
 }
 .row:after {
   content: "";
@@ -17,20 +17,33 @@
 }
 </style>
 
-<div style="padding:25px">
+<div style="padding:20px">
 <div class="row">
+<h1 style="padding-top:10px">Items List</h1>
+<p>Click each row for item availability.</p>
 <div class="column-left">
-<h1 style="padding-top:15px">Items List</h1>
-</div>
-<div class="column-right">
-<mat-form-field class="long-input" appearance="outline">
-  <mat-label>Search the Items...</mat-label>
-  <input matInput (keyup)="applyFilter($event.target.value)">
-  <mat-icon matPrefix>search</mat-icon>
+<h2 style="color:#777777">Filter</h2>
+
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+<mat-label>Filter by name</mat-label>
+<mat-form-field appearance="legacy">
+  <mat-label>Name</mat-label>
+  <input matInput class="form-control" formControlName="name">
 </mat-form-field>
-</div>
-</div>
+
 <br>
+<mat-label>Filter by category</mat-label>
+<mat-form-field appearance="legacy">
+  <mat-label>Category</mat-label>
+  <input matInput class="form-control" formControlName="category">
+</mat-form-field>
+
+<br>
+<button type="submit" mat-raised-button color="primary">Go</button>
+</form>
+</div>
+
+<div class="column-right">
 <mat-table [dataSource]="items" class="mat-elevation-z8">
     <ng-container  matColumnDef="id">
         <mat-header-cell *matHeaderCellDef>S/N</mat-header-cell>
@@ -62,6 +75,9 @@
     </ng-container>
     
     <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
-    <mat-row *matRowDef="let item; columns: tableColumns;"></mat-row>
+    <mat-row matRipple *matRowDef="let item; columns: tableColumns;" (click)=openDialog(item)></mat-row>
 </mat-table>
+<mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
+</div>
+</div>
 </div>

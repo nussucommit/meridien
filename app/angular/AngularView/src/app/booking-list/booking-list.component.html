@@ -21,8 +21,9 @@
 }
 </style>
 
-<div style="padding:25px">
-<h1 style="padding-top:15px">Booking List</h1>
+<div style="padding:20px">
+<h1 style="padding-top:10px">Booking List</h1>
+<p>Click each row for more details.</p>
 <div class="row">
 <div class="column-left">
 <h2 style="color:#777777">Filter</h2>
@@ -30,21 +31,21 @@
 <mat-label>Filter by name</mat-label>
 <mat-form-field style="margin-top:10px;" appearance="legacy">
   <mat-label>Name</mat-label>
-  <input matInput formControlName="name" name="name">
+  <input matInput formControlName="name">
 </mat-form-field>
 
 <br>
 <mat-label>Filter by booking date</mat-label>
 <mat-form-field style="margin-top:10px;" appearance="legacy">
   <mat-label>From (dd/mm/yyyy)</mat-label>
-  <input matInput name="booking_date_start" formControlName="fromDate" class="form-control" [matDatepicker]="startpicker">
+  <input matInput formControlName="fromDate" class="form-control" [matDatepicker]="startpicker">
   <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
   <mat-datepicker #startpicker></mat-datepicker>
   <mat-error>Please enter a valid date.</mat-error>
 </mat-form-field>
 <mat-form-field style="margin-top:10px;" appearance="legacy">
   <mat-label>To (dd/mm/yyyy)</mat-label>
-  <input matInput name="booking_date_end" formControlName="toDate" class="form-control" [matDatepicker]="endpicker">
+  <input matInput formControlName="toDate" class="form-control" [matDatepicker]="endpicker">
   <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
   <mat-datepicker #endpicker></mat-datepicker>
   <mat-error>Please enter a valid date.</mat-error>
@@ -54,7 +55,7 @@
 <mat-label>Filter by booking status</mat-label>
 <mat-form-field style="margin-top:10px;" appearance="legacy">
   <mat-label>Status</mat-label>
-  <input matInput formControlName="status" name="status">
+  <input matInput formControlName="status">
 </mat-form-field>
 <br>
 <button type="submit" mat-raised-button color="primary">Go</button>
@@ -105,7 +106,7 @@
         <mat-cell *matCellDef="let booking" [ngClass]="'w-100'">{{booking.status}}</mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
-    <mat-row *matRowDef="let booking; columns: tableColumns;" (click)=openDialog(booking)></mat-row>
+    <mat-row matRipple *matRowDef="let booking; columns: tableColumns;" (click)=openDialog(booking)></mat-row>
 </mat-table>
 <mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
 </div>

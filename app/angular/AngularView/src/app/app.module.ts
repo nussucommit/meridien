@@ -15,14 +15,16 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MatRippleModule } from '@angular/material/core';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { MatPaginatorModule } from '@angular/material/paginator';
+
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 import { CreateItemComponent } from './create-item/create-item.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
-import { ItemListComponent } from './item-list/item-list.component';
+import { ItemListComponent, ItemListDialog } from './item-list/item-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BookingListComponent, BookingListDialog } from './booking-list/booking-list.component';
 
@@ -33,6 +35,7 @@ import { BookingListComponent, BookingListDialog } from './booking-list/booking-
     ItemDetailsComponent,
     BookingDetailsComponent,
     ItemListComponent,
+    ItemListDialog,
     NotFoundComponent,
     BookingListComponent,
     BookingListDialog
@@ -53,7 +56,9 @@ import { BookingListComponent, BookingListDialog } from './booking-list/booking-
     MatDialogModule,
     MatDatepickerModule,
     MatMomentDateModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatRippleModule,
+    FullCalendarModule
   ],
   exports: [ 
     MatToolbarModule, 
@@ -65,7 +70,8 @@ import { BookingListComponent, BookingListDialog } from './booking-list/booking-
     MatDialogModule, 
     MatDatepickerModule,
     MatMomentDateModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatRippleModule
   ],
   providers: [{provide: MAT_DATE_LOCALE, useValue: 'en-SG'},],
   bootstrap: [AppComponent]

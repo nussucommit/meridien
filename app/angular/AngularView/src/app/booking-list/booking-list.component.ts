@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
-import { AbstractControl, FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 
 import { BookingsService } from '../model-service/bookings/bookings.service';
 import { Booking } from '../model-service/bookings/bookings';
@@ -62,7 +61,7 @@ export class BookingListComponent implements OnInit {
         (data: BookedItem[]) => {
           var bookedItemByID: BookedItem[] = [];
           for(var bookedItem of data) {
-            if(bookedItem.booking_source==row['id']) {
+            if(bookedItem.booking_source.id==row['id']) {
               bookedItemByID.push(bookedItem);
             }
           }
@@ -70,12 +69,6 @@ export class BookingListComponent implements OnInit {
           this.dialog.open(BookingListDialog, {width: '600px', data: final_data});
         }
       );
-  }
-  
-  filterByName(filterValue: string) {
-    this.bookings.filterPredicate = 
-      (data: Booking, filter: string) => data.name.indexOf(filter) != -1;
-    this.bookings.filter = filterValue.trim().toLowerCase();
   }
   
   dateCheck(control: AbstractControl): any {
@@ -95,11 +88,11 @@ export class BookingListComponent implements OnInit {
     for(let value in filter){
       if (filter[value]!==''&&filter[value]!==0) {
         if (value === 'fromDate') {
-          if(Date.parse(data.time_booked)<Date.parse(filter[value])){
+          if(Date.parse(data.time_booked.toString())<Date.parse(filter[value])){
             return false;
           }
         } else if (value === 'toDate') {
-          if(Date.parse(data.time_booked)>Date.parse(filter[value])+86399999){ //86399999 milliseconds is added to include the end point date
+          if(Date.parse(data.time_booked.toString())>Date.parse(filter[value])+86399999){ //86399999 milliseconds is added to include the end point date
             return false;
           }
         } else {
@@ -121,8 +114,4 @@ export class BookingListComponent implements OnInit {
 export class BookingListDialog {
   tableColumnsBookedItems: string[] = ['name', 'quantity', 'status'];
   constructor(public dialogRef: MatDialogRef<BookingListDialog>, @Inject(MAT_DIALOG_DATA) public booking_data: any) {}
-  
-  onOkClicked(): void {
-    this.dialogRef.close();
-  }
 }

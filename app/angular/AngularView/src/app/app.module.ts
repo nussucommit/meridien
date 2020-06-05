@@ -20,6 +20,7 @@ import { BookingDetailsComponent } from './booking-details/booking-details.compo
 import { ItemListComponent } from './item-list/item-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BookingListComponent, BookingListDialog } from './booking-list/booking-list.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BookingListComponent, BookingListDialog } from './booking-list/booking-
     ItemListComponent,
     NotFoundComponent,
     BookingListComponent,
-    BookingListDialog
+    BookingListDialog,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,

@@ -21,6 +21,7 @@ import { ItemListComponent } from './item-list/item-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BookingListComponent, BookingListDialog } from './booking-list/booking-list.component';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
     MatInputModule,
     MatTableModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule
   ],
   exports: [ MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule, MatIconModule, MatDialogModule ],
   providers: [],

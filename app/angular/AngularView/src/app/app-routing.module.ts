@@ -1,12 +1,14 @@
+import { LoginFormComponent } from './login-form/login-form.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ItemListComponent } from './item-list/item-list.component'
-import { BookingListComponent } from './booking-list/booking-list.component'
-import { NotFoundComponent } from './not-found/not-found.component'
+import { ItemListComponent } from './item-list/item-list.component';
+import { BookingListComponent } from './booking-list/booking-list.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
     { path: 'items', component: ItemListComponent },
     { path: 'bookings', component: BookingListComponent },
+    { path: 'login', component: LoginFormComponent },
     { path: '', redirectTo: 'bookings', pathMatch: 'full' },
     { path: '**', component: NotFoundComponent },
 ];

@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "AngularView"
+    }
+  },
+  "defaultProject": "AngularView",
+  "cli": {
+    "analytics": false
+  }
 }

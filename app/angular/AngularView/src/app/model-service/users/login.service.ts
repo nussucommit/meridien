@@ -5,7 +5,6 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginDetail } from './login-details';
 import { User } from './users';
-import { setupMaster } from 'cluster';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +39,10 @@ export class LoginService {
   logout() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+  }
+
+  get observableUser(): Observable<User> {
+    return this.currentUser;
   }
 
   get currentUserValue(): User {

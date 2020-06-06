@@ -1,3 +1,4 @@
+import { LoginService } from './model-service/users/login.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -22,6 +23,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { BookingListComponent, BookingListDialog } from './booking-list/booking-list.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     NotFoundComponent,
     BookingListComponent,
     BookingListDialog,
-    LoginFormComponent
+    LoginFormComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

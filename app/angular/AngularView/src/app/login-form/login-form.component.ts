@@ -1,6 +1,4 @@
-import { UsersService } from './../model-service/users/users.service';
 import { LoginService } from './../model-service/users/login.service';
-import { Token } from './../model-service/users/tokens';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
@@ -17,8 +15,7 @@ export class LoginFormComponent implements OnInit {
   });
 
   constructor(
-    private loginService: LoginService,
-    private usersService: UsersService
+    private loginService: LoginService
   ) { }
 
   ngOnInit(): void {
@@ -33,12 +30,7 @@ export class LoginFormComponent implements OnInit {
       username: this.form.username.value,
       password: this.form.password.value
     })
-      .subscribe((data: Token) => {
-        this.usersService.setUser({
-          username: this.form.username.value,
-          token: data
-        });
-        console.log(this.usersService.getUser());
+      .subscribe((status: boolean) => {
       });
   }
 

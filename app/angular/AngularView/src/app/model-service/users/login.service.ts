@@ -37,6 +37,11 @@ export class LoginService {
       );
   }
 
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
+  }
+
   get currentUserValue(): User {
     return this.currentUserSubject.value;
   }

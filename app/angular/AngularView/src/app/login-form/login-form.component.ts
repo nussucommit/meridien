@@ -14,9 +14,9 @@ export class LoginFormComponent implements OnInit {
     password: new FormControl('')
   });
 
-  constructor(
-    private loginService: LoginService
-  ) { }
+  constructor(private loginService: LoginService) {
+    console.log(loginService.currentUserValue);
+  }
 
   ngOnInit(): void {
   }
@@ -30,8 +30,7 @@ export class LoginFormComponent implements OnInit {
       username: this.form.username.value,
       password: this.form.password.value
     })
-      .subscribe((status: boolean) => {
-      });
+      .subscribe((status: boolean) => {});
   }
 
 }

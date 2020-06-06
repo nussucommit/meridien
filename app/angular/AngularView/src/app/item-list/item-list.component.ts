@@ -10,6 +10,7 @@ import { BookedItem } from '../model-service/items/items';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 import dayGridPlugin from '@fullcalendar/daygrid';
 
@@ -26,12 +27,14 @@ export class ItemListComponent implements OnInit {
   filterForm: FormGroup;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(private bookingsService: BookingsService, private itemsService: ItemsService, public dialog: MatDialog, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.reloadData();
     this.items.paginator = this.paginator;
+    this.items.sort=this.sort;
 
     this.filterForm = this.formBuilder.group({
       name: ['',''],

@@ -10,6 +10,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 import moment from 'moment';
 
@@ -31,12 +32,14 @@ export class BookingListComponent implements OnInit {
   filterForm: FormGroup;
   
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(private bookingsService: BookingsService, public dialog: MatDialog, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.reloadData();
     this.bookings.paginator = this.paginator;
+    this.bookings.sort=this.sort;
     
     this.filterForm = this.formBuilder.group({
       name: ['',''],

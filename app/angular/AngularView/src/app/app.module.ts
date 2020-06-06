@@ -18,6 +18,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, MatRippleModule } from '@angular/material/core';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 
@@ -58,6 +59,7 @@ import { BookingListComponent, BookingListDialog } from './booking-list/booking-
     MatMomentDateModule,
     MatPaginatorModule,
     MatRippleModule,
+    MatSortModule,
     FullCalendarModule
   ],
   exports: [ 
@@ -71,7 +73,8 @@ import { BookingListComponent, BookingListDialog } from './booking-list/booking-
     MatDatepickerModule,
     MatMomentDateModule,
     MatPaginatorModule,
-    MatRippleModule
+    MatRippleModule,
+    MatSortModule
   ],
   providers: [{provide: MAT_DATE_LOCALE, useValue: 'en-SG'},],
   bootstrap: [AppComponent]

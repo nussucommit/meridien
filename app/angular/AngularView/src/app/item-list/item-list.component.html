@@ -44,33 +44,33 @@
 </div>
 
 <div class="column-right">
-<mat-table [dataSource]="items" class="mat-elevation-z8">
+<mat-table [dataSource]="items" matSort class="mat-elevation-z8">
     <ng-container  matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef>S/N</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>S/N</mat-header-cell>
         <mat-cell *matCellDef="let item">{{item.id}}</mat-cell>
     </ng-container>
     <ng-container  matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
         <mat-cell *matCellDef="let item">{{item.name}}</mat-cell>
     </ng-container>
     <ng-container  matColumnDef="category">
-        <mat-header-cell *matHeaderCellDef>Category</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
         <mat-cell *matCellDef="let item">{{item.category}}</mat-cell>
     </ng-container>
     <ng-container  matColumnDef="quantity">
-        <mat-header-cell *matHeaderCellDef>Quantity</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</mat-header-cell>
         <mat-cell *matCellDef="let item">{{item.quantity}}</mat-cell>
     </ng-container>
     <ng-container  matColumnDef="deposit">
-        <mat-header-cell *matHeaderCellDef>Deposit(S$)</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Deposit(S$)</mat-header-cell>
         <mat-cell *matCellDef="let item">{{item.deposit}}</mat-cell>
     </ng-container>
     <ng-container  matColumnDef="status">
-        <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
         <mat-cell *matCellDef="let item">{{item.item_status}}</mat-cell>
     </ng-container>
     <ng-container  matColumnDef="remark">
-        <mat-header-cell *matHeaderCellDef>Remarks</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Remarks</mat-header-cell>
         <mat-cell *matCellDef="let item">{{item.remarks}}</mat-cell>
     </ng-container>
     

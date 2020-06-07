@@ -29,7 +29,12 @@ export class ItemListComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private bookingsService: BookingsService, private itemsService: ItemsService, public dialog: MatDialog, private formBuilder: FormBuilder) { }
+  constructor(
+    private bookingsService: BookingsService, 
+    private itemsService: ItemsService, 
+    public dialog: MatDialog, 
+    private formBuilder: FormBuilder
+    ) { }
 
   ngOnInit() {
     this.reloadData();

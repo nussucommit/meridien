@@ -115,8 +115,8 @@ db.sqlite3
 npm-debug.log
 testem.log
 /typings
-requirements.txt
-settings.py
+/requirements.txt
+/settings.py
 /migrations
 
 # e2e

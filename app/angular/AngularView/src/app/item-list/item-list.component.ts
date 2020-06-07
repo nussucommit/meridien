@@ -75,16 +75,10 @@ export class ItemListComponent implements OnInit {
   }
   
   openDialog(row){
-    this.bookingsService.getBookedItemList()
+    this.bookingsService.getBookersbyBookedItem(row['id'])
       .subscribe(
         (data: BookedItem[]) => {
-          var bookers = [];
-          for(var bookedItem of data){
-            if(bookedItem.item.id === row['id']){
-              bookers.push({booking: bookedItem.booking_source, quantity: bookedItem.quantity});
-            }
-          }
-          this.dialog.open(ItemListDialog, {width: '1200px', data: {name: row['name'], people: bookers}});
+          this.dialog.open(ItemListDialog, {width: '1200px', data: {name: row['name'], people: data}});
         }
       );
   }
@@ -106,9 +100,9 @@ export class ItemListDialog implements OnInit{
     for(var events of this.item_data.people){
       this.calendarEvents.push(
         {
-          title: events['booking']['name']+' - '+events['quantity']+' items',
-          start: events['booking']['loan_start_time'],
-          end: events['booking']['loan_end_time']
+          title: events['booking_source']['name']+' - '+events['quantity']+' items',
+          start: events['booking_source']['loan_start_time'],
+          end: events['booking_source']['loan_end_time']
         }
       );
     }

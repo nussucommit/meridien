@@ -20,15 +20,15 @@
   <mat-table [dataSource]=item_data.people>
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let bookings"> {{bookings.booking.name}} </mat-cell>
+      <mat-cell *matCellDef="let bookings"> {{bookings.booking_source.name}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="loan_start_time">
       <mat-header-cell *matHeaderCellDef> Loan date </mat-header-cell>
-      <mat-cell *matCellDef="let bookings"> {{bookings.booking.loan_start_time|date: 'd/M/yyyy'}} </mat-cell>
+      <mat-cell *matCellDef="let bookings"> {{bookings.booking_source.loan_start_time|date: 'd/M/yyyy'}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="loan_end_time">
       <mat-header-cell *matHeaderCellDef> Return date </mat-header-cell>
-      <mat-cell *matCellDef="let bookings"> {{bookings.booking.loan_end_time|date: 'd/M/yyyy'}} </mat-cell>
+      <mat-cell *matCellDef="let bookings"> {{bookings.booking_source.loan_end_time|date: 'd/M/yyyy'}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="quantity">
       <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>

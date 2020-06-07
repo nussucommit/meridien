@@ -59,16 +59,10 @@ export class BookingListComponent implements OnInit {
   }
   
   openDialog(row) {
-    this.bookingsService.getBookedItemList()
+    this.bookingsService.getBookedItemsByBooker(row['id'])
       .subscribe(
         (data: BookedItem[]) => {
-          var bookedItemByID: BookedItem[] = [];
-          for(var bookedItem of data) {
-            if(bookedItem.booking_source.id==row['id']) {
-              bookedItemByID.push(bookedItem);
-            }
-          }
-          var final_data: Object = Object.assign({}, row, {booked_items: bookedItemByID});
+          var final_data: Object = Object.assign({}, row, {booked_items: data});
           this.dialog.open(BookingListDialog, {width: '600px', data: final_data});
         }
       );

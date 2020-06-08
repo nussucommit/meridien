@@ -1,6 +1,6 @@
 from items.models import Item, BookedItem
 from items.serializers import ItemSerializer, BookedItemSerializer
-from django.views.decorators.csrf import csrf_exempt
+from django.http.response import JsonResponse
 
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -8,7 +8,6 @@ from rest_framework.permissions import IsAuthenticated
 import sys
 sys.path.append('../')
 from meridien import views_template
-
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 @csrf_exempt
@@ -35,10 +34,17 @@ def booked_item_detail(request, pk):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-@csrf_exempt    
+@csrf_exempt
 def booked_item_from_booking_id(request, booking_id):
     items = BookedItem.objects.filter(booking_source=booking_id)
     
+    if request.method == 'GET':
+        booked_item_serializer = BookedItemSerializer(items, many=True)
+        return JsonResponse(booked_item_serializer.data, safe=False)
+
+def booked_item_from_item(request, item_id):
+    items = BookedItem.objects.filter(item=item_id)
+
     if request.method == 'GET':
         booked_item_serializer = BookedItemSerializer(items, many=True)
         return JsonResponse(booked_item_serializer.data, safe=False)

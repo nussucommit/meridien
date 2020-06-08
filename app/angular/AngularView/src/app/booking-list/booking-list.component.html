@@ -1,6 +1,3 @@
-
-<div style="padding:20px">
-<h1 style="padding:15px">Booking List</h1>
 <style>
 .w-40{
     max-width: 40px;
@@ -9,23 +6,77 @@
 .w-100{
     max-width: 100px;
 }
+.column-left {
+  float: left;
+  width: 20%;
+}
+.column-right {
+  float: right;
+  width: 80%;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 </style>
 
-<mat-table [dataSource]="bookings" class="mat-elevation-z8">
+<div style="padding:20px">
+<h1 style="padding-top:10px">Booking List</h1>
+<p>Click each row for more details.</p>
+<div class="row">
+<div class="column-left">
+<h2 style="color:#777777">Filter</h2>
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+<mat-label>Filter by name</mat-label>
+<mat-form-field style="margin-top:10px;" appearance="legacy">
+  <mat-label>Name</mat-label>
+  <input matInput formControlName="name">
+</mat-form-field>
+
+<br>
+<mat-label>Filter by booking date</mat-label>
+<mat-form-field style="margin-top:10px;" appearance="legacy">
+  <mat-label>From (dd/mm/yyyy)</mat-label>
+  <input matInput formControlName="fromDate" class="form-control" [matDatepicker]="startpicker">
+  <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
+  <mat-datepicker #startpicker></mat-datepicker>
+  <mat-error>Please enter a valid date.</mat-error>
+</mat-form-field>
+<mat-form-field style="margin-top:10px;" appearance="legacy">
+  <mat-label>To (dd/mm/yyyy)</mat-label>
+  <input matInput formControlName="toDate" class="form-control" [matDatepicker]="endpicker">
+  <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
+  <mat-datepicker #endpicker></mat-datepicker>
+  <mat-error>Please enter a valid date.</mat-error>
+</mat-form-field>
+
+<br>
+<mat-label>Filter by booking status</mat-label>
+<mat-form-field style="margin-top:10px;" appearance="legacy">
+  <mat-label>Status</mat-label>
+  <input matInput formControlName="status">
+</mat-form-field>
+<br>
+<button type="submit" mat-raised-button color="primary">Go</button>
+</form>
+</div>
+<div class="column-right">
+<mat-table [dataSource]="bookings" matSort class="mat-elevation-z8">
     <ng-container  matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef [ngClass]="'w-40'">S/N</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef [ngClass]="'w-40'" mat-sort-header>S/N</mat-header-cell>
         <mat-cell *matCellDef="let booking" [ngClass]="'w-40'">{{booking.id}}</mat-cell>
     </ng-container>
     <ng-container  matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
         <mat-cell *matCellDef="let booking">{{booking.name}}</mat-cell>
     </ng-container>
     <ng-container  matColumnDef="email">
-        <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
         <mat-cell *matCellDef="let booking">{{booking.email}}</mat-cell>
     </ng-container>
     <ng-container  matColumnDef="organization">
-        <mat-header-cell *matHeaderCellDef>Organization</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Organization</mat-header-cell>
         <mat-cell *matCellDef="let booking">{{booking.organization}}</mat-cell>
     </ng-container>
     <!-- Eh I don't think reason is necessary to be flash for the whole world lol
@@ -34,26 +85,30 @@
         <mat-cell *matCellDef="let booking">{{booking.reason}}</mat-cell>
     </ng-container>
     -->
-    <!--<ng-container  matColumnDef="time_booked">
-        <mat-header-cell *matHeaderCellDef>Time Booked</mat-header-cell>
-        <mat-cell *matCellDef="let booking">{{booking.time_booked}}</mat-cell>
-    </ng-container>-->
+    <ng-container  matColumnDef="time_booked">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Time Booked</mat-header-cell>
+        <mat-cell *matCellDef="let booking">{{booking.time_booked|date: 'd/M/yyyy'}}</mat-cell>
+    </ng-container>
     <ng-container  matColumnDef="loan_start_time">
-        <mat-header-cell *matHeaderCellDef>Loan date</mat-header-cell>
-        <mat-cell *matCellDef="let booking">{{booking.loan_start_time|date: 'd MMMM yyyy'}}</mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Loan date</mat-header-cell>
+        <mat-cell *matCellDef="let booking">{{booking.loan_start_time|date: 'd/M/yyyy'}}</mat-cell>
     </ng-container>
     <ng-container  matColumnDef="loan_end_time">
-        <mat-header-cell *matHeaderCellDef>Return date</mat-header-cell>
-        <mat-cell *matCellDef="let booking">{{booking.loan_end_time|date: 'd MMMM yyyy'}}</mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Return date</mat-header-cell>
+        <mat-cell *matCellDef="let booking">{{booking.loan_end_time|date: 'd/M/yyyy'}}</mat-cell>
     </ng-container>
     <ng-container  matColumnDef="deposit_left">
-        <mat-header-cell *matHeaderCellDef>Deposit Left (S$)</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Deposit Left (S$)</mat-header-cell>
         <mat-cell *matCellDef="let booking">{{booking.deposit_left}}</mat-cell>
     </ng-container>
     <ng-container  matColumnDef="status">
-        <mat-header-cell *matHeaderCellDef [ngClass]="'w-100'">Status</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef [ngClass]="'w-100'" mat-sort-header>Status</mat-header-cell>
         <mat-cell *matCellDef="let booking" [ngClass]="'w-100'">{{booking.status}}</mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
-    <mat-row *matRowDef="let booking; columns: tableColumns;" (click)=openDialog(booking)></mat-row>
+    <mat-row matRipple *matRowDef="let booking; columns: tableColumns;" (click)=openDialog(booking)></mat-row>
 </mat-table>
+<mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
+</div>
+</div>
+</div>

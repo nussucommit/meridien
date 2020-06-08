@@ -21,7 +21,11 @@ export class BookingsService {
   }
   
   getBookedItemsByBooker(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrlBookedItems}/booking_source_id/${id}`);
+    return this.http.get(`${this.baseUrlBookedItems}/booking_source_id/${id}/`);
+  }
+
+  getBookersbyBookedItem(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrlBookedItems}/item_id/${id}/`);
   }
   
   createBooking(booking: Object): Observable<Object> {
@@ -37,7 +41,7 @@ export class BookingsService {
   }
   
   updateBookedItem(id: number, value: any): Observable<Object> {
-    return this.http.put(`${this.baseUrlBookedItems}/${id}`, value);
+    return this.http.put(`${this.baseUrlBookedItems}/${id}/`, value);
   }
   
   deleteBooking(id: number): Observable<any> {
@@ -45,7 +49,7 @@ export class BookingsService {
   }
  
   deleteBookedItem(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrlBookedItems}/${id}`);
+    return this.http.delete(`${this.baseUrlBookedItems}/${id}/`);
   }
   
   deleteAllBookings(): Observable<any> {

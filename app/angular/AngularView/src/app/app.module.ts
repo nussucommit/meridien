@@ -1,10 +1,13 @@
+import { RefreshInterceptor } from './api-auth/refresh.interceptor';
+import { JwtInterceptor } from './api-auth/jwt.interceptor';
+import { LoginService } from './model-service/users/login.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -28,6 +31,8 @@ import { BookingDetailsComponent } from './booking-details/booking-details.compo
 import { ItemListComponent, ItemListDialog } from './item-list/item-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BookingListComponent, BookingListDialog } from './booking-list/booking-list.component';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +44,9 @@ import { BookingListComponent, BookingListDialog } from './booking-list/booking-
     ItemListDialog,
     NotFoundComponent,
     BookingListComponent,
-    BookingListDialog
+    BookingListDialog,
+    LoginFormComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -62,21 +69,25 @@ import { BookingListComponent, BookingListDialog } from './booking-list/booking-
     MatSortModule,
     FullCalendarModule
   ],
-  exports: [ 
-    MatToolbarModule, 
-    MatButtonModule, 
-    MatFormFieldModule, 
-    MatInputModule, 
-    MatTableModule, 
-    MatIconModule, 
-    MatDialogModule, 
+  exports: [
+    MatToolbarModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+    MatIconModule,
+    MatDialogModule,
     MatDatepickerModule,
     MatMomentDateModule,
     MatPaginatorModule,
     MatRippleModule,
     MatSortModule
   ],
-  providers: [{provide: MAT_DATE_LOCALE, useValue: 'en-SG'},],
+  providers: [ 
+    { provide: MAT_DATE_LOCALE, useValue: 'en-SG' },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: RefreshInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

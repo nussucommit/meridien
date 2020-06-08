@@ -1,10 +1,11 @@
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Token } from './tokens';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginDetail } from './login-details';
 import { User } from './users';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,10 @@ export class LoginService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -39,6 +43,48 @@ export class LoginService {
   logout() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+    this.router.navigate(['/login']);
+  }
+
+  attachAccessToken(request: HttpRequest<any>): HttpRequest<any> {
+    const currentUser = this.currentUserValue;
+    if (currentUser && currentUser.token) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${currentUser.token.access}`
+        }
+      });
+    }
+
+    return request;
+  }
+
+  refreshAccessToken(): Observable<boolean> {
+    const currentUser = this.currentUserValue;
+
+    return this.http.post<Token>(this.refreshApiUrl, currentUser.token)
+      .pipe(
+        map<Token, boolean>((receivedToken: Token) => {
+          console.log('Before');
+          console.log(this.currentUserValue);
+          this.updateAccessToken(receivedToken);
+          console.log('After');
+          console.log(this.currentUserValue);
+          return true;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  updateAccessToken(newToken: Token) {
+    const currentUser = this.currentUserValue;
+    this.currentUserSubject.next({
+      username: currentUser.username,
+      token: {
+        access: newToken.access,
+        refresh: currentUser.token.refresh,
+      }
+    });
   }
 
   get observableUser(): Observable<User> {

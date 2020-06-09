@@ -12,6 +12,8 @@ export class LoginFormComponent implements OnInit {
 
   returnUrl: string;
 
+  hide = true;
+
   loginForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl('')

@@ -22,6 +22,7 @@ import { MAT_DATE_LOCALE, MatRippleModule } from '@angular/material/core';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatCardModule } from '@angular/material/card';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 
@@ -67,6 +68,7 @@ import { LogoutComponent } from './logout/logout.component';
     MatPaginatorModule,
     MatRippleModule,
     MatSortModule,
+    MatCardModule,
     FullCalendarModule
   ],
   exports: [
@@ -81,7 +83,8 @@ import { LogoutComponent } from './logout/logout.component';
     MatMomentDateModule,
     MatPaginatorModule,
     MatRippleModule,
-    MatSortModule
+    MatSortModule,
+    MatCardModule
   ],
   providers: [ 
     { provide: MAT_DATE_LOCALE, useValue: 'en-SG' },

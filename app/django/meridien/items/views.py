@@ -1,6 +1,7 @@
 from items.models import Item, BookedItem
 from items.serializers import ItemSerializer, BookedItemSerializer
 from django.http.response import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated

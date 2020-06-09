@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from rest_framework import status
 
+@csrf_exempt
 def obj_list(request, obj, obj_serializer_class):
     if request.method == 'GET':
         objs = obj.objects.all()
@@ -21,6 +22,7 @@ def obj_list(request, obj, obj_serializer_class):
         obj.objects.all().delete()
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
 
+@csrf_exempt
 def obj_detail(request, pk, obj, obj_serializer_class):
     try:
         objs = obj.objects.get(pk=pk)

@@ -13,28 +13,28 @@
   clear: both;
 }
 </style>
-<h1 mat-dialog-title>Booking #{{booking_data.id}}</h1>
+<h1 mat-dialog-title>Booking #{{booking_data.source.id}}</h1>
 
 <div mat-dialog-content class="row">
 <div class="column-left">
   <h2 style="color:#777777">Booking details</h2>
-  <mat-label>Booked by: {{booking_data.name}}</mat-label>
+  <mat-label>Booked by: {{booking_data.source.name}}</mat-label>
   <br>
-  <mat-label>Email: {{booking_data.email}}</mat-label>
+  <mat-label>Email: {{booking_data.source.email}}</mat-label>
   <br>
-  <mat-label>Organization: {{booking_data.organization}}</mat-label>
+  <mat-label>Organization: {{booking_data.source.organization}}</mat-label>
   <br>
-  <mat-label>Time booked: {{booking_data.time_booked|date: 'd MMM yyyy HH:mm:ss'}}</mat-label>
+  <mat-label>Time booked: {{booking_data.source.time_booked|date: 'd MMM yyyy HH:mm:ss'}}</mat-label>
   <br>
-  <mat-label>Purpose: {{booking_data.reason}}</mat-label>
+  <mat-label>Purpose: {{booking_data.source.reason}}</mat-label>
   <br>
-  <mat-label>Loan date: {{booking_data.loan_start_time|date: 'd MMM yyyy'}}</mat-label>
+  <mat-label>Loan date: {{booking_data.source.loan_start_time|date: 'd MMM yyyy'}}</mat-label>
   <br>
-  <mat-label>Return date: {{booking_data.loan_end_time|date: 'd MMM yyyy'}}</mat-label>
+  <mat-label>Return date: {{booking_data.source.loan_end_time|date: 'd MMM yyyy'}}</mat-label>
   <br>
-  <mat-label>Deposit left: ${{booking_data.deposit_left}}</mat-label>
+  <mat-label>Deposit left: ${{booking_data.source.deposit_left}}</mat-label>
   <br>
-  <mat-label>Status: {{booking_data.status}}</mat-label>
+  <mat-label>Status: {{booking_data.source.status}}</mat-label>
   <br>
 </div>
 <div class="column-right">
@@ -57,7 +57,28 @@
   </mat-table>
 </div>
 </div>
-<div mat-dialog-actions align="end">
-  <button mat-button>Edit</button>
-  <button mat-button>Delete </button>
+
+<!--Nicholas, help me add in the condition to check if a user is admin, kthxbye-->
+<div mat-dialog-actions *ngIf="(booking_data.source.status === 'PENDING')" align="end">
+  <button mat-button (click)="updateStatus('APPROVED')">
+    <mat-icon matPrefix>done</mat-icon>
+    Approve
+  </button>
+
+  <button mat-button>
+    <mat-icon matPrefix>clear</mat-icon>
+    Reject
+  </button>
+</div>
+
+<div mat-dialog-actions *ngIf="(booking_data.source.status === 'APPROVED')||(booking_data.source.status === 'REJECTED')" align="end">
+  <button mat-button>
+    <mat-icon matPrefix>undo</mat-icon>
+    Revoke
+  </button>
+
+  <button mat-button>
+    <mat-icon matPrefix>clear</mat-icon>
+    Remove
+  </button>
 </div>

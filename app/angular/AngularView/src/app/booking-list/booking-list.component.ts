@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, Input } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 
 import { BookingsService } from '../model-service/bookings/bookings.service';
@@ -25,7 +25,7 @@ import moment from 'moment';
 })
 
 export class BookingListComponent implements OnInit {
-  
+
   bookings = new MatTableDataSource<Booking>();
   tableColumns: string[] = ['id', 'name', 'email', 'organization', 'time_booked', 'loan_start_time', 'loan_end_time', 'deposit_left', 'status'];
   
@@ -62,8 +62,7 @@ export class BookingListComponent implements OnInit {
     this.bookingsService.getBookedItemsByBooker(row['id'])
       .subscribe(
         (data: BookedItem[]) => {
-          var final_data: Object = Object.assign({}, row, {booked_items: data});
-          this.dialog.open(BookingListDialog, {width: '600px', data: final_data});
+          this.dialog.open(BookingListDialog, {width: '600px', data: {source: row, booked_items: data}});
         }
       );
   }
@@ -101,7 +100,6 @@ export class BookingListComponent implements OnInit {
     }
     return true;
   }
-
 }
 
 @Component({
@@ -110,5 +108,12 @@ export class BookingListComponent implements OnInit {
 })
 export class BookingListDialog {
   tableColumnsBookedItems: string[] = ['name', 'quantity', 'status'];
-  constructor(public dialogRef: MatDialogRef<BookingListDialog>, @Inject(MAT_DIALOG_DATA) public booking_data: any) {}
+  constructor(private bookingsService: BookingsService, public dialogRef: MatDialogRef<BookingListDialog>, @Inject(MAT_DIALOG_DATA) public booking_data: any) {}
+
+  updateStatus(status: string){
+    var booking_data_copy = {...this.booking_data.source};
+    delete booking_data_copy['id'];
+    booking_data_copy['status'] = status;
+    this.bookingsService.updateBooking(this.booking_data.source.id, booking_data_copy).subscribe();
+  }
 }

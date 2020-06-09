@@ -30,11 +30,11 @@ def obj_detail(request, pk, obj, obj_serializer_class):
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        obj_serializer = obj_serializer_class(obj)
+        obj_serializer = obj_serializer_class(objs)
         return JsonResponse(obj_serializer.data)
     elif request.method == 'PUT':
         obj_data = JSONParser().parse(request)
-        obj_serializer = obj_serializer_class(obj, data=obj_data)
+        obj_serializer = obj_serializer_class(objs, data=obj_data)
         if obj_serializer.is_valid():
             obj_serializer.save()
             return JsonResponse(obj_serializer.data)

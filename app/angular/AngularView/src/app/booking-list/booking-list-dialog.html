@@ -59,20 +59,15 @@
 </div>
 
 <!--Nicholas, help me add in the condition to check if a user is admin, kthxbye-->
-<div mat-dialog-actions *ngIf="(booking_data.source.status === 'PENDING')" align="end">
-  <button mat-button (click)="updateStatus('APPROVED')">
-    <mat-icon matPrefix>done</mat-icon>
-    Approve
-  </button>
-
-  <button mat-button>
-    <mat-icon matPrefix>clear</mat-icon>
-    Reject
+<div mat-dialog-actions *ngIf="booking_data.source.status === 'PEN'" align="end">
+  <button mat-button (click)="updateStatus('PRO')">
+    <mat-icon matPrefix>email</mat-icon>
+    Process and Email
   </button>
 </div>
 
-<div mat-dialog-actions *ngIf="(booking_data.source.status === 'APPROVED')||(booking_data.source.status === 'REJECTED')" align="end">
-  <button mat-button>
+<div mat-dialog-actions *ngIf="booking_data.source.status === 'PRO'" align="end">
+  <button mat-button (click)="updateStatus('PEN')">
     <mat-icon matPrefix>undo</mat-icon>
     Revoke
   </button>

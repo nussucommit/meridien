@@ -9,25 +9,25 @@ from rest_framework.permissions import IsAuthenticated
 import sys
 sys.path.append('../')
 from meridien import views_template
-@api_view(['GET'])
+@api_view(['GET', 'POST', 'DELETE'])
 @permission_classes([IsAuthenticated])
 @csrf_exempt
 def item_list(request):
     return views_template.obj_list(request, Item, ItemSerializer)
 
-@api_view(['GET'])
+@api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
 @csrf_exempt
 def item_detail(request, pk):
     return views_template.obj_detail(request, pk, Item, ItemSerializer)
 
-@api_view(['GET'])
+@api_view(['GET', 'POST', 'DELETE'])
 @permission_classes([IsAuthenticated])
 @csrf_exempt
 def booked_item_list(request):
     return views_template.obj_list(request, BookedItem, BookedItemSerializer)
 
-@api_view(['GET'])
+@api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])    
 @csrf_exempt
 def booked_item_detail(request, pk):

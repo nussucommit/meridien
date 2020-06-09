@@ -11,6 +11,7 @@ import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-mo
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import moment from 'moment';
 
@@ -58,11 +59,14 @@ export class BookingListComponent implements OnInit {
       );
   }
   
-  openDialog(row) {
+  openDialog(row: { [x: string]: number; }) {
     this.bookingsService.getBookedItemsByBooker(row['id'])
       .subscribe(
         (data: BookedItem[]) => {
           this.dialog.open(BookingListDialog, {width: '600px', data: {source: row, booked_items: data}});
+          this.dialog.afterAllClosed.subscribe(()=>{
+            this.reloadData();
+          });
         }
       );
   }
@@ -108,12 +112,22 @@ export class BookingListComponent implements OnInit {
 })
 export class BookingListDialog {
   tableColumnsBookedItems: string[] = ['name', 'quantity', 'status'];
-  constructor(private bookingsService: BookingsService, public dialogRef: MatDialogRef<BookingListDialog>, @Inject(MAT_DIALOG_DATA) public booking_data: any) {}
+  constructor(private bookingsService: BookingsService, public dialogRef: MatDialogRef<BookingListDialog>, @Inject(MAT_DIALOG_DATA) public booking_data: any, private _snackbar: MatSnackBar) {}
 
   updateStatus(status: string){
     var booking_data_copy = {...this.booking_data.source};
     delete booking_data_copy['id'];
     booking_data_copy['status'] = status;
     this.bookingsService.updateBooking(this.booking_data.source.id, booking_data_copy).subscribe();
+    this.dialogRef.close();
+
+    var snackbarString = '';
+    if(status==='PEN'){
+      snackbarString = 'Pending';
+    }else if(status==='PRO'){
+      snackbarString = 'Processed';
+    }
+
+    this._snackbar.open('Status of Booking #'+this.booking_data.source.id+' changed to: '+snackbarString, 'OK', {duration: 5000,});
   }
 }

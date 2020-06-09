@@ -9,13 +9,13 @@ import sys
 sys.path.append('../')
 from meridien import views_template
 
-@api_view(['GET'])
+@api_view(['GET', 'POST', 'DELETE'])
 @permission_classes([IsAuthenticated])
 @csrf_exempt
 def booking_list(request):
     return views_template.obj_list(request, Booking, BookingSerializer)
 
-@api_view(['GET'])
+@api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
 @csrf_exempt
 def booking_detail(request, pk):

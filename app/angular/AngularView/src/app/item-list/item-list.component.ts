@@ -26,6 +26,8 @@ export class ItemListComponent implements OnInit {
   
   filterForm: FormGroup;
 
+  itemDialogOpened = false;
+
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -83,7 +85,11 @@ export class ItemListComponent implements OnInit {
     this.bookingsService.getBookersbyBookedItem(row['id'])
       .subscribe(
         (data: BookedItem[]) => {
-          this.dialog.open(ItemListDialog, {width: '1200px', data: {name: row['name'], people: data}});
+          if(!this.itemDialogOpened){
+            this.itemDialogOpened = true;
+            let dialogRef = this.dialog.open(ItemListDialog, {width: '1200px', data: {name: row['name'], people: data}});
+            dialogRef.afterClosed().subscribe(()=>{this.itemDialogOpened = false;});
+          }
         }
       );
   }
@@ -107,7 +113,8 @@ export class ItemListDialog implements OnInit{
         {
           title: events['booking_source']['name']+' - '+events['quantity']+' items',
           start: events['booking_source']['loan_start_time'],
-          end: events['booking_source']['loan_end_time']
+          //substr(0,10) is to extract the date only, 86400001 is added to include the return date
+          end: new Date(new Date(events['booking_source']['loan_end_time']).getTime()+86400000).toISOString().substr(0,10)
         }
       );
     }

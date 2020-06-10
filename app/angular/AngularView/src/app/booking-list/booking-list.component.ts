@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject, ViewChild, Input } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 
+import { take } from 'rxjs/operators'
+
 import { BookingsService } from '../model-service/bookings/bookings.service';
 import { Booking } from '../model-service/bookings/bookings';
 import { BookedItem } from '../model-service/items/items';
@@ -31,6 +33,8 @@ export class BookingListComponent implements OnInit {
   tableColumns: string[] = ['id', 'name', 'email', 'organization', 'time_booked', 'loan_start_time', 'loan_end_time', 'deposit_left', 'status'];
   
   filterForm: FormGroup;
+
+  bookingDialogOpened = false;
   
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -63,10 +67,14 @@ export class BookingListComponent implements OnInit {
     this.bookingsService.getBookedItemsByBooker(row['id'])
       .subscribe(
         (data: BookedItem[]) => {
-          this.dialog.open(BookingListDialog, {width: '600px', data: {source: row, booked_items: data}});
-          this.dialog.afterAllClosed.subscribe(()=>{
-            this.reloadData();
-          });
+          if(!this.bookingDialogOpened){
+            this.bookingDialogOpened = true;
+            let dialogRef = this.dialog.open(BookingListDialog, {width: '600px', data: {source: row, booked_items: data}});
+            dialogRef.afterClosed().subscribe(()=>{
+              this.reloadData();
+              this.bookingDialogOpened = false;
+            });
+          }
         }
       );
   }

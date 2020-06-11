@@ -79,12 +79,6 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header>Organization</mat-header-cell>
         <mat-cell *matCellDef="let booking">{{booking.organization}}</mat-cell>
     </ng-container>
-    <!-- Eh I don't think reason is necessary to be flash for the whole world lol
-    <ng-container  matColumnDef="reason">
-        <mat-header-cell *matHeaderCellDef>Purpose</mat-header-cell>
-        <mat-cell *matCellDef="let booking">{{booking.reason}}</mat-cell>
-    </ng-container>
-    -->
     <ng-container  matColumnDef="time_booked">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Time Booked</mat-header-cell>
         <mat-cell *matCellDef="let booking">{{booking.time_booked|date: 'd/M/yyyy'}}</mat-cell>

@@ -19,8 +19,6 @@ import { MatSort } from '@angular/material/sort';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { Subscription } from 'rxjs';
 
-var item: any;
-
 @Component({
   selector: 'item-list',
   templateUrl: './item-list.component.html',

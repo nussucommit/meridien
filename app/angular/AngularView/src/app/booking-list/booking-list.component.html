@@ -58,7 +58,7 @@
   <input matInput formControlName="status">
 </mat-form-field>
 <br>
-<button type="submit" mat-raised-button color="primary">Go</button>
+<button type="submit" mat-raised-button color="primary" [disabled]="!filterForm.valid">Go</button>
 </form>
 </div>
 <div class="column-right">

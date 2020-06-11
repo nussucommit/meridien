@@ -1,6 +1,7 @@
 import { RefreshInterceptor } from './api-auth/refresh.interceptor';
 import { JwtInterceptor } from './api-auth/jwt.interceptor';
 import { LoginService } from './model-service/users/login.service';
+import { ComParentChildService } from './model-service/callchildtoparent.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -77,6 +78,7 @@ import { LogoutComponent } from './logout/logout.component';
     { provide: MAT_DATE_LOCALE, useValue: 'en-SG' },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: RefreshInterceptor, multi: true },
+    ComParentChildService
   ],
   bootstrap: [AppComponent]
 })

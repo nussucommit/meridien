@@ -7,12 +7,19 @@ import { BookingsService } from '../model-service/bookings/bookings.service';
 import { Items } from '../model-service/items/items';
 import { BookedItem } from '../model-service/items/items';
 
+import { ItemDetailsComponent } from '../item-details/item-details.component';
+
+import { ComParentChildService } from '../model-service/callchildtoparent.service';
+
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
 import dayGridPlugin from '@fullcalendar/daygrid';
+import { Subscription } from 'rxjs';
+
+var item: any;
 
 @Component({
   selector: 'item-list',
@@ -20,35 +27,45 @@ import dayGridPlugin from '@fullcalendar/daygrid';
   styleUrls: ['./item-list.component.scss']
 })
 export class ItemListComponent implements OnInit {
-  
+
   items = new MatTableDataSource<Items>();
   tableColumns: string[] = ['id', 'name', 'category', 'quantity', 'deposit', 'status', 'remark'];
-  
+
   filterForm: FormGroup;
 
   itemDialogOpened = false;
+  formDialogOpened = false;
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+  subscription: Subscription;
 
   constructor(
-    private bookingsService: BookingsService, 
-    private itemsService: ItemsService, 
-    public dialog: MatDialog, 
-    private formBuilder: FormBuilder
+    private bookingsService: BookingsService,
+    private itemsService: ItemsService,
+    public dialog: MatDialog,
+    private formBuilder: FormBuilder,
+    private service: ComParentChildService,
     ) { }
 
   ngOnInit() {
     this.reloadData();
     this.items.paginator = this.paginator;
-    this.items.sort=this.sort;
+    this.items.sort = this.sort;
 
     this.filterForm = this.formBuilder.group({
-      name: ['',''],
-      category: ['','']
+      name: ['', ''],
+      category: ['', '']
     });
+
+    this.subscription = this.service.on('reloadData').subscribe(() => { this.reloadData() });
   }
-  
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
   deleteItems() {
     this.itemsService.deleteAll()
       .subscribe(
@@ -56,9 +73,9 @@ export class ItemListComponent implements OnInit {
           console.log(data);
           this.reloadData();
         },
-        error => console.log('ERROR: '+error));
+        error => console.log('ERROR: ' + error));
   }
-  
+
   reloadData() {
     this.itemsService.getItemsList()
       .subscribe(
@@ -66,32 +83,43 @@ export class ItemListComponent implements OnInit {
           this.items.data = data;
         });
   }
-  
-  onSubmit(){
+
+  onSubmit() {
     this.items.filterPredicate = this.itemFilterPredicate;
-    this.items.filter=this.filterForm.value;
+    this.items.filter = this.filterForm.value;
   }
 
-  itemFilterPredicate(data: Items, filter: any): boolean{
-    for(let value in filter){
-      if(!data[value].includes(filter[value])){
+  itemFilterPredicate(data: Items, filter: any): boolean {
+    for (let value in filter) {
+      if (!data[value].includes(filter[value])) {
         return false;
       }
     }
     return true;
   }
-  
-  openDialog(row){
+
+  openDialog(row: { [x: string]: any; }) {
     this.bookingsService.getBookersbyBookedItem(row['id'])
       .subscribe(
         (data: BookedItem[]) => {
-          if(!this.itemDialogOpened){
+          if (!this.itemDialogOpened) {
             this.itemDialogOpened = true;
-            let dialogRef = this.dialog.open(ItemListDialog, {width: '1200px', data: {name: row['name'], people: data}});
-            dialogRef.afterClosed().subscribe(()=>{this.itemDialogOpened = false;});
+            let dialogRef = this.dialog.open(ItemListDialog, { width: '1200px', data: { item: row, people: data } });
+            dialogRef.afterClosed().subscribe(() => { this.itemDialogOpened = false; });
           }
         }
       );
+  }
+
+  openCreateForm() {
+    if (!this.formDialogOpened) {
+      this.formDialogOpened = true;
+      let dialogRef = this.dialog.open(ItemDetailsComponent, { data: { mode: 'create' } });
+      dialogRef.afterClosed().subscribe(() => {
+        this.formDialogOpened = false;
+        this.reloadData();
+      });
+    }
   }
 }
 
@@ -99,25 +127,44 @@ export class ItemListComponent implements OnInit {
   selector: 'item-list-dialog',
   templateUrl: './item-list-dialog.html',
 })
-export class ItemListDialog implements OnInit{
+export class ItemListDialog implements OnInit {
   calendarPlugins = [dayGridPlugin];
   calendarEvents = [];
 
   tableColumns_dialog = ['name', 'loan_start_time', 'loan_end_time', 'quantity'];
 
-  constructor(public dialogRef: MatDialogRef<ItemListDialog>, @Inject(MAT_DIALOG_DATA) public item_data: any) {}
+  editFormOpened = false;
 
-  ngOnInit(){
-    for(var events of this.item_data.people){
+  constructor(
+    public dialog: MatDialog,
+    public dialogRef: MatDialogRef<ItemListDialog>,
+    private service: ComParentChildService,
+    @Inject(MAT_DIALOG_DATA) public item_data: any
+  ) { }
+
+  ngOnInit() {
+    for (var events of this.item_data.people) {
       this.calendarEvents.push(
         {
-          title: events['booking_source']['name']+' - '+events['quantity']+' items',
+          title: events['booking_source']['name'] + ' - ' + events['quantity'] + ' items',
           start: events['booking_source']['loan_start_time'],
           //substr(0,10) is to extract the date only, 86400001 is added to include the return date
-          end: new Date(new Date(events['booking_source']['loan_end_time']).getTime()+86400000).toISOString().substr(0,10)
+          end: new Date(new Date(events['booking_source']['loan_end_time']).getTime() + 86400000).toISOString().substr(0, 10)
         }
       );
     }
     console.log(this.calendarEvents);
+  }
+
+  openEditForm() {
+    this.dialogRef.close();
+    if (!this.editFormOpened) {
+      this.editFormOpened = true;
+      let dialogRefs = this.dialog.open(ItemDetailsComponent, { data: { mode: 'edit', item: this.item_data.item } });
+      dialogRefs.afterClosed().subscribe(() => {
+        this.editFormOpened = false;
+        this.service.publish('reloadData');
+      });
+    }
   }
 }

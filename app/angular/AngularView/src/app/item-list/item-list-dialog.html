@@ -14,7 +14,7 @@
 }
 </style>
 
-<h1 mat-dialog-title>Item Availability for {{item_data.name}}</h1>
+<h1 mat-dialog-title>Item Availability for {{item_data.item.name}}</h1>
 <div class="row">
 <div class="column-left">
   <mat-table [dataSource]=item_data.people>
@@ -44,7 +44,7 @@
 </div>
 
 <div mat-dialog-actions align="end">
-  <button mat-button>
+  <button mat-button (click)="openEditForm()">
     <mat-icon matPrefix>create</mat-icon>
     Edit
   </button>

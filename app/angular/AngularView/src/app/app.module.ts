@@ -28,7 +28,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 
-import { CreateItemComponent } from './create-item/create-item.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
 import { ItemListComponent, ItemListDialog } from './item-list/item-list.component';
@@ -40,7 +39,6 @@ import { LogoutComponent } from './logout/logout.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CreateItemComponent,
     ItemDetailsComponent,
     BookingDetailsComponent,
     ItemListComponent,

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'bookings.apps.BookingsConfig',
     'emailtemplates.apps.EmailtemplatesConfig',
     'items.apps.ItemsConfig',
+    'mails.apps.MailsConfig',
     'corsheaders',
 ]
 

@@ -25,6 +25,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 
@@ -70,6 +72,8 @@ import { LogoutComponent } from './logout/logout.component';
     MatSortModule,
     MatCardModule,
     MatSnackBarModule,
+    MatSelectModule,
+    MatStepperModule,
     FullCalendarModule
   ],
   providers: [ 

@@ -5,12 +5,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { ItemListComponent } from './item-list/item-list.component';
 import { BookingListComponent } from './booking-list/booking-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { BookingDetailsComponent } from './booking-details/booking-details.component';
 
 const routes: Routes = [
     { path: 'items', component: ItemListComponent, canActivate: [AuthGuard] },
     { path: 'bookings', component: BookingListComponent, canActivate: [AuthGuard] },
     { path: '', redirectTo: 'bookings', pathMatch: 'full', canActivate: [AuthGuard] },
     { path: 'login', component: LoginFormComponent },
+    { path: 'edit', component: BookingDetailsComponent},
     { path: '**', component: NotFoundComponent },
 ];
 

@@ -1,3 +1,4 @@
+import { TemplateDetailDialog } from './template-list/template-detail.dialog';
 import { RefreshInterceptor } from './api-auth/refresh.interceptor';
 import { JwtInterceptor } from './api-auth/jwt.interceptor';
 import { LoginService } from './model-service/users/login.service';
@@ -28,6 +29,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 
+import { EditorModule } from '@tinymce/tinymce-angular';
+
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
 import { ItemListComponent, ItemListDialog } from './item-list/item-list.component';
@@ -35,6 +38,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { BookingListComponent, BookingListDialog } from './booking-list/booking-list.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { LogoutComponent } from './logout/logout.component';
+import { TemplateListComponent } from './template-list/template-list.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +51,9 @@ import { LogoutComponent } from './logout/logout.component';
     BookingListComponent,
     BookingListDialog,
     LoginFormComponent,
-    LogoutComponent
+    LogoutComponent,
+    TemplateListComponent,
+    TemplateDetailDialog
   ],
   imports: [
     BrowserModule,
@@ -70,7 +76,8 @@ import { LogoutComponent } from './logout/logout.component';
     MatSortModule,
     MatCardModule,
     MatSnackBarModule,
-    FullCalendarModule
+    FullCalendarModule,
+    EditorModule
   ],
   providers: [ 
     { provide: MAT_DATE_LOCALE, useValue: 'en-SG' },

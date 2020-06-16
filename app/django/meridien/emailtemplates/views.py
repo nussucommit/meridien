@@ -10,7 +10,7 @@ import sys
 sys.path.append('../')
 from meridien import views_template
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 @csrf_exempt
 def email_template_list(request):

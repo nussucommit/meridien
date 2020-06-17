@@ -10,6 +10,7 @@ import { apiKey } from '../settings';
   selector: 'app-template-detail-dialog',
   templateUrl: './template-detail.dialog.html',
 })
+// tslint:disable-next-line: component-class-suffix
 export class TemplateDetailDialog {
   updateForm: FormGroup;
 
@@ -26,16 +27,16 @@ export class TemplateDetailDialog {
     private formBuilder: FormBuilder,
     private snackbar: MatSnackBar
   ) {
-    this.isEdit = params['isEdit'];
+    this.isEdit = params.isEdit;
     this.updateForm = this.formBuilder.group({
       name: '',
       subject: '',
       template: ''
     });
     if (this.isEdit) {
-      this.template = params['template'];
+      this.template = params.template;
       this.templateParams = {...this.template};
-      delete this.templateParams['id'];
+      delete this.templateParams.id;
       this.updateForm.setValue(this.templateParams);
     } else {
       this.template = null;

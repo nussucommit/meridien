@@ -55,7 +55,7 @@ export class TemplateListComponent implements OnInit {
   }
 
   openDetail(row: { [x: string]: number; }) {
-    this.emailTemplatesService.getTemplateById(row['id'])
+    this.emailTemplatesService.getTemplateById(row.id)
       .subscribe(
         (data: EmailTemplate) => {
           if (!this.isDialogOpen) {

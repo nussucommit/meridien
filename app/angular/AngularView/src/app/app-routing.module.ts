@@ -1,3 +1,4 @@
+import { MailSenderComponent } from './mail-sender/mail-sender.component';
 import { AuthGuard } from './model-service/users/auth.guard';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { NgModule } from '@angular/core';
@@ -14,6 +15,7 @@ const routes: Routes = [
     { path: '', redirectTo: 'bookings', pathMatch: 'full', canActivate: [AuthGuard] },
     { path: 'login', component: LoginFormComponent },
     { path: 'templates', component: TemplateListComponent },
+    { path: 'mailer', component: MailSenderComponent },
     { path: 'edit', component: BookingDetailsComponent},
     { path: '**', component: NotFoundComponent },
 ];

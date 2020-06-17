@@ -5,12 +5,13 @@ import { BookingsService } from '../model-service/bookings/bookings.service';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import moment from 'moment';
-import { Items } from '../model-service/items/items';
+import { Items, BookedItem } from '../model-service/items/items';
 import { ItemsService } from '../model-service/items/items.service';
 import { Observable } from 'rxjs';
+import { Booking } from '../model-service/bookings/bookings';
 
 @Component({
-  selector: 'booking-details',
+  selector: 'app-booking-details',
   templateUrl: './booking-details.component.html',
   styleUrls: ['./booking-details.component.scss'],
   providers: [
@@ -24,6 +25,11 @@ export class BookingDetailsComponent implements OnInit {
   itemsForm: FormGroup;
 
   itemArray: Items[];
+
+  inputGroup1: any;
+  inputGroup2: any;
+
+  itemColumns = ['item', 'quantity'];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -48,6 +54,8 @@ export class BookingDetailsComponent implements OnInit {
         this.itemArray = data;
       }
     );
+
+    this.checkout();
   }
 
   dateCheck(control: AbstractControl): any {
@@ -55,7 +63,7 @@ export class BookingDetailsComponent implements OnInit {
   }
 
   emailCheck(control: AbstractControl): any {
-    let regex = new RegExp('e[0-9]{7}@u\.nus\.edu');
+    const regex = new RegExp('e[0-9]{7}@u\.nus\.edu');
     return regex.test(control.value) ? null : { email: true };
   }
 
@@ -78,11 +86,39 @@ export class BookingDetailsComponent implements OnInit {
     this.getItemInputForm().removeAt(i);
   }
 
-  step1() {
-
+  checkout() {
+    this.inputGroup1 = this.detailsForm.value;
+    this.inputGroup2 = this.itemsForm.value;
   }
 
-  step2() {
+  getTotalDeposit() {
+    let totalSum = 0;
+    this.inputGroup2.items.forEach(element => {
+      totalSum += element.item.deposit * element.quantity;
+    });
+    return Math.min(200, totalSum);
+  }
 
+  /* this function essentially allows user to navigate the stepper back and forth
+   while at the same time updating the form contents for use in the checkout page.*/
+  selectionChange(event) {
+    if (event.selectedIndex === 2) {
+      this.checkout();
+    }
+  }
+
+  onSubmit() {
+    const bookingDataCopy = { ...this.inputGroup1 };
+    bookingDataCopy.loan_start_time = bookingDataCopy.loan_start_time.format('YYYY-MM-DD');
+    bookingDataCopy.loan_end_time = bookingDataCopy.loan_end_time.format('YYYY-MM-DD');
+    const finalData: Booking = Object.assign(bookingDataCopy,
+      { time_booked: new Date(), status: 'PEN', deposit_left: this.getTotalDeposit() }) as Booking;
+    this.bookingsService.createBooking(finalData).subscribe(
+      (data: any) => {
+        this.inputGroup2.items.forEach(element => {
+          const finalItemData = { booking_source: data.id, item: element.item.id, quantity: element.quantity, status: 'PEN' };
+          this.bookingsService.createBookedItem(finalItemData).subscribe();
+        });
+      });
   }
 }

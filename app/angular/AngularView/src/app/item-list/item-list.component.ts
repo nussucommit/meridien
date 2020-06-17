@@ -21,6 +21,7 @@ import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'item-list',
   templateUrl: './item-list.component.html',
   styleUrls: ['./item-list.component.scss']
@@ -58,9 +59,10 @@ export class ItemListComponent implements OnInit {
       category: ['', '']
     });
 
-    this.subscription = this.service.on('reloadData').subscribe(() => { this.reloadData() });
+    this.subscription = this.service.on('reloadData').subscribe(() => { this.reloadData(); });
   }
 
+  // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
@@ -89,7 +91,7 @@ export class ItemListComponent implements OnInit {
   }
 
   itemFilterPredicate(data: Items, filter: any): boolean {
-    for (let value in filter) {
+    for (const value in filter) {
       if (!data[value].includes(filter[value])) {
         return false;
       }
@@ -98,12 +100,12 @@ export class ItemListComponent implements OnInit {
   }
 
   openDialog(row: { [x: string]: any; }) {
-    this.bookingsService.getBookersbyBookedItem(row['id'])
+    this.bookingsService.getBookersbyBookedItem(row.id)
       .subscribe(
         (data: BookedItem[]) => {
           if (!this.itemDialogOpened) {
             this.itemDialogOpened = true;
-            let dialogRef = this.dialog.open(ItemListDialog, { width: '1200px', data: { item: row, people: data } });
+            const dialogRef = this.dialog.open(ItemListDialog, { width: '1200px', data: { item: row, people: data } });
             dialogRef.afterClosed().subscribe(() => { this.itemDialogOpened = false; });
           }
         }
@@ -113,7 +115,7 @@ export class ItemListComponent implements OnInit {
   openCreateForm() {
     if (!this.formDialogOpened) {
       this.formDialogOpened = true;
-      let dialogRef = this.dialog.open(ItemDetailsComponent, { data: { mode: 'create' } });
+      const dialogRef = this.dialog.open(ItemDetailsComponent, { data: { mode: 'create' } });
       dialogRef.afterClosed().subscribe(() => {
         this.formDialogOpened = false;
         this.reloadData();
@@ -123,13 +125,16 @@ export class ItemListComponent implements OnInit {
 }
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'item-list-dialog',
   templateUrl: './item-list-dialog.html',
 })
+// tslint:disable-next-line: component-class-suffix
 export class ItemListDialog implements OnInit {
   calendarPlugins = [dayGridPlugin];
   calendarEvents = [];
 
+  // tslint:disable-next-line: variable-name
   tableColumns_dialog = ['name', 'loan_start_time', 'loan_end_time', 'quantity'];
 
   editFormOpened = false;
@@ -138,19 +143,19 @@ export class ItemListDialog implements OnInit {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<ItemListDialog>,
     private service: ComParentChildService,
-    private _snackbar: MatSnackBar,
+    private snackbar: MatSnackBar,
     private itemsService: ItemsService,
-    @Inject(MAT_DIALOG_DATA) public item_data: any
+    @Inject(MAT_DIALOG_DATA) public itemData: any
   ) { }
 
   ngOnInit() {
-    for (var events of this.item_data.people) {
+    for (const events of this.itemData.people) {
       this.calendarEvents.push(
         {
-          title: events['booking_source']['name'] + ' - ' + events['quantity'] + ' items',
-          start: events['booking_source']['loan_start_time'],
-          //substr(0,10) is to extract the date only, 86400001 is added to include the return date
-          end: new Date(new Date(events['booking_source']['loan_end_time']).getTime() + 86400000).toISOString().substr(0, 10)
+          title: events.booking_source.name + ' - ' + events.quantity + ' items',
+          start: events.booking_source.loan_start_time,
+          // substr(0,10) is to extract the date only, 86400000 is added to include the return date
+          end: new Date(new Date(events.booking_source.loan_end_time).getTime() + 86400000).toISOString().substr(0, 10)
         }
       );
     }
@@ -161,7 +166,7 @@ export class ItemListDialog implements OnInit {
     this.dialogRef.close();
     if (!this.editFormOpened) {
       this.editFormOpened = true;
-      let dialogRefs = this.dialog.open(ItemDetailsComponent, { data: { mode: 'edit', item: this.item_data.item } });
+      const dialogRefs = this.dialog.open(ItemDetailsComponent, { data: { mode: 'edit', item: this.itemData.item } });
       dialogRefs.afterClosed().subscribe(() => {
         this.editFormOpened = false;
         this.service.publish('reloadData');
@@ -171,9 +176,9 @@ export class ItemListDialog implements OnInit {
 
   deleteItem(){
     this.dialogRef.close();
-    this.itemsService.deleteItem(this.item_data.item.id).subscribe(()=>{
+    this.itemsService.deleteItem(this.itemData.item.id).subscribe(() => {
       this.service.publish('reloadData');
-      this._snackbar.open("Item "+this.item_data.item.id+" deleted", 'OK', {duration: 5000});
+      this.snackbar.open('Item ' + this.itemData.item.id + ' deleted', 'OK', {duration: 5000});
     });
   }
 }

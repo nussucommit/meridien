@@ -1,6 +1,25 @@
-<mat-horizontal-stepper #stepper style="background-color: #F7F7F7; width:80%; margin: auto;">
+<style>
+    .column-left {
+        float: left;
+        width: 40%;
+    }
+
+    .column-right {
+        float: right;
+        width: 55%;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+</style>
+
+<mat-horizontal-stepper #stepper [linear]=true style="background-color: #F7F7F7; width:80%; margin: auto;"
+    (selectionChange)="selectionChange($event)">
     <mat-step [stepControl]="detailsForm">
-        <form [formGroup]="detailsForm" (ngSubmit)="step1()">
+        <form [formGroup]="detailsForm" (ngSubmit)="checkout()">
             <ng-template matStepLabel>Applicant Details</ng-template>
             <mat-form-field style="width:45%">
                 <mat-label>Name</mat-label>
@@ -48,36 +67,40 @@
         </form>
     </mat-step>
     <mat-step [stepControl]="itemsForm">
-        <form [formGroup]="itemsForm">
+        <form [formGroup]="itemsForm" (ngSubmit)="checkout">
             <!--TODO: Dynamically add rows and compute deposit live-->
             <ng-template matStepLabel>Select Items</ng-template>
-            <div formArrayName="items" *ngFor="let itemControl of getItemInputForm().controls; let i = index;">
+            <div formArrayName="items" *ngFor="let itemControl of getItemInputForm().controls; let i = index;"
+                style="margin-bottom: 2%;">
                 <div [formGroupName]="i">
                     <mat-form-field style="width:50%">
                         <mat-label>Items</mat-label>
                         <mat-select required class="form-control" formControlName="item">
-                            <mat-option *ngFor="let item of itemArray" [value]="item.id">{{item.name}}</mat-option>
+                            <mat-option *ngFor="let item of itemArray" [value]="item">{{item.name}}</mat-option>
                         </mat-select>
                         <mat-error>Please choose an item.</mat-error>
                     </mat-form-field>
-                    <span style="margin-left: 20%;"></span>
+                    <span style="margin-left: 10%;"></span>
                     <mat-form-field style="width:15%">
                         <mat-label>Quantity</mat-label>
-                        <input matInput type="number" min="1" value="1" required class="form-control" formControlName="quantity">
+                        <input matInput type="number" min="1" value="1" required class="form-control"
+                            formControlName="quantity">
                         <mat-error>Please enter a positive number.</mat-error>
                     </mat-form-field>
-                    <button mat-raised-button color="warn" style="float:right;" (click)="removeItemInput(i)" [disabled]="getItemInputForm().controls.length==1">
+                    <button mat-raised-button color="warn" style="float:right;" (click)="removeItemInput(i)"
+                        [disabled]="getItemInputForm().controls.length==1">
                         <mat-icon matPrefix>clear</mat-icon>
                         Delete
                     </button>
                 </div>
             </div>
-            
+
             <button mat-raised-button color="primary" style="margin-right: 1%;" (click)="addBlankItem()">
                 <mat-icon matPrefix>add</mat-icon>
                 Add Row
             </button>
-            <button matStepperNext mat-raised-button color="primary" [disabled]="!itemsForm.valid">Next</button>
+            <button matStepperNext mat-raised-button color="primary" [disabled]="!itemsForm.valid"
+                type="submit">Next</button>
             <mat-label style="float: right;">
                 Deposit Payable: S$
             </mat-label>
@@ -85,7 +108,35 @@
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>Checkout</ng-template>
-        <!--TODO: Add final check lul-->
-        <button mat-raised-button color="primary">Submit</button>
+        <div class="row">
+            <div class="column-left">
+                <mat-list-item role="listitem">Name: {{inputGroup1['name']}}</mat-list-item>
+                <mat-list-item role="listitem">Email: {{inputGroup1['email']}}</mat-list-item>
+                <mat-list-item role="listitem">Organization: {{inputGroup1['organization']}}</mat-list-item>
+                <mat-list-item role="listitem">Purpose: {{inputGroup1['reason']}}</mat-list-item>
+                <mat-list-item role="listitem">From: {{inputGroup1['loan_start_time']|date: 'd/M/yyyy'}}</mat-list-item>
+                <mat-list-item role="listitem">To: {{inputGroup1['loan_end_time']|date: 'd/M/yyyy'}}</mat-list-item>
+            </div>
+            <div class="column-right">
+                <mat-table [dataSource]="inputGroup2.items" class="mat-elevation-z8">
+                    <ng-container matColumnDef="item">
+                        <mat-header-cell *matHeaderCellDef> Item </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.item.name}} </mat-cell>
+                        <mat-footer-cell *matFooterCellDef>Deposit Payable</mat-footer-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="quantity">
+                        <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.quantity}} </mat-cell>
+                        <mat-footer-cell *matFooterCellDef>{{getTotalDeposit()|currency}}</mat-footer-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="itemColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: itemColumns;"></mat-row>
+                    <mat-footer-row *matFooterRowDef="itemColumns"></mat-footer-row>
+                </mat-table>
+            </div>
+        </div>
+        <mat-list role="list">
+        </mat-list>
+        <button mat-raised-button color="primary" (click)=onSubmit()>Submit</button>
     </mat-step>
 </mat-horizontal-stepper>

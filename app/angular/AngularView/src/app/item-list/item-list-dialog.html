@@ -14,10 +14,10 @@
 }
 </style>
 
-<h1 mat-dialog-title>Item Availability for {{item_data.item.name}}</h1>
+<h1 mat-dialog-title>Item Availability for {{itemData.item.name}}</h1>
 <div class="row">
 <div class="column-left">
-  <mat-table [dataSource]=item_data.people>
+  <mat-table [dataSource]=itemData.people>
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
       <mat-cell *matCellDef="let bookings"> {{bookings.booking_source.name}} </mat-cell>

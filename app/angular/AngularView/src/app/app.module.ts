@@ -27,6 +27,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatListModule } from '@angular/material/list';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 
@@ -82,6 +83,7 @@ import { MailSenderComponent } from './mail-sender/mail-sender.component';
     EditorModule,
     MatSelectModule,
     MatStepperModule,
+    MatListModule,
     FullCalendarModule,
     EditorModule
   ],

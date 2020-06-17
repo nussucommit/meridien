@@ -82,7 +82,8 @@ import { MailSenderComponent } from './mail-sender/mail-sender.component';
     EditorModule,
     MatSelectModule,
     MatStepperModule,
-    FullCalendarModule
+    FullCalendarModule,
+    EditorModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-SG' },

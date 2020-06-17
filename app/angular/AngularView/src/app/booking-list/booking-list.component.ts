@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, ViewChild, Input } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 
-import { take } from 'rxjs/operators'
+import { take } from 'rxjs/operators';
 
 import { BookingsService } from '../model-service/bookings/bookings.service';
 import { Booking } from '../model-service/bookings/bookings';
@@ -18,6 +18,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import moment from 'moment';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'booking-list',
   templateUrl: './booking-list.component.html',
   styleUrls: ['./booking-list.component.scss'],
@@ -64,12 +65,12 @@ export class BookingListComponent implements OnInit {
   }
 
   openDialog(row: { [x: string]: number; }) {
-    this.bookingsService.getBookedItemsByBooker(row['id'])
+    this.bookingsService.getBookedItemsByBooker(row.id)
       .subscribe(
         (data: BookedItem[]) => {
           if (!this.bookingDialogOpened) {
             this.bookingDialogOpened = true;
-            let dialogRef = this.dialog.open(BookingListDialog, { width: '600px', data: { source: row, booked_items: data } });
+            const dialogRef = this.dialog.open(BookingListDialog, { width: '600px', data: { source: row, booked_items: data } });
             dialogRef.afterClosed().subscribe(() => {
               this.reloadData();
               this.bookingDialogOpened = false;
@@ -80,7 +81,7 @@ export class BookingListComponent implements OnInit {
   }
 
   dateCheck(control: AbstractControl): any {
-    var d = control.value;
+    const d = control.value;
     return (d === null || (typeof d === 'string') && d.length === 0 || moment(d).isValid()) ? null : { date: true };
   }
 
@@ -90,14 +91,14 @@ export class BookingListComponent implements OnInit {
   }
 
   bookingFilterPredicate(data: Booking, filter: any): boolean {
-    for (let value in filter) {
+    for (const value in filter) {
       if (filter[value] !== '' && filter[value] !== 0) {
         if (value === 'fromDate') {
           if (Date.parse(data.time_booked.toString()) < Date.parse(filter[value])) {
             return false;
           }
         } else if (value === 'toDate') {
-          //86399999 milliseconds is added to include the end point date
+          // 86399999 milliseconds is added to include the end point date
           if (Date.parse(data.time_booked.toString()) > Date.parse(filter[value]) + 86399999) {
             return false;
           }
@@ -113,27 +114,34 @@ export class BookingListComponent implements OnInit {
 }
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'booking-list-dialog',
   templateUrl: './booking-list-dialog.html',
 })
+// tslint:disable-next-line: component-class-suffix
 export class BookingListDialog {
   tableColumnsBookedItems: string[] = ['name', 'quantity', 'status'];
-  constructor(private bookingsService: BookingsService, public dialogRef: MatDialogRef<BookingListDialog>, @Inject(MAT_DIALOG_DATA) public booking_data: any, private _snackbar: MatSnackBar) { }
+  constructor(
+    private bookingsService: BookingsService,
+    public dialogRef: MatDialogRef<BookingListDialog>,
+    @Inject(MAT_DIALOG_DATA) public bookingData: any,
+    private snackbar: MatSnackBar
+  ) { }
 
   updateStatus(status: string) {
-    var booking_data_copy = { ...this.booking_data.source };
-    delete booking_data_copy['id'];
-    booking_data_copy['status'] = status;
-    this.bookingsService.updateBooking(this.booking_data.source.id, booking_data_copy).subscribe();
+    const bookingDataCopy = { ...this.bookingData.source };
+    delete bookingDataCopy.id;
+    bookingDataCopy.status = status;
+    this.bookingsService.updateBooking(this.bookingData.source.id, bookingDataCopy).subscribe();
     this.dialogRef.close();
 
-    var snackbarString = '';
+    let snackbarString = '';
     if (status === 'PEN') {
       snackbarString = 'Pending';
     } else if (status === 'PRO') {
       snackbarString = 'Processed';
     }
 
-    this._snackbar.open('Status of Booking #' + this.booking_data.source.id + ' changed to: ' + snackbarString, 'OK', { duration: 5000, });
+    this.snackbar.open('Status of Booking #' + this.bookingData.source.id + ' changed to: ' + snackbarString, 'OK', { duration: 5000, });
   }
 }

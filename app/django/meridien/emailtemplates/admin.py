@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from bookings.models import Booking
+from emailtemplates.models import EmailTemplate
 
 # Register your models here.
-admin.site.register(Booking)
+admin.site.register(EmailTemplate)

@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component } from '@angular/core';
 import { apiKey } from '../settings';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mail-sender',
@@ -18,7 +19,8 @@ export class MailSenderComponent {
   constructor(
     private formBuilder: FormBuilder,
     private snackbar: MatSnackBar,
-    private mailerService: MailerService
+    private mailerService: MailerService,
+    private router: Router
   ) {
     this.mailForm = this.formBuilder.group({
       recipient: '',
@@ -31,14 +33,14 @@ export class MailSenderComponent {
     const snackbarString = 'Sent email';
     this.mailerService.send_email(data).subscribe(
       (data) => {
-        console.log(data);
       },
       (err) => {
         console.log(err);
-        console.log(data);
       }
     );
 
+    this.router.navigate(['/bookings']);
     this.snackbar.open(snackbarString, 'OK', {duration: 5000, });
+
   }
 }

@@ -26,6 +26,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 
@@ -76,10 +78,12 @@ import { TemplateListComponent } from './template-list/template-list.component';
     MatSortModule,
     MatCardModule,
     MatSnackBarModule,
-    FullCalendarModule,
-    EditorModule
+    EditorModule,
+    MatSelectModule,
+    MatStepperModule,
+    FullCalendarModule
   ],
-  providers: [ 
+  providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-SG' },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: RefreshInterceptor, multi: true },

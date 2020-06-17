@@ -46,7 +46,6 @@ export class ItemListComponent implements OnInit {
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
     private service: ComParentChildService,
-    private _snackbar: MatSnackBar
     ) { }
 
   ngOnInit() {
@@ -118,7 +117,6 @@ export class ItemListComponent implements OnInit {
       dialogRef.afterClosed().subscribe(() => {
         this.formDialogOpened = false;
         this.reloadData();
-        this._snackbar.open("New item created", "OK", {duration: 5000});
       });
     }
   }
@@ -167,7 +165,6 @@ export class ItemListDialog implements OnInit {
       dialogRefs.afterClosed().subscribe(() => {
         this.editFormOpened = false;
         this.service.publish('reloadData');
-        this._snackbar.open("Item "+this.item_data.item.id+" edited", 'OK', {duration: 5000});
       });
     }
   }

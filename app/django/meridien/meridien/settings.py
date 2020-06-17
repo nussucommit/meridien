@@ -28,6 +28,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'postmaster@sandboxe8ceb8cd388247fd8eda2d138d363fb6.mailgun.org'
+EMAIL_HOST_PASSWORD = os.getenv('NUSSU_PASSWORD')
 
 # Application definition
 
@@ -42,6 +48,7 @@ INSTALLED_APPS = [
     'bookings.apps.BookingsConfig',
     'emailtemplates.apps.EmailtemplatesConfig',
     'items.apps.ItemsConfig',
+    'mails.apps.MailsConfig',
     'corsheaders',
 ]
 
@@ -66,7 +73,7 @@ CORS_ORIGIN_WHITELIST = (
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated'
+        'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -76,7 +83,7 @@ REST_FRAMEWORK = {
 ROOT_URLCONF = 'meridien.urls'
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(seconds=6000),
+    'ACCESS_TOKEN_LIFETIME': timedelta(seconds=3000),
     'REFRESH_TOKEN_LIFETIME': timedelta(seconds=6000),
 }
 

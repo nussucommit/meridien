@@ -6,6 +6,7 @@ import { ItemListComponent } from './item-list/item-list.component';
 import { BookingListComponent } from './booking-list/booking-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { TemplateListComponent } from './template-list/template-list.component';
+import { BookingDetailsComponent } from './booking-details/booking-details.component';
 
 const routes: Routes = [
     { path: 'items', component: ItemListComponent, canActivate: [AuthGuard] },
@@ -13,6 +14,7 @@ const routes: Routes = [
     { path: '', redirectTo: 'bookings', pathMatch: 'full', canActivate: [AuthGuard] },
     { path: 'login', component: LoginFormComponent },
     { path: 'templates', component: TemplateListComponent },
+    { path: 'edit', component: BookingDetailsComponent},
     { path: '**', component: NotFoundComponent },
 ];
 

@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ItemsService } from '../model-service/items/items.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'item-details',
@@ -18,7 +19,8 @@ export class ItemDetailsComponent implements OnInit {
     public dialogRef: MatDialogRef<ItemDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public item_data: any,
     private formBuilder: FormBuilder,
-    private itemsService: ItemsService
+    private itemsService: ItemsService,
+    private _snackbar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -50,8 +52,10 @@ export class ItemDetailsComponent implements OnInit {
     }
     if (this.item_data.mode === "create") {
       this.itemsService.createItem(data).subscribe();
+      this._snackbar.open("New item created", "OK", {duration: 5000});
     } else if (this.item_data.mode === "edit") {
       this.itemsService.updateItem(this.item_data['item']['id'], data).subscribe();
+      this._snackbar.open("Item "+this.item_data['item']['id']+" edited", 'OK', {duration: 5000});
     }
   }
 }

@@ -28,6 +28,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatListModule } from '@angular/material/list';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 
@@ -80,7 +81,8 @@ import { TemplateListComponent } from './template-list/template-list.component';
     MatSnackBarModule,
     MatSelectModule,
     MatStepperModule,
-    FullCalendarModule
+    MatListModule,
+    FullCalendarModule,
     EditorModule
   ],
   providers: [ 

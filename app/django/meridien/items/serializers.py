@@ -10,8 +10,12 @@ class ItemSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class BookedItemSerializer(serializers.ModelSerializer):
-    item = ItemSerializer()
-    booking_source = BookingSerializer()
+    #item = ItemSerializer(read_only=True)
+    #booking_source = BookingSerializer(read_only=True)
     class Meta:
         model = BookedItem
         fields = '__all__'
+    def to_representation(self, instance):
+        self.fields['item'] = ItemSerializer(read_only=True)
+        self.fields['booking_source'] = BookingSerializer(read_only=True)
+        return super().to_representation(instance)

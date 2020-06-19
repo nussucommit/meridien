@@ -19,6 +19,7 @@ import { MatSort } from '@angular/material/sort';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -47,7 +48,7 @@ export class ItemListComponent implements OnInit {
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
     private service: ComParentChildService,
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.reloadData();
@@ -182,11 +183,22 @@ export class ItemListDialog implements OnInit {
     }
   }
 
-  deleteItem(){
+  deleteItem() {
     this.dialogRef.close();
     this.itemsService.deleteItem(this.itemData.item.id).subscribe(() => {
       this.service.publish('reloadData');
-      this.snackbar.open('Item ' + this.itemData.item.id + ' deleted', 'OK', {duration: 5000});
+      this.snackbar.open('Item ' + this.itemData.item.id + ' deleted', 'OK', { duration: 5000 });
     });
+  }
+
+  confirmDelete() {
+    const dialogR = this.dialog.open(ConfirmationDialogComponent, { data: 'item #' + this.itemData.item.id });
+    dialogR.afterClosed().subscribe(
+      (result) => {
+        if (result.event === 'yes') {
+          this.deleteItem();
+        }
+      }
+    );
   }
 }

@@ -16,6 +16,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import moment from 'moment';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -41,7 +42,11 @@ export class BookingListComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private bookingsService: BookingsService, public dialog: MatDialog, private formBuilder: FormBuilder) { }
+  constructor(
+    private bookingsService: BookingsService,
+    public dialog: MatDialog,
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit() {
     this.reloadData();
@@ -134,6 +139,7 @@ export class BookingListDialog {
   tableColumnsBookedItems: string[] = ['name', 'quantity', 'status'];
   constructor(
     private bookingsService: BookingsService,
+    public dialog: MatDialog,
     public dialogRef: MatDialogRef<BookingListDialog>,
     @Inject(MAT_DIALOG_DATA) public bookingData: any,
     private snackbar: MatSnackBar
@@ -155,6 +161,22 @@ export class BookingListDialog {
 
     this.snackbar.open('Status of Booking #' + this.bookingData.source.id + ' changed to: ' + snackbarString, 'OK', { duration: 5000, });
   }
+
+  deleteBooking() {
+    this.bookingsService.deleteBooking(this.bookingData.source.id).subscribe();
+    this.dialogRef.close();
+    this.snackbar.open('Booking #' + this.bookingData.source.id + ' deleted', 'OK', { duration: 5000 });
+  }
+
+  confirmDelete() {
+    const dialogR = this.dialog.open(ConfirmationDialogComponent, { data: 'booking #' + this.bookingData.source.id });
+    dialogR.afterClosed().subscribe(
+      (result) => {
+        if (result.event === 'yes') {
+          this.deleteBooking();
+        }
+      });
+  }
 }
 
 @Component({
@@ -170,7 +192,6 @@ export class BookingSummaryDialog implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<BookingSummaryDialog>,
-    private bookingsService: BookingsService,
     @Inject(MAT_DIALOG_DATA) public bookingData: any
   ) { }
 

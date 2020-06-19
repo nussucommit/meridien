@@ -139,6 +139,11 @@ export class ItemListDialog implements OnInit {
 
   editFormOpened = false;
 
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+  bookers = new MatTableDataSource<any>();
+
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<ItemListDialog>,
@@ -149,6 +154,10 @@ export class ItemListDialog implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.bookers.data = this.itemData.people;
+    this.bookers.paginator = this.paginator;
+    this.bookers.sort = this.sort;
+
     for (const events of this.itemData.people) {
       this.calendarEvents.push(
         {
@@ -159,7 +168,6 @@ export class ItemListDialog implements OnInit {
         }
       );
     }
-    console.log(this.calendarEvents);
   }
 
   openEditForm() {

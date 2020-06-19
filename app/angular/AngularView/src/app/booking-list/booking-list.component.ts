@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, ViewChild, Input } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 
-import { take } from 'rxjs/operators';
+import dayGridPlugin from '@fullcalendar/daygrid';
 
 import { BookingsService } from '../model-service/bookings/bookings.service';
 import { Booking } from '../model-service/bookings/bookings';
@@ -36,6 +36,7 @@ export class BookingListComponent implements OnInit {
   filterForm: FormGroup;
 
   bookingDialogOpened = false;
+  summaryDialogOpened = false;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -78,6 +79,16 @@ export class BookingListComponent implements OnInit {
           }
         }
       );
+  }
+
+  openWeeklySummary() {
+    this.bookingsService.getBookingList().subscribe((bookingData) => {
+      if (!this.summaryDialogOpened) {
+        this.summaryDialogOpened = true;
+        const dialogRef = this.dialog.open(BookingSummaryDialog, { data: bookingData });
+        dialogRef.afterClosed().subscribe(() => { this.summaryDialogOpened = false; });
+      }
+    });
   }
 
   dateCheck(control: AbstractControl): any {
@@ -143,5 +154,47 @@ export class BookingListDialog {
     }
 
     this.snackbar.open('Status of Booking #' + this.bookingData.source.id + ' changed to: ' + snackbarString, 'OK', { duration: 5000, });
+  }
+}
+
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: 'booking-summary-dialog',
+  templateUrl: './booking-summary-dialog.html',
+})
+// tslint:disable-next-line: component-class-suffix
+export class BookingSummaryDialog implements OnInit {
+
+  calendarPlugins = [dayGridPlugin];
+  calendarEvents = [];
+
+  constructor(
+    public dialogRef: MatDialogRef<BookingSummaryDialog>,
+    private bookingsService: BookingsService,
+    @Inject(MAT_DIALOG_DATA) public bookingData: any
+  ) { }
+
+  ngOnInit() {
+    this.bookingData.forEach(element => {
+      this.calendarEvents.push({
+        title: '#' + element.id + ' - ' + element.name,
+        start: element.loan_start_time,
+        end: new Date(new Date(element.loan_end_time).getTime() + 86400000).toISOString().substr(0, 10),
+        color: this.getColour(element.id)
+      });
+    });
+  }
+
+  getColour(num: number) {
+    switch (num % 4) {
+      case 0:
+        return '#3c78b5';
+      case 1:
+        return '#54a8ff';
+      case 2:
+        return '#10b336';
+      case 3:
+        return '#0dd186';
+    }
   }
 }

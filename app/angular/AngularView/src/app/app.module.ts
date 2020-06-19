@@ -28,6 +28,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatListModule } from '@angular/material/list';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 
@@ -42,6 +43,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { LogoutComponent } from './logout/logout.component';
 import { TemplateListComponent } from './template-list/template-list.component';
 import { MailSenderComponent } from './mail-sender/mail-sender.component';
+import { BookingConfirmComponent } from './booking-confirm/booking-confirm.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,8 @@ import { MailSenderComponent } from './mail-sender/mail-sender.component';
     LogoutComponent,
     TemplateListComponent,
     TemplateDetailDialog,
-    MailSenderComponent
+    MailSenderComponent,
+    BookingConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +87,7 @@ import { MailSenderComponent } from './mail-sender/mail-sender.component';
     MatSelectModule,
     MatStepperModule,
     MatListModule,
+    MatCheckboxModule,
     FullCalendarModule,
     EditorModule
   ],

@@ -7,8 +7,7 @@ import { ItemListComponent } from './item-list/item-list.component';
 import { BookingListComponent } from './booking-list/booking-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { TemplateListComponent } from './template-list/template-list.component';
-import { BookingDetailsComponent } from './booking-details/booking-details.component';
-import { BookingConfirmComponent } from './booking-confirm/booking-confirm.component';
+import { BookingDetailsComponent, BookingConfirmComponent } from './booking-details/booking-details.component';
 
 const routes: Routes = [
     { path: 'items', component: ItemListComponent, canActivate: [AuthGuard] },

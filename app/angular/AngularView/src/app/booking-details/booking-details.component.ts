@@ -141,3 +141,18 @@ export class BookingDetailsComponent implements OnInit {
     return { recipient, subject, message } as Email;
   }
 }
+
+@Component({
+  selector: 'app-booking-confirm',
+  templateUrl: './booking-confirm.component.html',
+})
+export class BookingConfirmComponent implements OnInit {
+
+  constructor(private router: Router) { }
+
+  ngOnInit(): void {
+    if (!history.state.submitted) {
+      this.router.navigate(['/edit']);
+    }
+  }
+}

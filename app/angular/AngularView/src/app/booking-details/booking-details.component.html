@@ -108,14 +108,20 @@
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>Checkout</ng-template>
-        <div class="row">
-            <div class="column-left">
-                <mat-list-item role="listitem">Name: {{inputGroup1['name']}}</mat-list-item>
-                <mat-list-item role="listitem">Email: {{inputGroup1['email']}}</mat-list-item>
-                <mat-list-item role="listitem">Organization: {{inputGroup1['organization']}}</mat-list-item>
-                <mat-list-item role="listitem">Purpose: {{inputGroup1['reason']}}</mat-list-item>
-                <mat-list-item role="listitem">From: {{inputGroup1['loan_start_time']|date: 'd/M/yyyy'}}</mat-list-item>
-                <mat-list-item role="listitem">To: {{inputGroup1['loan_end_time']|date: 'd/M/yyyy'}}</mat-list-item>
+        <p>You may want to print this page for your reference. Note that you are required to agree to the PDPA clause
+            before you submit a booking.</p>
+        <div class="row" style="margin-bottom: 20px;">
+            <h2>Booking Details</h2>
+            <div class="column-left" style="margin-top: -20px; margin-left: -15px;">
+                <mat-list role="list">
+                    <mat-list-item role="listitem">Name: {{inputGroup1['name']}}</mat-list-item>
+                    <mat-list-item role="listitem">Email: {{inputGroup1['email']}}</mat-list-item>
+                    <mat-list-item role="listitem">Organization: {{inputGroup1['organization']}}</mat-list-item>
+                    <mat-list-item role="listitem">Purpose: {{inputGroup1['reason']}}</mat-list-item>
+                    <mat-list-item role="listitem">From: {{inputGroup1['loan_start_time']|date: 'd/M/yyyy'}}
+                    </mat-list-item>
+                    <mat-list-item role="listitem">To: {{inputGroup1['loan_end_time']|date: 'd/M/yyyy'}}</mat-list-item>
+                </mat-list>
             </div>
             <div class="column-right">
                 <mat-table [dataSource]="inputGroup2.items" class="mat-elevation-z8">
@@ -135,8 +141,12 @@
                 </mat-table>
             </div>
         </div>
-        <mat-list role="list">
-        </mat-list>
-        <button mat-raised-button color="primary" (click)=onSubmit()>Submit</button>
+        <div style="margin-bottom: 30px;">
+            <h2>PDPA Agreement</h2>
+            <mat-checkbox #c required>
+                A generic PDPA clause.
+            </mat-checkbox>
+        </div>
+        <button mat-raised-button color="primary" (click)=onSubmit() [disabled]="!c.checked">Submit</button>
     </mat-step>
 </mat-horizontal-stepper>

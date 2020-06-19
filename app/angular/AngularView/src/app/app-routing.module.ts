@@ -8,6 +8,7 @@ import { BookingListComponent } from './booking-list/booking-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { TemplateListComponent } from './template-list/template-list.component';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
+import { BookingConfirmComponent } from './booking-confirm/booking-confirm.component';
 
 const routes: Routes = [
     { path: 'items', component: ItemListComponent, canActivate: [AuthGuard] },
@@ -17,6 +18,7 @@ const routes: Routes = [
     { path: 'templates', component: TemplateListComponent },
     { path: 'mailer', component: MailSenderComponent },
     { path: 'edit', component: BookingDetailsComponent},
+    { path: 'edit/confirmed', component: BookingConfirmComponent},
     { path: '**', component: NotFoundComponent },
 ];
 

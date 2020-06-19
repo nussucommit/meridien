@@ -5,10 +5,12 @@ import { BookingsService } from '../model-service/bookings/bookings.service';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import moment from 'moment';
-import { Items, BookedItem } from '../model-service/items/items';
+import { Items } from '../model-service/items/items';
 import { ItemsService } from '../model-service/items/items.service';
-import { Observable } from 'rxjs';
 import { Booking } from '../model-service/bookings/bookings';
+import { Router } from '@angular/router';
+import { Email } from '../model-service/emailtemplates/email';
+import { MailerService } from '../model-service/emailtemplates/mailer.service';
 
 @Component({
   selector: 'app-booking-details',
@@ -34,7 +36,9 @@ export class BookingDetailsComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private bookingsService: BookingsService,
-    private itemsService: ItemsService
+    private itemsService: ItemsService,
+    private mailerService: MailerService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -119,6 +123,21 @@ export class BookingDetailsComponent implements OnInit {
           const finalItemData = { booking_source: data.id, item: element.item.id, quantity: element.quantity, status: 'PEN' };
           this.bookingsService.createBookedItem(finalItemData).subscribe();
         });
+        // comment on the security of this line lol
+        this.router.navigate(['/edit/confirmed'], { state: { id: data.id, name: data.name, email: data.email, submitted: true } });
+        console.log(typeof data.time_booked);
+        this.mailerService.send_email(this.returnEmailObject(
+          data.email,
+          '[Booking #' + data.id + ']- Your booking has been confirmed',
+          '[This is a computer generated email. Do not reply to this email.]<br><br>'
+          + 'Dear ' + data.name + '<br><br>This is to inform you that your booking made at '
+          + moment(data.time_booked).format('DD MMM YYYY h:mm A') + ' has been confirmed. <br><br>'
+          + 'Please go to random link to check your booking status.'
+        )).subscribe();
       });
+  }
+
+  returnEmailObject(recipient: string, subject: string, message: string) {
+    return { recipient, subject, message } as Email;
   }
 }

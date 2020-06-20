@@ -1,6 +1,6 @@
 <div style="padding:20px; width:300px; margin:auto">
-<h1 style="padding-top:10px">{{getDialogTitle()}}</h1>
-<form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+<h1 mat-dialog-title style="padding-top:10px">{{getDialogTitle()}}</h1>
+<form mat-dialog-content [formGroup]="itemForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="field-full-width" appearance="legacy">
         <mat-label>Name</mat-label>
         <input matInput class="form-control" formControlName="name" required>

@@ -32,7 +32,7 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 export class BookingListComponent implements OnInit {
 
   bookings = new MatTableDataSource<Booking>();
-  tableColumns: string[] = ['id', 'name', 'email', 'organization', 'time_booked', 'loan_start_time', 'loan_end_time', 'deposit_left', 'status'];
+  tableColumns: string[] = ['id', 'name', 'time_booked', 'loan_start_time', 'loan_end_time', 'deposit_left', 'status'];
 
   filterForm: FormGroup;
 

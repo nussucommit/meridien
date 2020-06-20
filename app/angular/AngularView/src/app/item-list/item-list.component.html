@@ -74,10 +74,6 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
         <mat-cell *matCellDef="let item">{{item.item_status}}</mat-cell>
     </ng-container>
-    <ng-container  matColumnDef="remark">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Remarks</mat-header-cell>
-        <mat-cell *matCellDef="let item">{{item.remarks}}</mat-cell>
-    </ng-container>
     
     <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
     <mat-row matRipple *matRowDef="let item; columns: tableColumns;" (click)=openDialog(item)></mat-row>

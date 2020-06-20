@@ -1,61 +1,67 @@
 <style>
-.column-left {
-  float: left;
-  width: 50%;
-}
-.column-right {
-  float: right;
-  width: 50%;
-}
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+  .column-left {
+    float: left;
+    width: 50%;
+  }
+
+  .column-right {
+    float: right;
+    width: 50%;
+  }
+
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  mat-label {
+    padding-top: 20px;
+  }
 </style>
 <h1 mat-dialog-title>Booking #{{bookingData.source.id}}</h1>
 
 <div mat-dialog-content class="row">
-<div class="column-left">
-  <h2 style="color:#777777">Booking details</h2>
-  <mat-label>Booked by: {{bookingData.source.name}}</mat-label>
-  <br>
-  <mat-label>Email: {{bookingData.source.email}}</mat-label>
-  <br>
-  <mat-label>Organization: {{bookingData.source.organization}}</mat-label>
-  <br>
-  <mat-label>Time booked: {{bookingData.source.time_booked|date: 'd MMM yyyy HH:mm:ss'}}</mat-label>
-  <br>
-  <mat-label>Purpose: {{bookingData.source.reason}}</mat-label>
-  <br>
-  <mat-label>Loan date: {{bookingData.source.loan_start_time|date: 'd MMM yyyy'}}</mat-label>
-  <br>
-  <mat-label>Return date: {{bookingData.source.loan_end_time|date: 'd MMM yyyy'}}</mat-label>
-  <br>
-  <mat-label>Deposit left: ${{bookingData.source.deposit_left}}</mat-label>
-  <br>
-  <mat-label>Status: {{bookingData.source.status}}</mat-label>
-  <br>
-</div>
-<div class="column-right">
-  <h2 style="color:#777777">Items</h2>
-  <mat-table style="margin-top:-20px" [dataSource]=bookingData.booked_items>
-  <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef> Item </mat-header-cell>
-    <mat-cell *matCellDef="let booked_item"> {{booked_item.item.name}} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="quantity">
-    <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
-    <mat-cell *matCellDef="let booked_item"> {{booked_item.quantity}} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="status">
-    <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-    <mat-cell *matCellDef="let booked_item"> {{booked_item.status}} </mat-cell>
-  </ng-container>
-  <mat-header-row *matHeaderRowDef="tableColumnsBookedItems"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: tableColumnsBookedItems;"></mat-row>
-  </mat-table>
-</div>
+  <div class="column-left">
+    <h2 style="color:#777777">Booking details</h2>
+    <mat-label>Booked by: {{bookingData.source.name}}</mat-label>
+    <br>
+    <mat-label>Email: {{bookingData.source.email}}</mat-label>
+    <br>
+    <mat-label>Organization: {{bookingData.source.organization}}</mat-label>
+    <br>
+    <mat-label>Time booked: {{bookingData.source.time_booked|date: 'd MMM yyyy HH:mm:ss'}}</mat-label>
+    <br>
+    <mat-label>Purpose: {{bookingData.source.reason}}</mat-label>
+    <br>
+    <mat-label>Loan date: {{bookingData.source.loan_start_time|date: 'd MMM yyyy'}}</mat-label>
+    <br>
+    <mat-label>Return date: {{bookingData.source.loan_end_time|date: 'd MMM yyyy'}}</mat-label>
+    <br>
+    <mat-label>Deposit left: ${{bookingData.source.deposit_left}}</mat-label>
+    <br>
+    <mat-label>Status: {{bookingData.source.status}}</mat-label>
+    <br>
+  </div>
+  <div class="column-right">
+    <h2 style="color:#777777">Items</h2>
+    <mat-table style="margin-top:-20px" [dataSource]=bookingData.booked_items>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Item </mat-header-cell>
+        <mat-cell *matCellDef="let booked_item"> {{booked_item.item.name}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="quantity">
+        <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+        <mat-cell *matCellDef="let booked_item"> {{booked_item.quantity}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let booked_item"> {{booked_item.status}} </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="tableColumnsBookedItems"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: tableColumnsBookedItems;"></mat-row>
+    </mat-table>
+  </div>
 </div>
 
 <!--Nicholas, help me add in the condition to check if a user is admin, kthxbye-->

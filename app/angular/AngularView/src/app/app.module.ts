@@ -29,6 +29,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 
@@ -90,6 +91,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     MatStepperModule,
     MatListModule,
     MatCheckboxModule,
+    MatTabsModule,
     FullCalendarModule,
     EditorModule
   ],

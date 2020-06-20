@@ -30,7 +30,7 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 export class ItemListComponent implements OnInit {
 
   items = new MatTableDataSource<Items>();
-  tableColumns: string[] = ['id', 'name', 'category', 'quantity', 'deposit', 'status', 'remark'];
+  tableColumns: string[] = ['id', 'name', 'category', 'quantity', 'deposit', 'status'];
 
   filterForm: FormGroup;
 
@@ -155,6 +155,8 @@ export class ItemListDialog implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.itemData.item.remarks);
+
     this.bookers.data = this.itemData.people;
     this.bookers.paginator = this.paginator;
     this.bookers.sort = this.sort;

@@ -1,3 +1,5 @@
+import { FullCalendarModule } from '@fullcalendar/angular';
+
 import { TemplateDetailDialog } from './template-list/template-detail.dialog';
 import { RefreshInterceptor } from './api-auth/refresh.interceptor';
 import { JwtInterceptor } from './api-auth/jwt.interceptor';
@@ -30,8 +32,6 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
-
-import { FullCalendarModule } from '@fullcalendar/angular';
 
 import { EditorModule } from '@tinymce/tinymce-angular';
 

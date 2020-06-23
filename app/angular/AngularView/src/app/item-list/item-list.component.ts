@@ -16,6 +16,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
+import { FullCalendarModule, FullCalendarComponent } from '@fullcalendar/angular';
+import { CalendarOptions } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -106,7 +108,7 @@ export class ItemListComponent implements OnInit {
         (data: BookedItem[]) => {
           if (!this.itemDialogOpened) {
             this.itemDialogOpened = true;
-            const dialogRef = this.dialog.open(ItemListDialog, { width: '1200px', data: { item: row, people: data } });
+            const dialogRef = this.dialog.open(ItemListDialog, { width: '1200px', height: '600px', data: { item: row, people: data } });
             dialogRef.afterClosed().subscribe(() => { this.itemDialogOpened = false; });
           }
         }
@@ -132,8 +134,15 @@ export class ItemListComponent implements OnInit {
 })
 // tslint:disable-next-line: component-class-suffix
 export class ItemListDialog implements OnInit {
-  calendarPlugins = [dayGridPlugin];
   calendarEvents = [];
+
+  calendarOptions: CalendarOptions = {
+    plugins: [dayGridPlugin],
+    initialView: 'dayGridWeek',
+    locale: 'en-au',
+    height: '500px',
+    events: []
+  };
 
   // tslint:disable-next-line: variable-name
   tableColumns_dialog = ['name', 'loan_start_time', 'loan_end_time', 'quantity'];
@@ -142,6 +151,7 @@ export class ItemListDialog implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild('calendar') calendar: FullCalendarComponent;
 
   bookers = new MatTableDataSource<any>();
 
@@ -155,8 +165,6 @@ export class ItemListDialog implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.itemData.item.remarks);
-
     this.bookers.data = this.itemData.people;
     this.bookers.paginator = this.paginator;
     this.bookers.sort = this.sort;
@@ -171,6 +179,7 @@ export class ItemListDialog implements OnInit {
         }
       );
     }
+    this.calendarOptions.events = this.calendarEvents;
   }
 
   openEditForm() {

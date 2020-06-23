@@ -1,8 +1,6 @@
 import { Component, OnInit, Inject, ViewChild, Input } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 
-import dayGridPlugin from '@fullcalendar/daygrid';
-
 import { BookingsService } from '../model-service/bookings/bookings.service';
 import { Booking } from '../model-service/bookings/bookings';
 import { BookedItem } from '../model-service/items/items';
@@ -17,6 +15,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import moment from 'moment';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { CalendarOptions } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -90,7 +90,7 @@ export class BookingListComponent implements OnInit {
     this.bookingsService.getBookingList().subscribe((bookingData) => {
       if (!this.summaryDialogOpened) {
         this.summaryDialogOpened = true;
-        const dialogRef = this.dialog.open(BookingSummaryDialog, { data: bookingData });
+        const dialogRef = this.dialog.open(BookingSummaryDialog, { width: '1200px', height: '600px', data: bookingData });
         dialogRef.afterClosed().subscribe(() => { this.summaryDialogOpened = false; });
       }
     });
@@ -187,8 +187,15 @@ export class BookingListDialog {
 // tslint:disable-next-line: component-class-suffix
 export class BookingSummaryDialog implements OnInit {
 
-  calendarPlugins = [dayGridPlugin];
   calendarEvents = [];
+
+  calendarOptions: CalendarOptions = {
+    plugins: [dayGridPlugin],
+    initialView: 'dayGridWeek',
+    height: '500px',
+    locale: 'en-au',
+    events: []
+  };
 
   constructor(
     public dialogRef: MatDialogRef<BookingSummaryDialog>,
@@ -204,6 +211,7 @@ export class BookingSummaryDialog implements OnInit {
         color: this.getColour(element.id)
       });
     });
+    this.calendarOptions.events = this.calendarEvents;
   }
 
   getColour(num: number) {

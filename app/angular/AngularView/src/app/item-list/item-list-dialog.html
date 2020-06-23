@@ -20,22 +20,14 @@
     height: auto !important;
     white-space: pre-wrap;
   }
+
+  fc-scrollgrid {
+    height: auto !important;
+  }
 </style>
 
 <h1 mat-dialog-title>Item Details for {{itemData.item.name}}</h1>
 <mat-tab-group mat-dialog-content style="height: 550px">
-  <mat-tab label="Details">
-    <div>
-    <mat-list role="list">
-      <mat-list-item role="listitem">Name: {{itemData.item.name}}</mat-list-item>
-      <mat-list-item role="listitem">Category: {{itemData.item.category}}</mat-list-item>
-      <mat-list-item role="listitem">Quantity: {{itemData.item.quantity}}</mat-list-item>
-      <mat-list-item role="listitem">Deposit: {{itemData.item.deposit}}</mat-list-item>
-      <mat-list-item role="listitem">Status: {{itemData.item.item_status}}</mat-list-item>
-      <mat-list-item role="listitem">Remarks: {{itemData.item.remarks}}</mat-list-item>
-    </mat-list>
-  </div>
-  </mat-tab>
   <mat-tab label="Availability">
     <div class="row">
       <div class="column-left">
@@ -63,10 +55,20 @@
         <mat-paginator pageSize="5" showFirstLastButtons></mat-paginator>
       </div>
       <div class="column-right">
-        <full-calendar defaultView="dayGridWeek" [plugins]="calendarPlugins" [events]="calendarEvents" locale="en-au"
-          height="parent">
-        </full-calendar>
+        <full-calendar #calendar [options]="calendarOptions"></full-calendar>
       </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Details">
+    <div>
+      <mat-list role="list">
+        <mat-list-item role="listitem">Name: {{itemData.item.name}}</mat-list-item>
+        <mat-list-item role="listitem">Category: {{itemData.item.category}}</mat-list-item>
+        <mat-list-item role="listitem">Quantity: {{itemData.item.quantity}}</mat-list-item>
+        <mat-list-item role="listitem">Deposit: {{itemData.item.deposit}}</mat-list-item>
+        <mat-list-item role="listitem">Status: {{itemData.item.item_status}}</mat-list-item>
+        <mat-list-item role="listitem">Remarks: {{itemData.item.remarks}}</mat-list-item>
+      </mat-list>
     </div>
   </mat-tab>
 </mat-tab-group>

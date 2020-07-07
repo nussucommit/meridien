@@ -25,4 +25,3 @@ def mail(request):
             return HttpResponse(status=status.HTTP_204_NO_CONTENT)
         except KeyError as err:
             return JsonResponse({'error': 'Bad request {}'.format(err.args[0])}, status=status.HTTP_400_BAD_REQUEST)
-    

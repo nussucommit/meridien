@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'emailtemplates.apps.EmailtemplatesConfig',
     'items.apps.ItemsConfig',
     'mails.apps.MailsConfig',
+    'confirmationemails.apps.ConfirmationEmailsConfig',
     'corsheaders',
 ]
 

@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from datetime import date
 
+
 class Booking(models.Model):
     PENDING = 'PEN'
     EVALUATING = 'EVA'

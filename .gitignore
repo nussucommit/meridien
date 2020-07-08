@@ -128,3 +128,6 @@ testem.log
 Thumbs.db
 
 app/django/meridien/items/migrations/0004_auto_20200602_2138.py
+app/angular/AngularView/src/app/settings.ts
+app/django/meridien/items/migrations/0004_auto_20200616_0841.py
+app/django/meridien/meridien/settings.py

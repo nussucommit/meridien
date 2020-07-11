@@ -20,7 +20,7 @@ def send_confirmation_email(booking_data):
 
 
 def make_link_element(token):
-    url = 'http://localhost:4200' + '/booking' + '/' + token
+    url = 'http://localhost:4200' + '/confirm_booking' + '?token=' + token
     link_element_format = '<a href="{url}">{url}</a>'
     return link_element_format.format(url=url)
 

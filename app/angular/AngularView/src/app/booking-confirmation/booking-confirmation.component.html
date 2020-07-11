@@ -1,0 +1,16 @@
+<div *ngIf="booking != null; else elseBlock">
+  <h2>Booking Details</h2>
+  <mat-list role="list">
+    <mat-list-item role="listitem">Name: {{booking.name}}</mat-list-item>
+    <mat-list-item role="listitem">Email: {{booking.email}}</mat-list-item>
+    <mat-list-item role="listitem">Organization: {{booking.organization}}</mat-list-item>
+    <mat-list-item role="listitem">Purpose: {{booking.reason}}</mat-list-item>
+    <mat-list-item role="listitem">From: {{booking.loan_start_time|date: 'd/M/yyyy'}}</mat-list-item>
+    <mat-list-item role="listitem">To: {{booking.loan_end_time|date: 'd/M/yyyy'}}</mat-list-item>
+  </mat-list>
+  <button mat-raised-button color="primary" (click)="confirm_booking()">Confirm</button>
+  <button mat-raised-button color="secondary" (click)="delete_booking()">Delete</button>
+</div>
+<ng-template #elseBlock>
+  <h2>Sorry, this token is invalid now.</h2>
+</ng-template>

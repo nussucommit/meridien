@@ -1,3 +1,4 @@
+import { BookingConfirmationComponent } from './booking-confirmation/booking-confirmation.component';
 import { ConfirmationTemplateComponent } from './confirmation-template/confirmation-template.component';
 import { MailSenderComponent } from './mail-sender/mail-sender.component';
 import { AuthGuard } from './model-service/users/auth.guard';
@@ -16,6 +17,7 @@ const routes: Routes = [
     { path: '', redirectTo: 'bookings', pathMatch: 'full', canActivate: [AuthGuard] },
     { path: 'login', component: LoginFormComponent },
     { path: 'confirmation_template', component: ConfirmationTemplateComponent },
+    { path: 'confirm_booking', component: BookingConfirmationComponent },
     { path: 'templates', component: TemplateListComponent },
     { path: 'mailer', component: MailSenderComponent },
     { path: 'edit', component: BookingDetailsComponent},

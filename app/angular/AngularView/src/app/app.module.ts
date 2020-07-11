@@ -45,6 +45,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { TemplateListComponent } from './template-list/template-list.component';
 import { MailSenderComponent } from './mail-sender/mail-sender.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationTemplateComponent } from './confirmation-template/confirmation-template.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     TemplateDetailDialog,
     MailSenderComponent,
     BookingConfirmComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    ConfirmationTemplateComponent
   ],
   imports: [
     BrowserModule,

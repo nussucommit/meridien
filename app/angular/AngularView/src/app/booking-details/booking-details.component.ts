@@ -1,3 +1,5 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmationTemplatesService } from './../model-service/confirmationtemplates/confirmationtemplates.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormArray } from '@angular/forms';
 import { BookingsService } from '../model-service/bookings/bookings.service';
@@ -10,7 +12,6 @@ import { ItemsService } from '../model-service/items/items.service';
 import { Booking } from '../model-service/bookings/bookings';
 import { Router } from '@angular/router';
 import { Email } from '../model-service/emailtemplates/email';
-import { MailerService } from '../model-service/emailtemplates/mailer.service';
 
 @Component({
   selector: 'app-booking-details',
@@ -37,7 +38,6 @@ export class BookingDetailsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private bookingsService: BookingsService,
     private itemsService: ItemsService,
-    private mailerService: MailerService,
     private router: Router
   ) { }
 
@@ -126,14 +126,6 @@ export class BookingDetailsComponent implements OnInit {
         // comment on the security of this line lol
         this.router.navigate(['/edit/confirmed'], { state: { id: data.id, name: data.name, email: data.email, submitted: true } });
         console.log(typeof data.time_booked);
-        this.mailerService.send_email(this.returnEmailObject(
-          data.email,
-          '[Booking #' + data.id + ']- Your booking has been confirmed',
-          '[This is a computer generated email. Do not reply to this email.]<br><br>'
-          + 'Dear ' + data.name + '<br><br>This is to inform you that your booking made at '
-          + moment(data.time_booked).format('DD MMM YYYY h:mm A') + ' has been confirmed. <br><br>'
-          + 'Please go to random link to check your booking status.'
-        )).subscribe();
       });
   }
 
@@ -148,11 +140,26 @@ export class BookingDetailsComponent implements OnInit {
 })
 export class BookingConfirmComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private snackbar: MatSnackBar,
+    private confirmationTemplatesService: ConfirmationTemplatesService
+    ) { }
 
   ngOnInit(): void {
     if (!history.state.submitted) {
       this.router.navigate(['/edit']);
     }
+  }
+
+  resend(): void {
+    this.confirmationTemplatesService.resendConfirmation({
+      id: history.state.id,
+      email: history.state.email
+    }).subscribe(
+      (success: any) => {
+        this.snackbar.open('Email resent. Please wait a few minutes...', 'OK', {duration: 5000, })
+      }
+    );
   }
 }

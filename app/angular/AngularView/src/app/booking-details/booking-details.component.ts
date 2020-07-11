@@ -116,7 +116,7 @@ export class BookingDetailsComponent implements OnInit {
     bookingDataCopy.loan_start_time = bookingDataCopy.loan_start_time.format('YYYY-MM-DD');
     bookingDataCopy.loan_end_time = bookingDataCopy.loan_end_time.format('YYYY-MM-DD');
     const finalData: Booking = Object.assign(bookingDataCopy,
-      { time_booked: new Date(), status: 'PEN', deposit_left: this.getTotalDeposit() }) as Booking;
+      { time_booked: new Date(), status: 'UNC', deposit_left: this.getTotalDeposit() }) as Booking;
     this.bookingsService.createBooking(finalData).subscribe(
       (data: any) => {
         this.inputGroup2.items.forEach(element => {

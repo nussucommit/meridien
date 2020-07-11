@@ -9,6 +9,7 @@ export class BookingsService {
 
   private baseUrlBookings = 'http://localhost:8000/api/bookings';
   private baseUrlBookedItems = 'http://localhost:8000/api/booked-items';
+  private baseUrlBookingToken = 'http://localhost:8000/api/bookings/token';
 
   constructor(private http: HttpClient) { }
 
@@ -58,5 +59,17 @@ export class BookingsService {
 
   deleteAllBookedItems(): Observable<any> {
     return this.http.delete(`${this.baseUrlBookedItems}/`);
+  }
+
+  getBookingByToken(token: string): Observable<any> {
+    return this.http.get(`${this.baseUrlBookingToken}/${token}`);
+  }
+
+  deleteBookingByToken(token: string): Observable<any> {
+    return this.http.delete(`${this.baseUrlBookingToken}/${token}`);
+  }
+
+  confirmBookingByToken(token: string): Observable<any> {
+    return this.http.patch(`${this.baseUrlBookingToken}/confirm/${token}`, '');
   }
 }

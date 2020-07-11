@@ -12,20 +12,20 @@ from confirmationemails.serializers import ConfirmationEmailSerializer
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 @csrf_exempt
-def create_confirmation_template(request):
-    template_data = JSONParser().parse(request)
-    template_serializer = ConfirmationEmailSerializer(data=template_data)
-    if not template_serializer.is_valid():
-        return JsonResponse(template_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+def create_or_update_confirmation_template(request):
     templates = ConfirmationEmail.objects.all()
+    template_data = JSONParser().parse(request)
     if len(templates) > 0:
-        return JsonResponse({
-            "message": "Only one confirmation template allowed and one already exists in database"
-        }, status=status.HTTP_403_FORBIDDEN)
+        template = ConfirmationEmail.objects.first()
+        template_serializer = ConfirmationEmailSerializer(template, data=template_data)
+    else:
+        template_serializer = ConfirmationEmailSerializer(data=template_data)
 
-    template_serializer.save()
-    return JsonResponse(template_serializer.data, status=status.HTTP_201_CREATED)
+    if template_serializer.is_valid():
+        template_serializer.save()
+        return JsonResponse(template_serializer.data, status=status.HTTP_200_OK)
+    else:
+        return JsonResponse(template_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET'])
@@ -39,16 +39,3 @@ def get_confirmation_template(request):
         }, status=status.HTTP_404_NOT_FOUND)
     serializer = ConfirmationEmailSerializer(confirmation_template)
     return JsonResponse(serializer.data, status=status.HTTP_200_OK)
-
-
-@api_view(['PUT'])
-@permission_classes([IsAuthenticated])
-@csrf_exempt
-def update_confirmation_template(request):
-    template_data = JSONParser().parse(request)
-    template = ConfirmationEmail.objects.first()
-    template_serializer = ConfirmationEmailSerializer(template, data=template_data)
-    if template_serializer.is_valid():
-        template_serializer.save()
-        return JsonResponse(template_serializer.data, status=status.HTTP_200_OK)
-    return JsonResponse(template_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

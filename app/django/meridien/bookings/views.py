@@ -3,7 +3,7 @@ import json
 from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
 from bookings.models import Booking
@@ -37,6 +37,8 @@ def booking_detail(request, pk):
 
 
 @api_view(['GET', 'DELETE'])
+@authentication_classes([])
+@permission_classes([])
 @csrf_exempt
 def booking_detail_token(request, token):
     try:
@@ -47,6 +49,8 @@ def booking_detail_token(request, token):
 
 
 @api_view(['PATCH'])
+@authentication_classes([])
+@permission_classes([])
 @csrf_exempt
 def confirm_booking_token(request, token):
     try:

@@ -11,7 +11,7 @@ def send_confirmation_email(booking_data):
         make_link_element(generate_token(booking_data['id']))
     )
     send_mail(
-        subject=confirmation_template['subject'],
+        subject=confirmation_template.subject,
         message='',
         from_email='confirmation@example.com',
         recipient_list=[booking_data['email']],

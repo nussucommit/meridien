@@ -7,11 +7,10 @@ import { BookingsService } from '../model-service/bookings/bookings.service';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import moment from 'moment';
-import { Items } from '../model-service/items/items';
+import { Items, BookedItem } from '../model-service/items/items';
 import { ItemsService } from '../model-service/items/items.service';
 import { Booking } from '../model-service/bookings/bookings';
 import { Router } from '@angular/router';
-import { Email } from '../model-service/emailtemplates/email';
 
 @Component({
   selector: 'app-booking-details',
@@ -34,6 +33,8 @@ export class BookingDetailsComponent implements OnInit {
 
   itemColumns = ['item', 'quantity'];
 
+  editMode: boolean;
+
   constructor(
     private formBuilder: FormBuilder,
     private bookingsService: BookingsService,
@@ -42,22 +43,22 @@ export class BookingDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.editMode = history.state.edit ? true : false;
+
+    this.itemsService.getItemsList().subscribe(data => { this.itemArray = data; });
     this.detailsForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, this.emailCheck]],
-      organization: ['', Validators.required],
-      reason: ['', Validators.required],
-      loan_start_time: ['', [Validators.required, this.dateCheck]],
-      loan_end_time: ['', [Validators.required, this.dateCheck]],
+      name: [history.state.source ? history.state.source.name : '', Validators.required],
+      email: [history.state.source ? history.state.source.email : '', [Validators.required, this.emailCheck]],
+      organization: [history.state.source ? history.state.source.organization : '', Validators.required],
+      reason: [history.state.source ? history.state.source.reason : '', Validators.required],
+      loan_start_time: [history.state.source ? history.state.source.loan_start_time : '', [Validators.required, this.dateCheck]],
+      loan_end_time: [history.state.source ? history.state.source.loan_end_time : '', [Validators.required, this.dateCheck]],
     });
-
-    this.itemsForm = this.formBuilder.group({ items: this.formBuilder.array([this.newItemInput()]) });
-
-    this.itemsService.getItemsList().subscribe(
-      data => {
-        this.itemArray = data;
-      }
-    );
+    this.itemsForm = this.formBuilder.group({
+      items: (history.state.booked_items ?
+        this.formBuilder.array(this.initialItemInput(history.state.booked_items)) :
+        this.formBuilder.array([this.newItemInput()]))
+    });
 
     this.checkout();
   }
@@ -67,14 +68,29 @@ export class BookingDetailsComponent implements OnInit {
   }
 
   emailCheck(control: AbstractControl): any {
-    const regex = new RegExp('e[0-9]{7}@u\.nus\.edu');
-    return regex.test(control.value) ? null : { email: true };
+    return new RegExp('e[0-9]{7}@u\.nus\.edu').test(control.value) ? null : { email: true };
   }
 
   newItemInput(): FormGroup {
     return this.formBuilder.group({
-      item: ['', Validators.required],
+      item: [2, Validators.required],
       quantity: [1, [Validators.required, Validators.min(1)]]
+    });
+  }
+
+  // apparently history.state.booked_items is an object, so have to do this...
+  initialItemInput(data: any) {
+    const result = [];
+    data.forEach((element: BookedItem) => {
+      result.push(this.createItemInputWithData(element));
+    });
+    return result;
+  }
+
+  createItemInputWithData(bookedItem: BookedItem): FormGroup {
+    return this.formBuilder.group({
+      item: [bookedItem.item.id, Validators.required],
+      quantity: [bookedItem.quantity, [Validators.required, Validators.min(1)]]
     });
   }
 
@@ -95,12 +111,14 @@ export class BookingDetailsComponent implements OnInit {
     this.inputGroup2 = this.itemsForm.value;
   }
 
+  returnItemGivenId(id: number) {
+    return this.itemArray.filter(element => element.id === id)[0];
+  }
+
   getTotalDeposit() {
-    let totalSum = 0;
-    this.inputGroup2.items.forEach(element => {
-      totalSum += element.item.deposit * element.quantity;
-    });
-    return Math.min(200, totalSum);
+    return this.itemArray ? Math.min(200, this.inputGroup2.items.reduce((acc: number, currentItem: any) =>
+      acc + this.returnItemGivenId(currentItem.item).deposit * currentItem.quantity
+      , 0)) : 0;
   }
 
   /* this function essentially allows user to navigate the stepper back and forth
@@ -113,24 +131,35 @@ export class BookingDetailsComponent implements OnInit {
 
   onSubmit() {
     const bookingDataCopy = { ...this.inputGroup1 };
-    bookingDataCopy.loan_start_time = bookingDataCopy.loan_start_time.format('YYYY-MM-DD');
-    bookingDataCopy.loan_end_time = bookingDataCopy.loan_end_time.format('YYYY-MM-DD');
     const finalData: Booking = Object.assign(bookingDataCopy,
-      { time_booked: new Date(), status: 'UNC', deposit_left: this.getTotalDeposit() }) as Booking;
-    this.bookingsService.createBooking(finalData).subscribe(
-      (data: any) => {
-        this.inputGroup2.items.forEach(element => {
-          const finalItemData = { booking_source: data.id, item: element.item.id, quantity: element.quantity, status: 'PEN' };
-          this.bookingsService.createBookedItem(finalItemData).subscribe();
+      {
+        time_booked: (history.state.source ? history.state.source.time_booked : new Date()),
+        status: 'UNC',
+        deposit_left: this.getTotalDeposit()
+      }) as Booking;
+    if (!history.state.edit) {
+      bookingDataCopy.loan_start_time = bookingDataCopy.loan_start_time.format('YYYY-MM-DD');
+      bookingDataCopy.loan_end_time = bookingDataCopy.loan_end_time.format('YYYY-MM-DD');
+      this.bookingsService.createBooking(finalData).subscribe(
+        (data: any) => {
+          this.inputGroup2.items.forEach(element => {
+            const finalItemData = { booking_source: data.id, item: element.item, quantity: element.quantity, status: 'PEN' };
+            this.bookingsService.createBookedItem(finalItemData).subscribe();
+          });
+          this.router.navigate(['/edit/confirmed'], { state: { id: data.id, name: data.name, email: data.email, submitted: true } });
         });
-        // comment on the security of this line lol
-        this.router.navigate(['/edit/confirmed'], { state: { id: data.id, name: data.name, email: data.email, submitted: true } });
-        console.log(typeof data.time_booked);
-      });
-  }
-
-  returnEmailObject(recipient: string, subject: string, message: string) {
-    return { recipient, subject, message } as Email;
+    } else if (history.state.edit === true) { // touchwood condition lol
+      this.bookingsService.updateBooking(history.state.source.id, finalData).subscribe(
+        (data: any) => {
+          // reason for deletion: I don't bother to check whether the booked item exists or not
+          this.bookingsService.deleteBookedItemsByBooker(data.id).subscribe();
+          this.inputGroup2.items.forEach(element => {
+            const finalItemData = { booking_source: data.id, item: element.item, quantity: element.quantity, status: 'PEN' };
+            this.bookingsService.createBookedItem(finalItemData).subscribe();
+          });
+          this.router.navigate(['/edit/confirmed'], { state: { id: data.id, name: data.name, email: data.email, submitted: true } });
+        });
+    }
   }
 }
 
@@ -144,7 +173,7 @@ export class BookingConfirmComponent implements OnInit {
     private router: Router,
     private snackbar: MatSnackBar,
     private confirmationTemplatesService: ConfirmationTemplatesService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     if (!history.state.submitted) {
@@ -158,7 +187,7 @@ export class BookingConfirmComponent implements OnInit {
       email: history.state.email
     }).subscribe(
       (success: any) => {
-        this.snackbar.open('Email resent. Please wait a few minutes...', 'OK', {duration: 5000, })
+        this.snackbar.open('Email resent. Please wait...', 'OK', { duration: 5000, });
       }
     );
   }

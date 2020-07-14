@@ -1,16 +1,67 @@
-<div *ngIf="booking != null; else elseBlock">
-  <h2>Booking Details</h2>
-  <mat-list role="list">
-    <mat-list-item role="listitem">Name: {{booking.name}}</mat-list-item>
-    <mat-list-item role="listitem">Email: {{booking.email}}</mat-list-item>
-    <mat-list-item role="listitem">Organization: {{booking.organization}}</mat-list-item>
-    <mat-list-item role="listitem">Purpose: {{booking.reason}}</mat-list-item>
-    <mat-list-item role="listitem">From: {{booking.loan_start_time|date: 'd/M/yyyy'}}</mat-list-item>
-    <mat-list-item role="listitem">To: {{booking.loan_end_time|date: 'd/M/yyyy'}}</mat-list-item>
-  </mat-list>
-  <button mat-raised-button color="primary" (click)="confirm_booking()">Confirm</button>
-  <button mat-raised-button color="secondary" (click)="delete_booking()">Delete</button>
+<style>
+  .column-left {
+    float: left;
+    width: 50%;
+  }
+
+  .column-right {
+    float: right;
+    width: 50%;
+  }
+
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+</style>
+
+<div *ngIf="booking != null; else elseBlock" style="width: 80%; margin: 20px;">
+  <p style="font-size: 15px;" *ngIf="booking.status === 'UNC'; else elseWords">Before you are able to check the status
+    of your booking, you are to declare that you are the one who made the following booking. If you do not make this
+    booking, please delete the booking and email xxx immediately.</p>
+  <ng-template #elseWords>Here are the booking details. Processing may take a few days to complete, and you will receive
+    an email response once the booking is processed.</ng-template>
+  <h2 style="margin-top: 20px">Booking Details</h2>
+  <div class="row">
+    <div class="column-left">
+      <mat-list role="list" style="margin-left: -15px; margin-top: -15px;">
+        <mat-list-item role="listitem">Name: {{booking.name}}</mat-list-item>
+        <mat-list-item role="listitem">Email: {{booking.email}}</mat-list-item>
+        <mat-list-item role="listitem">Organization: {{booking.organization}}</mat-list-item>
+        <mat-list-item role="listitem">Purpose: {{booking.reason}}</mat-list-item>
+        <mat-list-item role="listitem">From: {{booking.loan_start_time|date: 'd/M/yyyy'}}</mat-list-item>
+        <mat-list-item role="listitem">To: {{booking.loan_end_time|date: 'd/M/yyyy'}}</mat-list-item>
+        <mat-list-item role="listitem" *ngIf="booking.status != 'UNC'">Status: {{getStatus(booking.status)}}
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <div class="column-right">
+      <h2 style="color:#777777">Items</h2>
+      <mat-table style="margin-top:-5px" [dataSource]=bookedItems class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> Item </mat-header-cell>
+          <mat-cell *matCellDef="let booked_item"> {{booked_item.item.name}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="quantity">
+          <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+          <mat-cell *matCellDef="let booked_item"> {{booked_item.quantity}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+          <mat-cell *matCellDef="let booked_item"> {{booked_item.status}} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="tableColumnsBookedItems"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: tableColumnsBookedItems;"></mat-row>
+      </mat-table>
+    </div>
+  </div>
+  <button mat-raised-button color="primary" (click)="confirm_booking()"
+    *ngIf="booking.status === 'UNC'" #confirmButton [disabled]="responded">Confirm</button>
+  <button mat-raised-button color="danger" (click)="delete_booking()" #deleteButton [disabled]="responded">Delete</button>
 </div>
+
+<!--this page needs redesign-->
 <ng-template #elseBlock>
-  <h2>Sorry, this token is invalid now.</h2>
+  <h2>Sorry, this booking has been deleted.</h2>
 </ng-template>

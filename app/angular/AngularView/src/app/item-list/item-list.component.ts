@@ -198,12 +198,12 @@ export class ItemListDialog implements OnInit {
     this.dialogRef.close();
     this.itemsService.deleteItem(this.itemData.item.id).subscribe(() => {
       this.service.publish('reloadData');
-      this.snackbar.open('Item ' + this.itemData.item.id + ' deleted', 'OK', { duration: 5000 });
+      this.snackbar.open(`Item # ${this.itemData.item.id} deleted`, 'OK', { duration: 5000 });
     });
   }
 
   confirmDelete() {
-    const dialogR = this.dialog.open(ConfirmationDialogComponent, { data: 'item #' + this.itemData.item.id });
+    const dialogR = this.dialog.open(ConfirmationDialogComponent, { data: `item # ${this.itemData.item.id}`});
     dialogR.afterClosed().subscribe(
       (result) => {
         if (result.event === 'yes') {

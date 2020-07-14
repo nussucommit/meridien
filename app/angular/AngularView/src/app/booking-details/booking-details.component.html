@@ -82,7 +82,7 @@
                     <mat-form-field style="width:50%">
                         <mat-label>Items</mat-label>
                         <mat-select required class="form-control" formControlName="item">
-                            <mat-option *ngFor="let item of itemArray" [value]="item">{{item.name}}</mat-option>
+                            <mat-option *ngFor="let item of itemArray" [value]="item.id">{{item.name}}</mat-option>
                         </mat-select>
                         <mat-error>Please choose an item.</mat-error>
                     </mat-form-field>
@@ -130,7 +130,8 @@
                 <mat-table [dataSource]="inputGroup2.items" class="mat-elevation-z8">
                     <ng-container matColumnDef="item">
                         <mat-header-cell *matHeaderCellDef> Item </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.item.name}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{returnItemGivenId(element.item).name}}
+                        </mat-cell>
                         <mat-footer-cell *matFooterCellDef>Deposit Payable</mat-footer-cell>
                     </ng-container>
                     <ng-container matColumnDef="quantity">
@@ -146,7 +147,7 @@
         </div>
         <div style="margin-bottom: 30px;">
             <h2>PDPA Agreement</h2>
-            <mat-checkbox #c required>
+            <mat-checkbox #c required [checked]="editMode">
                 A generic PDPA clause.
             </mat-checkbox>
         </div>

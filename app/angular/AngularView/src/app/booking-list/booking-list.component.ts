@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject, ViewChild, Input } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { BookingsService } from '../model-service/bookings/bookings.service';
 import { Booking } from '../model-service/bookings/bookings';
@@ -44,7 +45,7 @@ export class BookingListComponent implements OnInit {
 
   constructor(
     private bookingsService: BookingsService,
-    public dialog: MatDialog,
+    private dialog: MatDialog,
     private formBuilder: FormBuilder
   ) { }
 
@@ -73,10 +74,10 @@ export class BookingListComponent implements OnInit {
   openDialog(row: { [x: string]: number; }) {
     this.bookingsService.getBookedItemsByBooker(row.id)
       .subscribe(
-        (data: BookedItem[]) => {
+        (bookedItemData: BookedItem[]) => {
           if (!this.bookingDialogOpened) {
             this.bookingDialogOpened = true;
-            const dialogRef = this.dialog.open(BookingListDialog, { width: '600px', data: { source: row, booked_items: data } });
+            const dialogRef = this.dialog.open(BookingListDialog, { width: '600px', data: { source: row, booked_items: bookedItemData } });
             dialogRef.afterClosed().subscribe(() => {
               this.reloadData();
               this.bookingDialogOpened = false;
@@ -142,7 +143,8 @@ export class BookingListDialog {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<BookingListDialog>,
     @Inject(MAT_DIALOG_DATA) public bookingData: any,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private router: Router
   ) { }
 
   updateStatus(status: string) {
@@ -159,23 +161,29 @@ export class BookingListDialog {
       snackbarString = 'Processed';
     }
 
-    this.snackbar.open('Status of Booking #' + this.bookingData.source.id + ' changed to: ' + snackbarString, 'OK', { duration: 5000, });
+    this.snackbar.open(`Status of Booking #${this.bookingData.source.id}changed to: ${snackbarString}`, 'OK', { duration: 5000, });
   }
 
   deleteBooking() {
     this.bookingsService.deleteBooking(this.bookingData.source.id).subscribe();
     this.dialogRef.close();
-    this.snackbar.open('Booking #' + this.bookingData.source.id + ' deleted', 'OK', { duration: 5000 });
+    this.snackbar.open(`Booking #${this.bookingData.source.id} deleted`, 'OK', { duration: 5000 });
   }
 
   confirmDelete() {
-    const dialogR = this.dialog.open(ConfirmationDialogComponent, { data: 'booking #' + this.bookingData.source.id });
+    const dialogR = this.dialog.open(ConfirmationDialogComponent, { data: `booking #${this.bookingData.source.id}` });
     dialogR.afterClosed().subscribe(
       (result) => {
         if (result.event === 'yes') {
           this.deleteBooking();
         }
       });
+  }
+
+  editBooking() {
+    this.dialogRef.close();
+    this.router.navigate(['/edit'],
+      { state: { source: this.bookingData.source, booked_items: this.bookingData.booked_items, edit: true } });
   }
 }
 
@@ -205,7 +213,7 @@ export class BookingSummaryDialog implements OnInit {
   ngOnInit() {
     this.bookingData.forEach(element => {
       this.calendarEvents.push({
-        title: '#' + element.id + ' - ' + element.name,
+        title: `#${element.id} - ${element.name}`,
         start: element.loan_start_time,
         end: new Date(new Date(element.loan_end_time).getTime() + 86400000).toISOString().substr(0, 10),
         color: this.getColour(element.id)

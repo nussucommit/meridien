@@ -53,6 +53,10 @@ export class BookingsService {
     return this.http.delete(`${this.baseUrlBookedItems}/${id}/`);
   }
 
+  deleteBookedItemsByBooker(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrlBookedItems}/booking_source_id/${id}/`);
+  }
+
   deleteAllBookings(): Observable<any> {
     return this.http.delete(`${this.baseUrlBookings}/`);
   }

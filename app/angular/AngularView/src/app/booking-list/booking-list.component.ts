@@ -160,8 +160,8 @@ export class BookingListDialog {
       const dialogR = this.dialog.open(BookingDepositDialog, { data: this.bookingData.source.deposit_left });
       dialogR.afterClosed().subscribe((result) => {
         if (result) {// the amount paid must be returned from the dialog to complete the transaction
-          bookingDataCopy.deposit_left = Math.max(0, bookingDataCopy.deposit_left - result);
           bookingDataCopy.amount_paid = Math.min(bookingDataCopy.deposit_left, result);
+          bookingDataCopy.deposit_left = Math.max(0, bookingDataCopy.deposit_left - result);
           this.bookingsService.updateBooking(this.bookingData.source.id, bookingDataCopy).subscribe();
           this.dialogRef.close();
           this.printSnackBarStatus(status);

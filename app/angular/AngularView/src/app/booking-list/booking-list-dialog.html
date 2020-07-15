@@ -40,6 +40,8 @@
     <br>
     <mat-label>Deposit left: ${{bookingData.source.deposit_left}}</mat-label>
     <br>
+    <mat-label>Amount paid: ${{bookingData.source.amount_paid}}</mat-label>
+    <br>
     <mat-label>Status: {{bookingData.source.status}}</mat-label>
     <br>
   </div>
@@ -82,6 +84,27 @@
     Revoke
   </button>
 
+  <button mat-button *ngIf="bookingData.source.status !== 'GET'" (click)="updateStatus('GET')">
+    Retrieve Logistics
+  </button>
+
+  <button mat-button (click)="confirmDelete()">
+    <mat-icon matPrefix>clear</mat-icon>
+    Remove
+  </button>
+</div>
+
+<div mat-dialog-actions *ngIf="bookingData.source.status === 'GET'" align="end">
+  <button mat-button (click)="updateStatus('RET')">
+    Return Logistics
+  </button>
+  <button mat-button (click)="confirmDelete()">
+    <mat-icon matPrefix>clear</mat-icon>
+    Remove
+  </button>
+</div>
+
+<div mat-dialog-actions *ngIf="bookingData.source.status === 'RET'" align="end">
   <button mat-button (click)="confirmDelete()">
     <mat-icon matPrefix>clear</mat-icon>
     Remove

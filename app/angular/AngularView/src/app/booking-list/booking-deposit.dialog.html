@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Pay Deposit</h1>
+<div mat-dialog-content>
+    <mat-label style="margin-bottom:10px">Amount payable: {{deposit|currency}}</mat-label>
+    <br>
+    <form [formGroup]="depositForm" (ngSubmit)="onSubmit()">
+        <mat-form-field style="margin-top:10px">
+            <span matPrefix>$ &nbsp;</span>
+            <mat-label>Amount paid</mat-label>
+            <input matInput type="number" class="form-control" formControlName="amountPaid" required min="0">
+        </mat-form-field>
+        <br>
+        <mat-label>Change: {{getChange()|currency}}</mat-label>
+        <br>
+        <button style="margin-top:10px" mat-raised-button [disabled]="!depositForm.valid" type="submit" color="primary">Submit</button>
+    </form>
+</div>

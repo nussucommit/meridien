@@ -1,42 +1,43 @@
 <div style="padding:20px; width:300px; margin:auto">
-<h1 mat-dialog-title style="padding-top:10px">{{getDialogTitle()}}</h1>
-<form mat-dialog-content [formGroup]="itemForm" (ngSubmit)="onSubmit()">
-    <mat-form-field class="field-full-width" appearance="legacy">
-        <mat-label>Name</mat-label>
-        <input matInput class="form-control" formControlName="name" required>
-        <mat-error>This field is required.</mat-error>
-    </mat-form-field>
-    <br>
-    <mat-form-field class="field-full-width" appearance="legacy">
-        <mat-label>Category</mat-label>
-        <input matInput class="form-control" formControlName="category" required>
-        <mat-error>This field is required.</mat-error>
-    </mat-form-field>
-    <br>
-    <mat-form-field class="field-full-width" appearance="legacy">
-        <mat-label>Quantity</mat-label>
-        <input matInput type="number" class="form-control" formControlName="quantity" required>
-        <mat-error>This field is required.</mat-error>
-    </mat-form-field>
-    <br>
-    <mat-form-field class="field-full-width" appearance="legacy">
-        <span matPrefix>S$ &nbsp;</span>
-        <mat-label>Deposit</mat-label>
-        <input matInput type="number" class="form-control" formControlName="deposit" required>
-        <mat-error>This field is required.</mat-error>
-    </mat-form-field>
-    <br>
-    <mat-form-field class="field-full-width" appearance="legacy">
-        <mat-label>Status</mat-label>
-        <input matInput class="form-control" formControlName="item_status" required>
-        <mat-error>This field is required.</mat-error>
-    </mat-form-field>
-    <br>
-    <mat-form-field class="field-full-width" appearance="legacy">
-        <mat-label>Remarks</mat-label>
-        <textarea matInput class="form-control" formControlName="remarks"></textarea>
-    </mat-form-field>
-    <br>
-    <button mat-raised-button [disabled]="!itemForm.valid" type="submit" color="primary">Submit</button>
-</form>
+    <h1 mat-dialog-title style="padding-top:10px">{{getDialogTitle()}}</h1>
+    <form mat-dialog-content [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="field-full-width" appearance="legacy">
+            <mat-label>Name</mat-label>
+            <input matInput class="form-control" formControlName="name" required>
+            <mat-error>This field is required.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="field-full-width" appearance="legacy">
+            <mat-label>Category</mat-label>
+            <input matInput class="form-control" formControlName="category" required>
+            <mat-error>This field is required.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="field-full-width" appearance="legacy">
+            <mat-label>Quantity</mat-label>
+            <input matInput type="number" class="form-control" formControlName="quantity" required min="1"
+                pattern="\d+">
+            <mat-error>Please enter a positive integer.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="field-full-width" appearance="legacy">
+            <span matPrefix>$ &nbsp;</span>
+            <mat-label>Deposit</mat-label>
+            <input matInput type="number" class="form-control" formControlName="deposit" required min="0">
+            <mat-error>Please enter a positive number.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="field-full-width" appearance="legacy">
+            <mat-label>Status</mat-label>
+            <input matInput class="form-control" formControlName="item_status" required>
+            <mat-error>This field is required.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="field-full-width" appearance="legacy">
+            <mat-label>Remarks</mat-label>
+            <textarea matInput class="form-control" formControlName="remarks"></textarea>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button [disabled]="!itemForm.valid" type="submit" color="primary">Submit</button>
+    </form>
 </div>

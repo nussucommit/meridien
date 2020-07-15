@@ -55,6 +55,10 @@ export class BookingConfirmationComponent implements OnInit {
         return 'Processed';
       case 'UNC':
         return 'Unconfirmed';
+      case 'GET':
+        return 'Retrieved';
+      case 'RET':
+        return 'Returned';
       default:
         return 'Unknown';
     }

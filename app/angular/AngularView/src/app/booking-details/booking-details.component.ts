@@ -135,7 +135,8 @@ export class BookingDetailsComponent implements OnInit {
       {
         time_booked: (history.state.source ? history.state.source.time_booked : new Date()),
         status: 'UNC',
-        deposit_left: this.getTotalDeposit()
+        deposit_left: this.getTotalDeposit(),
+        amount_paid: 0
       }) as Booking;
     if (!history.state.edit) {
       bookingDataCopy.loan_start_time = bookingDataCopy.loan_start_time.format('YYYY-MM-DD');

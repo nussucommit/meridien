@@ -16,7 +16,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
-import { FullCalendarModule, FullCalendarComponent } from '@fullcalendar/angular';
+import { FullCalendarComponent } from '@fullcalendar/angular';
 import { CalendarOptions } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { Subscription } from 'rxjs';
@@ -151,7 +151,6 @@ export class ItemListDialog implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild('calendar') calendar: FullCalendarComponent;
 
   bookers = new MatTableDataSource<any>();
 
@@ -172,7 +171,7 @@ export class ItemListDialog implements OnInit {
     for (const events of this.itemData.people) {
       this.calendarEvents.push(
         {
-          title: events.booking_source.name + ' - ' + events.quantity + ' items',
+          title: `${events.booking_source.name} - ${events.quantity} items`,
           start: events.booking_source.loan_start_time,
           // substr(0,10) is to extract the date only, 86400000 is added to include the return date
           end: new Date(new Date(events.booking_source.loan_end_time).getTime() + 86400000).toISOString().substr(0, 10)
@@ -198,7 +197,7 @@ export class ItemListDialog implements OnInit {
     this.dialogRef.close();
     this.itemsService.deleteItem(this.itemData.item.id).subscribe(() => {
       this.service.publish('reloadData');
-      this.snackbar.open(`Item # ${this.itemData.item.id} deleted`, 'OK', { duration: 5000 });
+      this.snackbar.open(`Item #${this.itemData.item.id} deleted`, 'OK', { duration: 5000 });
     });
   }
 

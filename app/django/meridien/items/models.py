@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 from bookings.models import Booking
 
 class Item(models.Model):
@@ -7,7 +8,7 @@ class Item(models.Model):
     item_status = models.CharField(max_length=256, default='N/A')
     remarks = models.TextField(default='-')
     category = models.CharField(max_length=256, default='-')
-    deposit = models.PositiveIntegerField(default=0)
+    deposit = models.DecimalField(default=0.00, decimal_places=2, max_digits=10, validators=[MinValueValidator(0.00), MaxValueValidator(200.00)])
 
     def __str__(self):
         return self.name

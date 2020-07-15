@@ -39,7 +39,7 @@ import { ItemDetailsComponent } from './item-details/item-details.component';
 import { BookingDetailsComponent, BookingConfirmComponent } from './booking-details/booking-details.component';
 import { ItemListComponent, ItemListDialog } from './item-list/item-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { BookingListComponent, BookingListDialog, BookingSummaryDialog } from './booking-list/booking-list.component';
+import { BookingListComponent, BookingListDialog, BookingSummaryDialog, BookingDepositDialog } from './booking-list/booking-list.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { LogoutComponent } from './logout/logout.component';
 import { TemplateListComponent } from './template-list/template-list.component';
@@ -59,6 +59,7 @@ import { BookingConfirmationComponent } from './booking-confirmation/booking-con
     BookingListComponent,
     BookingListDialog,
     BookingSummaryDialog,
+    BookingDepositDialog,
     LoginFormComponent,
     LogoutComponent,
     TemplateListComponent,

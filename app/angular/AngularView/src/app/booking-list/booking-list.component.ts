@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ViewChild, Input } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { BookingsService } from '../model-service/bookings/bookings.service';
@@ -130,6 +130,7 @@ export class BookingListComponent implements OnInit {
   }
 }
 
+// dialog details for each booking
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'booking-list-dialog',
@@ -151,17 +152,37 @@ export class BookingListDialog {
     const bookingDataCopy = { ...this.bookingData.source };
     delete bookingDataCopy.id;
     bookingDataCopy.status = status;
-    this.bookingsService.updateBooking(this.bookingData.source.id, bookingDataCopy).subscribe();
-    this.dialogRef.close();
+    if (status !== 'GET') {
+      this.bookingsService.updateBooking(this.bookingData.source.id, bookingDataCopy).subscribe();
+      this.dialogRef.close();
+      this.printSnackBarStatus(status);
+    } else {
+      const dialogR = this.dialog.open(BookingDepositDialog, { data: this.bookingData.source.deposit_left });
+      dialogR.afterClosed().subscribe((result) => {
+        if (result) {// the amount paid must be returned from the dialog to complete the transaction
+          bookingDataCopy.deposit = Math.max(0, bookingDataCopy.deposit_left - result);
+          bookingDataCopy.amount_paid = Math.min(bookingDataCopy.deposit_left, result);
+          this.bookingsService.updateBooking(this.bookingData.source.id, bookingDataCopy).subscribe();
+          this.dialogRef.close();
+          this.printSnackBarStatus(status);
+        }
+      });
+    }
+  }
 
+  printSnackBarStatus(status: string) {
     let snackbarString = '';
     if (status === 'PEN') {
       snackbarString = 'Pending';
     } else if (status === 'PRO') {
       snackbarString = 'Processed';
+    } else if (status === 'GET') {
+      snackbarString = 'Retrieved';
+    } else if (status === 'RET') {
+      snackbarString = 'Returned';
     }
 
-    this.snackbar.open(`Status of Booking #${this.bookingData.source.id}changed to: ${snackbarString}`, 'OK', { duration: 5000, });
+    this.snackbar.open(`Status of Booking #${this.bookingData.source.id} changed to: ${snackbarString}`, 'OK', { duration: 5000, });
   }
 
   deleteBooking() {
@@ -187,6 +208,7 @@ export class BookingListDialog {
   }
 }
 
+// weekly summary
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'booking-summary-dialog',
@@ -233,5 +255,38 @@ export class BookingSummaryDialog implements OnInit {
       case 3:
         return '#0dd186';
     }
+  }
+}
+
+// dialog for collecting deposit.
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: 'booking-deposit-dialog',
+  templateUrl: './booking-deposit.dialog.html',
+})
+
+// tslint:disable-next-line: component-class-suffix
+export class BookingDepositDialog implements OnInit {
+
+  depositForm: FormGroup;
+
+  constructor(
+    public dialogRef: MatDialogRef<BookingDepositDialog>,
+    private formBuilder: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public deposit: any
+  ) { }
+
+  ngOnInit(): void {
+    this.depositForm = this.formBuilder.group({
+      amountPaid: [0, Validators.required]
+    });
+  }
+
+  onSubmit() {
+    this.dialogRef.close(this.depositForm.value.amountPaid);
+  }
+
+  getChange() {
+    return this.depositForm.value.amountPaid - this.deposit;
   }
 }

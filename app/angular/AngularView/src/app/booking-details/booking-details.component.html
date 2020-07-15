@@ -89,7 +89,7 @@
                     <span style="margin-left: 10%;"></span>
                     <mat-form-field style="width:15%">
                         <mat-label>Quantity</mat-label>
-                        <input matInput type="number" min="1" value="1" required class="form-control"
+                        <input matInput type="number" min="1" value="1" pattern="\d+" required class="form-control"
                             formControlName="quantity">
                         <mat-error>Please enter a positive number.</mat-error>
                     </mat-form-field>

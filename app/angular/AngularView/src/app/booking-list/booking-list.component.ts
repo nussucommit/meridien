@@ -1,6 +1,6 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, Inject, ViewChild, Input } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { BookingsService } from '../model-service/bookings/bookings.service';
 import { Booking } from '../model-service/bookings/bookings';
@@ -183,6 +183,11 @@ export class BookingListDialog {
     }
 
     this.snackbar.open(`Status of Booking #${this.bookingData.source.id} changed to: ${snackbarString}`, 'OK', { duration: 5000, });
+  }
+
+  processAndEmail() {
+    this.updateStatus('PRO');
+    this.router.navigate(['/templates'], { state: { booking: this.bookingData.source } });
   }
 
   deleteBooking() {

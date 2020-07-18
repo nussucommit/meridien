@@ -20,13 +20,21 @@ export class MailSenderComponent {
     private formBuilder: FormBuilder,
     private snackbar: MatSnackBar,
     private mailerService: MailerService,
-    private router: Router
+    private router: Router,
   ) {
     this.mailForm = this.formBuilder.group({
       recipient: '',
       subject: '',
       message: ''
     });
+
+    if (history.state.booking) {
+      this.mailForm.setValue({
+        recipient: history.state.booking.email,
+        subject: history.state.template.subject,
+        message: history.state.template.template
+      });
+    }
   }
 
   send_email(data: Email){

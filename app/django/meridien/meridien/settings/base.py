@@ -20,20 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '8ka@=25ffr7377i_s*$$6n_=sepb1jpwhrbbgviphal7q=(3zz'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 ALLOWED_HOSTS = []
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.mailgun.org'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'postmaster@sandboxe8ceb8cd388247fd8eda2d138d363fb6.mailgun.org'
-EMAIL_HOST_PASSWORD = os.getenv('NUSSU_PASSWORD')
 
 # Application definition
 
@@ -44,33 +31,25 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     'bookings.apps.BookingsConfig',
+    'confirmationemails.apps.ConfirmationEmailsConfig',
     'emailtemplates.apps.EmailtemplatesConfig',
     'items.apps.ItemsConfig',
     'mails.apps.MailsConfig',
-    'confirmationemails.apps.ConfirmationEmailsConfig',
-    'corsheaders',
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  
-    'django.middleware.common.CommonMiddleware',  
-    'django.middleware.common.CommonMiddleware', 
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
-
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:4200',
-    'http://127.0.0.1:4200',
-)
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
@@ -105,21 +84,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'meridien.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-   'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'sooperuser',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
-}
 
 
 # Password validation

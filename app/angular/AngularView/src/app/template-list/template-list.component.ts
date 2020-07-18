@@ -16,6 +16,7 @@ export class TemplateListComponent implements OnInit {
 
   templates = new MatTableDataSource<EmailTemplate>();
   tableColumns: string[] = ['id', 'name'];
+  isSendingEmail = false;
 
   @ViewChild(MatPaginator, {static: true})
   paginator: MatPaginator;
@@ -33,6 +34,9 @@ export class TemplateListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (history.state.booking) {
+      this.isSendingEmail = true;
+    }
     this.reloadData();
     this.templates.paginator = this.paginator;
     this.templates.sort = this.sort;
@@ -60,17 +64,33 @@ export class TemplateListComponent implements OnInit {
         (data: EmailTemplate) => {
           if (!this.isDialogOpen) {
             this.isDialogOpen = true;
-            const dialogRef = this.dialog.open(TemplateDetailDialog,
-              { width: '800px',
-                data: {
-                  isEdit: true,
-                  template: data
-                }
+            if (this.isSendingEmail) {
+              const dialogRef = this.dialog.open(TemplateDetailDialog,
+                { width: '800px',
+                  data: {
+                    isEdit: false,
+                    isSendingEmail: this.isSendingEmail,
+                    template: data,
+                    booking: history.state.booking
+                  }
+                });
+              dialogRef.afterClosed().subscribe(() => {
+                this.reloadData();
+                this.isDialogOpen = false;
               });
-            dialogRef.afterClosed().subscribe(() => {
-              this.reloadData();
-              this.isDialogOpen = false;
-            });
+            } else {
+              const dialogRef = this.dialog.open(TemplateDetailDialog,
+                { width: '800px',
+                  data: {
+                    isEdit: true,
+                    template: data
+                  }
+                });
+              dialogRef.afterClosed().subscribe(() => {
+                this.reloadData();
+                this.isDialogOpen = false;
+              });
+            }
           }
         }
       );

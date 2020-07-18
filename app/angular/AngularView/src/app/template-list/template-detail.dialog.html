@@ -31,5 +31,8 @@
     }"
   ></editor>
   <br>
-  <button mat-raised-button color="primary">Submit</button>
+  <button *ngIf="isEdit; else elseBlock" mat-raised-button color="primary">Submit</button>
+  <ng-template #elseBlock>
+    <button *ngIf="isSendingEmail" mat-raised-button color="primary">Send</button>
+  </ng-template>
 </form>

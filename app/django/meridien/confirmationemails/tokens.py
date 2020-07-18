@@ -1,8 +1,7 @@
 from datetime import datetime, timedelta
 
 import jwt
-
-from meridien.settings import SECRET_KEY
+from django.conf import settings
 
 
 def generate_token(id):
@@ -12,7 +11,7 @@ def generate_token(id):
             "exp": datetime.now() + timedelta(days=30),
             "id": id
         },
-        key=SECRET_KEY,
+        key=settings.SECRET_KEY,
         algorithm='HS256'
     ).decode()
 
@@ -20,7 +19,7 @@ def generate_token(id):
 def decode_token(token):
     payload = jwt.decode(
         jwt=token,
-        key=SECRET_KEY,
+        key=settings.SECRET_KEY,
         algorithms=['HS256']
     )
 

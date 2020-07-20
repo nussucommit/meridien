@@ -18,10 +18,10 @@
 
 <div *ngIf="booking != null; else elseBlock" style="width: 80%; margin: 20px;">
   <p style="font-size: 15px;" *ngIf="booking.status === 'UNC'; else elseWords">Before you are able to check the status
-    of your booking, you are to declare that you are the one who made the following booking. If you do not make this
-    booking, please delete the booking and email xxx immediately.</p>
+    of your booking, you are to declare that you are the one who made the following booking.</p>
   <ng-template #elseWords>Here are the booking details. Processing may take a few days to complete, and you will receive
-    an email response once the booking is processed.</ng-template>
+    an email response once the booking is processed. The deposit shown here is the maximum payable deposit and may
+    decrease after the booking is processed.</ng-template>
   <h2 style="margin-top: 20px">Booking Details</h2>
   <div class="row">
     <div class="column-left">
@@ -56,9 +56,10 @@
       </mat-table>
     </div>
   </div>
-  <button mat-raised-button color="primary" (click)="confirm_booking()"
-    *ngIf="booking.status === 'UNC'" #confirmButton [disabled]="responded">Confirm</button>
-  <button mat-raised-button color="danger" (click)="delete_booking()" #deleteButton [disabled]="responded">Delete</button>
+  <button mat-raised-button color="primary" (click)="confirm_booking()" *ngIf="booking.status === 'UNC'" #confirmButton
+    [disabled]="responded">Confirm</button>
+  <button mat-raised-button color="danger" (click)="delete_booking()" #deleteButton
+    [disabled]="responded">Delete</button>
 </div>
 
 <!--this page needs redesign-->

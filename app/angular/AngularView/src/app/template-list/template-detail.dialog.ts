@@ -4,9 +4,11 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { EmailTemplatesService } from './../model-service/emailtemplates/emailtemplates.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { EmailTemplate } from './../model-service/emailtemplates/emailtemplates';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewChildren, QueryList } from '@angular/core';
 import { apiKey } from '../settings';
 import { Router } from '@angular/router';
+import { BookedItem } from '../model-service/items/items';
+import { BookingsService } from '../model-service/bookings/bookings.service';
 
 @Component({
   selector: 'app-template-detail-dialog',
@@ -16,22 +18,29 @@ import { Router } from '@angular/router';
 export class TemplateDetailDialog {
   updateForm: FormGroup;
 
+  isNew: boolean;
   isEdit: boolean;
   isSendingEmail: boolean;
   booking: Booking = null;
   template: EmailTemplate;
   templateParams: any;
 
+  @ViewChildren('checkBox') checkBox: QueryList<any>;
+  checkedItems = [];
+  bookedItems: BookedItem[] = [];
+
   apiKey = apiKey;
 
   constructor(
     private emailTemplatesService: EmailTemplatesService,
+    private bookingService: BookingsService,
     public dialogRef: MatDialogRef<TemplateDetailDialog>,
     @Inject(MAT_DIALOG_DATA) public params: any,
     private formBuilder: FormBuilder,
     private snackbar: MatSnackBar,
     private router: Router
   ) {
+    this.isNew = params.isNew;
     this.isEdit = params.isEdit;
     this.isSendingEmail = params.isSendingEmail;
     this.updateForm = this.formBuilder.group({
@@ -41,13 +50,13 @@ export class TemplateDetailDialog {
     });
     if (this.isEdit) {
       this.template = params.template;
-      this.templateParams = {...this.template};
+      this.templateParams = { ...this.template };
       delete this.templateParams.id;
       this.updateForm.setValue(this.templateParams);
     } else if (this.isSendingEmail) {
       this.template = params.template;
-      this.templateParams = {...this.template};
-      this.booking = params.booking;
+      this.templateParams = { ...this.template };
+      this.booking = params.booking.source;
 
       delete this.templateParams.id;
       this.updateForm.setValue(this.templateParams);
@@ -55,15 +64,26 @@ export class TemplateDetailDialog {
       this.updateForm.get('name').disable();
       this.updateForm.get('subject').disable();
       this.updateForm.get('template').disable();
+
+      params.booking.booked_items.forEach((ele: BookedItem) => { this.bookedItems.push(ele); });
     } else {
       this.template = null;
     }
   }
 
-  send_data(data: any){
+  send_data(data: any) {
     if (this.isEdit) {
       this.emailTemplatesService.updateTemplate(this.template.id, data).subscribe();
     } else if (this.isSendingEmail) {
+      this.checkBox.forEach((ele) => {
+        const stat = ele.checked ? 'ACC' : 'REJ';
+        this.bookingService.updateBookedItem(ele.value.id,
+          { booking_source: ele.value.booking_source.id, item: ele.value.item.id, quantity: ele.value.quantity, status: stat }).subscribe();
+      });
+      const bookingDataCopy = { ...this.booking };
+      delete bookingDataCopy.id;
+      bookingDataCopy.deposit_left = this.getFinalDeposit();
+      this.bookingService.updateBooking(this.booking.id, bookingDataCopy).subscribe();
       this.router.navigate(['/mailer'], { state: { booking: this.booking, template: data } });
     } else {
       this.emailTemplatesService.createTemplate(data).subscribe();
@@ -78,6 +98,10 @@ export class TemplateDetailDialog {
       snackbarString = 'Added template';
     }
 
-    this.snackbar.open(snackbarString, 'OK', {duration: 5000, });
+    this.snackbar.open(snackbarString, 'OK', { duration: 5000, });
+  }
+
+  getFinalDeposit() {
+    return this.checkBox ? this.checkBox.reduce((acc, ele) => ele.checked ? acc + ele.value.item.deposit * ele.value.quantity : acc, 0) : 0;
   }
 }

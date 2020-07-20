@@ -46,9 +46,9 @@ export class TemplateListComponent implements OnInit {
     if (!this.isDialogOpen) {
       this.isDialogOpen = true;
       const dialogRef = this.dialog.open(TemplateDetailDialog,
-        { width: '600px',
+        { width: '800px',
           data: {
-            isEdit: false
+            isNew: true
           }
         });
       dialogRef.afterClosed().subscribe(() => {
@@ -66,7 +66,7 @@ export class TemplateListComponent implements OnInit {
             this.isDialogOpen = true;
             if (this.isSendingEmail) {
               const dialogRef = this.dialog.open(TemplateDetailDialog,
-                { width: '800px',
+                { width: '1200px',
                   data: {
                     isEdit: false,
                     isSendingEmail: this.isSendingEmail,

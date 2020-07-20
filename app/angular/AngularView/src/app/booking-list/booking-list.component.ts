@@ -152,6 +152,7 @@ export class BookingListDialog {
     const bookingDataCopy = { ...this.bookingData.source };
     delete bookingDataCopy.id;
     bookingDataCopy.status = status;
+    this.bookingData.source.status = status;
     if (status !== 'GET') {
       this.bookingsService.updateBooking(this.bookingData.source.id, bookingDataCopy).subscribe();
       this.dialogRef.close();
@@ -187,7 +188,15 @@ export class BookingListDialog {
 
   processAndEmail() {
     this.updateStatus('PRO');
-    this.router.navigate(['/templates'], { state: { booking: this.bookingData.source } });
+    this.router.navigate(['/templates'], { state: { booking: this.bookingData } });
+  }
+
+  revoke(){
+    this.updateStatus('PEN');
+    this.bookingData.booked_items.forEach((ele) => {
+      this.bookingsService.updateBookedItem(ele.id,
+        { booking_source: ele.booking_source.id, item: ele.item.id, quantity: ele.quantity, status: 'PEN' }).subscribe();
+    });
   }
 
   deleteBooking() {

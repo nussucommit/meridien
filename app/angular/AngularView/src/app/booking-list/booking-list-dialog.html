@@ -79,7 +79,7 @@
 
 <!--Once processed, cannot edit, if want to edit, revoke first then edit-->
 <div mat-dialog-actions *ngIf="bookingData.source.status === 'PRO'" align="end">
-  <button mat-button (click)="updateStatus('PEN')">
+  <button mat-button (click)="revoke()">
     <mat-icon matPrefix>undo</mat-icon>
     Revoke
   </button>

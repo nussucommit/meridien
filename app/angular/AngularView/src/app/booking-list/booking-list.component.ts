@@ -1,10 +1,11 @@
 import { Router } from '@angular/router';
-import { Component, OnInit, Inject, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { BookingsService } from '../model-service/bookings/bookings.service';
 import { Booking } from '../model-service/bookings/bookings';
 import { BookedItem } from '../model-service/items/items';
+import { getStatus } from '../model-service/statustranslator';
 
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -128,6 +129,10 @@ export class BookingListComponent implements OnInit {
     }
     return true;
   }
+
+  returnStatusString(code: string){
+    return getStatus(code);
+  }
 }
 
 // dialog details for each booking
@@ -172,18 +177,11 @@ export class BookingListDialog {
   }
 
   printSnackBarStatus(status: string) {
-    let snackbarString = '';
-    if (status === 'PEN') {
-      snackbarString = 'Pending';
-    } else if (status === 'PRO') {
-      snackbarString = 'Processed';
-    } else if (status === 'GET') {
-      snackbarString = 'Retrieved';
-    } else if (status === 'RET') {
-      snackbarString = 'Returned';
-    }
+    this.snackbar.open(`Status of Booking #${this.bookingData.source.id} changed to: ${getStatus(status)}`, 'OK', { duration: 5000, });
+  }
 
-    this.snackbar.open(`Status of Booking #${this.bookingData.source.id} changed to: ${snackbarString}`, 'OK', { duration: 5000, });
+  returnStatusString(code: string){
+    return getStatus(code);
   }
 
   processAndEmail() {
@@ -191,7 +189,7 @@ export class BookingListDialog {
     this.router.navigate(['/templates'], { state: { booking: this.bookingData } });
   }
 
-  revoke(){
+  revoke() {
     this.updateStatus('PEN');
     this.bookingData.booked_items.forEach((ele) => {
       this.bookingsService.updateBookedItem(ele.id,

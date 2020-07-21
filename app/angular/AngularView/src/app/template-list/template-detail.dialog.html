@@ -37,7 +37,7 @@
       <ul>
         <li *ngFor="let bookedItem of bookedItems">
           <mat-checkbox style="margin-left: -15px" #checkBox [value]="bookedItem">
-            #{{bookedItem.item.id}} - {{bookedItem.item.name}}: {{bookedItem.quantity}} items
+            {{bookedItem.item.name}} - {{bookedItem.quantity}} items
           </mat-checkbox>
         </li>
       </ul>

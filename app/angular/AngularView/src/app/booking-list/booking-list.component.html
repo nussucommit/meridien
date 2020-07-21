@@ -108,7 +108,7 @@
         </ng-container>
         <ng-container matColumnDef="status">
           <mat-header-cell *matHeaderCellDef [ngClass]="'w-100'" mat-sort-header>Status</mat-header-cell>
-          <mat-cell *matCellDef="let booking" [ngClass]="'w-100'">{{booking.status}}</mat-cell>
+          <mat-cell *matCellDef="let booking" [ngClass]="'w-100'">{{returnStatusString(booking.status)}}</mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
         <mat-row matRipple *matRowDef="let booking; columns: tableColumns;" (click)=openDialog(booking)></mat-row>

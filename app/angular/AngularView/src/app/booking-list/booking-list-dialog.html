@@ -42,7 +42,7 @@
     <br>
     <mat-label>Amount paid: ${{bookingData.source.amount_paid}}</mat-label>
     <br>
-    <mat-label>Status: {{bookingData.source.status}}</mat-label>
+    <mat-label>Status: {{returnStatusString(bookingData.source.status)}}</mat-label>
     <br>
   </div>
   <div class="column-right">
@@ -58,7 +58,7 @@
       </ng-container>
       <ng-container matColumnDef="status">
         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-        <mat-cell *matCellDef="let booked_item"> {{booked_item.status}} </mat-cell>
+        <mat-cell *matCellDef="let booked_item"> {{returnStatusString(booked_item.status)}} </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="tableColumnsBookedItems"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tableColumnsBookedItems;"></mat-row>

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Booking } from './../model-service/bookings/bookings';
 import { BookingsService } from '../model-service/bookings/bookings.service';
 import { BookedItem } from '../model-service/items/items';
+import { getStatus } from '../model-service/statustranslator';
 
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
@@ -45,23 +46,8 @@ export class BookingConfirmationComponent implements OnInit {
     );
   }
 
-  getStatus(code: string) {
-    switch (code) {
-      case 'PEN':
-        return 'Pending';
-      case 'EVA':
-        return 'Evaluating';
-      case 'PRO':
-        return 'Processed';
-      case 'UNC':
-        return 'Unconfirmed';
-      case 'GET':
-        return 'Retrieved';
-      case 'RET':
-        return 'Returned';
-      default:
-        return 'Unknown';
-    }
+  returnStatusString(code: string){
+    return getStatus(code);
   }
 
   confirm_booking() {

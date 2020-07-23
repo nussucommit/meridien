@@ -12,14 +12,14 @@ import { TemplateListComponent } from './template-list/template-list.component';
 import { BookingDetailsComponent, BookingConfirmComponent } from './booking-details/booking-details.component';
 
 const routes: Routes = [
-    { path: 'items', component: ItemListComponent, canActivate: [AuthGuard] },
+    { path: 'items', component: ItemListComponent },
     { path: 'bookings', component: BookingListComponent, canActivate: [AuthGuard] },
     { path: '', redirectTo: 'bookings', pathMatch: 'full', canActivate: [AuthGuard] },
     { path: 'login', component: LoginFormComponent },
-    { path: 'confirmation_template', component: ConfirmationTemplateComponent },
+    { path: 'confirmation_template', component: ConfirmationTemplateComponent, canActivate: [AuthGuard] },
     { path: 'confirm_booking', component: BookingConfirmationComponent },
-    { path: 'templates', component: TemplateListComponent },
-    { path: 'mailer', component: MailSenderComponent },
+    { path: 'templates', component: TemplateListComponent, canActivate: [AuthGuard] },
+    { path: 'mailer', component: MailSenderComponent, canActivate: [AuthGuard] },
     { path: 'edit', component: BookingDetailsComponent},
     { path: 'edit/confirmed', component: BookingConfirmComponent},
     { path: '**', component: NotFoundComponent },

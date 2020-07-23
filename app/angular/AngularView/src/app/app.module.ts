@@ -104,7 +104,8 @@ import { BookingConfirmationComponent } from './booking-confirmation/booking-con
     { provide: MAT_DATE_LOCALE, useValue: 'en-SG' },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: RefreshInterceptor, multi: true },
-    ComParentChildService
+    ComParentChildService,
+    LogoutComponent
   ],
   bootstrap: [AppComponent]
 })

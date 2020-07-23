@@ -22,7 +22,7 @@
     }
 </style>
 
-<mat-horizontal-stepper #stepper [linear]=true style="background-color: #F7F7F7; width:80%; margin: auto;"
+<mat-horizontal-stepper #stepper [linear]=true style="background-color: hsla(0, 0%, 97%, 0); width:80%; margin: auto;"
     (selectionChange)="selectionChange($event)">
     <mat-step [stepControl]="detailsForm">
         <form [formGroup]="detailsForm" (ngSubmit)="checkout()">

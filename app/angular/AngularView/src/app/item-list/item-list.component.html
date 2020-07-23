@@ -81,7 +81,7 @@
 <mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
 </div>
 </div>
-<button mat-fab class="fab-bottom-right" color="primary" style="margin-top:20px" (click)="openCreateForm()">
+<button *ngIf="lc.loginStatus.value" mat-fab class="fab-bottom-right" color="primary" style="margin-top:20px" (click)="openCreateForm()">
   <mat-icon matPrefix>add</mat-icon>
 </button>
 </div>

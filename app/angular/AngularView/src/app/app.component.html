@@ -1,14 +1,16 @@
-
-<mat-toolbar color="primary">
-  <mat-toolbar-row class="mat-elevation-z8">
-    <span>NUSSU Logistics Management System</span>
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <mat-toolbar-row>
+    <span style="margin-left: 15px;">NUSSU Logistics Management System</span>
     <span class="fill-remaining-space"></span>
-    <a mat-button routerLink="bookings" routerLinkActive="active">Booking status</a>
-    <a mat-button routerLink="items" routerLinkActive="active">Items</a>
-    <a mat-button routerLink="templates" routerLinkActive="active">Email templates</a>
-    <a mat-button routerLink="mailer" routerLinkActive="active">Send email</a>
-    <a mat-button routerLink="confirmation_template" routerLinkActive="active">Confirmation template</a>
     <app-logout></app-logout>
+  </mat-toolbar-row>
+  <mat-toolbar-row style="height: 60%;">
+    <a *ngIf="lc.loginStatus.value" mat-button routerLink="bookings" routerLinkActive="active">Booking List</a>
+    <a mat-button routerLink="items" routerLinkActive="active">Items</a>
+    <a *ngIf="lc.loginStatus.value" mat-button routerLink="templates" routerLinkActive="active">Email templates</a>
+    <a *ngIf="lc.loginStatus.value" mat-button routerLink="mailer" routerLinkActive="active">Send email</a>
+    <a *ngIf="lc.loginStatus.value" mat-button routerLink="confirmation_template" routerLinkActive="active">Confirmation template</a>
+    <a mat-button routerLink="edit" routerLinkActive="active">Make a Booking</a>
   </mat-toolbar-row>
 </mat-toolbar>
 

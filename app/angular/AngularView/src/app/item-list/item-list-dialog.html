@@ -73,7 +73,7 @@
   </mat-tab>
 </mat-tab-group>
 
-<div mat-dialog-actions align="end" style="vertical-align: bottom;">
+<div *ngIf="lc.loginStatus.value" mat-dialog-actions align="end" style="vertical-align: bottom;">
   <button mat-button (click)="openEditForm()">
     <mat-icon matPrefix>create</mat-icon>
     Edit

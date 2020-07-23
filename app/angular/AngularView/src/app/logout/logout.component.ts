@@ -14,13 +14,15 @@ export class LogoutComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private router: Router
-  ) { }
-
-  ngOnInit(): void {
+  ) {
     this.loginStatus = new BehaviorSubject<boolean>(false);
     this.loginService.observableUser.subscribe({
       next: (user) => this.loginStatus.next(user != null),
     });
+  }
+
+  ngOnInit(): void {
+
   }
 
   logout() {

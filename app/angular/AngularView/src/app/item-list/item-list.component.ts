@@ -7,6 +7,7 @@ import { BookingsService } from '../model-service/bookings/bookings.service';
 import { Items } from '../model-service/items/items';
 import { BookedItem } from '../model-service/items/items';
 
+import { LogoutComponent } from '../logout/logout.component';
 import { ItemDetailsComponent } from '../item-details/item-details.component';
 
 import { ComParentChildService } from '../model-service/callchildtoparent.service';
@@ -16,12 +17,12 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
-import { FullCalendarComponent } from '@fullcalendar/angular';
 import { CalendarOptions } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -50,6 +51,7 @@ export class ItemListComponent implements OnInit {
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
     private service: ComParentChildService,
+    public lc: LogoutComponent
   ) { }
 
   ngOnInit() {
@@ -160,7 +162,8 @@ export class ItemListDialog implements OnInit {
     private service: ComParentChildService,
     private snackbar: MatSnackBar,
     private itemsService: ItemsService,
-    @Inject(MAT_DIALOG_DATA) public itemData: any
+    @Inject(MAT_DIALOG_DATA) public itemData: any,
+    public lc: LogoutComponent
   ) { }
 
   ngOnInit() {

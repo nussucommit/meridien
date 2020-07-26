@@ -66,8 +66,16 @@
   </div>
 </div>
 
+<div mat-dialog-actions *ngIf="bookingData.source.status === 'UNC'" align="end">
+  <button mat-button (click)="confirmDelete()">
+    <mat-icon matPrefix>clear</mat-icon>
+    Remove
+  </button>
+</div>
+
 <div mat-dialog-actions *ngIf="bookingData.source.status === 'PEN'" align="end">
   <button mat-button (click)="editBooking()">
+    <mat-icon matPrefix>edit</mat-icon>
     Edit
   </button>
 
@@ -84,29 +92,13 @@
     Revoke
   </button>
 
-  <button mat-button *ngIf="bookingData.source.status !== 'GET'" (click)="updateStatus('GET')">
+  <button mat-button (click)="getLogistics()">
     Retrieve Logistics
-  </button>
-
-  <button mat-button (click)="confirmDelete()">
-    <mat-icon matPrefix>clear</mat-icon>
-    Remove
   </button>
 </div>
 
 <div mat-dialog-actions *ngIf="bookingData.source.status === 'GET'" align="end">
-  <button mat-button (click)="updateStatus('RET')">
+  <button mat-button (click)="returnLogistics()">
     Return Logistics
-  </button>
-  <button mat-button (click)="confirmDelete()">
-    <mat-icon matPrefix>clear</mat-icon>
-    Remove
-  </button>
-</div>
-
-<div mat-dialog-actions *ngIf="bookingData.source.status === 'RET'" align="end">
-  <button mat-button (click)="confirmDelete()">
-    <mat-icon matPrefix>clear</mat-icon>
-    Remove
   </button>
 </div>

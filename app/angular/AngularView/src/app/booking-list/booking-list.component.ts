@@ -129,7 +129,7 @@ export class BookingListComponent implements OnInit {
     return true;
   }
 
-  returnStatusString(code: string){
+  returnStatusString(code: string) {
     return getStatus(code);
   }
 }
@@ -157,29 +157,19 @@ export class BookingListDialog {
     delete bookingDataCopy.id;
     bookingDataCopy.status = status;
     this.bookingData.source.status = status;
-    if (status !== 'GET') {
-      this.bookingsService.updateBooking(this.bookingData.source.id, bookingDataCopy).subscribe();
-      this.dialogRef.close();
-      this.printSnackBarStatus(status);
-    } else {
-      const dialogR = this.dialog.open(BookingDepositDialog, { data: this.bookingData.source.deposit_left });
-      dialogR.afterClosed().subscribe((result) => {
-        if (result) {// the amount paid must be returned from the dialog to complete the transaction
-          bookingDataCopy.amount_paid = Math.min(bookingDataCopy.deposit_left, result);
-          bookingDataCopy.deposit_left = Math.max(0, bookingDataCopy.deposit_left - result);
-          this.bookingsService.updateBooking(this.bookingData.source.id, bookingDataCopy).subscribe();
-          this.dialogRef.close();
-          this.printSnackBarStatus(status);
-        }
-      });
+    if (status === 'GET') {
+      bookingDataCopy.amount_paid = bookingDataCopy.deposit_left;
     }
+    this.bookingsService.updateBooking(this.bookingData.source.id, bookingDataCopy).subscribe();
+    this.dialogRef.close();
+    this.printSnackBarStatus(status);
   }
 
   printSnackBarStatus(status: string) {
     this.snackbar.open(`Status of Booking #${this.bookingData.source.id} changed to: ${getStatus(status)}`, 'OK', { duration: 5000, });
   }
 
-  returnStatusString(code: string){
+  returnStatusString(code: string) {
     return getStatus(code);
   }
 
@@ -194,6 +184,14 @@ export class BookingListDialog {
       this.bookingsService.updateBookedItem(ele.id,
         { booking_source: ele.booking_source.id, item: ele.item.id, quantity: ele.quantity, status: 'PEN' }).subscribe();
     });
+  }
+
+  getLogistics() {
+    this.updateStatus('GET');
+  }
+
+  returnLogistics(){
+    this.updateStatus('RET');
   }
 
   deleteBooking() {
@@ -265,38 +263,5 @@ export class BookingSummaryDialog implements OnInit {
       case 3:
         return '#0dd186';
     }
-  }
-}
-
-// dialog for collecting deposit.
-@Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'booking-deposit-dialog',
-  templateUrl: './booking-deposit.dialog.html',
-})
-
-// tslint:disable-next-line: component-class-suffix
-export class BookingDepositDialog implements OnInit {
-
-  depositForm: FormGroup;
-
-  constructor(
-    public dialogRef: MatDialogRef<BookingDepositDialog>,
-    private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public deposit: any
-  ) { }
-
-  ngOnInit(): void {
-    this.depositForm = this.formBuilder.group({
-      amountPaid: [0, Validators.required]
-    });
-  }
-
-  onSubmit() {
-    this.dialogRef.close(this.depositForm.value.amountPaid);
-  }
-
-  getChange() {
-    return this.depositForm.value.amountPaid - this.deposit;
   }
 }

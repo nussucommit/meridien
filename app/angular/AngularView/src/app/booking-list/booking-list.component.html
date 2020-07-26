@@ -31,8 +31,10 @@
       <p>Click each row for more details.</p>
     </div>
     <div class="column-right">
-      <button mat-raised-button style="float: right;" color="primary" (click)="openWeeklySummary()">Weekly
-        Summary</button>
+      <button mat-raised-button style="float: right;" color="primary" (click)="openWeeklySummary()">
+        <mat-icon matPrefix>date_range</mat-icon>
+        Weekly Summary
+      </button>
     </div>
   </div>
   <div class="row" style="margin-top: 10px;">
@@ -73,7 +75,10 @@
           <input matInput formControlName="status">
         </mat-form-field>
         <br>
-        <button type="submit" mat-raised-button color="primary" [disabled]="!filterForm.valid">Go</button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="!filterForm.valid">
+          <mat-icon matPrefix>search</mat-icon>
+          Filter
+        </button>
       </form>
     </div>
     <div class="column-right">

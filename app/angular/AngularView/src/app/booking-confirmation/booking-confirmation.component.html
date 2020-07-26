@@ -21,12 +21,12 @@
     of your booking, you are to declare that you are the one who made the following booking.</p>
   <ng-template #elseWords>Here are the booking details. Processing may take a few days to complete, and you will receive
     an email response once the booking is processed. The deposit shown here is the <strong>maximum payable
-      deposit</strong> and may
-    decrease after the booking is processed.</ng-template>
+      deposit</strong> and may decrease after the booking is processed.</ng-template>
   <h2 style="margin-top: 20px">Booking Details</h2>
   <div class="row">
     <div class="column-left">
       <mat-list role="list" style="margin-left: -15px; margin-top: -15px;">
+        <mat-list-item role="listitem">Booking No.: {{booking.id}}</mat-list-item>
         <mat-list-item role="listitem">Name: {{booking.name}}</mat-list-item>
         <mat-list-item role="listitem">Email: {{booking.email}}</mat-list-item>
         <mat-list-item role="listitem">Organization: {{booking.organization}}</mat-list-item>
@@ -61,10 +61,21 @@
       </mat-table>
     </div>
   </div>
-    <button mat-raised-button color="primary" (click)="confirm_booking()" *ngIf="booking.status === 'UNC'"
-      style="margin-right: 10px" #confirmButton [disabled]="responded">Confirm</button>
-    <button mat-raised-button color="warn" (click)="delete_booking()" #deleteButton
-      [disabled]="responded">Delete</button>
+  <button mat-raised-button color="primary" (click)="confirm_booking()" style="margin-right: 10px"
+    *ngIf="booking.status === 'UNC'" #confirmButton [disabled]="responded">
+    <mat-icon matPrefix>done</mat-icon>
+    Confirm
+  </button>
+  <button mat-raised-button color="primary" (click)="print()" #deleteButton [disabled]="responded"
+    style="margin-right: 10px">
+    <mat-icon matPrefix>print</mat-icon>
+    Print
+  </button>
+  <button mat-raised-button color="warn" (click)="delete_booking()" #deleteButton [disabled]="responded"
+    style="margin-right: 10px">
+    <mat-icon matPrefix>clear</mat-icon>
+    Delete
+  </button>
 </div>
 
 <!--this page needs redesign-->

@@ -50,6 +50,10 @@ export class BookingConfirmationComponent implements OnInit {
     return getStatus(code);
   }
 
+  print(){
+    window.print();
+  }
+
   confirm_booking() {
     this.bookingsService.confirmBookingByToken(this.token).subscribe(
       (success: any) => {

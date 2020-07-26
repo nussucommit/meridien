@@ -129,6 +129,10 @@ export class BookingDetailsComponent implements OnInit {
     }
   }
 
+  print() {
+    window.print();
+  }
+
   onSubmit() {
     const bookingDataCopy = { ...this.inputGroup1 };
     const finalData: Booking = Object.assign(bookingDataCopy,

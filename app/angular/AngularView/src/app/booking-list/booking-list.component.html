@@ -40,6 +40,7 @@
       <h2 style="color:#777777">Filter</h2>
       <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
         <mat-label>Filter by name</mat-label>
+        <br>
         <mat-form-field style="margin-top:10px;" appearance="legacy">
           <mat-label>Name</mat-label>
           <input matInput formControlName="name">
@@ -47,6 +48,7 @@
 
         <br>
         <mat-label>Filter by booking date</mat-label>
+        <br>
         <mat-form-field style="margin-top:10px;" appearance="legacy">
           <mat-label>From (dd/mm/yyyy)</mat-label>
           <input matInput formControlName="fromDate" class="form-control" [matDatepicker]="startpicker">
@@ -54,6 +56,7 @@
           <mat-datepicker #startpicker></mat-datepicker>
           <mat-error>Please enter a valid date.</mat-error>
         </mat-form-field>
+        <br>
         <mat-form-field style="margin-top:10px;" appearance="legacy">
           <mat-label>To (dd/mm/yyyy)</mat-label>
           <input matInput formControlName="toDate" class="form-control" [matDatepicker]="endpicker">
@@ -64,6 +67,7 @@
 
         <br>
         <mat-label>Filter by booking status</mat-label>
+        <br>
         <mat-form-field style="margin-top:10px;" appearance="legacy">
           <mat-label>Status</mat-label>
           <input matInput formControlName="status">

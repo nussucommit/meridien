@@ -1,4 +1,5 @@
 import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
 
 import { TemplateDetailDialog } from './template-list/template-detail.dialog';
 import { RefreshInterceptor } from './api-auth/refresh.interceptor';
@@ -47,6 +48,10 @@ import { MailSenderComponent } from './mail-sender/mail-sender.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { ConfirmationTemplateComponent } from './confirmation-template/confirmation-template.component';
 import { BookingConfirmationComponent } from './booking-confirmation/booking-confirmation.component';
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin
+]);
 
 @NgModule({
   declarations: [

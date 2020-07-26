@@ -18,7 +18,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import moment from 'moment';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { CalendarOptions } from '@fullcalendar/angular';
-import dayGridPlugin from '@fullcalendar/daygrid';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -232,7 +231,6 @@ export class BookingSummaryDialog implements OnInit {
   calendarEvents = [];
 
   calendarOptions: CalendarOptions = {
-    plugins: [dayGridPlugin],
     initialView: 'dayGridWeek',
     height: '500px',
     locale: 'en-au',

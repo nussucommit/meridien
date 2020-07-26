@@ -20,6 +20,10 @@
         height: auto !important;
         white-space: pre-wrap;
     }
+
+    mat-checkbox.mat-checkbox-layout {
+        white-space: normal !important;
+    }
 </style>
 
 <mat-horizontal-stepper #stepper [linear]=true style="background-color: hsla(0, 0%, 97%, 0); width:80%; margin: auto;"
@@ -146,11 +150,30 @@
             </div>
         </div>
         <div style="margin-bottom: 30px;">
-            <h2>PDPA Agreement</h2>
+            <h2>Personal Data Protection Act</h2>
+
             <mat-checkbox #c required [checked]="editMode">
-                A generic PDPA clause.
+                <span>I consent to providing my Personal Data to NUSSU EXCO. By indicating my consent to provide my
+                    personal
+                    data in this form, I agree to receive updates and important announcements for the purpose of
+                    logistics
+                    sharing from NUSSU EXCO by email and phone. All personal information will be kept confidential and
+                    used
+                    for the purpose(s) stated only.</span>
+            </mat-checkbox>
+
+            <h2 style="margin-top: 30px">Withdrawal of Consent</h2>
+
+            <mat-checkbox #d required [checked]="editMode">
+                <span>To help you make an informed decision, withdrawing consent will result in not being able to
+                    receive
+                    updates and important announcements for the purpose of logistics loans and sharing with NUSSU EXCO.
+                    Should you wish to withdraw your consent for NUSSU EXCO to contact you for the purposes stated
+                    above,
+                    please notify us in writing to logistics@nussu.org.sg. We will then remove your personal information
+                    from our database. Please allow 10 business days for your request to take effect.</span>
             </mat-checkbox>
         </div>
-        <button mat-raised-button color="primary" (click)=onSubmit() [disabled]="!c.checked">Submit</button>
+        <button mat-raised-button color="primary" (click)=onSubmit() [disabled]="!c.checked||!d.checked">Submit</button>
     </mat-step>
 </mat-horizontal-stepper>

@@ -97,7 +97,7 @@ export class ItemListComponent implements OnInit {
 
   itemFilterPredicate(data: Items, filter: any): boolean {
     for (const value in filter) {
-      if (!data[value].includes(filter[value])) {
+      if (!data[value].toLowerCase().includes(filter[value].toLowerCase())) {
         return false;
       }
     }

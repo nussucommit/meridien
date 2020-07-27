@@ -119,8 +119,12 @@ export class BookingListComponent implements OnInit {
           if (Date.parse(data.time_booked.toString()) > Date.parse(filter[value]) + 86399999) {
             return false;
           }
+        } else if (value === 'status') {
+          if (!getStatus(data[value]).toLowerCase().includes(filter[value].toLowerCase())) {
+            return false;
+          }
         } else {
-          if (!data[value].includes(filter[value])) {
+          if (!data[value].toLowerCase().includes(filter[value].toLowerCase())) {
             return false;
           }
         }
@@ -190,7 +194,7 @@ export class BookingListDialog {
     this.updateStatus('GET');
   }
 
-  returnLogistics(){
+  returnLogistics() {
     this.updateStatus('RET');
   }
 

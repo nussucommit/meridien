@@ -32,9 +32,9 @@
     <div class="row">
       <div class="column-left">
         <mat-table [dataSource]=bookers matSort>
-          <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-            <mat-cell *matCellDef="let bookings"> {{bookings.booking_source.name}} </mat-cell>
+          <ng-container matColumnDef="orgs">
+            <mat-header-cell *matHeaderCellDef> Organization </mat-header-cell>
+            <mat-cell *matCellDef="let bookings"> {{bookings.booking_source.organization}} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="loan_start_time">
             <mat-header-cell *matHeaderCellDef> Loan date </mat-header-cell>

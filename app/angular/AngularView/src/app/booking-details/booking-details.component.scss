@@ -3,3 +3,16 @@
         display: none;
     }
 }
+
+.fade{
+    transition: all 0.2s
+}
+
+.parent{
+    position: relative
+}
+
+.child{
+    position: absolute;
+    top: 0;
+}

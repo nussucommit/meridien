@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { ItemsService } from '../model-service/items/items.service';
@@ -18,7 +18,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
 import { CalendarOptions } from '@fullcalendar/angular';
-import dayGridPlugin from '@fullcalendar/daygrid';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
@@ -30,7 +29,7 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
   templateUrl: './item-list.component.html',
   styleUrls: ['./item-list.component.scss']
 })
-export class ItemListComponent implements OnInit {
+export class ItemListComponent implements OnInit, OnDestroy {
 
   items = new MatTableDataSource<Items>();
   tableColumns: string[] = ['id', 'name', 'category', 'quantity', 'deposit', 'status'];
@@ -67,7 +66,6 @@ export class ItemListComponent implements OnInit {
     this.subscription = this.service.on('reloadData').subscribe(() => { this.reloadData(); });
   }
 
-  // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
@@ -139,7 +137,6 @@ export class ItemListDialog implements OnInit {
   calendarEvents = [];
 
   calendarOptions: CalendarOptions = {
-    plugins: [dayGridPlugin],
     initialView: 'dayGridWeek',
     locale: 'en-au',
     height: '500px',

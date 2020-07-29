@@ -49,7 +49,7 @@
     </ng-template>
   </div>
   <div class="column-right">
-    <form [formGroup]="updateForm" (ngSubmit)="send_data(updateForm.value)">
+    <form [formGroup]="updateForm">
       <mat-form-field appearance="fill" style="width: 100%">
         <mat-label for="name">Name</mat-label>
         <input matInput formControlName="name">
@@ -78,11 +78,19 @@
         tableinsertcolbefore tableinsertcolafter tabledeletecol | tablemergecells'
     }"></editor>
       <br>
-      <div align="end">
-        <button *ngIf="isSendingEmail; else elseBlock" mat-raised-button color="primary">Send</button>
-        <ng-template #elseBlock>
-          <button *ngIf="isEdit || isNew" mat-raised-button color="primary">Submit</button>
-        </ng-template>
+      <div mat-dialog-actions align="end">
+        <button mat-button (click)="closeDialog()" type="click">
+          <mat-icon>clear</mat-icon>
+          Cancel
+        </button>
+        <button mat-raised-button color="primary" type="submit" (click)="send_data(updateForm.value)" [disabled]="!updateForm.valid">
+          <mat-icon>{{(isEdit || isNew) ? 'done' : 'email'}}</mat-icon>
+          {{(isEdit || isNew) ? 'Submit' : 'Send'}}
+        </button>
+        <button mat-raised-button color="warn" [disabled]="isNew||isSendingEmail" (click)="confirmDelete()">
+          <mat-icon>delete_forever</mat-icon>
+          Delete
+        </button>
       </div>
     </form>
   </div>

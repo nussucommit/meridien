@@ -36,7 +36,8 @@
     </ng-container>
     <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
     <mat-row matRipple *matRowDef="let template; columns: tableColumns;" (click)=openDetail(template)></mat-row>
-  </mat-table> 
+  </mat-table>
+  <mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
   <div style="text-align: center; width: 100%; margin: 10px">
     <button mat-raised-button color="primary" (click)=openNew()>Add New Template</button>
   <div>

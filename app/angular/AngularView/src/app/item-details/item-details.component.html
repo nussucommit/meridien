@@ -1,6 +1,6 @@
-<div style="padding:20px; width:300px; margin:auto">
+<div style="padding:20px; width: 300px; margin:auto">
     <h1 mat-dialog-title style="padding-top:10px">{{getDialogTitle()}}</h1>
-    <form mat-dialog-content [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+    <form mat-dialog-content [formGroup]="itemForm">
         <mat-form-field class="field-full-width" appearance="legacy">
             <mat-label>Name</mat-label>
             <input matInput class="form-control" formControlName="name" required>
@@ -38,6 +38,9 @@
             <textarea matInput class="form-control" formControlName="remarks"></textarea>
         </mat-form-field>
         <br>
-        <button mat-raised-button [disabled]="!itemForm.valid" type="submit" color="primary">Submit</button>
     </form>
+    <mat-dialog-actions align="end">
+        <button mat-button [mat-dialog-close]="true">Cancel</button>
+        <button mat-raised-button (click)="onSubmit()" [disabled]="!itemForm.valid" type="submit" color="primary">Submit</button>
+    </mat-dialog-actions>
 </div>

@@ -52,6 +52,7 @@ export class BookingDetailsComponent implements OnInit {
       name: [history.state.source ? history.state.source.name : '', Validators.required],
       email: [history.state.source ? history.state.source.email : '', [Validators.required, this.emailCheck]],
       organization: [history.state.source ? history.state.source.organization : '', Validators.required],
+      phone_no: [history.state.source ? history.state.srouce.phone_no : '', [Validators.required, this.phoneCheck]],
       reason: [history.state.source ? history.state.source.reason : '', Validators.required],
       loan_start_time: [history.state.source ? history.state.source.loan_start_time : '', [Validators.required, this.dateCheck]],
       loan_end_time: [history.state.source ? history.state.source.loan_end_time : '', [Validators.required, this.dateCheck]],
@@ -69,6 +70,10 @@ export class BookingDetailsComponent implements OnInit {
 
   dateCheck(control: AbstractControl): any {
     return moment(control.value).isValid() ? null : { date: true };
+  }
+
+  phoneCheck(control: AbstractControl): any {
+    return new RegExp('(8[1-8][0-9]{6}|9[0-8][0-9]{6})').test(control.value) ? null : { phone: true };
   }
 
   emailCheck(control: AbstractControl): any {

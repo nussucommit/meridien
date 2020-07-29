@@ -31,22 +31,28 @@
     <mat-step [stepControl]="detailsForm">
         <form [formGroup]="detailsForm" (ngSubmit)="checkout()">
             <ng-template matStepLabel>Applicant Details</ng-template>
-            <mat-form-field style="width:45%">
+            <mat-form-field style="width:40%">
                 <mat-label>Name</mat-label>
                 <input matInput required class="form-control" formControlName="name">
                 <mat-error>Please enter a name.</mat-error>
             </mat-form-field>
+            <span style="margin-left: 10%;"></span>
+            <mat-form-field style="width:40%">
+                <mat-label>Organization</mat-label>
+                <input matInput required class="form-control" formControlName="organization">
+                <mat-error>Please enter a student organization.</mat-error>
+            </mat-form-field>
             <br>
-            <mat-form-field style="width:45%">
+            <mat-form-field style="width:40%">
                 <mat-label>NUS Email (e.g. e1234567@u.nus.edu)</mat-label>
                 <input matInput required class="form-control" formControlName="email">
                 <mat-error>Please enter a valid NUS email.</mat-error>
             </mat-form-field>
-            <br>
-            <mat-form-field style="width:45%">
-                <mat-label>Organization</mat-label>
-                <input matInput required class="form-control" formControlName="organization">
-                <mat-error>Please enter a student organization.</mat-error>
+            <span style="margin-left: 10%;"></span>
+            <mat-form-field style="width:40%">
+                <mat-label>Contact Number</mat-label>
+                <input matInput required class="form-control" formControlName="phone_no">
+                <mat-error>Please enter a valid contact number.</mat-error>
             </mat-form-field>
             <br>
             <mat-form-field style="width:90%">

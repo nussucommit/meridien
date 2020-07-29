@@ -3,6 +3,7 @@ export class Booking{
     name: string;
     email: string;
     organization: string;
+    phone_no: string;
     reason: string;
     time_booked: Date;
     loan_start_time: Date;

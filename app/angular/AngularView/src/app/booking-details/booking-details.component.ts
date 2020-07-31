@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 import { Dictionary } from '@fullcalendar/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ComponentBridgingService } from '../model-service/componentbridging.service';
 
 @Component({
   selector: 'app-booking-details',
@@ -37,11 +38,13 @@ export class BookingDetailsComponent implements OnInit {
   itemColumns = ['item', 'quantity'];
 
   editMode: boolean;
+  bookingSubmitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private bookingsService: BookingsService,
     private itemsService: ItemsService,
+    private service: ComponentBridgingService,
     private router: Router
   ) { this.itemsService.getItemsList().subscribe((data) => this.itemArray = data); }
 
@@ -165,6 +168,7 @@ export class BookingDetailsComponent implements OnInit {
   }
 
   onSubmit() {
+    this.service.publish('bookingSubmitted');
     const bookingDataCopy = { ...this.inputGroup1 };
     const finalData: Booking = Object.assign(bookingDataCopy,
       {
@@ -183,6 +187,7 @@ export class BookingDetailsComponent implements OnInit {
             this.bookingsService.createBookedItem(finalItemData).subscribe();
           });
           this.router.navigate(['/edit/confirmed'], { state: { id: data.id, name: data.name, email: data.email, submitted: true } });
+          this.service.publish('bookingRecorded');
         });
     } else if (history.state.edit === true) { // touchwood condition lol
       this.bookingsService.updateBooking(history.state.source.id, finalData).subscribe(
@@ -194,6 +199,7 @@ export class BookingDetailsComponent implements OnInit {
             this.bookingsService.createBookedItem(finalItemData).subscribe();
           });
           this.router.navigate(['/edit/confirmed'], { state: { id: data.id, name: data.name, email: data.email, submitted: true } });
+          this.service.publish('bookingRecorded');
         });
     }
   }

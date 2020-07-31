@@ -10,7 +10,7 @@ import { BookedItem } from '../model-service/items/items';
 import { LogoutComponent } from '../logout/logout.component';
 import { ItemDetailsComponent } from '../item-details/item-details.component';
 
-import { ComParentChildService } from '../model-service/callchildtoparent.service';
+import { ComponentBridgingService } from '../model-service/componentbridging.service';
 
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -49,7 +49,7 @@ export class ItemListComponent implements OnInit, OnDestroy {
     private itemsService: ItemsService,
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
-    private service: ComParentChildService,
+    private service: ComponentBridgingService,
     public lc: LogoutComponent
   ) { }
 
@@ -156,7 +156,7 @@ export class ItemListDialog implements OnInit {
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<ItemListDialog>,
-    private service: ComParentChildService,
+    private service: ComponentBridgingService,
     private snackbar: MatSnackBar,
     private itemsService: ItemsService,
     @Inject(MAT_DIALOG_DATA) public itemData: any,

@@ -4,7 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { TemplateDetailDialog } from './template-list/template-detail.dialog';
 import { RefreshInterceptor } from './api-auth/refresh.interceptor';
 import { JwtInterceptor } from './api-auth/jwt.interceptor';
-import { ComParentChildService } from './model-service/callchildtoparent.service';
+import { ComponentBridgingService } from './model-service/componentbridging.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -33,6 +33,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { EditorModule } from '@tinymce/tinymce-angular';
 
@@ -101,6 +102,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatListModule,
     MatCheckboxModule,
     MatTabsModule,
+    MatProgressBarModule,
     FullCalendarModule,
     EditorModule
   ],
@@ -108,7 +110,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     { provide: MAT_DATE_LOCALE, useValue: 'en-SG' },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: RefreshInterceptor, multi: true },
-    ComParentChildService,
+    ComponentBridgingService,
     LogoutComponent
   ],
   bootstrap: [AppComponent]

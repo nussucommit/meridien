@@ -1,17 +1,32 @@
-<mat-toolbar color="primary" class="mat-elevation-z8">
-  <mat-toolbar-row>
-    <span style="margin-left: 15px;">NUSSU Logistics Management System</span>
-    <span class="fill-remaining-space"></span>
-    <app-logout></app-logout>
-  </mat-toolbar-row>
-  <mat-toolbar-row style="height: 60%;">
-    <a *ngIf="lc.loginStatus.value" mat-button routerLink="bookings" routerLinkActive="active">Booking List</a>
-    <a mat-button routerLink="items" routerLinkActive="active">Items</a>
-    <a *ngIf="lc.loginStatus.value" mat-button routerLink="templates" routerLinkActive="active">Email templates</a>
-    <a *ngIf="lc.loginStatus.value" mat-button routerLink="mailer" routerLinkActive="active">Send email</a>
-    <a *ngIf="lc.loginStatus.value" mat-button routerLink="confirmation_template" routerLinkActive="active">Confirmation template</a>
-    <a mat-button routerLink="edit" routerLinkActive="active">Make a Booking</a>
-  </mat-toolbar-row>
-</mat-toolbar>
+<style>
+  .sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+</style>
+
+<div class="sticky">
+  <mat-toolbar color="primary" class="mat-elevation-z8">
+    <mat-toolbar-row>
+      <span style="margin-left: 15px;">NUSSU Logistics Management System</span>
+      <span class="fill-remaining-space"></span>
+      <app-logout></app-logout>
+    </mat-toolbar-row>
+    <mat-toolbar-row style="height: 60%;">
+      <a *ngIf="lc.loginStatus.value" mat-button routerLink="bookings" routerLinkActive="active">Booking List</a>
+      <a mat-button routerLink="items" routerLinkActive="active">Items</a>
+      <a *ngIf="lc.loginStatus.value" mat-button routerLink="templates" routerLinkActive="active">Email templates</a>
+      <a *ngIf="lc.loginStatus.value" mat-button routerLink="mailer" routerLinkActive="active">Send email</a>
+      <a *ngIf="lc.loginStatus.value" mat-button routerLink="confirmation_template"
+        routerLinkActive="active">Confirmation
+        template</a>
+      <a mat-button routerLink="edit" routerLinkActive="active">Make a Booking</a>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-progress-bar class="fast-fade" mode="indeterminate" color="accent" [style.visibility]="progressBarVisible ? 'visible' : 'hidden'"
+  [style.opacity]="progressBarVisible ? '1' : '0' ">
+  </mat-progress-bar>
+</div>
 
 <router-outlet></router-outlet>

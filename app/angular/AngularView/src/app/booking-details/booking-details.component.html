@@ -84,7 +84,6 @@
     </mat-step>
     <mat-step [stepControl]="itemsForm">
         <form [formGroup]="itemsForm" (ngSubmit)="checkout">
-            <!--TODO: Dynamically add rows and compute deposit live-->
             <ng-template matStepLabel>Select Items</ng-template>
             <div formArrayName="items" *ngFor="let itemControl of getItemInputForm().controls; let i = index;"
                 style="margin-bottom: 2%;">
@@ -105,7 +104,7 @@
                     </mat-form-field>
                     <button mat-raised-button color="warn" style="float:right;" (click)="removeItemInput(i)"
                         [disabled]="getItemInputForm().controls.length==1">
-                        <mat-icon matPrefix>clear</mat-icon>
+                        <mat-icon matPrefix>delete_forever</mat-icon>
                         Delete
                     </button>
                 </div>

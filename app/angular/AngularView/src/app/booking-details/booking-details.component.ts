@@ -183,7 +183,7 @@ export class BookingDetailsComponent implements OnInit {
       this.bookingsService.createBooking(finalData).subscribe(
         (data: any) => {
           this.inputGroup2.items.forEach(element => {
-            const finalItemData = { booking_source: data.id, item: element.item, quantity: element.quantity, status: 'PEN' };
+            const finalItemData = { booking_source: data.id, item: element.item, quantity: element.quantity, status: 'UNC' };
             this.bookingsService.createBookedItem(finalItemData).subscribe();
           });
           this.router.navigate(['/edit/confirmed'], { state: { id: data.id, name: data.name, email: data.email, submitted: true } });

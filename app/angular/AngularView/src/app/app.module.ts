@@ -49,6 +49,7 @@ import { MailSenderComponent } from './mail-sender/mail-sender.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { ConfirmationTemplateComponent } from './confirmation-template/confirmation-template.component';
 import { BookingConfirmationComponent } from './booking-confirmation/booking-confirmation.component';
+import { HomeComponent } from './home/home.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin
@@ -73,7 +74,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     BookingConfirmComponent,
     ConfirmationDialogComponent,
     ConfirmationTemplateComponent,
-    BookingConfirmationComponent
+    BookingConfirmationComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

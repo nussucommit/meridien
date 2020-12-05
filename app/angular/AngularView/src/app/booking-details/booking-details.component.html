@@ -1,33 +1,6 @@
-<style>
-    .column-left {
-        float: left;
-        width: 40%;
-    }
+<div class= "container">
+<mat-horizontal-stepper style="padding-left: 10%; padding-right: 10%; background-color: rgba(0, 0, 0, 0);" #stepper [linear]=true (selectionChange)="selectionChange($event)">
 
-    .column-right {
-        float: right;
-        width: 55%;
-    }
-
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-
-    mat-list-item {
-        margin-top: 1%;
-        height: auto !important;
-        white-space: pre-wrap;
-    }
-
-    mat-checkbox.mat-checkbox-layout {
-        white-space: normal !important;
-    }
-</style>
-
-<mat-horizontal-stepper #stepper [linear]=true style="background-color: hsla(0, 0%, 97%, 0); width:80%; margin: auto;"
-    (selectionChange)="selectionChange($event)">
     <mat-step [stepControl]="detailsForm">
         <form [formGroup]="detailsForm" (ngSubmit)="checkout()">
             <ng-template matStepLabel>Applicant Details</ng-template>
@@ -36,31 +9,41 @@
                 <input matInput required class="form-control" formControlName="name">
                 <mat-error>Please enter a name.</mat-error>
             </mat-form-field>
+
             <span style="margin-left: 10%;"></span>
+
             <mat-form-field style="width:40%">
                 <mat-label>Organization</mat-label>
                 <input matInput required class="form-control" formControlName="organization">
                 <mat-error>Please enter a student organization.</mat-error>
             </mat-form-field>
+
             <br>
+
             <mat-form-field style="width:40%">
                 <mat-label>NUS Email (e.g. e1234567@u.nus.edu)</mat-label>
                 <input matInput required class="form-control" formControlName="email">
                 <mat-error>Please enter a valid NUS email.</mat-error>
             </mat-form-field>
+
             <span style="margin-left: 10%;"></span>
+
             <mat-form-field style="width:40%">
                 <mat-label>Contact Number</mat-label>
                 <input matInput required class="form-control" formControlName="phone_no">
                 <mat-error>Please enter a valid contact number.</mat-error>
             </mat-form-field>
+
             <br>
+
             <mat-form-field style="width:90%">
                 <mat-label>Purpose</mat-label>
                 <textarea matInput required class="form-control" formControlName="reason"></textarea>
                 <mat-error>Please provide reasons for loaning.</mat-error>
             </mat-form-field>
+
             <br>
+
             <mat-form-field style="width:40%">
                 <mat-label>From (dd/mm/yyyy)</mat-label>
                 <input matInput class="form-control" [matDatepicker]="startpicker" required class="form-control"
@@ -69,7 +52,9 @@
                 <mat-datepicker #startpicker></mat-datepicker>
                 <mat-error>Please enter a valid date.</mat-error>
             </mat-form-field>
+
             <span style="margin-left: 10%;"></span>
+
             <mat-form-field style="width:40%">
                 <mat-label>To (dd/mm/yyyy)</mat-label>
                 <input matInput class="form-control" [matDatepicker]="endpicker" required class="form-control"
@@ -78,10 +63,13 @@
                 <mat-datepicker #endpicker></mat-datepicker>
                 <mat-error>Please enter a valid date.</mat-error>
             </mat-form-field>
+
             <br>
+            
             <button matStepperNext mat-raised-button color="primary" [disabled]="!detailsForm.valid">Next</button>
         </form>
     </mat-step>
+
     <mat-step [stepControl]="itemsForm">
         <form [formGroup]="itemsForm" (ngSubmit)="checkout">
             <ng-template matStepLabel>Select Items</ng-template>
@@ -126,6 +114,7 @@
                 fulfillable.</p>
         </div>
     </mat-step>
+
     <mat-step>
         <ng-template matStepLabel>Checkout</ng-template>
         <p>You may want to print this page for your reference. Note that you are required to agree to the PDPA clause
@@ -198,3 +187,4 @@
         </button>
     </mat-step>
 </mat-horizontal-stepper>
+</div>

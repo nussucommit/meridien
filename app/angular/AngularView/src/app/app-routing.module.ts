@@ -10,8 +10,10 @@ import { BookingListComponent } from './booking-list/booking-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { TemplateListComponent } from './template-list/template-list.component';
 import { BookingDetailsComponent, BookingConfirmComponent } from './booking-details/booking-details.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
+    { path: 'home', component: HomeComponent },
     { path: 'items', component: ItemListComponent },
     { path: 'bookings', component: BookingListComponent, canActivate: [AuthGuard] },
     { path: '', redirectTo: 'bookings', pathMatch: 'full', canActivate: [AuthGuard] },

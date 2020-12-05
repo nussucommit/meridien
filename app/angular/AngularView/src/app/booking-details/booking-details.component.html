@@ -1,4 +1,5 @@
-<mat-horizontal-stepper class= "container" #stepper [linear]=true (selectionChange)="selectionChange($event)">
+<div class= "container">
+<mat-horizontal-stepper style="padding-left: 10%; padding-right: 10%; background-color: rgba(0, 0, 0, 0);" #stepper [linear]=true (selectionChange)="selectionChange($event)">
 
     <mat-step [stepControl]="detailsForm">
         <form [formGroup]="detailsForm" (ngSubmit)="checkout()">
@@ -186,3 +187,4 @@
         </button>
     </mat-step>
 </mat-horizontal-stepper>
+</div>

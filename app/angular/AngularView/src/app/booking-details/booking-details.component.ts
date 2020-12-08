@@ -55,7 +55,7 @@ export class BookingDetailsComponent implements OnInit {
       name: [history.state.source ? history.state.source.name : '', Validators.required],
       email: [history.state.source ? history.state.source.email : '', [Validators.required, this.emailCheck]],
       organization: [history.state.source ? history.state.source.organization : '', Validators.required],
-      phone_no: [history.state.source ? history.state.srouce.phone_no : '', [Validators.required, this.phoneCheck]],
+      phone_no: [history.state.source ? history.state.source.phone_no : '', [Validators.required, this.phoneCheck]],
       reason: [history.state.source ? history.state.source.reason : '', Validators.required],
       loan_start_time: [history.state.source ? history.state.source.loan_start_time : '', [Validators.required, this.dateCheck]],
       loan_end_time: [history.state.source ? history.state.source.loan_end_time : '', [Validators.required, this.dateCheck]],
@@ -173,7 +173,7 @@ export class BookingDetailsComponent implements OnInit {
     const finalData: Booking = Object.assign(bookingDataCopy,
       {
         time_booked: (history.state.source ? history.state.source.time_booked : new Date()),
-        status: 'UNC',
+        status: 'PEN',
         deposit_left: this.getTotalDeposit(),
         amount_paid: 0
       }) as Booking;

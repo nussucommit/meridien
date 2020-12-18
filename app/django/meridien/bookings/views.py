@@ -1,8 +1,10 @@
 import json
+import datetime
 
+from django.db.models import Q
 from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework import status
+from rest_framework import status, generics, filters
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
@@ -11,31 +13,53 @@ from bookings.serializers import BookingSerializer
 from confirmationemails.templates import send_confirmation_email
 from confirmationemails.tokens import decode_token
 
-import sys
-sys.path.append('../')
 from meridien import views_template
+from meridien.pagination_settings import PaginationSettings
 
+class BookingList(generics.ListAPIView):
+    serializer_class = BookingSerializer
+    filter_backends = [filters.OrderingFilter]
+    pagination_class = PaginationSettings
+    permission_classes = (IsAuthenticated,)
 
-@api_view(['GET', 'POST', 'DELETE'])
-@permission_classes([IsAuthenticated])
-@csrf_exempt
-def booking_list(request):
-    response = views_template.obj_list(request, Booking, BookingSerializer)
-    if request.method == 'POST':
+    def get_queryset(self):
+        queryset = Booking.objects.all()
+        name = self.request.query_params.get('name', None)
+        fromDate = self.request.query_params.get('fromDate', None)
+        toDate = self.request.query_params.get('toDate', None)
+        status = self.request.query_params.get('status', None)
+
+        q = Q()
+        if name and name != 'null':
+            q &= Q(name__icontains=name.lower())
+        if fromDate and fromDate != 'null':
+            q &= Q(time_booked__gte=fromDate)
+        if toDate and toDate != 'null':
+            q &= Q(time_booked__lte=toDate)
+        if status and status != 'null':
+            q &= Q(status__icontains=status.lower())
+
+        return queryset.filter(q)
+
+class MakeBooking(generics.CreateAPIView):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+    pagination_class = PaginationSettings
+    permission_classes = ()
+
+    def create(self, request, *args, **kwargs):
+        response = views_template.obj_list(request, Booking, BookingSerializer)
         if response.status_code == status.HTTP_201_CREATED:
             send_confirmation_email(json.loads(response.content.decode("utf-8")))
         return response
-    else:
-        return response
 
 
-@api_view(['GET', 'PUT', 'DELETE'])
-@permission_classes([IsAuthenticated])
-@csrf_exempt
-def booking_detail(request, pk):
-    return views_template.obj_detail(request, pk, Booking, BookingSerializer)
+class BookingDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+    permission_classes = (IsAuthenticated,)
 
-
+# nic rewrite this section pl0x
 @api_view(['GET', 'DELETE'])
 @authentication_classes([])
 @permission_classes([])

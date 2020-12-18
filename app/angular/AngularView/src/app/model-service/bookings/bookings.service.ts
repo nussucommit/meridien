@@ -17,6 +17,10 @@ export class BookingsService {
     return this.http.get(`${this.baseUrlBookings}/`);
   }
 
+  filterBookings(filterParams: any): Observable<any> {
+    return this.http.get(`${this.baseUrlBookings}/`, { params: filterParams });
+  }
+
   getBookedItemList(): Observable<any> {
     return this.http.get(`${this.baseUrlBookedItems}/`);
   }
@@ -30,7 +34,7 @@ export class BookingsService {
   }
 
   createBooking(booking: object): Observable<object> {
-    return this.http.post(`${this.baseUrlBookings}/`, booking);
+    return this.http.post(`${this.baseUrlBookings}/edit`, booking);
   }
 
   createBookedItem(item: object): Observable<object> {

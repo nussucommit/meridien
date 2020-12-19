@@ -11,8 +11,8 @@ export class ItemsService {
 
   constructor(private http: HttpClient) { }
 
-  filterItems(filterParams: any): Observable<any> {
-    return this.http.get(`${this.baseUrl}/`, { params: filterParams });
+  getItemsList(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/`);
   }
 
   getItem(id: number): Observable<Object> {

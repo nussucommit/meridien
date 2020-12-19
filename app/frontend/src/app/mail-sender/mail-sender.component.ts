@@ -1,9 +1,9 @@
+import { environment } from './../../environments/environment';
 import { Email } from './../model-service/emailtemplates/email';
 import { MailerService } from './../model-service/emailtemplates/mailer.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component } from '@angular/core';
-import { apiKey } from '../settings';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class MailSenderComponent {
   mailForm: FormGroup;
 
-  apiKey = apiKey;
+  apiKey = environment.apiKey;
 
   constructor(
     private formBuilder: FormBuilder,

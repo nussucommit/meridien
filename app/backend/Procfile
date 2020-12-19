@@ -1,2 +1,2 @@
-release: cd app/backend && python manage.py migrate
+release: cd app/backend && pip install -r requirements.txt && python manage.py migrate
 web: cd app/backend && gunicorn meridien.wsgi

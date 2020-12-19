@@ -86,18 +86,19 @@ export class BookingListComponent implements OnInit, AfterViewInit {
           this.resultsLength = data.count;
           return data.results
         }),
-        catchError(() => {
+        catchError((err) => {
           this.isLoadingResults = false;
           this.service.publish('progressBarOff');
+          console.log(err);
           this.snackbar.open("An error occured.", "OK", { duration: 5000 });
           return of([]);
         })
-      ).subscribe(data => { this.bookings = data; console.log(data) });
+      ).subscribe(data => { this.bookings = data });
   }
 
   parseFilterForm(filterForm: FormGroup) {
     const sortCriterion = addHyphen(this.sort.active, this.sort.direction);
-    let filterParams = { ...this.filterForm.value }
+    let filterParams = { ...filterForm.value }
     if (filterForm.value.fromDate) {
       filterParams.fromDate = filterParams.fromDate.format("YYYY-MM-DD HH:mm");
     }

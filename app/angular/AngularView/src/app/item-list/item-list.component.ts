@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, OnDestroy, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { ItemsService } from '../model-service/items/items.service';
@@ -18,9 +18,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
 import { CalendarOptions } from '@fullcalendar/angular';
-import { Subscription } from 'rxjs';
+import { merge, of, Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { catchError, map, startWith, switchMap } from 'rxjs/operators';
+import { addHyphen } from '../model-service/statustranslator';
 
 
 @Component({
@@ -29,9 +31,9 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
   templateUrl: './item-list.component.html',
   styleUrls: ['./item-list.component.scss']
 })
-export class ItemListComponent implements OnInit, OnDestroy {
+export class ItemListComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  items = new MatTableDataSource<Items>();
+  items: Items[];
   tableColumns: string[] = ['id', 'name', 'category', 'quantity', 'deposit', 'status'];
 
   filterForm: FormGroup;
@@ -44,20 +46,20 @@ export class ItemListComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
+  isLoadingResults: boolean;
+  resultsLength: number;
+
   constructor(
     private bookingsService: BookingsService,
     private itemsService: ItemsService,
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
     private service: ComponentBridgingService,
+    private snackbar: MatSnackBar,
     public lc: LogoutComponent
   ) { }
 
   ngOnInit() {
-    this.reloadData();
-    this.items.paginator = this.paginator;
-    this.items.sort = this.sort;
-
     this.filterForm = this.formBuilder.group({
       name: ['', ''],
       category: ['', '']
@@ -68,6 +70,11 @@ export class ItemListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  ngAfterViewInit(): void {
+    this.reloadData();
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
   }
 
   deleteItems() {
@@ -81,25 +88,44 @@ export class ItemListComponent implements OnInit, OnDestroy {
   }
 
   reloadData() {
-    this.itemsService.getItemsList()
-      .subscribe(
-        data => {
-          this.items.data = data;
-        });
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          this.isLoadingResults = true;
+          this.service.publish('progressBarOn');
+          return this.itemsService.filterItems(this.parseFilterForm(this.filterForm));
+        }),
+        map(data => {
+          this.isLoadingResults = false;
+          this.service.publish('progressBarOff');
+          this.resultsLength = data.count;
+          return data.results
+        }),
+        catchError((err) => {
+          this.isLoadingResults = false;
+          this.service.publish('progressBarOff');
+          console.log(err);
+          this.snackbar.open("An error occured.", "OK", { duration: 5000 });
+          return of([]);
+        })
+      ).subscribe(data => { this.items = data; });
+  }
+
+  parseFilterForm(filterForm: FormGroup) {
+    const sortCriterion = addHyphen(this.sort.active, this.sort.direction);
+    let filterParams = { ...filterForm.value }
+    filterParams = Object.assign(filterParams,
+      {
+        ordering: sortCriterion ? sortCriterion : 'id',
+        page: this.paginator.pageIndex + 1,
+        page_size: this.paginator.pageSize
+      });
+    return filterParams;
   }
 
   onSubmit() {
-    this.items.filterPredicate = this.itemFilterPredicate;
-    this.items.filter = this.filterForm.value;
-  }
-
-  itemFilterPredicate(data: Items, filter: any): boolean {
-    for (const value in filter) {
-      if (!data[value].toLowerCase().includes(filter[value].toLowerCase())) {
-        return false;
-      }
-    }
-    return true;
+    this.reloadData();
   }
 
   openDialog(row: { [x: string]: any; }) {

@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment'
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Token } from './tokens';
@@ -11,8 +12,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class LoginService {
-  private loginApiUrl = 'http://localhost:8000/api/token';
-  private refreshApiUrl = 'http://localhost:8000/api/token/refresh';
+  private loginApiUrl = environment.apiUrl + 'token';
+  private refreshApiUrl = environment.apiUrl + 'token/refresh';
 
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;

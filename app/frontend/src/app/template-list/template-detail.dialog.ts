@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Booking } from './../model-service/bookings/bookings';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
@@ -5,7 +6,6 @@ import { EmailTemplatesService } from './../model-service/emailtemplates/emailte
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EmailTemplate } from './../model-service/emailtemplates/emailtemplates';
 import { Component, Inject, ViewChildren, QueryList } from '@angular/core';
-import { apiKey } from '../settings';
 import { Router } from '@angular/router';
 import { BookedItem } from '../model-service/items/items';
 import { BookingsService } from '../model-service/bookings/bookings.service';
@@ -30,7 +30,7 @@ export class TemplateDetailDialog {
   checkedItems = [];
   bookedItems: BookedItem[] = [];
 
-  apiKey = apiKey;
+  apiKey = environment.apiKey;;
 
   constructor(
     public dialog: MatDialog,

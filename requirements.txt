@@ -5,6 +5,7 @@ cffi==1.14.0
 cryptography==2.9.2
 Django==3.0.7
 django-cors-headers==3.3.0
+django-heroku==0.3.1
 djangorestframework==3.11.0
 djangorestframework-simplejwt==4.4.0
 factory-boy==2.12.0

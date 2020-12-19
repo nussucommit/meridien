@@ -53,6 +53,17 @@ class MakeBooking(generics.CreateAPIView):
             send_confirmation_email(json.loads(response.content.decode("utf-8")))
         return response
 
+class BookingsByBookingPeriod(generics.ListAPIView):
+    serializer_class = BookingSerializer
+
+    def get_queryset(self):
+        fromDate = self.request.query_params.get('start', None)
+        toDate = self.request.query_params.get('end', None)
+
+        return Booking.objects.filter((Q(loan_start_time__lte=fromDate) & Q(loan_end_time__gte=toDate))
+                                        | (Q(loan_start_time__range=(fromDate, toDate))
+                                        | Q(loan_end_time__range=(fromDate, toDate))))
+
 
 class BookingDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Booking.objects.all()

@@ -17,6 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import moment from 'moment';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { CalendarOptions } from '@fullcalendar/angular';
+import { formatDate } from '@fullcalendar/core'
 import { merge, of } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { ComponentBridgingService } from '../model-service/componentbridging.service';
@@ -131,15 +132,16 @@ export class BookingListComponent implements OnInit, AfterViewInit {
   }
 
   openWeeklySummary() {
-    this.bookingsService.getBookingList().subscribe((bookingData) => {
-      if (!this.summaryDialogOpened) {
-        this.summaryDialogOpened = true;
-        const dialogRef = this.dialog.open(
-          BookingSummaryDialog,
-          { width: '1200px', height: '600px', data: bookingData });
-        dialogRef.afterClosed().subscribe(() => { this.summaryDialogOpened = false; });
-      }
-    });
+    if (!this.summaryDialogOpened) {
+      this.summaryDialogOpened = true;
+      const dialogRef = this.dialog.open(
+        BookingSummaryDialog,
+        { width: '1200px', height: '600px' }
+      );
+      dialogRef.afterClosed().subscribe(
+        () => { this.summaryDialogOpened = false; }
+      );
+    }
   }
 
   dateCheck(control: AbstractControl): any {
@@ -189,7 +191,11 @@ export class BookingListDialog {
   }
 
   printSnackBarStatus(status: string) {
-    this.snackbar.open(`Status of Booking #${this.bookingData.source.id} changed to: ${getStatus(status)}`, 'OK', { duration: 5000, });
+    this.snackbar.open(
+      `Status of Booking #${this.bookingData.source.id} changed to: ${getStatus(status)}`,
+      'OK',
+      { duration: 5000, }
+    );
   }
 
   returnStatusString(code: string) {
@@ -205,7 +211,12 @@ export class BookingListDialog {
     this.updateStatus('PEN');
     this.bookingData.booked_items.forEach((ele) => {
       this.bookingsService.updateBookedItem(ele.id,
-        { booking_source: ele.booking_source.id, item: ele.item.id, quantity: ele.quantity, status: 'PEN' }).subscribe();
+        {
+          booking_source: ele.booking_source.id,
+          item: ele.item.id,
+          quantity: ele.quantity,
+          status: 'PEN'
+        }).subscribe();
     });
   }
 
@@ -224,7 +235,8 @@ export class BookingListDialog {
   }
 
   confirmDelete() {
-    const dialogR = this.dialog.open(ConfirmationDialogComponent, { data: `booking #${this.bookingData.source.id}` });
+    const dialogR = this.dialog.open(ConfirmationDialogComponent,
+      { data: `booking #${this.bookingData.source.id}` });
     dialogR.afterClosed().subscribe(
       (result) => {
         if (result.event === 'yes') {
@@ -236,43 +248,64 @@ export class BookingListDialog {
   editBooking() {
     this.dialogRef.close();
     this.router.navigate(['/edit'],
-      { state: { source: this.bookingData.source, booked_items: this.bookingData.booked_items, edit: true } });
+      {
+        state:
+        {
+          source: this.bookingData.source,
+          booked_items: this.bookingData.booked_items,
+          edit: true
+        }
+      }
+    );
   }
 }
 
 // weekly summary
 @Component({
-  // tslint:disable-next-line: component-selector
   selector: 'booking-summary-dialog',
   templateUrl: './booking-summary-dialog.html',
 })
-// tslint:disable-next-line: component-class-suffix
-export class BookingSummaryDialog implements OnInit {
-
-  calendarEvents = [];
+export class BookingSummaryDialog {
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridWeek',
     height: '500px',
-    locale: 'en-au',
-    events: []
+    locale: 'en-sg',
+    events: this.putEventsCurry(this.bookingsService),
+    // delay (ms) is here so that events can be rendered properly on initial load
+    rerenderDelay: 100
   };
 
   constructor(
     public dialogRef: MatDialogRef<BookingSummaryDialog>,
-    @Inject(MAT_DIALOG_DATA) public bookingData: any
+    public bookingsService: BookingsService
   ) { }
 
-  ngOnInit() {
-    this.bookingData.forEach(element => {
-      this.calendarEvents.push({
-        title: `#${element.id} - ${element.name}`,
-        start: element.loan_start_time,
-        end: new Date(new Date(element.loan_end_time).getTime() + 86400000).toISOString().substr(0, 10),
-        color: this.getColour(element.id)
-      });
-    });
-    this.calendarOptions.events = this.calendarEvents;
+  // this is to circumvent the problem that this.bookingService is undefined
+  putEventsCurry(bookingService: BookingsService) {
+    return (args, successCallback, failureCallback) =>
+      this.putEvents(args, successCallback, failureCallback, bookingService);
+  }
+
+  putEvents(args: any, successCallback, failureCallback, bookingsService: BookingsService) {
+    const options = { year: 'numeric', month: 'numeric', day: 'numeric', locale: 'en-ca' }
+    const startDate = formatDate(args.start, options);
+    const endDate = formatDate(args.end - 86400000, options);
+    bookingsService.getBookingsByDateRange(startDate, endDate).subscribe(
+      (bookingData: Booking[]) => {
+        successCallback(bookingData.map((element) => {
+          return {
+            title: `#${element.id} - ${element.name}`,
+            start: element.loan_start_time,
+            end: new Date(new Date(element.loan_end_time).getTime() + 86400000)
+              .toISOString()
+              .substr(0, 10),
+            color: this.getColour(element.id)
+          };
+        }));
+      },
+      failureCallback
+    );
   }
 
   getColour(num: number) {

@@ -92,7 +92,7 @@ export class BookingListComponent implements OnInit, AfterViewInit {
           this.snackbar.open("An error occured.", "OK", { duration: 5000 });
           return of([]);
         })
-      ).subscribe(data => { this.bookings = data; console.log(data) });
+      ).subscribe(data => { this.bookings = data; });
   }
 
   parseFilterForm(filterForm: FormGroup) {
@@ -111,6 +111,11 @@ export class BookingListComponent implements OnInit, AfterViewInit {
         page_size: this.paginator.pageSize
       });
     return filterParams;
+  }
+
+  onInputPageChange(pageNumber: number) {
+    this.paginator.pageIndex = Math.min(pageNumber - 1, this.paginator.getNumberOfPages() - 1);
+    this.reloadData();
   }
 
   openDialog(row: { [x: string]: number; }) {

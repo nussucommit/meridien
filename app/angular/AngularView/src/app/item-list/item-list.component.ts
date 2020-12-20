@@ -93,6 +93,10 @@ export class ItemListComponent implements OnInit, OnDestroy {
     this.items.filter = this.filterForm.value;
   }
 
+  onInputPageChange(pageNumber: number) {
+    this.paginator.pageIndex = Math.min(pageNumber - 1, this.paginator.getNumberOfPages() - 1);
+  }
+
   itemFilterPredicate(data: Items, filter: any): boolean {
     for (const value in filter) {
       if (!data[value].toLowerCase().includes(filter[value].toLowerCase())) {

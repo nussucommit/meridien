@@ -35,7 +35,7 @@ class BookedItemFromBookingId(mixins.ListModelMixin, mixins.DestroyModelMixin, g
 
     def get_queryset(self):
         queryset = BookedItem.objects.all()
-        if ('booking_id' in self.kwargs):
+        if 'booking_id' in self.kwargs:
             queryset = queryset.filter(booking_source=self.kwargs['booking_id'])
         return queryset
 
@@ -47,7 +47,11 @@ class BookedItemFromBookingId(mixins.ListModelMixin, mixins.DestroyModelMixin, g
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
     
 class BookedItemFromItem(generics.ListAPIView):
-    queryset = BookedItem.objects.all()
     serializer_class = BookedItemSerializer
-    lookup_field = 'item_id'
     permission_classes = ()
+
+    def get_queryset(self):
+        queryset = BookedItem.objects.all()
+        if 'item_id' in self.kwargs:
+            queryset = queryset.filter(item=self.kwargs['item_id'])
+        return queryset

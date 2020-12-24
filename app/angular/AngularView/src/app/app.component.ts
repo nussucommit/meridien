@@ -20,8 +20,8 @@ export class AppComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.bookingSubmittedSubscription = this.service.on('bookingSubmitted').subscribe(() => this.showProgressBar());
-    this.bookingRecordedSubscription = this.service.on('bookingRecorded').subscribe(() => this.hideProgressBar());
+    this.bookingSubmittedSubscription = this.service.on('progressBarOn').subscribe(() => this.showProgressBar());
+    this.bookingRecordedSubscription = this.service.on('progressBarOff').subscribe(() => this.hideProgressBar());
   }
 
   ngOnDestroy(): void {

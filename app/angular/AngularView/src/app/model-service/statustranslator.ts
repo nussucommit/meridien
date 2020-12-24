@@ -20,7 +20,3 @@ export function getStatus(code: string) {
         return 'Unknown';
     }
   }
-
-export function addHyphen(code: string, order: string) {
-  return order === 'desc' ? '-' + code : code;
-}

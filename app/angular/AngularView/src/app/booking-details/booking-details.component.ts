@@ -168,7 +168,7 @@ export class BookingDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.service.publish('progressBarOn');
+    this.service.publish('bookingSubmitted');
     const bookingDataCopy = { ...this.inputGroup1 };
     const finalData: Booking = Object.assign(bookingDataCopy,
       {
@@ -187,7 +187,7 @@ export class BookingDetailsComponent implements OnInit {
             this.bookingsService.createBookedItem(finalItemData).subscribe();
           });
           this.router.navigate(['/edit/confirmed'], { state: { id: data.id, name: data.name, email: data.email, submitted: true } });
-          this.service.publish('progressBarOff');
+          this.service.publish('bookingRecorded');
         });
     } else if (history.state.edit === true) { // touchwood condition lol
       this.bookingsService.updateBooking(history.state.source.id, finalData).subscribe(
@@ -199,7 +199,7 @@ export class BookingDetailsComponent implements OnInit {
             this.bookingsService.createBookedItem(finalItemData).subscribe();
           });
           this.router.navigate(['/edit/confirmed'], { state: { id: data.id, name: data.name, email: data.email, submitted: true } });
-          this.service.publish('progressBarOff');
+          this.service.publish('bookingRecorded');
         });
     }
   }

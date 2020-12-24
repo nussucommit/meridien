@@ -1,12 +1,13 @@
 import { Router } from '@angular/router';
-import { Component, OnInit, Inject, ViewChild, AfterViewInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { BookingsService } from '../model-service/bookings/bookings.service';
 import { Booking } from '../model-service/bookings/bookings';
 import { BookedItem } from '../model-service/items/items';
-import { getStatus, addHyphen } from '../model-service/statustranslator';
+import { getStatus } from '../model-service/statustranslator';
 
+import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -17,10 +18,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import moment from 'moment';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { CalendarOptions } from '@fullcalendar/angular';
-import { formatDate } from '@fullcalendar/core'
-import { merge, of } from 'rxjs';
-import { catchError, map, startWith, switchMap } from 'rxjs/operators';
-import { ComponentBridgingService } from '../model-service/componentbridging.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -33,9 +30,9 @@ import { ComponentBridgingService } from '../model-service/componentbridging.ser
   ],
 })
 
-export class BookingListComponent implements OnInit, AfterViewInit {
+export class BookingListComponent implements OnInit {
 
-  bookings: Booking[];
+  bookings = new MatTableDataSource<Booking>();
   tableColumns: string[] = ['id', 'name', 'time_booked', 'loan_start_time', 'loan_end_time', 'deposit_left', 'status'];
 
   filterForm: FormGroup;
@@ -43,21 +40,20 @@ export class BookingListComponent implements OnInit, AfterViewInit {
   bookingDialogOpened = false;
   summaryDialogOpened = false;
 
-  isLoadingResults = true;
-  resultsLength = 0;
-
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
     private bookingsService: BookingsService,
     private dialog: MatDialog,
-    private service: ComponentBridgingService,
-    private snackbar: MatSnackBar,
     private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.reloadData();
+    this.bookings.paginator = this.paginator;
+    this.bookings.sort = this.sort;
+
     this.filterForm = this.formBuilder.group({
       name: ['', ''],
       fromDate: ['', this.dateCheck],
@@ -66,56 +62,13 @@ export class BookingListComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit(): void {
-    this.reloadData();
-    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-  }
-
   reloadData() {
-    merge(this.sort.sortChange, this.paginator.page)
-      .pipe(
-        startWith({}),
-        switchMap(() => {
-          this.isLoadingResults = true;
-          this.service.publish('progressBarOn');
-          return this.bookingsService.filterBookings(this.parseFilterForm(this.filterForm));
-        }),
-        map(data => {
-          this.isLoadingResults = false;
-          this.service.publish('progressBarOff');
-          this.resultsLength = data.count;
-          return data.results
-        }),
-        catchError(() => {
-          this.isLoadingResults = false;
-          this.service.publish('progressBarOff');
-          this.snackbar.open("An error occured.", "OK", { duration: 5000 });
-          return of([]);
-        })
-      ).subscribe(data => { this.bookings = data; });
-  }
-
-  parseFilterForm(filterForm: FormGroup) {
-    const sortCriterion = addHyphen(this.sort.active, this.sort.direction);
-    let filterParams = { ...this.filterForm.value }
-    if (filterForm.value.fromDate) {
-      filterParams.fromDate = filterParams.fromDate.format("YYYY-MM-DD HH:mm");
-    }
-    if (filterForm.value.endDate) {
-      filterParams.endDate = filterParams.endDate.format("YYYY-MM-DD HH:mm");
-    }
-    filterParams = Object.assign(filterParams,
-      {
-        ordering: sortCriterion ? sortCriterion : 'id',
-        page: this.paginator.pageIndex + 1,
-        page_size: this.paginator.pageSize
-      });
-    return filterParams;
-  }
-
-  onInputPageChange(pageNumber: number) {
-    this.paginator.pageIndex = Math.min(pageNumber - 1, this.paginator.getNumberOfPages() - 1);
-    this.reloadData();
+    this.bookingsService.getBookingList()
+      .subscribe(
+        (data: Booking[]) => {
+          this.bookings.data = data;
+        }
+      );
   }
 
   openDialog(row: { [x: string]: number; }) {
@@ -124,9 +77,7 @@ export class BookingListComponent implements OnInit, AfterViewInit {
         (bookedItemData: BookedItem[]) => {
           if (!this.bookingDialogOpened) {
             this.bookingDialogOpened = true;
-            const dialogRef = this.dialog.open(
-              BookingListDialog,
-              { width: '600px', data: { source: row, booked_items: bookedItemData } });
+            const dialogRef = this.dialog.open(BookingListDialog, { width: '600px', data: { source: row, booked_items: bookedItemData } });
             dialogRef.afterClosed().subscribe(() => {
               this.reloadData();
               this.bookingDialogOpened = false;
@@ -137,26 +88,49 @@ export class BookingListComponent implements OnInit, AfterViewInit {
   }
 
   openWeeklySummary() {
-    if (!this.summaryDialogOpened) {
-      this.summaryDialogOpened = true;
-      const dialogRef = this.dialog.open(
-        BookingSummaryDialog,
-        { width: '1200px', height: '600px' }
-      );
-      dialogRef.afterClosed().subscribe(
-        () => { this.summaryDialogOpened = false; }
-      );
-    }
+    this.bookingsService.getBookingList().subscribe((bookingData) => {
+      if (!this.summaryDialogOpened) {
+        this.summaryDialogOpened = true;
+        const dialogRef = this.dialog.open(BookingSummaryDialog, { width: '1200px', height: '600px', data: bookingData });
+        dialogRef.afterClosed().subscribe(() => { this.summaryDialogOpened = false; });
+      }
+    });
   }
 
   dateCheck(control: AbstractControl): any {
     const d = control.value;
-    return (d === null || (typeof d === 'string') &&
-      d.length === 0 || moment(d).isValid()) ? null : { date: true };
+    return (d === null || (typeof d === 'string') && d.length === 0 || moment(d).isValid()) ? null : { date: true };
   }
 
   onSubmit() {
-    this.reloadData();
+    this.bookings.filterPredicate = this.bookingFilterPredicate;
+    this.bookings.filter = this.filterForm.value;
+  }
+
+  bookingFilterPredicate(data: Booking, filter: any): boolean {
+    for (const value in filter) {
+      if (filter[value] !== '' && filter[value] !== 0) {
+        if (value === 'fromDate') {
+          if (Date.parse(data.time_booked.toString()) < Date.parse(filter[value])) {
+            return false;
+          }
+        } else if (value === 'toDate') {
+          // 86399999 milliseconds is added to include the end point date
+          if (Date.parse(data.time_booked.toString()) > Date.parse(filter[value]) + 86399999) {
+            return false;
+          }
+        } else if (value === 'status') {
+          if (!getStatus(data[value]).toLowerCase().includes(filter[value].toLowerCase())) {
+            return false;
+          }
+        } else {
+          if (!data[value].toLowerCase().includes(filter[value].toLowerCase())) {
+            return false;
+          }
+        }
+      }
+    }
+    return true;
   }
 
   returnStatusString(code: string) {
@@ -196,11 +170,7 @@ export class BookingListDialog {
   }
 
   printSnackBarStatus(status: string) {
-    this.snackbar.open(
-      `Status of Booking #${this.bookingData.source.id} changed to: ${getStatus(status)}`,
-      'OK',
-      { duration: 5000, }
-    );
+    this.snackbar.open(`Status of Booking #${this.bookingData.source.id} changed to: ${getStatus(status)}`, 'OK', { duration: 5000, });
   }
 
   returnStatusString(code: string) {
@@ -216,12 +186,7 @@ export class BookingListDialog {
     this.updateStatus('PEN');
     this.bookingData.booked_items.forEach((ele) => {
       this.bookingsService.updateBookedItem(ele.id,
-        {
-          booking_source: ele.booking_source.id,
-          item: ele.item.id,
-          quantity: ele.quantity,
-          status: 'PEN'
-        }).subscribe();
+        { booking_source: ele.booking_source.id, item: ele.item.id, quantity: ele.quantity, status: 'PEN' }).subscribe();
     });
   }
 
@@ -240,8 +205,7 @@ export class BookingListDialog {
   }
 
   confirmDelete() {
-    const dialogR = this.dialog.open(ConfirmationDialogComponent,
-      { data: `booking #${this.bookingData.source.id}` });
+    const dialogR = this.dialog.open(ConfirmationDialogComponent, { data: `booking #${this.bookingData.source.id}` });
     dialogR.afterClosed().subscribe(
       (result) => {
         if (result.event === 'yes') {
@@ -253,64 +217,43 @@ export class BookingListDialog {
   editBooking() {
     this.dialogRef.close();
     this.router.navigate(['/edit'],
-      {
-        state:
-        {
-          source: this.bookingData.source,
-          booked_items: this.bookingData.booked_items,
-          edit: true
-        }
-      }
-    );
+      { state: { source: this.bookingData.source, booked_items: this.bookingData.booked_items, edit: true } });
   }
 }
 
 // weekly summary
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'booking-summary-dialog',
   templateUrl: './booking-summary-dialog.html',
 })
-export class BookingSummaryDialog {
+// tslint:disable-next-line: component-class-suffix
+export class BookingSummaryDialog implements OnInit {
+
+  calendarEvents = [];
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridWeek',
     height: '500px',
-    locale: 'en-sg',
-    events: this.putEventsCurry(this.bookingsService),
-    // delay (ms) is here so that events can be rendered properly on initial load
-    rerenderDelay: 100
+    locale: 'en-au',
+    events: []
   };
 
   constructor(
     public dialogRef: MatDialogRef<BookingSummaryDialog>,
-    public bookingsService: BookingsService
+    @Inject(MAT_DIALOG_DATA) public bookingData: any
   ) { }
 
-  // this is to circumvent the problem that this.bookingService is undefined
-  putEventsCurry(bookingService: BookingsService) {
-    return (args, successCallback, failureCallback) =>
-      this.putEvents(args, successCallback, failureCallback, bookingService);
-  }
-
-  putEvents(args: any, successCallback, failureCallback, bookingsService: BookingsService) {
-    const options = { year: 'numeric', month: 'numeric', day: 'numeric', locale: 'en-ca' }
-    const startDate = formatDate(args.start, options);
-    const endDate = formatDate(args.end - 86400000, options);
-    bookingsService.getBookingsByDateRange(startDate, endDate).subscribe(
-      (bookingData: Booking[]) => {
-        successCallback(bookingData.map((element) => {
-          return {
-            title: `#${element.id} - ${element.name}`,
-            start: element.loan_start_time,
-            end: new Date(new Date(element.loan_end_time).getTime() + 86400000)
-              .toISOString()
-              .substr(0, 10),
-            color: this.getColour(element.id)
-          };
-        }));
-      },
-      failureCallback
-    );
+  ngOnInit() {
+    this.bookingData.forEach(element => {
+      this.calendarEvents.push({
+        title: `#${element.id} - ${element.name}`,
+        start: element.loan_start_time,
+        end: new Date(new Date(element.loan_end_time).getTime() + 86400000).toISOString().substr(0, 10),
+        color: this.getColour(element.id)
+      });
+    });
+    this.calendarOptions.events = this.calendarEvents;
   }
 
   getColour(num: number) {

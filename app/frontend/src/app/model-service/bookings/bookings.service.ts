@@ -14,8 +14,12 @@ export class BookingsService {
 
   constructor(private http: HttpClient) { }
 
-  getBookingList(): Observable<any> {
-    return this.http.get(`${this.baseUrlBookings}/`);
+  filterBookings(filterParams: any): Observable<any> {
+    return this.http.get(`${this.baseUrlBookings}/`, { params: filterParams });
+  }
+
+  getBookingsByDateRange(start: string, end: string): Observable<any> {
+    return this.http.get(`${this.baseUrlBookings}/week`, { params: { start, end } });
   }
 
   getBookedItemList(): Observable<any> {
@@ -31,7 +35,7 @@ export class BookingsService {
   }
 
   createBooking(booking: object): Observable<object> {
-    return this.http.post(`${this.baseUrlBookings}/`, booking);
+    return this.http.post(`${this.baseUrlBookings}/edit`, booking);
   }
 
   createBookedItem(item: object): Observable<object> {

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <title>Home</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora|Roboto|Quicksand|Oswald|Lato">
 <body>
     <div class="container">
         <!-- section 1 of the homepage: The main contents and buttons -->
@@ -7,10 +8,15 @@
             <div class="main">
                 <div class="left">
                     <div class="main_caption">
-                        <h1>Booking has never been so <span id="EASY">EASY</span></h1>
-                        <p>We, commIT technical cell strive to cater you the best experience 
-                            in booking item you need.</p>
-                        <p> Start booking now!</p>
+                        <h1>Booking made <span id="EASY">EASY</span></h1>
+                        <br/>
+                        <div class="paragraph">
+                            <p>A few clicks is all it takes. Here, you can book any item you want, by just following 
+                            some simple steps.
+                            </p>
+                            <p> Best experience on your desktop/laptop. Start booking now!</p>
+                        </div>
+                        <br/>
                     </div>
 
                     <div class="user_button">
@@ -88,6 +94,7 @@
                 </div>
             </div>
             <div class="improve">
+                <br/>
                 <p>Not your no.1 booking experience?</p>
                 <p>Let us know how to improve below!</p>
             </div>
@@ -109,7 +116,7 @@
                 <mat-form-field id="email">
                     <mat-label>Email</mat-label>
                     <input matInput class="form-control" formControlName="email" required>
-                    <mat-error>Please enter a email.</mat-error>
+                    <mat-error>Please enter a valid NUS email.</mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
@@ -117,7 +124,7 @@
                     <textarea matInput class="form-control" formControlName="detail" id="#issue_detail" required></textarea>
                 </mat-form-field>
 
-                <button mat-raised-button color="primary" (click)="onSubmit()" type="submit">
+                <button mat-raised-button color="primary" (click)="onSubmit()" type="submit" [disabled]="!issueForm.valid">
                     Submit
                 </button>
             </form>

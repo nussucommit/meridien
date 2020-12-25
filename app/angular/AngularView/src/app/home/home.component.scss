@@ -40,16 +40,20 @@ body, html {
 }
 
 .main_caption h1{
-    color: black;
+    color:RGB(33, 29, 30);
     font-weight: bolder;
-    font-size: 2.25rem;
+    font-size: 2.5vw;
+    font-family: 'Lora', elegant, serif 
+}
+
+.paragraph {
+    border-left: 1px #ccc solid;
+    padding-left: 10px;
 }
 
 .main_caption p {
-    color: black;
-    font-style: inherit;
-    font-weight: bold;
-    font-size: large;
+    color: RGB(165, 174, 183), RGB(211, 169, 153);
+    font-family: 'Roboto', sans-serif;
 }
 
 .main_caption #EASY {
@@ -95,7 +99,7 @@ body, html {
 
 .right {
     flex: 1;
-    background-image: url("../Homepage\ icon\ 1/Logistic SVG 1.png");
+    background-image: url("../../assets/Homepage\ icon\ 1/Logistic SVG 1.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -121,7 +125,7 @@ body, html {
 
 .tutorial_icon {
     flex: 1;
-    background-image: url("../Homepage\ icon\ 1/Steps Icon.png");
+    background-image: url("../../assets/Homepage\ icon\ 1/Steps Icon.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -135,10 +139,11 @@ body, html {
     align-items: flex-start;
     margin: 0% 1% 0% 2.5%;
     flex: 4;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .stepicon1 {
-    background-image: url("../Homepage\ icon\ 1/Click.png");
+    background-image: url("../../assets/Homepage\ icon\ 1/Click.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -146,7 +151,7 @@ body, html {
     margin: 14% 8%;
 }
 .stepicon2 {
-    background-image: url("../Homepage\ icon\ 1/Fill form.png");
+    background-image: url("../../assets/Homepage\ icon\ 1/Fill form.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -154,7 +159,7 @@ body, html {
     margin: 28% 28%;
 }
 .stepicon3 {
-    background-image: url("../Homepage\ icon\ 1/goods.png");
+    background-image: url("../../assets/Homepage\ icon\ 1/goods.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -162,7 +167,7 @@ body, html {
     margin: 8% 0%;
 }
 .stepicon4 {
-    background-image: url("../Homepage\ icon\ 1/Submit.png");
+    background-image: url("../../assets/Homepage\ icon\ 1/Submit.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -171,7 +176,7 @@ body, html {
 }
 
 #arrow1{
-    background-image: url("../Homepage\ icon\ 1/Right arrow.png");
+    background-image: url("../../assets/Homepage\ icon\ 1/Right arrow.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -180,7 +185,7 @@ body, html {
 }
 
 #arrow2{
-    background-image: url("../Homepage\ icon\ 1/Right arrow.png");
+    background-image: url("../../assets/Homepage\ icon\ 1/Right arrow.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -189,7 +194,7 @@ body, html {
 }
 
 #arrow3{
-    background-image: url("../Homepage\ icon\ 1/Right arrow.png");
+    background-image: url("../../assets/Homepage\ icon\ 1/Right arrow.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -215,6 +220,7 @@ body, html {
     font-size: 2rem;
     justify-content: flex-end;
     align-items: center;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .advantages {
@@ -227,6 +233,7 @@ body, html {
 
 .improve {
     flex: 1;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .ad1{
@@ -242,10 +249,16 @@ body, html {
     flex: 1;
     border: 1px #ccc solid;
 }
+.advantages h2 {
+    font-family: 'Oswald', serif;
+    font-weight: normal;
+}
 
 .advantages p {
     margin: 2%;
     text-align: center;
+    font-family: 'Lato', sans-serif;
+    color:1px #000 solid;
 }
 
 h2 {
@@ -262,7 +275,7 @@ h2 {
 }
 
 #img1 {
-    background-image: url("../Homepage\ icon\ 2/Simple.png");
+    background-image: url("../../assets/Homepage\ icon\ 2/Simple.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -271,7 +284,7 @@ h2 {
 }
 
 #img2 {
-    background-image: url("../Homepage\ icon\ 2/Organize.png");
+    background-image: url("../../assets/Homepage\ icon\ 2/Organize.png");
     background-position: top;
     background-repeat: no-repeat;
     background-size: contain;
@@ -280,7 +293,7 @@ h2 {
 }
 
 #img3 {
-    background-image: url("../Homepage\ icon\ 2/Fast.png");
+    background-image: url("../../assets/Homepage\ icon\ 2/Fast.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -307,10 +320,11 @@ h2 {
 .appreciate p{
     text-align: center;
     font-size: xx-large;
+    font-family: 'Roboto', serif;
 }
 
 .appreciate_icon {
-    background-image: url("../Homepage\ icon\ 3/Appreciate.png");
+    background-image: url("../../assets/Homepage\ icon\ 3/Appreciate.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;

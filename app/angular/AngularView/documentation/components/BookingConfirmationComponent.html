@@ -1,0 +1,1007 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>angular-view documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">angular-view documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>BookingConfirmationComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/booking-confirmation/booking-confirmation.component.ts</code>
+</p>
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>After a user has made a booking, the user will receive a confirmation email that contains a link to confirm that the booking is indeed made by the user.
+This is the component for the confirmation page.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-booking-confirmation</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./booking-confirmation.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./booking-confirmation.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#bookedItems">bookedItems</a>
+                            </li>
+                            <li>
+                                <a href="#booking">booking</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#dialog">dialog</a>
+                            </li>
+                            <li>
+                                <a href="#responded">responded</a>
+                            </li>
+                            <li>
+                                <a href="#tableColumnsBookedItems">tableColumnsBookedItems</a>
+                            </li>
+                            <li>
+                                <a href="#token">token</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#confirm_booking">confirm_booking</a>
+                            </li>
+                            <li>
+                                <a href="#delete_booking">delete_booking</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#print">print</a>
+                            </li>
+                            <li>
+                                <a href="#returnStatusString">returnStatusString</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, bookingsService: <a href="../injectables/BookingsService.html">BookingsService</a>, snackbar: MatSnackBar, dialog: MatDialog)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/booking-confirmation/booking-confirmation.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>bookingsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BookingsService.html" target="_self" >BookingsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>snackbar</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirm_booking"></a>
+                    <span class="name">
+                        <b>
+                            confirm_booking
+                        </b>
+                        <a href="#confirm_booking"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>confirm_booking()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/app/booking-confirmation/booking-confirmation.component.ts:73</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Called when the user presses confirm button.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="delete_booking"></a>
+                    <span class="name">
+                        <b>
+                            delete_booking
+                        </b>
+                        <a href="#delete_booking"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>delete_booking()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/app/booking-confirmation/booking-confirmation.component.ts:86</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Called when the user decides to revoke the booking by pressing the delete button.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/app/booking-confirmation/booking-confirmation.component.ts:40</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Initializes the booking based on the token.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="print"></a>
+                    <span class="name">
+                        <b>
+                            print
+                        </b>
+                        <a href="#print"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>print()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/app/booking-confirmation/booking-confirmation.component.ts:66</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Prints the page.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="returnStatusString"></a>
+                    <span class="name">
+                        <b>
+                            returnStatusString
+                        </b>
+                        <a href="#returnStatusString"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>returnStatusString(code: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/app/booking-confirmation/booking-confirmation.component.ts:59</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Returns the full string given the status code.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>code</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Status code.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="bookedItems"></a>
+                        <span class="name">
+                            <b>
+                            bookedItems</b>
+                            <a href="#bookedItems"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/BookedItem.html" target="_self" >BookedItem[]</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/booking-confirmation/booking-confirmation.component.ts:27</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="booking"></a>
+                        <span class="name">
+                            <b>
+                            booking</b>
+                            <a href="#booking"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/Booking.html" target="_self" >Booking</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/booking-confirmation/booking-confirmation.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dialog"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            dialog</b>
+                            <a href="#dialog"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>MatDialog</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/booking-confirmation/booking-confirmation.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="responded"></a>
+                        <span class="name">
+                            <b>
+                            responded</b>
+                            <a href="#responded"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/booking-confirmation/booking-confirmation.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tableColumnsBookedItems"></a>
+                        <span class="name">
+                            <b>
+                            tableColumnsBookedItems</b>
+                            <a href="#tableColumnsBookedItems"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>string[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[&#x27;name&#x27;, &#x27;quantity&#x27;, &#x27;status&#x27;]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/booking-confirmation/booking-confirmation.component.ts:26</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="token"></a>
+                        <span class="name">
+                            <b>
+                            token</b>
+                            <a href="#token"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/booking-confirmation/booking-confirmation.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { ActivatedRoute } from &#x27;@angular/router&#x27;;
+
+import { Booking } from &#x27;./../model-service/bookings/bookings&#x27;;
+import { BookingsService } from &#x27;../model-service/bookings/bookings.service&#x27;;
+import { BookedItem } from &#x27;../model-service/items/items&#x27;;
+import { getStatus } from &#x27;../model-service/statustranslator&#x27;;
+
+import { ConfirmationDialogComponent } from &#x27;../confirmation-dialog/confirmation-dialog.component&#x27;;
+
+import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+import { MatDialog } from &#x27;@angular/material/dialog&#x27;;
+
+/**
+ * After a user has made a booking, the user will receive a confirmation email that contains a link to confirm that the booking is indeed made by the user.
+ * This is the component for the confirmation page.
+ */
+@Component({
+  selector: &#x27;app-booking-confirmation&#x27;,
+  templateUrl: &#x27;./booking-confirmation.component.html&#x27;,
+  styleUrls: [&#x27;./booking-confirmation.component.scss&#x27;]
+})
+export class BookingConfirmationComponent implements OnInit {
+  booking: Booking;
+  token: string;
+  tableColumnsBookedItems: string[] &#x3D; [&#x27;name&#x27;, &#x27;quantity&#x27;, &#x27;status&#x27;];
+  bookedItems: BookedItem[];
+  responded: boolean;
+
+  constructor(
+    private route: ActivatedRoute,
+    private bookingsService: BookingsService,
+    private snackbar: MatSnackBar,
+    public dialog: MatDialog
+  ) { }
+
+  /**
+   * Initializes the booking based on the token.
+   */
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params &#x3D;&gt; {
+      this.token &#x3D; params.token;
+    });
+    this.bookingsService.getBookingByToken(this.token).subscribe(
+      (booking: Booking) &#x3D;&gt; {
+        this.booking &#x3D; booking;
+        this.bookingsService.getBookedItemsByBooker(booking.id).subscribe(
+          (data: BookedItem[]) &#x3D;&gt; {
+            this.bookedItems &#x3D; data;
+          });
+      }
+    );
+  }
+
+  /**
+   * Returns the full string given the status code.
+   * @param code Status code.
+   */
+  returnStatusString(code: string){
+    return getStatus(code);
+  }
+
+  /**
+   * Prints the page.
+   */
+  print(){
+    window.print();
+  }
+
+  /**
+   * Called when the user presses confirm button.
+   */
+  confirm_booking() {
+    this.bookingsService.confirmBookingByToken(this.token).subscribe(
+      (success: any) &#x3D;&gt; {
+        this.responded &#x3D; true; // order matters here, otherwise user can&#x27;t do any actions then gg
+        location.reload(); // force reload
+        this.snackbar.open(&#x27;Booking confirmed&#x27;, &#x27;OK&#x27;, { duration: 5000, });
+      }
+    );
+  }
+
+  /**
+   * Called when the user decides to revoke the booking by pressing the delete button.
+   */
+  delete_booking() {
+    const dialogRef &#x3D; this.dialog.open(ConfirmationDialogComponent, { data: &#x27;this booking&#x27; });
+    dialogRef.afterClosed().subscribe((result) &#x3D;&gt; {
+      if (result.event &#x3D;&#x3D;&#x3D; &#x27;yes&#x27;) {
+        this.bookingsService.deleteBookingByToken(this.token).subscribe(
+          (success: any) &#x3D;&gt; {
+            this.responded &#x3D; true;
+            location.reload(); // force reload
+            this.snackbar.open(&#x27;Booking deleted&#x27;, &#x27;OK&#x27;, { duration: 5000, });
+          }
+        );
+      }
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;booking !&#x3D; null; else elseBlock&quot; style&#x3D;&quot;width: 80%; margin: 20px;&quot;&gt;
+  &lt;p style&#x3D;&quot;font-size: 15px;&quot; *ngIf&#x3D;&quot;booking.status &#x3D;&#x3D;&#x3D; &#x27;UNC&#x27;; else elseWords&quot;&gt;Before you are able to check the status
+    of your booking, you are to declare that you are the one who made the following booking.&lt;/p&gt;
+  &lt;ng-template #elseWords&gt;Here are the booking details. Processing may take a few days to complete, and you will receive
+    an email response once the booking is processed. The deposit shown here is the &lt;strong&gt;maximum payable
+      deposit&lt;/strong&gt; and may decrease after the booking is processed.&lt;/ng-template&gt;
+  &lt;h2 style&#x3D;&quot;margin-top: 20px&quot;&gt;Booking Details&lt;/h2&gt;
+  &lt;div class&#x3D;&quot;row&quot;&gt;
+    &lt;div class&#x3D;&quot;column-left&quot;&gt;
+      &lt;mat-list role&#x3D;&quot;list&quot; style&#x3D;&quot;margin-left: -15px; margin-top: -15px;&quot;&gt;
+        &lt;mat-list-item role&#x3D;&quot;listitem&quot;&gt;Booking No.: {{booking.id}}&lt;/mat-list-item&gt;
+        &lt;mat-list-item role&#x3D;&quot;listitem&quot;&gt;Name: {{booking.name}}&lt;/mat-list-item&gt;
+        &lt;mat-list-item role&#x3D;&quot;listitem&quot;&gt;Email: {{booking.email}}&lt;/mat-list-item&gt;
+        &lt;mat-list-item role&#x3D;&quot;listitem&quot;&gt;Organization: {{booking.organization}}&lt;/mat-list-item&gt;
+        &lt;mat-list-item role&#x3D;&quot;listitem&quot;&gt;Purpose: {{booking.reason}}&lt;/mat-list-item&gt;
+        &lt;mat-list-item role&#x3D;&quot;listitem&quot;&gt;From: {{booking.loan_start_time|date: &#x27;d/M/yyyy&#x27;}}&lt;/mat-list-item&gt;
+        &lt;mat-list-item role&#x3D;&quot;listitem&quot;&gt;To: {{booking.loan_end_time|date: &#x27;d/M/yyyy&#x27;}}&lt;/mat-list-item&gt;
+        &lt;mat-list-item role&#x3D;&quot;listitem&quot; *ngIf&#x3D;&quot;booking.status !&#x3D; &#x27;UNC&#x27;&quot;&gt;Status: {{returnStatusString(booking.status)}}
+        &lt;/mat-list-item&gt;
+      &lt;/mat-list&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;column-right&quot;&gt;
+      &lt;h2 style&#x3D;&quot;color:#777777&quot;&gt;Items&lt;/h2&gt;
+      &lt;mat-table style&#x3D;&quot;margin-top:-5px&quot; [dataSource]&#x3D;bookedItems class&#x3D;&quot;mat-elevation-z8&quot;&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;name&quot;&gt;
+          &lt;mat-header-cell *matHeaderCellDef&gt; Item &lt;/mat-header-cell&gt;
+          &lt;mat-cell *matCellDef&#x3D;&quot;let booked_item&quot;&gt; {{booked_item.item.name}} &lt;/mat-cell&gt;
+          &lt;mat-footer-cell *matFooterCellDef&gt;Deposit Payable&lt;/mat-footer-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;quantity&quot;&gt;
+          &lt;mat-header-cell *matHeaderCellDef&gt; Quantity &lt;/mat-header-cell&gt;
+          &lt;mat-cell *matCellDef&#x3D;&quot;let booked_item&quot;&gt; {{booked_item.quantity}} &lt;/mat-cell&gt;
+          &lt;mat-footer-cell *matFooterCellDef&gt;{{booking.deposit_left|currency}}&lt;/mat-footer-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;status&quot;&gt;
+          &lt;mat-header-cell *matHeaderCellDef&gt; Status &lt;/mat-header-cell&gt;
+          &lt;mat-cell *matCellDef&#x3D;&quot;let booked_item&quot;&gt; {{returnStatusString(booked_item.status)}} &lt;/mat-cell&gt;
+          &lt;mat-footer-cell *matFooterCellDef&gt;&lt;/mat-footer-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;mat-header-row *matHeaderRowDef&#x3D;&quot;tableColumnsBookedItems&quot;&gt;&lt;/mat-header-row&gt;
+        &lt;mat-row *matRowDef&#x3D;&quot;let row; columns: tableColumnsBookedItems;&quot;&gt;&lt;/mat-row&gt;
+        &lt;mat-footer-row *matFooterRowDef&#x3D;&quot;tableColumnsBookedItems&quot;&gt;&lt;/mat-footer-row&gt;
+      &lt;/mat-table&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;button mat-raised-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;confirm_booking()&quot; style&#x3D;&quot;margin-right: 10px&quot;
+    *ngIf&#x3D;&quot;booking.status &#x3D;&#x3D;&#x3D; &#x27;UNC&#x27;&quot; #confirmButton [disabled]&#x3D;&quot;responded&quot;&gt;
+    &lt;mat-icon matPrefix&gt;done&lt;/mat-icon&gt;
+    Confirm
+  &lt;/button&gt;
+  &lt;button mat-raised-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;print()&quot; #deleteButton [disabled]&#x3D;&quot;responded&quot;
+    style&#x3D;&quot;margin-right: 10px&quot;&gt;
+    &lt;mat-icon matPrefix&gt;print&lt;/mat-icon&gt;
+    Print
+  &lt;/button&gt;
+  &lt;button mat-raised-button color&#x3D;&quot;warn&quot; (click)&#x3D;&quot;delete_booking()&quot; #deleteButton [disabled]&#x3D;&quot;responded&quot;
+    style&#x3D;&quot;margin-right: 10px&quot;&gt;
+    &lt;mat-icon matPrefix&gt;clear&lt;/mat-icon&gt;
+    Delete
+  &lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!--this page needs redesign--&gt;
+&lt;ng-template #elseBlock&gt;
+  &lt;h2&gt;Sorry, this booking has been deleted.&lt;/h2&gt;
+&lt;/ng-template&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./booking-confirmation.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@media print {
+    button {
+        display: none;
+    }
+}
+
+.column-left {
+    float: left;
+    width: 50%;
+  }
+
+  .column-right {
+    float: right;
+    width: 50%;
+  }
+
+  .row:after {
+    content: &quot;&quot;;
+    display: table;
+    clear: both;
+  }</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div *ngIf="booking != null; else elseBlock" style="width: 80%; margin: 20px;">  <p style="font-size: 15px;" *ngIf="booking.status === \'UNC\'; else elseWords">Before you are able to check the status    of your booking, you are to declare that you are the one who made the following booking.</p>  <ng-template #elseWords>Here are the booking details. Processing may take a few days to complete, and you will receive    an email response once the booking is processed. The deposit shown here is the <strong>maximum payable      deposit</strong> and may decrease after the booking is processed.</ng-template>  <h2 style="margin-top: 20px">Booking Details</h2>  <div class="row">    <div class="column-left">      <mat-list role="list" style="margin-left: -15px; margin-top: -15px;">        <mat-list-item role="listitem">Booking No.: {{booking.id}}</mat-list-item>        <mat-list-item role="listitem">Name: {{booking.name}}</mat-list-item>        <mat-list-item role="listitem">Email: {{booking.email}}</mat-list-item>        <mat-list-item role="listitem">Organization: {{booking.organization}}</mat-list-item>        <mat-list-item role="listitem">Purpose: {{booking.reason}}</mat-list-item>        <mat-list-item role="listitem">From: {{booking.loan_start_time|date: \'d/M/yyyy\'}}</mat-list-item>        <mat-list-item role="listitem">To: {{booking.loan_end_time|date: \'d/M/yyyy\'}}</mat-list-item>        <mat-list-item role="listitem" *ngIf="booking.status != \'UNC\'">Status: {{returnStatusString(booking.status)}}        </mat-list-item>      </mat-list>    </div>    <div class="column-right">      <h2 style="color:#777777">Items</h2>      <mat-table style="margin-top:-5px" [dataSource]=bookedItems class="mat-elevation-z8">        <ng-container matColumnDef="name">          <mat-header-cell *matHeaderCellDef> Item </mat-header-cell>          <mat-cell *matCellDef="let booked_item"> {{booked_item.item.name}} </mat-cell>          <mat-footer-cell *matFooterCellDef>Deposit Payable</mat-footer-cell>        </ng-container>        <ng-container matColumnDef="quantity">          <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>          <mat-cell *matCellDef="let booked_item"> {{booked_item.quantity}} </mat-cell>          <mat-footer-cell *matFooterCellDef>{{booking.deposit_left|currency}}</mat-footer-cell>        </ng-container>        <ng-container matColumnDef="status">          <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>          <mat-cell *matCellDef="let booked_item"> {{returnStatusString(booked_item.status)}} </mat-cell>          <mat-footer-cell *matFooterCellDef></mat-footer-cell>        </ng-container>        <mat-header-row *matHeaderRowDef="tableColumnsBookedItems"></mat-header-row>        <mat-row *matRowDef="let row; columns: tableColumnsBookedItems;"></mat-row>        <mat-footer-row *matFooterRowDef="tableColumnsBookedItems"></mat-footer-row>      </mat-table>    </div>  </div>  <button mat-raised-button color="primary" (click)="confirm_booking()" style="margin-right: 10px"    *ngIf="booking.status === \'UNC\'" #confirmButton [disabled]="responded">    <mat-icon matPrefix>done</mat-icon>    Confirm  </button>  <button mat-raised-button color="primary" (click)="print()" #deleteButton [disabled]="responded"    style="margin-right: 10px">    <mat-icon matPrefix>print</mat-icon>    Print  </button>  <button mat-raised-button color="warn" (click)="delete_booking()" #deleteButton [disabled]="responded"    style="margin-right: 10px">    <mat-icon matPrefix>clear</mat-icon>    Delete  </button></div><!--this page needs redesign--><ng-template #elseBlock>  <h2>Sorry, this booking has been deleted.</h2></ng-template></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BookingConfirmationComponent', 'selector': 'app-booking-confirmation'},{'name': 'BookingConfirmComponent', 'selector': 'app-booking-confirm'},{'name': 'BookingDetailsComponent', 'selector': 'app-booking-details'},{'name': 'BookingListComponent', 'selector': 'booking-list'},{'name': 'BookingListDialog', 'selector': 'booking-list-dialog'},{'name': 'BookingSummaryDialog', 'selector': 'booking-summary-dialog'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'ConfirmationTemplateComponent', 'selector': 'app-confirmation-template'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'ItemDetailsComponent', 'selector': 'app-item-details'},{'name': 'ItemListComponent', 'selector': 'item-list'},{'name': 'ItemListDialog', 'selector': 'item-list-dialog'},{'name': 'LoginFormComponent', 'selector': 'app-login-form'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MailSenderComponent', 'selector': 'app-mail-sender'},{'name': 'NotFoundComponent', 'selector': 'not-found'},{'name': 'TemplateDetailDialog', 'selector': 'app-template-detail-dialog'},{'name': 'TemplateListComponent', 'selector': 'app-template-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'BookingConfirmationComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'BookingConfirmationComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

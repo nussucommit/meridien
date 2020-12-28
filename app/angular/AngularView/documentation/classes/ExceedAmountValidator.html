@@ -1,0 +1,591 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>angular-view documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">angular-view documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Classes</li>
+  <li>ExceedAmountValidator</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/booking-details/booking-details.component.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Helper class to check if the number of items booked exceeds the number available in the database.</p>
+
+            </p>
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#createExceedAmountValidator">createExceedAmountValidator</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createExceedAmountValidator"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Static</span>
+                            createExceedAmountValidator
+                        </b>
+                        <a href="#createExceedAmountValidator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createExceedAmountValidator(itemsService: <a href="../injectables/ItemsService.html">ItemsService</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="318"
+                            class="link-to-prism">src/app/booking-details/booking-details.component.ts:318</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Returns a method to carry out the validation.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>itemsService</td>
+                                    <td>
+                                                <code><a href="../injectables/ItemsService.html" target="_self" >ItemsService</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p><code>ItemsService</code> object.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://angular.io/api/forms/AsyncValidatorFn" target="_blank" >AsyncValidatorFn</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+import { ConfirmationTemplatesService } from &#x27;./../model-service/confirmationtemplates/confirmationtemplates.service&#x27;;
+import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { FormBuilder, FormGroup, Validators, AbstractControl, FormArray, ValidationErrors, AsyncValidatorFn } from &#x27;@angular/forms&#x27;;
+import { BookingsService } from &#x27;../model-service/bookings/bookings.service&#x27;;
+
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from &#x27;@angular/material-moment-adapter&#x27;;
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from &#x27;@angular/material/core&#x27;;
+import moment from &#x27;moment&#x27;;
+import { Items, BookedItem } from &#x27;../model-service/items/items&#x27;;
+import { ItemsService } from &#x27;../model-service/items/items.service&#x27;;
+import { Booking } from &#x27;../model-service/bookings/bookings&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { Dictionary } from &#x27;@fullcalendar/core&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { map } from &#x27;rxjs/operators&#x27;;
+import { ComponentBridgingService } from &#x27;../model-service/componentbridging.service&#x27;;
+
+/**
+ * Main component for the booking form.
+ */
+@Component({
+  selector: &#x27;app-booking-details&#x27;,
+  templateUrl: &#x27;./booking-details.component.html&#x27;,
+  styleUrls: [&#x27;./booking-details.component.scss&#x27;],
+  providers: [
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+  ],
+})
+export class BookingDetailsComponent implements OnInit {
+
+  detailsForm: FormGroup;
+  itemsForm: FormGroup;
+
+  itemArray: Items[];
+
+  inputGroup1: any;
+  inputGroup2: any;
+
+  itemColumns &#x3D; [&#x27;item&#x27;, &#x27;quantity&#x27;];
+
+  editMode: boolean;
+  bookingSubmitted &#x3D; false;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private bookingsService: BookingsService,
+    private itemsService: ItemsService,
+    private service: ComponentBridgingService,
+    private router: Router
+  ) { this.itemsService.getItemsList().subscribe((data) &#x3D;&gt; this.itemArray &#x3D; data); }
+
+  /**
+   * Initializes the booking form based on whether the user is editing a booking or creating a new booking.
+   */
+  ngOnInit() {
+    this.editMode &#x3D; history.state.edit ? true : false;
+
+    this.detailsForm &#x3D; this.formBuilder.group({
+      name: [history.state.source ? history.state.source.name : &#x27;&#x27;, Validators.required],
+      email: [history.state.source ? history.state.source.email : &#x27;&#x27;, [Validators.required, this.emailCheck]],
+      organization: [history.state.source ? history.state.source.organization : &#x27;&#x27;, Validators.required],
+      phone_no: [history.state.source ? history.state.source.phone_no : &#x27;&#x27;, [Validators.required, this.phoneCheck]],
+      reason: [history.state.source ? history.state.source.reason : &#x27;&#x27;, Validators.required],
+      loan_start_time: [history.state.source ? history.state.source.loan_start_time : &#x27;&#x27;, [Validators.required, this.dateCheck]],
+      loan_end_time: [history.state.source ? history.state.source.loan_end_time : &#x27;&#x27;, [Validators.required, this.dateCheck]],
+    });
+    this.itemsForm &#x3D; this.formBuilder.group({
+      items: history.state.booked_items ?
+        new FormArray(this.initialItemInput(history.state.booked_items),
+          [this.checkForRepeat], ExceedAmountValidator.createExceedAmountValidator(this.itemsService)) :
+        new FormArray([this.newItemInput()],
+          [this.checkForRepeat], ExceedAmountValidator.createExceedAmountValidator(this.itemsService))
+    });
+
+    this.checkout();
+  }
+
+  /**
+   * Checks if the date is of correct format.
+   * @param control Date input.
+   */
+  dateCheck(control: AbstractControl): any {
+    return moment(control.value).isValid() ? null : { date: true };
+  }
+
+  /**
+   * Checks if the phone number is of correct format.
+   * @param control Phone number input.
+   */
+  phoneCheck(control: AbstractControl): any {
+    return new RegExp(&#x27;(8[1-8][0-9]{6}|9[0-8][0-9]{6})&#x27;).test(control.value) ? null : { phone: true };
+  }
+
+  /**
+   * Checks if the email follows the NUS email format.
+   * @param control Email input.
+   */
+  emailCheck(control: AbstractControl): any {
+    return new RegExp(&#x27;e[0-9]{7}@u\.nus\.edu&#x27;).test(control.value) ? null : { email: true };
+  }
+
+  /**
+   * Returns a new row.
+   */
+  newItemInput(): FormGroup {
+    return this.formBuilder.group({
+      item: [2, [Validators.required]],
+      quantity: [1, [Validators.required, Validators.min(1)]]
+    });
+  }
+
+  /**
+   * Parses the booking data from &lt;code&gt;history.state.source&lt;/code&gt; into an array.
+   * @param data Booking data.
+   */
+  initialItemInput(data: any) {
+    const result &#x3D; [];
+    data.forEach((element: BookedItem) &#x3D;&gt; {
+      result.push(this.createItemInputWithData(element));
+    });
+    return result;
+  }
+
+  /**
+   * Returns filled rows when the user is editing a booking.
+   * @param bookedItem Initial booked items.
+   */
+  createItemInputWithData(bookedItem: BookedItem): FormGroup {
+    return this.formBuilder.group({
+      item: [bookedItem.item.id, Validators.required],
+      quantity: [bookedItem.quantity, [Validators.required, Validators.min(1)]]
+    });
+  }
+
+  /**
+   * Returns the list of items to be booked.
+   */
+  getItemInputForm(): FormArray {
+    return this.itemsForm.get(&#x27;items&#x27;) as FormArray;
+  }
+
+  /**
+   * Adds a new row to the form when the user presses add row button.
+   */
+  addBlankItem() {
+    this.getItemInputForm().push(this.newItemInput());
+  }
+
+  /**
+   * Removes the i-th row when the user presses the delete button.
+   * @param i Row number.
+   */
+  removeItemInput(i: number) {
+    this.getItemInputForm().removeAt(i);
+  }
+
+  /**
+   * Updates the current form input.
+   */
+  checkout() {
+    this.inputGroup1 &#x3D; this.detailsForm.value;
+    this.inputGroup2 &#x3D; this.itemsForm.value;
+  }
+
+  /**
+   * Returns the item given the item id.
+   * @param id Item id.
+   */
+  returnItemGivenId(id: number) {
+    return this.itemArray.filter(element &#x3D;&gt; element.id &#x3D;&#x3D;&#x3D; id)[0];
+  }
+
+  /**
+   * Returns the total deposit payable.
+   */
+  getTotalDeposit() {
+    return this.itemArray ? Math.min(200, this.inputGroup2.items.reduce((acc: number, currentItem: any) &#x3D;&gt;
+      acc + this.returnItemGivenId(currentItem.item).deposit * currentItem.quantity
+      , 0)) : 0;
+  }
+
+  /**
+   * Helper method to allow user to navigate the stepper back and forth 
+   * while at the same time updating the form contents for use in the checkout page
+   * @param event Page change event
+   */
+  selectionChange(event) {
+    if (event.selectedIndex &#x3D;&#x3D;&#x3D; 2) {
+      this.checkout();
+    }
+  }
+
+  /**
+   * Helper method to check if there are duplicate items in the form.
+   * @param formArray Item input form.
+   */
+  checkForRepeat(formArray: FormArray) {
+    const itemDict: Dictionary &#x3D; {};
+    formArray.value.forEach((ele) &#x3D;&gt; {
+      if (itemDict[ele.item]) {
+        itemDict[ele.item] +&#x3D; 1;
+      } else {
+        itemDict[ele.item] &#x3D; 1;
+      }
+    });
+    for (const key in itemDict) {
+      if (itemDict[key] &gt; 1) {
+        return { duplicate: true };
+      }
+    }
+  }
+
+  /**
+   * Checks if the form returns duplicate error.
+   */
+  checkForErrors() {
+    const controlErrors: ValidationErrors &#x3D; this.itemsForm.get(&#x27;items&#x27;).errors;
+    return controlErrors ? controlErrors : { duplicate: false, exceed: false };
+  }
+
+  /**
+   * Prints the current page.
+   */
+  print() {
+    window.print();
+  }
+
+  /**
+   * Parses the data to be sent to the backend.
+   */
+  onSubmit() {
+    this.service.publish(&#x27;progressBarOn&#x27;);
+    const bookingDataCopy &#x3D; { ...this.inputGroup1 };
+    const finalData: Booking &#x3D; Object.assign(bookingDataCopy,
+      {
+        time_booked: (history.state.source ? history.state.source.time_booked : new Date()),
+        status: &#x27;PEN&#x27;,
+        deposit_left: this.getTotalDeposit(),
+        amount_paid: 0
+      }) as Booking;
+    if (!history.state.edit) {
+      bookingDataCopy.loan_start_time &#x3D; bookingDataCopy.loan_start_time.format(&#x27;YYYY-MM-DD&#x27;);
+      bookingDataCopy.loan_end_time &#x3D; bookingDataCopy.loan_end_time.format(&#x27;YYYY-MM-DD&#x27;);
+      this.bookingsService.createBooking(finalData).subscribe(
+        (data: any) &#x3D;&gt; {
+          this.inputGroup2.items.forEach(element &#x3D;&gt; {
+            const finalItemData &#x3D; { booking_source: data.id, item: element.item, quantity: element.quantity, status: &#x27;PEN&#x27; };
+            this.bookingsService.createBookedItem(finalItemData).subscribe();
+          });
+          this.router.navigate([&#x27;/edit/confirmed&#x27;], { state: { id: data.id, name: data.name, email: data.email, submitted: true } });
+          this.service.publish(&#x27;progressBarOff&#x27;);
+        });
+    } else if (history.state.edit &#x3D;&#x3D;&#x3D; true) { // touchwood condition lol
+      this.bookingsService.updateBooking(history.state.source.id, finalData).subscribe(
+        (data: any) &#x3D;&gt; {
+          // reason for deletion: I don&#x27;t bother to check whether the booked item exists or not
+          this.bookingsService.deleteBookedItemsByBooker(data.id).subscribe();
+          this.inputGroup2.items.forEach(element &#x3D;&gt; {
+            const finalItemData &#x3D; { booking_source: data.id, item: element.item, quantity: element.quantity, status: &#x27;PEN&#x27; };
+            this.bookingsService.createBookedItem(finalItemData).subscribe();
+          });
+          this.router.navigate([&#x27;/edit/confirmed&#x27;], { state: { id: data.id, name: data.name, email: data.email, submitted: true } });
+          this.service.publish(&#x27;progressBarOff&#x27;);
+        });
+    }
+  }
+}
+
+/**
+ * After the user submits a booking, the user will be redirected to a page saying that their booking request has been received.
+ */
+@Component({
+  selector: &#x27;app-booking-confirm&#x27;,
+  templateUrl: &#x27;./booking-confirm.component.html&#x27;,
+})
+export class BookingConfirmComponent implements OnInit {
+
+  constructor(
+    private router: Router,
+    private snackbar: MatSnackBar,
+    private confirmationTemplatesService: ConfirmationTemplatesService
+  ) { }
+
+  /**
+   * If the form is not submitted, the user will be redirected to the page.
+   */
+  ngOnInit(): void {
+    if (!history.state.submitted) {
+      this.router.navigate([&#x27;/edit&#x27;]);
+    }
+  }
+
+  /**
+   * Resends the confirmation email.
+   */
+  resend(): void {
+    this.confirmationTemplatesService.resendConfirmation({
+      id: history.state.id,
+      email: history.state.email
+    }).subscribe(
+      (success: any) &#x3D;&gt; {
+        this.snackbar.open(&#x27;Email resent. Please wait...&#x27;, &#x27;OK&#x27;, { duration: 5000, });
+      }
+    );
+  }
+}
+
+/**
+ * Helper class to check if the number of items booked exceeds the number available in the database.
+ */
+export class ExceedAmountValidator {
+  /**
+   * Returns a method to carry out the validation.
+   * @param itemsService &lt;code&gt;ItemsService&lt;/code&gt; object.
+   */
+  static createExceedAmountValidator(itemsService: ItemsService): AsyncValidatorFn {
+    return (formArray: FormArray): Observable&lt;ValidationErrors&gt; &#x3D;&gt; {
+      return itemsService.getItemsList().pipe(map((items) &#x3D;&gt; {
+        for (const element of formArray.value) {
+          if (element.quantity &gt; items.filter(ele &#x3D;&gt; ele.id &#x3D;&#x3D;&#x3D; element.item)[0].quantity) {
+            return { exceed: true };
+          }
+        }
+      }));
+    };
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'ExceedAmountValidator.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

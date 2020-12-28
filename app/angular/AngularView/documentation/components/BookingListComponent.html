@@ -1,0 +1,1868 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>angular-view documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">angular-view documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>BookingListComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/booking-list/booking-list.component.ts</code>
+</p>
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Main component for displaying the list of bookings.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code>{ provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] }</code>
+                            <code>{ provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS }</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>booking-list</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./booking-list.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./booking-list.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#bookingDialogOpened">bookingDialogOpened</a>
+                            </li>
+                            <li>
+                                <a href="#bookings">bookings</a>
+                            </li>
+                            <li>
+                                <a href="#filterForm">filterForm</a>
+                            </li>
+                            <li>
+                                <a href="#isLoadingResults">isLoadingResults</a>
+                            </li>
+                            <li>
+                                <a href="#paginator">paginator</a>
+                            </li>
+                            <li>
+                                <a href="#resultsLength">resultsLength</a>
+                            </li>
+                            <li>
+                                <a href="#sort">sort</a>
+                            </li>
+                            <li>
+                                <a href="#summaryDialogOpened">summaryDialogOpened</a>
+                            </li>
+                            <li>
+                                <a href="#tableColumns">tableColumns</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#dateCheck">dateCheck</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit">ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onInputPageChange">onInputPageChange</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit">onSubmit</a>
+                            </li>
+                            <li>
+                                <a href="#openDialog">openDialog</a>
+                            </li>
+                            <li>
+                                <a href="#openWeeklySummary">openWeeklySummary</a>
+                            </li>
+                            <li>
+                                <a href="#parseFilterForm">parseFilterForm</a>
+                            </li>
+                            <li>
+                                <a href="#reloadData">reloadData</a>
+                            </li>
+                            <li>
+                                <a href="#returnStatusString">returnStatusString</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(bookingsService: <a href="../injectables/BookingsService.html">BookingsService</a>, dialog: MatDialog, service: <a href="../injectables/ComponentBridgingService.html">ComponentBridgingService</a>, snackbar: MatSnackBar, formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/booking-list/booking-list.component.ts:53</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>bookingsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BookingsService.html" target="_self" >BookingsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>service</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ComponentBridgingService.html" target="_self" >ComponentBridgingService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>snackbar</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>formBuilder</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dateCheck"></a>
+                    <span class="name">
+                        <b>
+                            dateCheck
+                        </b>
+                        <a href="#dateCheck"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>dateCheck(control: <a href="https://angular.io/api/forms/AbstractControl" target="_blank">AbstractControl</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="186"
+                            class="link-to-prism">src/app/booking-list/booking-list.component.ts:186</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Checks if the date format is correct.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>control</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/forms/AbstractControl" target="_blank" >AbstractControl</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Date input</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <b>
+                            ngAfterViewInit
+                        </b>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">src/app/booking-list/booking-list.component.ts:79</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Load the data after the component&#39;s view has been properly initialized.
+It also initializes the behaviour when the sorting parameter changes.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/app/booking-list/booking-list.component.ts:66</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Initializes the filter form.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onInputPageChange"></a>
+                    <span class="name">
+                        <b>
+                            onInputPageChange
+                        </b>
+                        <a href="#onInputPageChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onInputPageChange(pageNumber: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/app/booking-list/booking-list.component.ts:139</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Reload the data after the page number has changed.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageNumber</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Page number.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <b>
+                            onSubmit
+                        </b>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="195"
+                            class="link-to-prism">src/app/booking-list/booking-list.component.ts:195</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Reloads the data after the filter form is submitted.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openDialog"></a>
+                    <span class="name">
+                        <b>
+                            openDialog
+                        </b>
+                        <a href="#openDialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openDialog(row: literal type)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="148"
+                            class="link-to-prism">src/app/booking-list/booking-list.component.ts:148</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Opens a dialog with booking details when a row of table is clicked.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>row</td>
+                                    <td>
+                                            <code>literal type</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Table row</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openWeeklySummary"></a>
+                    <span class="name">
+                        <b>
+                            openWeeklySummary
+                        </b>
+                        <a href="#openWeeklySummary"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openWeeklySummary()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="169"
+                            class="link-to-prism">src/app/booking-list/booking-list.component.ts:169</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Opens a dialog with weekly summary of bookings.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="parseFilterForm"></a>
+                    <span class="name">
+                        <b>
+                            parseFilterForm
+                        </b>
+                        <a href="#parseFilterForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>parseFilterForm(filterForm: <a href="https://angular.io/api/forms/FormGroup" target="_blank">FormGroup</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/app/booking-list/booking-list.component.ts:117</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Process the filter form so that the data format can be parsed by the backend.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>filterForm</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Filter form</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reloadData"></a>
+                    <span class="name">
+                        <b>
+                            reloadData
+                        </b>
+                        <a href="#reloadData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>reloadData()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">src/app/booking-list/booking-list.component.ts:89</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Method to load data. When the data is loading, this method will broadcast a message
+to turn on the progress bar, until the data is done loading, in which case the
+progress bar is turned off and the bookings data are updated.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="returnStatusString"></a>
+                    <span class="name">
+                        <b>
+                            returnStatusString
+                        </b>
+                        <a href="#returnStatusString"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>returnStatusString(code: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="203"
+                            class="link-to-prism">src/app/booking-list/booking-list.component.ts:203</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Returns the full string given the status code.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>code</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Status code</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="bookingDialogOpened"></a>
+                        <span class="name">
+                            <b>
+                            bookingDialogOpened</b>
+                            <a href="#bookingDialogOpened"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/booking-list/booking-list.component.ts:46</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="bookings"></a>
+                        <span class="name">
+                            <b>
+                            bookings</b>
+                            <a href="#bookings"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/Booking.html" target="_self" >Booking[]</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/booking-list/booking-list.component.ts:41</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="filterForm"></a>
+                        <span class="name">
+                            <b>
+                            filterForm</b>
+                            <a href="#filterForm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/booking-list/booking-list.component.ts:44</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isLoadingResults"></a>
+                        <span class="name">
+                            <b>
+                            isLoadingResults</b>
+                            <a href="#isLoadingResults"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/booking-list/booking-list.component.ts:49</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="paginator"></a>
+                        <span class="name">
+                            <b>
+                            paginator</b>
+                            <a href="#paginator"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>MatPaginator</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(MatPaginator, {static: true})<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/booking-list/booking-list.component.ts:52</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="resultsLength"></a>
+                        <span class="name">
+                            <b>
+                            resultsLength</b>
+                            <a href="#resultsLength"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/booking-list/booking-list.component.ts:50</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sort"></a>
+                        <span class="name">
+                            <b>
+                            sort</b>
+                            <a href="#sort"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>MatSort</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(MatSort, {static: true})<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/booking-list/booking-list.component.ts:53</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="summaryDialogOpened"></a>
+                        <span class="name">
+                            <b>
+                            summaryDialogOpened</b>
+                            <a href="#summaryDialogOpened"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/booking-list/booking-list.component.ts:47</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tableColumns"></a>
+                        <span class="name">
+                            <b>
+                            tableColumns</b>
+                            <a href="#tableColumns"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>string[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[&#x27;id&#x27;, &#x27;name&#x27;, &#x27;time_booked&#x27;, &#x27;loan_start_time&#x27;, &#x27;loan_end_time&#x27;, &#x27;deposit_left&#x27;, &#x27;status&#x27;]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/booking-list/booking-list.component.ts:42</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Router } from &#x27;@angular/router&#x27;;
+import { Component, OnInit, Inject, ViewChild, AfterViewInit } from &#x27;@angular/core&#x27;;
+import { AbstractControl, FormBuilder, FormGroup } from &#x27;@angular/forms&#x27;;
+
+import { BookingsService } from &#x27;../model-service/bookings/bookings.service&#x27;;
+import { Booking } from &#x27;../model-service/bookings/bookings&#x27;;
+import { BookedItem } from &#x27;../model-service/items/items&#x27;;
+import { getStatus, addHyphen } from &#x27;../model-service/statustranslator&#x27;;
+
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from &#x27;@angular/material/dialog&#x27;;
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from &#x27;@angular/material-moment-adapter&#x27;;
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from &#x27;@angular/material/core&#x27;;
+import { MatPaginator } from &#x27;@angular/material/paginator&#x27;;
+import { MatSort } from &#x27;@angular/material/sort&#x27;;
+import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+
+import moment from &#x27;moment&#x27;;
+import { ConfirmationDialogComponent } from &#x27;../confirmation-dialog/confirmation-dialog.component&#x27;;
+import { CalendarOptions } from &#x27;@fullcalendar/angular&#x27;;
+import { formatDate } from &#x27;@fullcalendar/core&#x27;
+import { merge, of } from &#x27;rxjs&#x27;;
+import { catchError, map, startWith, switchMap } from &#x27;rxjs/operators&#x27;;
+import { ComponentBridgingService } from &#x27;../model-service/componentbridging.service&#x27;;
+
+/**
+ * Main component for displaying the list of bookings.
+ */
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: &#x27;booking-list&#x27;,
+  templateUrl: &#x27;./booking-list.component.html&#x27;,
+  styleUrls: [&#x27;./booking-list.component.scss&#x27;],
+  providers: [
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+  ],
+})
+
+export class BookingListComponent implements OnInit, AfterViewInit {
+
+  bookings: Booking[];
+  tableColumns: string[] &#x3D; [&#x27;id&#x27;, &#x27;name&#x27;, &#x27;time_booked&#x27;, &#x27;loan_start_time&#x27;, &#x27;loan_end_time&#x27;, &#x27;deposit_left&#x27;, &#x27;status&#x27;];
+
+  filterForm: FormGroup;
+
+  bookingDialogOpened &#x3D; false;
+  summaryDialogOpened &#x3D; false;
+
+  isLoadingResults &#x3D; true;
+  resultsLength &#x3D; 0;
+
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+  constructor(
+    private bookingsService: BookingsService,
+    private dialog: MatDialog,
+    private service: ComponentBridgingService,
+    private snackbar: MatSnackBar,
+    private formBuilder: FormBuilder
+  ) { }
+
+  /**
+   * Initializes the filter form.
+   */
+  ngOnInit() {
+    this.filterForm &#x3D; this.formBuilder.group({
+      name: [&#x27;&#x27;, &#x27;&#x27;],
+      fromDate: [&#x27;&#x27;, this.dateCheck],
+      toDate: [&#x27;&#x27;, this.dateCheck],
+      status: [&#x27;&#x27;, &#x27;&#x27;]
+    });
+  }
+
+  /**
+   * Load the data after the component&#x27;s view has been properly initialized.
+   * It also initializes the behaviour when the sorting parameter changes.
+   */
+  ngAfterViewInit(): void {
+    this.reloadData();
+    this.sort.sortChange.subscribe(() &#x3D;&gt; this.paginator.pageIndex &#x3D; 0);
+  }
+
+  /**
+   * Method to load data. When the data is loading, this method will broadcast a message
+   * to turn on the progress bar, until the data is done loading, in which case the
+   * progress bar is turned off and the bookings data are updated.
+   */
+  reloadData() {
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(
+        startWith({}),
+        switchMap(() &#x3D;&gt; {
+          this.isLoadingResults &#x3D; true;
+          this.service.publish(&#x27;progressBarOn&#x27;);
+          return this.bookingsService.filterBookings(this.parseFilterForm(this.filterForm));
+        }),
+        map(data &#x3D;&gt; {
+          this.isLoadingResults &#x3D; false;
+          this.service.publish(&#x27;progressBarOff&#x27;);
+          this.resultsLength &#x3D; data.count;
+          return data.results
+        }),
+        catchError(() &#x3D;&gt; {
+          this.isLoadingResults &#x3D; false;
+          this.service.publish(&#x27;progressBarOff&#x27;);
+          this.snackbar.open(&quot;An error occured.&quot;, &quot;OK&quot;, { duration: 5000 });
+          return of([]);
+        })
+      ).subscribe(data &#x3D;&gt; { this.bookings &#x3D; data; });
+  }
+
+  /**
+   * Process the filter form so that the data format can be parsed by the backend.
+   * @param filterForm Filter form
+   */
+  parseFilterForm(filterForm: FormGroup) {
+    const sortCriterion &#x3D; addHyphen(this.sort.active, this.sort.direction);
+    let filterParams &#x3D; { ...this.filterForm.value }
+    if (filterForm.value.fromDate) {
+      filterParams.fromDate &#x3D; filterParams.fromDate.format(&quot;YYYY-MM-DD HH:mm&quot;);
+    }
+    if (filterForm.value.endDate) {
+      filterParams.endDate &#x3D; filterParams.endDate.format(&quot;YYYY-MM-DD HH:mm&quot;);
+    }
+    filterParams &#x3D; Object.assign(filterParams,
+      {
+        ordering: sortCriterion ? sortCriterion : &#x27;id&#x27;,
+        page: this.paginator.pageIndex + 1,
+        page_size: this.paginator.pageSize
+      });
+    return filterParams;
+  }
+
+  /**
+   * Reload the data after the page number has changed.
+   * @param pageNumber Page number.
+   */
+  onInputPageChange(pageNumber: number) {
+    this.paginator.pageIndex &#x3D; Math.min(pageNumber - 1, this.paginator.getNumberOfPages() - 1);
+    this.reloadData();
+  }
+
+  /**
+   * Opens a dialog with booking details when a row of table is clicked.
+   * @param row Table row
+   */
+  openDialog(row: { [x: string]: number; }) {
+    this.bookingsService.getBookedItemsByBooker(row.id)
+      .subscribe(
+        (bookedItemData: BookedItem[]) &#x3D;&gt; {
+          if (!this.bookingDialogOpened) {
+            this.bookingDialogOpened &#x3D; true;
+            const dialogRef &#x3D; this.dialog.open(
+              BookingListDialog,
+              { width: &#x27;600px&#x27;, data: { source: row, booked_items: bookedItemData } });
+            dialogRef.afterClosed().subscribe(() &#x3D;&gt; {
+              this.reloadData();
+              this.bookingDialogOpened &#x3D; false;
+            });
+          }
+        }
+      );
+  }
+
+  /**
+   * Opens a dialog with weekly summary of bookings.
+   */
+  openWeeklySummary() {
+    if (!this.summaryDialogOpened) {
+      this.summaryDialogOpened &#x3D; true;
+      const dialogRef &#x3D; this.dialog.open(
+        BookingSummaryDialog,
+        { width: &#x27;1200px&#x27;, height: &#x27;600px&#x27; }
+      );
+      dialogRef.afterClosed().subscribe(
+        () &#x3D;&gt; { this.summaryDialogOpened &#x3D; false; }
+      );
+    }
+  }
+
+  /**
+   * Checks if the date format is correct.
+   * @param control Date input
+   */
+  dateCheck(control: AbstractControl): any {
+    const d &#x3D; control.value;
+    return (d &#x3D;&#x3D;&#x3D; null || (typeof d &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) &amp;&amp;
+      d.length &#x3D;&#x3D;&#x3D; 0 || moment(d).isValid()) ? null : { date: true };
+  }
+
+  /**
+   * Reloads the data after the filter form is submitted.
+   */
+  onSubmit() {
+    this.reloadData();
+  }
+
+  /**
+   * Returns the full string given the status code.
+   * @param code Status code
+   */
+  returnStatusString(code: string) {
+    return getStatus(code);
+  }
+}
+
+/**
+ * Dialog with each booking details.
+ */
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: &#x27;booking-list-dialog&#x27;,
+  templateUrl: &#x27;./booking-list-dialog.html&#x27;,
+})
+// tslint:disable-next-line: component-class-suffix
+export class BookingListDialog {
+  tableColumnsBookedItems: string[] &#x3D; [&#x27;name&#x27;, &#x27;quantity&#x27;, &#x27;status&#x27;];
+  constructor(
+    private bookingsService: BookingsService,
+    public dialog: MatDialog,
+    public dialogRef: MatDialogRef&lt;BookingListDialog&gt;,
+    @Inject(MAT_DIALOG_DATA) public bookingData: any,
+    private snackbar: MatSnackBar,
+    private router: Router
+  ) { }
+
+  /**
+   * Updates the status of the booking.
+   * @param status New status
+   */
+  updateStatus(status: string) {
+    const bookingDataCopy &#x3D; { ...this.bookingData.source };
+    delete bookingDataCopy.id;
+    bookingDataCopy.status &#x3D; status;
+    this.bookingData.source.status &#x3D; status;
+    if (status &#x3D;&#x3D;&#x3D; &#x27;GET&#x27;) {
+      bookingDataCopy.amount_paid &#x3D; bookingDataCopy.deposit_left;
+    }
+    this.bookingsService.updateBooking(this.bookingData.source.id, bookingDataCopy).subscribe();
+    this.dialogRef.close();
+    this.printSnackBarStatus(status);
+  }
+
+  /**
+   * Opens a snackbar stating the status of booking has changed.
+   * @param status New status
+   */
+  printSnackBarStatus(status: string) {
+    this.snackbar.open(
+      &#x60;Status of Booking #${this.bookingData.source.id} changed to: ${getStatus(status)}&#x60;,
+      &#x27;OK&#x27;,
+      { duration: 5000, }
+    );
+  }
+
+  /**
+   * Returns the full string given the status code.
+   * @param code Status code
+   */
+  returnStatusString(code: string) {
+    return getStatus(code);
+  }
+
+  /**
+   * Processes the booking and redirect user to choose an email template.
+   */
+  processAndEmail() {
+    this.updateStatus(&#x27;PRO&#x27;);
+    this.router.navigate([&#x27;/templates&#x27;], { state: { booking: this.bookingData } });
+  }
+
+  /**
+   * Revokes the approval.
+   */
+  revoke() {
+    this.updateStatus(&#x27;PEN&#x27;);
+    this.bookingData.booked_items.forEach((ele) &#x3D;&gt; {
+      this.bookingsService.updateBookedItem(ele.id,
+        {
+          booking_source: ele.booking_source.id,
+          item: ele.item.id,
+          quantity: ele.quantity,
+          status: &#x27;PEN&#x27;
+        }).subscribe();
+    });
+  }
+
+  /**
+   * Called when the logistics booked are loaned.
+   */
+  getLogistics() {
+    this.updateStatus(&#x27;GET&#x27;);
+  }
+
+  /**
+   * Called when the logistics are returned.
+   */
+  returnLogistics() {
+    this.updateStatus(&#x27;RET&#x27;);
+  }
+
+  /**
+   * Deletes the booking.
+   */
+  deleteBooking() {
+    this.bookingsService.deleteBooking(this.bookingData.source.id).subscribe();
+    this.dialogRef.close();
+    this.snackbar.open(&#x60;Booking #${this.bookingData.source.id} deleted&#x60;, &#x27;OK&#x27;, { duration: 5000 });
+  }
+
+  /**
+   * Opens a confirmation dialog to ensure that the user really wants to delete the booking.
+   */
+  confirmDelete() {
+    const dialogR &#x3D; this.dialog.open(ConfirmationDialogComponent,
+      { data: &#x60;booking #${this.bookingData.source.id}&#x60; });
+    dialogR.afterClosed().subscribe(
+      (result) &#x3D;&gt; {
+        if (result.event &#x3D;&#x3D;&#x3D; &#x27;yes&#x27;) {
+          this.deleteBooking();
+        }
+      });
+  }
+
+  /**
+   * Navigates the user to edit the booking.
+   */
+  editBooking() {
+    this.dialogRef.close();
+    this.router.navigate([&#x27;/edit&#x27;],
+      {
+        state:
+        {
+          source: this.bookingData.source,
+          booked_items: this.bookingData.booked_items,
+          edit: true
+        }
+      }
+    );
+  }
+}
+
+/**
+ * Component for the weekly summary table.
+ */
+@Component({
+  selector: &#x27;booking-summary-dialog&#x27;,
+  templateUrl: &#x27;./booking-summary-dialog.html&#x27;,
+})
+export class BookingSummaryDialog {
+
+  calendarOptions: CalendarOptions &#x3D; {
+    initialView: &#x27;dayGridWeek&#x27;,
+    height: &#x27;500px&#x27;,
+    locale: &#x27;en-sg&#x27;,
+    events: this.putEventsCurry(this.bookingsService),
+    // delay (ms) is here so that events can be rendered properly on initial load
+    rerenderDelay: 100
+  };
+
+  constructor(
+    public dialogRef: MatDialogRef&lt;BookingSummaryDialog&gt;,
+    public bookingsService: BookingsService
+  ) { }
+
+  /**
+   * Helper method to circumvent the problem that this.bookingService is undefined.
+   * @param bookingService BookingService object.
+   */
+  putEventsCurry(bookingService: BookingsService) {
+    return (args, successCallback, failureCallback) &#x3D;&gt;
+      this.putEvents(args, successCallback, failureCallback, bookingService);
+  }
+
+  /**
+   * Returns the events to be put in the calendar.
+   * @param args Current configuration of the calendar
+   * @param successCallback Callback method if the data retrieval is successful.
+   * @param failureCallback Callback method if the data retrieval is not successful.
+   * @param bookingsService BookingService object
+   */
+  putEvents(args: any, successCallback, failureCallback, bookingsService: BookingsService) {
+    const options &#x3D; { year: &#x27;numeric&#x27;, month: &#x27;numeric&#x27;, day: &#x27;numeric&#x27;, locale: &#x27;en-ca&#x27; }
+    const startDate &#x3D; formatDate(args.start, options);
+    const endDate &#x3D; formatDate(args.end - 86400000, options);
+    bookingsService.getBookingsByDateRange(startDate, endDate).subscribe(
+      (bookingData: Booking[]) &#x3D;&gt; {
+        successCallback(bookingData.map((element) &#x3D;&gt; {
+          return {
+            title: &#x60;#${element.id} - ${element.name}&#x60;,
+            start: element.loan_start_time,
+            end: new Date(new Date(element.loan_end_time).getTime() + 86400000)
+              .toISOString()
+              .substr(0, 10),
+            color: this.getColour(element.id)
+          };
+        }));
+      },
+      failureCallback
+    );
+  }
+
+  /**
+   * Returns a colour based on the booking id
+   * @param num Booking id.
+   */
+  getColour(num: number) {
+    switch (num % 4) {
+      case 0:
+        return &#x27;#3c78b5&#x27;;
+      case 1:
+        return &#x27;#54a8ff&#x27;;
+      case 2:
+        return &#x27;#10b336&#x27;;
+      case 3:
+        return &#x27;#0dd186&#x27;;
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container&quot; style&#x3D;&quot;padding-top:15px; padding-left: 30px; padding-right: 30px; padding-bottom: 20px;&quot;&gt;
+  &lt;h1 style&#x3D;&quot;padding-top:10px&quot;&gt;Booking List&lt;/h1&gt;
+  &lt;div class&#x3D;&quot;row&quot;&gt;
+    &lt;div class&#x3D;&quot;column-left&quot;&gt;
+      &lt;p&gt;Click each row for more details.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;column-right&quot;&gt;
+      &lt;button mat-raised-button style&#x3D;&quot;float: right;&quot; color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;openWeeklySummary()&quot;&gt;
+        &lt;mat-icon matPrefix&gt;date_range&lt;/mat-icon&gt;
+        Weekly Summary
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class&#x3D;&quot;row&quot; style&#x3D;&quot;margin-top: 10px;&quot;&gt;
+    &lt;div class&#x3D;&quot;column-left&quot;&gt;
+      &lt;h2 style&#x3D;&quot;color:#777777&quot;&gt;Filter&lt;/h2&gt;
+      &lt;form [formGroup]&#x3D;&quot;filterForm&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot;&gt;
+        &lt;mat-label&gt;Filter by name&lt;/mat-label&gt;
+        &lt;br&gt;
+        &lt;mat-form-field style&#x3D;&quot;margin-top:10px;&quot; appearance&#x3D;&quot;legacy&quot;&gt;
+          &lt;mat-label&gt;Name&lt;/mat-label&gt;
+          &lt;input matInput formControlName&#x3D;&quot;name&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;br&gt;
+        &lt;mat-label&gt;Filter by booking date&lt;/mat-label&gt;
+        &lt;br&gt;
+        &lt;mat-form-field style&#x3D;&quot;margin-top:10px;&quot; appearance&#x3D;&quot;legacy&quot;&gt;
+          &lt;mat-label&gt;From (dd/mm/yyyy)&lt;/mat-label&gt;
+          &lt;input matInput formControlName&#x3D;&quot;fromDate&quot; class&#x3D;&quot;form-control&quot; [matDatepicker]&#x3D;&quot;startpicker&quot;&gt;
+          &lt;mat-datepicker-toggle matSuffix [for]&#x3D;&quot;startpicker&quot;&gt;&lt;/mat-datepicker-toggle&gt;
+          &lt;mat-datepicker #startpicker&gt;&lt;/mat-datepicker&gt;
+          &lt;mat-error&gt;Please enter a valid date.&lt;/mat-error&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+        &lt;mat-form-field style&#x3D;&quot;margin-top:10px;&quot; appearance&#x3D;&quot;legacy&quot;&gt;
+          &lt;mat-label&gt;To (dd/mm/yyyy)&lt;/mat-label&gt;
+          &lt;input matInput formControlName&#x3D;&quot;toDate&quot; class&#x3D;&quot;form-control&quot; [matDatepicker]&#x3D;&quot;endpicker&quot;&gt;
+          &lt;mat-datepicker-toggle matSuffix [for]&#x3D;&quot;endpicker&quot;&gt;&lt;/mat-datepicker-toggle&gt;
+          &lt;mat-datepicker #endpicker&gt;&lt;/mat-datepicker&gt;
+          &lt;mat-error&gt;Please enter a valid date.&lt;/mat-error&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;br&gt;
+        &lt;mat-label&gt;Filter by booking status&lt;/mat-label&gt;
+        &lt;br&gt;
+        &lt;mat-form-field style&#x3D;&quot;margin-top:10px;&quot; appearance&#x3D;&quot;legacy&quot;&gt;
+          &lt;mat-label&gt;Status&lt;/mat-label&gt;
+          &lt;input matInput formControlName&#x3D;&quot;status&quot;&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+        &lt;button type&#x3D;&quot;submit&quot; mat-raised-button color&#x3D;&quot;primary&quot; [disabled]&#x3D;&quot;!filterForm.valid&quot;&gt;
+          &lt;mat-icon matPrefix&gt;search&lt;/mat-icon&gt;
+          Filter
+        &lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;column-right&quot;&gt;
+      &lt;mat-table [dataSource]&#x3D;&quot;bookings&quot; matSort class&#x3D;&quot;mat-elevation-z8&quot;&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;id&quot;&gt;
+          &lt;mat-header-cell *matHeaderCellDef [ngClass]&#x3D;&quot;&#x27;w-40&#x27;&quot; mat-sort-header&gt;S/N&lt;/mat-header-cell&gt;
+          &lt;mat-cell *matCellDef&#x3D;&quot;let booking&quot; [ngClass]&#x3D;&quot;&#x27;w-40&#x27;&quot;&gt;{{booking.id}}&lt;/mat-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;name&quot;&gt;
+          &lt;mat-header-cell *matHeaderCellDef mat-sort-header&gt;Name&lt;/mat-header-cell&gt;
+          &lt;mat-cell *matCellDef&#x3D;&quot;let booking&quot;&gt;{{booking.name}}&lt;/mat-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;time_booked&quot;&gt;
+          &lt;mat-header-cell *matHeaderCellDef mat-sort-header&gt;Time Booked&lt;/mat-header-cell&gt;
+          &lt;mat-cell *matCellDef&#x3D;&quot;let booking&quot;&gt;{{booking.time_booked|date: &#x27;d/M/yyyy&#x27;}}&lt;/mat-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;loan_start_time&quot;&gt;
+          &lt;mat-header-cell *matHeaderCellDef mat-sort-header&gt;Loan date&lt;/mat-header-cell&gt;
+          &lt;mat-cell *matCellDef&#x3D;&quot;let booking&quot;&gt;{{booking.loan_start_time|date: &#x27;d/M/yyyy&#x27;}}&lt;/mat-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;loan_end_time&quot;&gt;
+          &lt;mat-header-cell *matHeaderCellDef mat-sort-header&gt;Return date&lt;/mat-header-cell&gt;
+          &lt;mat-cell *matCellDef&#x3D;&quot;let booking&quot;&gt;{{booking.loan_end_time|date: &#x27;d/M/yyyy&#x27;}}&lt;/mat-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;deposit_left&quot;&gt;
+          &lt;mat-header-cell *matHeaderCellDef mat-sort-header&gt;Deposit Left (S$)&lt;/mat-header-cell&gt;
+          &lt;mat-cell *matCellDef&#x3D;&quot;let booking&quot;&gt;{{booking.deposit_left}}&lt;/mat-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;status&quot;&gt;
+          &lt;mat-header-cell *matHeaderCellDef [ngClass]&#x3D;&quot;&#x27;w-100&#x27;&quot; mat-sort-header&gt;Status&lt;/mat-header-cell&gt;
+          &lt;mat-cell *matCellDef&#x3D;&quot;let booking&quot; [ngClass]&#x3D;&quot;&#x27;w-100&#x27;&quot;&gt;{{returnStatusString(booking.status)}}&lt;/mat-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;mat-header-row *matHeaderRowDef&#x3D;&quot;tableColumns&quot;&gt;&lt;/mat-header-row&gt;
+        &lt;mat-row matRipple *matRowDef&#x3D;&quot;let booking; columns: tableColumns;&quot; (click)&#x3D;openDialog(booking)&gt;&lt;/mat-row&gt;
+      &lt;/mat-table&gt;
+      &lt;div class&#x3D;&quot;mat-elevation-z8&quot; style&#x3D;&quot;display: flex; background-color: white; flex-direction: row-reverse;&quot;&gt;
+        &lt;mat-form-field style&#x3D;&quot;padding-right: 1%; width: 7%;&quot;&gt;
+          &lt;input #page matInput type&#x3D;&quot;number&quot; min&#x3D;&quot;1&quot; [max]&#x3D;&quot;paginator.getNumberOfPages()&quot; [value]&#x3D;&quot;paginator.pageIndex + 1&quot; (change)&#x3D;&quot;onInputPageChange(page.value)&quot;&gt;
+        &lt;/mat-form-field&gt;
+        &lt;p style&#x3D;&quot;padding-right: 1%; margin: auto 0; font-size: 12px; color: #777777;&quot;&gt;Page: &lt;/p&gt;
+        &lt;mat-paginator [length]&#x3D;&quot;resultsLength&quot; [pageSizeOptions]&#x3D;&quot;[10, 25, 50]&quot; showFirstLastButtons&gt;&lt;/mat-paginator&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./booking-list.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.container {
+    background-image: url(&quot;../../assets/Blue.jpg&quot;);
+    background-position: right bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.w-40 {
+max-width: 40px;
+}
+
+.w-100 {
+max-width: 100px;
+}
+
+.column-left {
+float: left;
+width: 20%;
+}
+
+.column-right {
+float: right;
+width: 80%;
+}
+
+.row:after {
+content: &quot;&quot;;
+display: table;
+clear: both;
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container" style="padding-top:15px; padding-left: 30px; padding-right: 30px; padding-bottom: 20px;">  <h1 style="padding-top:10px">Booking List</h1>  <div class="row">    <div class="column-left">      <p>Click each row for more details.</p>    </div>    <div class="column-right">      <button mat-raised-button style="float: right;" color="primary" (click)="openWeeklySummary()">        <mat-icon matPrefix>date_range</mat-icon>        Weekly Summary      </button>    </div>  </div>  <div class="row" style="margin-top: 10px;">    <div class="column-left">      <h2 style="color:#777777">Filter</h2>      <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">        <mat-label>Filter by name</mat-label>        <br>        <mat-form-field style="margin-top:10px;" appearance="legacy">          <mat-label>Name</mat-label>          <input matInput formControlName="name">        </mat-form-field>        <br>        <mat-label>Filter by booking date</mat-label>        <br>        <mat-form-field style="margin-top:10px;" appearance="legacy">          <mat-label>From (dd/mm/yyyy)</mat-label>          <input matInput formControlName="fromDate" class="form-control" [matDatepicker]="startpicker">          <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>          <mat-datepicker #startpicker></mat-datepicker>          <mat-error>Please enter a valid date.</mat-error>        </mat-form-field>        <br>        <mat-form-field style="margin-top:10px;" appearance="legacy">          <mat-label>To (dd/mm/yyyy)</mat-label>          <input matInput formControlName="toDate" class="form-control" [matDatepicker]="endpicker">          <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>          <mat-datepicker #endpicker></mat-datepicker>          <mat-error>Please enter a valid date.</mat-error>        </mat-form-field>        <br>        <mat-label>Filter by booking status</mat-label>        <br>        <mat-form-field style="margin-top:10px;" appearance="legacy">          <mat-label>Status</mat-label>          <input matInput formControlName="status">        </mat-form-field>        <br>        <button type="submit" mat-raised-button color="primary" [disabled]="!filterForm.valid">          <mat-icon matPrefix>search</mat-icon>          Filter        </button>      </form>    </div>    <div class="column-right">      <mat-table [dataSource]="bookings" matSort class="mat-elevation-z8">        <ng-container matColumnDef="id">          <mat-header-cell *matHeaderCellDef [ngClass]="\'w-40\'" mat-sort-header>S/N</mat-header-cell>          <mat-cell *matCellDef="let booking" [ngClass]="\'w-40\'">{{booking.id}}</mat-cell>        </ng-container>        <ng-container matColumnDef="name">          <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>          <mat-cell *matCellDef="let booking">{{booking.name}}</mat-cell>        </ng-container>        <ng-container matColumnDef="time_booked">          <mat-header-cell *matHeaderCellDef mat-sort-header>Time Booked</mat-header-cell>          <mat-cell *matCellDef="let booking">{{booking.time_booked|date: \'d/M/yyyy\'}}</mat-cell>        </ng-container>        <ng-container matColumnDef="loan_start_time">          <mat-header-cell *matHeaderCellDef mat-sort-header>Loan date</mat-header-cell>          <mat-cell *matCellDef="let booking">{{booking.loan_start_time|date: \'d/M/yyyy\'}}</mat-cell>        </ng-container>        <ng-container matColumnDef="loan_end_time">          <mat-header-cell *matHeaderCellDef mat-sort-header>Return date</mat-header-cell>          <mat-cell *matCellDef="let booking">{{booking.loan_end_time|date: \'d/M/yyyy\'}}</mat-cell>        </ng-container>        <ng-container matColumnDef="deposit_left">          <mat-header-cell *matHeaderCellDef mat-sort-header>Deposit Left (S$)</mat-header-cell>          <mat-cell *matCellDef="let booking">{{booking.deposit_left}}</mat-cell>        </ng-container>        <ng-container matColumnDef="status">          <mat-header-cell *matHeaderCellDef [ngClass]="\'w-100\'" mat-sort-header>Status</mat-header-cell>          <mat-cell *matCellDef="let booking" [ngClass]="\'w-100\'">{{returnStatusString(booking.status)}}</mat-cell>        </ng-container>        <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>        <mat-row matRipple *matRowDef="let booking; columns: tableColumns;" (click)=openDialog(booking)></mat-row>      </mat-table>      <div class="mat-elevation-z8" style="display: flex; background-color: white; flex-direction: row-reverse;">        <mat-form-field style="padding-right: 1%; width: 7%;">          <input #page matInput type="number" min="1" [max]="paginator.getNumberOfPages()" [value]="paginator.pageIndex + 1" (change)="onInputPageChange(page.value)">        </mat-form-field>        <p style="padding-right: 1%; margin: auto 0; font-size: 12px; color: #777777;">Page: </p>        <mat-paginator [length]="resultsLength" [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BookingConfirmationComponent', 'selector': 'app-booking-confirmation'},{'name': 'BookingConfirmComponent', 'selector': 'app-booking-confirm'},{'name': 'BookingDetailsComponent', 'selector': 'app-booking-details'},{'name': 'BookingListComponent', 'selector': 'booking-list'},{'name': 'BookingListDialog', 'selector': 'booking-list-dialog'},{'name': 'BookingSummaryDialog', 'selector': 'booking-summary-dialog'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'ConfirmationTemplateComponent', 'selector': 'app-confirmation-template'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'ItemDetailsComponent', 'selector': 'app-item-details'},{'name': 'ItemListComponent', 'selector': 'item-list'},{'name': 'ItemListDialog', 'selector': 'item-list-dialog'},{'name': 'LoginFormComponent', 'selector': 'app-login-form'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MailSenderComponent', 'selector': 'app-mail-sender'},{'name': 'NotFoundComponent', 'selector': 'not-found'},{'name': 'TemplateDetailDialog', 'selector': 'app-template-detail-dialog'},{'name': 'TemplateListComponent', 'selector': 'app-template-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'BookingListComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'BookingListComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

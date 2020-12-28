@@ -16,6 +16,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ComponentBridgingService } from '../model-service/componentbridging.service';
 
+/**
+ * Main component for the booking form.
+ */
 @Component({
   selector: 'app-booking-details',
   templateUrl: './booking-details.component.html',
@@ -48,6 +51,9 @@ export class BookingDetailsComponent implements OnInit {
     private router: Router
   ) { this.itemsService.getItemsList().subscribe((data) => this.itemArray = data); }
 
+  /**
+   * Initializes the booking form based on whether the user is editing a booking or creating a new booking.
+   */
   ngOnInit() {
     this.editMode = history.state.edit ? true : false;
 
@@ -71,18 +77,33 @@ export class BookingDetailsComponent implements OnInit {
     this.checkout();
   }
 
+  /**
+   * Checks if the date is of correct format.
+   * @param control Date input.
+   */
   dateCheck(control: AbstractControl): any {
     return moment(control.value).isValid() ? null : { date: true };
   }
 
+  /**
+   * Checks if the phone number is of correct format.
+   * @param control Phone number input.
+   */
   phoneCheck(control: AbstractControl): any {
     return new RegExp('(8[1-8][0-9]{6}|9[0-8][0-9]{6})').test(control.value) ? null : { phone: true };
   }
 
+  /**
+   * Checks if the email follows the NUS email format.
+   * @param control Email input.
+   */
   emailCheck(control: AbstractControl): any {
     return new RegExp('e[0-9]{7}@u\.nus\.edu').test(control.value) ? null : { email: true };
   }
 
+  /**
+   * Returns a new row.
+   */
   newItemInput(): FormGroup {
     return this.formBuilder.group({
       item: [2, [Validators.required]],
@@ -90,7 +111,10 @@ export class BookingDetailsComponent implements OnInit {
     });
   }
 
-  // apparently history.state.booked_items is an object, so have to do this...
+  /**
+   * Parses the booking data from <code>history.state.source</code> into an array.
+   * @param data Booking data.
+   */
   initialItemInput(data: any) {
     const result = [];
     data.forEach((element: BookedItem) => {
@@ -99,6 +123,10 @@ export class BookingDetailsComponent implements OnInit {
     return result;
   }
 
+  /**
+   * Returns filled rows when the user is editing a booking.
+   * @param bookedItem Initial booked items.
+   */
   createItemInputWithData(bookedItem: BookedItem): FormGroup {
     return this.formBuilder.group({
       item: [bookedItem.item.id, Validators.required],
@@ -106,41 +134,68 @@ export class BookingDetailsComponent implements OnInit {
     });
   }
 
+  /**
+   * Returns the list of items to be booked.
+   */
   getItemInputForm(): FormArray {
     return this.itemsForm.get('items') as FormArray;
   }
 
+  /**
+   * Adds a new row to the form when the user presses add row button.
+   */
   addBlankItem() {
     this.getItemInputForm().push(this.newItemInput());
   }
 
+  /**
+   * Removes the i-th row when the user presses the delete button.
+   * @param i Row number.
+   */
   removeItemInput(i: number) {
     this.getItemInputForm().removeAt(i);
   }
 
+  /**
+   * Updates the current form input.
+   */
   checkout() {
     this.inputGroup1 = this.detailsForm.value;
     this.inputGroup2 = this.itemsForm.value;
   }
 
+  /**
+   * Returns the item given the item id.
+   * @param id Item id.
+   */
   returnItemGivenId(id: number) {
     return this.itemArray.filter(element => element.id === id)[0];
   }
 
+  /**
+   * Returns the total deposit payable.
+   */
   getTotalDeposit() {
     return this.itemArray ? Math.min(200, this.inputGroup2.items.reduce((acc: number, currentItem: any) =>
       acc + this.returnItemGivenId(currentItem.item).deposit * currentItem.quantity
       , 0)) : 0;
   }
 
-  /* this function essentially allows user to navigate the stepper back and forth
-   while at the same time updating the form contents for use in the checkout page.*/
+  /**
+   * Helper method to allow user to navigate the stepper back and forth 
+   * while at the same time updating the form contents for use in the checkout page
+   * @param event Page change event
+   */
   selectionChange(event) {
     if (event.selectedIndex === 2) {
       this.checkout();
     }
   }
 
+  /**
+   * Helper method to check if there are duplicate items in the form.
+   * @param formArray Item input form.
+   */
   checkForRepeat(formArray: FormArray) {
     const itemDict: Dictionary = {};
     formArray.value.forEach((ele) => {
@@ -157,16 +212,24 @@ export class BookingDetailsComponent implements OnInit {
     }
   }
 
-  // check if the form returns duplicate error
+  /**
+   * Checks if the form returns duplicate error.
+   */
   checkForErrors() {
     const controlErrors: ValidationErrors = this.itemsForm.get('items').errors;
     return controlErrors ? controlErrors : { duplicate: false, exceed: false };
   }
 
+  /**
+   * Prints the current page.
+   */
   print() {
     window.print();
   }
 
+  /**
+   * Parses the data to be sent to the backend.
+   */
   onSubmit() {
     this.service.publish('progressBarOn');
     const bookingDataCopy = { ...this.inputGroup1 };
@@ -205,6 +268,9 @@ export class BookingDetailsComponent implements OnInit {
   }
 }
 
+/**
+ * After the user submits a booking, the user will be redirected to a page saying that their booking request has been received.
+ */
 @Component({
   selector: 'app-booking-confirm',
   templateUrl: './booking-confirm.component.html',
@@ -217,12 +283,18 @@ export class BookingConfirmComponent implements OnInit {
     private confirmationTemplatesService: ConfirmationTemplatesService
   ) { }
 
+  /**
+   * If the form is not submitted, the user will be redirected to the page.
+   */
   ngOnInit(): void {
     if (!history.state.submitted) {
       this.router.navigate(['/edit']);
     }
   }
 
+  /**
+   * Resends the confirmation email.
+   */
   resend(): void {
     this.confirmationTemplatesService.resendConfirmation({
       id: history.state.id,
@@ -235,8 +307,14 @@ export class BookingConfirmComponent implements OnInit {
   }
 }
 
-// check for cap on items (it's kinda complicated since it needs the data from the db directly)
+/**
+ * Helper class to check if the number of items booked exceeds the number available in the database.
+ */
 export class ExceedAmountValidator {
+  /**
+   * Returns a method to carry out the validation.
+   * @param itemsService <code>ItemsService</code> object.
+   */
   static createExceedAmountValidator(itemsService: ItemsService): AsyncValidatorFn {
     return (formArray: FormArray): Observable<ValidationErrors> => {
       return itemsService.getItemsList().pipe(map((items) => {

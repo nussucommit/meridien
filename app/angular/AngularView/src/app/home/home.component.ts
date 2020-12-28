@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { IssueService } from '../model-service/issue/issue.service';
-import { FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -34,14 +34,10 @@ export class HomeComponent implements OnInit {
     return new RegExp('e[0-9]{7}@u\.nus\.edu').test(control.value) ? null : { email: true };
   }
 
-  goToBottom(){
-    window.scrollTo(0, document.body.scrollHeight);
-  }
-
   onSubmit() {
     const data = this.issueForm.value;
-    console.log(data);
     this.issueService.createIssue(data).subscribe();
     this.snackbar.open('New issue submitted', 'OK', { duration: 5000 });
+    this.issueForm.reset();
   }
 }

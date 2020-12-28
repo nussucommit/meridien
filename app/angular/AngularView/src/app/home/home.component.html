@@ -107,7 +107,7 @@
                 <p>Thank you for making our website better!</p>
             </div>
               
-            <form [formGroup]="issueForm" required>
+            <form #myForm="ngForm" (ngSubmit)="myForm.resetForm()" [formGroup]="issueForm" required>
                 <mat-form-field id="name">
                     <mat-label>Name</mat-label>
                     <input matInput class="form-control" formControlName="name" required>

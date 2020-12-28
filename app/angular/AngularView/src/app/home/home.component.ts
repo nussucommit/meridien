@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { IssueService } from '../model-service/issue/issue.service';
-import { FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, NgForm} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({

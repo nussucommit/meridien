@@ -17,7 +17,6 @@ import sys
 sys.path.append('../')
 from meridien import views_template
 
-# Create your views here.
 @api_view(['POST'])
 @permission_classes([AllowAny])
 @csrf_exempt

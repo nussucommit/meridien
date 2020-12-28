@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { IssueService } from '../model-service/issue/issue.service';
-import { FormBuilder, FormGroup, Validators, AbstractControl, NgForm} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -36,8 +36,8 @@ export class HomeComponent implements OnInit {
 
   onSubmit() {
     const data = this.issueForm.value;
-    console.log(data);
     this.issueService.createIssue(data).subscribe();
     this.snackbar.open('New issue submitted', 'OK', { duration: 5000 });
+    this.issueForm.reset();
   }
 }

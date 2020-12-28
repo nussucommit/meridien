@@ -107,7 +107,7 @@
                 <p>Thank you for making our website better!</p>
             </div>
               
-            <form #issueForm="ngForm" (ngSubmit)="issueForm.resetForm()" [formGroup]="issueForm" required>
+            <form [formGroup]="issueForm">
                 <mat-form-field id="name">
                     <mat-label>Name</mat-label>
                     <input matInput class="form-control" formControlName="name" required>
@@ -121,7 +121,7 @@
 
                 <mat-form-field>
                     <mat-label>Issue detail</mat-label>
-                    <textarea matInput class="form-control" formControlName="detail" id="#issue_detail" required></textarea>
+                    <textarea matInput class="form-control" formControlName="detail" required></textarea>
                 </mat-form-field>
 
                 <button mat-raised-button color="primary" (click)="onSubmit()" type="submit" [disabled]="!issueForm.valid">

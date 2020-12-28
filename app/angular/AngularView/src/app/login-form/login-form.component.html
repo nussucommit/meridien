@@ -15,9 +15,9 @@
     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
   </mat-form-field>
 
-  <br>
-
   <button mat-raised-button class="full-width" color="primary" type="submit" (click)="onSubmit()">Login</button>
+  <br>
+  <p style="color:black;">{{errorString}}</p>
 
 </form>
 </mat-card>

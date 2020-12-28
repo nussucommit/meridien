@@ -24,5 +24,6 @@ urlpatterns = [
     path('api/', include('users.urls')),
     path('api/', include('mails.urls')),
     path('api/', include('emailtemplates.urls')),
-    path('api/', include('confirmationemails.urls'))
+    path('api/', include('confirmationemails.urls')),
+    path('api/', include('issues.urls'))
 ]

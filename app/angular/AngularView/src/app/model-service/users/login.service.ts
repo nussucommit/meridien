@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { LoginDetail } from './login-details';
 import { User } from './users';
 import { Router } from '@angular/router';
+import { ComponentBridgingService } from '../componentbridging.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,8 @@ export class LoginService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private bridgingService: ComponentBridgingService
   ) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
@@ -36,7 +38,7 @@ export class LoginService {
           this.storeUser(user);
           return true;
         }),
-        catchError(this.handleError)
+        catchError((error) => this.handleError(error))
       );
   }
 
@@ -72,7 +74,7 @@ export class LoginService {
           console.log(this.currentUserValue);
           return true;
         }),
-        catchError(this.handleError)
+        catchError((error) => this.handleError(error))
       );
   }
 
@@ -104,12 +106,18 @@ export class LoginService {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
+      this.bridgingService.publish('error');
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+      // console.error(
+      //   `Backend returned code ${error.status}, ` +
+      //   `body was: ${error.error}`);
+      if (error.status === 400 || error.status === 401) {
+          this.bridgingService.publish('authfail');
+      } else {
+          this.bridgingService.publish('error');
+      }
     }
     // return an observable with a user-facing error message
     return throwError(

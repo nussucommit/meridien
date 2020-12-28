@@ -34,10 +34,6 @@ export class HomeComponent implements OnInit {
     return new RegExp('e[0-9]{7}@u\.nus\.edu').test(control.value) ? null : { email: true };
   }
 
-  goToBottom(){
-    window.scrollTo(0, document.body.scrollHeight);
-  }
-
   onSubmit() {
     const data = this.issueForm.value;
     console.log(data);

@@ -22,7 +22,9 @@ import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
-
+/**
+ * Component for the page displaying the list of items.
+ */
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'item-list',
@@ -53,6 +55,9 @@ export class ItemListComponent implements OnInit, OnDestroy {
     public lc: LogoutComponent
   ) { }
 
+  /**
+   * Initializes the data, table configuration and the filter form.
+   */
   ngOnInit() {
     this.reloadData();
     this.items.paginator = this.paginator;
@@ -70,6 +75,9 @@ export class ItemListComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  /**
+   * Purges all items.
+   */
   deleteItems() {
     this.itemsService.deleteAll()
       .subscribe(
@@ -80,6 +88,9 @@ export class ItemListComponent implements OnInit, OnDestroy {
         error => console.log('ERROR: ' + error));
   }
 
+  /**
+   * Reloads the data.
+   */
   reloadData() {
     this.itemsService.getItemsList()
       .subscribe(
@@ -88,15 +99,27 @@ export class ItemListComponent implements OnInit, OnDestroy {
         });
   }
 
+  /**
+   * Set the filter parameters.
+   */
   onSubmit() {
     this.items.filterPredicate = this.itemFilterPredicate;
     this.items.filter = this.filterForm.value;
   }
 
+  /**
+   * Updates the page index on user input.
+   * @param pageNumber Page number.
+   */
   onInputPageChange(pageNumber: number) {
     this.paginator.pageIndex = Math.min(pageNumber - 1, this.paginator.getNumberOfPages() - 1);
   }
 
+  /**
+   * Method to filter the data.
+   * @param data List of items.
+   * @param filter Filter parameters.
+   */
   itemFilterPredicate(data: Items, filter: any): boolean {
     for (const value in filter) {
       if (!data[value].toLowerCase().includes(filter[value].toLowerCase())) {
@@ -106,6 +129,10 @@ export class ItemListComponent implements OnInit, OnDestroy {
     return true;
   }
 
+  /**
+   * Opens a dialog with item description and availability when a table row is clicked.
+   * @param row Table row.
+   */
   openDialog(row: { [x: string]: any; }) {
     this.bookingsService.getBookersbyBookedItem(row.id)
       .subscribe(
@@ -119,6 +146,9 @@ export class ItemListComponent implements OnInit, OnDestroy {
       );
   }
 
+  /**
+   * Opens a form to allow users to create an item.
+   */
   openCreateForm() {
     if (!this.formDialogOpened) {
       this.formDialogOpened = true;
@@ -131,6 +161,9 @@ export class ItemListComponent implements OnInit, OnDestroy {
   }
 }
 
+/**
+ * Component for the item detail dialog.
+ */
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'item-list-dialog',
@@ -140,6 +173,9 @@ export class ItemListComponent implements OnInit, OnDestroy {
 export class ItemListDialog implements OnInit {
   calendarEvents = [];
 
+  /**
+   * Initializes the calendar component.
+   */
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridWeek',
     locale: 'en-au',
@@ -167,6 +203,9 @@ export class ItemListDialog implements OnInit {
     public lc: LogoutComponent
   ) { }
 
+  /**
+   * Initializes the bookings for each item.
+   */
   ngOnInit() {
     this.bookers.data = this.itemData.people;
     this.bookers.paginator = this.paginator;
@@ -185,6 +224,10 @@ export class ItemListDialog implements OnInit {
     this.calendarOptions.events = this.calendarEvents;
   }
 
+  /**
+   * Opens a form filled with item data so that users can edit the item details.
+   * After the dialog is closed, a message will be broadcasted to reload the table.
+   */
   openEditForm() {
     this.dialogRef.close();
     if (!this.editFormOpened) {
@@ -197,6 +240,9 @@ export class ItemListDialog implements OnInit {
     }
   }
 
+  /**
+   * Deletes the item.
+   */
   deleteItem() {
     this.dialogRef.close();
     this.itemsService.deleteItem(this.itemData.item.id).subscribe(() => {
@@ -205,6 +251,9 @@ export class ItemListDialog implements OnInit {
     });
   }
 
+  /**
+   * Opens a confirmation dialog when the user decides to delete the item.
+   */
   confirmDelete() {
     const dialogR = this.dialog.open(ConfirmationDialogComponent, { data: `item # ${this.itemData.item.id}` });
     dialogR.afterClosed().subscribe(

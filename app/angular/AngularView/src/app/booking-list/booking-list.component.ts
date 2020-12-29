@@ -350,6 +350,9 @@ export class BookingListDialog {
 })
 export class BookingSummaryDialog {
 
+  /**
+   * Initializes the calendar component.
+   */
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridWeek',
     height: '500px',

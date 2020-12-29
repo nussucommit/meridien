@@ -64,6 +64,13 @@
     <code>src/app/item-details/item-details.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component for the item form.</p>
+
+    </p>
 
 
     <p class="comment">
@@ -187,7 +194,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/item-details/item-details.component.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/item-details/item-details.component.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -304,14 +311,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/app/item-details/item-details.component.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/app/item-details/item-details.component.ts:48</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Returns data based on the user&#39;s intention on whether to edit or create an item</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>    <code>&quot;Create Item&quot; | &quot;Edit Item&quot;</code>
@@ -343,14 +352,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/app/item-details/item-details.component.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/app/item-details/item-details.component.ts:32</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Initializes the item form.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -382,14 +393,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/app/item-details/item-details.component.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/app/item-details/item-details.component.ts:59</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Process the user input once the submit button is clicked.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -426,7 +439,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/item-details/item-details.component.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/item-details/item-details.component.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -453,7 +466,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/item-details/item-details.component.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/item-details/item-details.component.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -490,7 +503,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/item-details/item-details.component.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/item-details/item-details.component.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -517,7 +530,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/item-details/item-details.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/item-details/item-details.component.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -536,6 +549,9 @@ import { ItemsService } from &#x27;../model-service/items/items.service&#x27;;
 import { FormBuilder, FormGroup, Validators } from &#x27;@angular/forms&#x27;;
 import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
 
+/**
+ * Component for the item form.
+ */
 @Component({
   selector: &#x27;app-item-details&#x27;,
   templateUrl: &#x27;./item-details.component.html&#x27;,
@@ -555,6 +571,9 @@ export class ItemDetailsComponent implements OnInit {
     private snackbar: MatSnackBar
   ) { }
 
+  /**
+   * Initializes the item form.
+   */
   ngOnInit(): void {
     this.item &#x3D; this.itemData.item;
 
@@ -568,6 +587,9 @@ export class ItemDetailsComponent implements OnInit {
     });
   }
 
+  /**
+   * Returns data based on the user&#x27;s intention on whether to edit or create an item
+   */
   getDialogTitle() {
     if (this.itemData.mode &#x3D;&#x3D;&#x3D; &#x27;create&#x27;) {
       return &#x27;Create Item&#x27;;
@@ -576,6 +598,9 @@ export class ItemDetailsComponent implements OnInit {
     }
   }
 
+  /**
+   * Process the user input once the submit button is clicked.
+   */
   onSubmit() {
     this.dialogRef.close();
     const data &#x3D; this.itemForm.value;

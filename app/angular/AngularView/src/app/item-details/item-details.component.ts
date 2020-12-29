@@ -4,6 +4,9 @@ import { ItemsService } from '../model-service/items/items.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+/**
+ * Component for the item form.
+ */
 @Component({
   selector: 'app-item-details',
   templateUrl: './item-details.component.html',
@@ -23,6 +26,9 @@ export class ItemDetailsComponent implements OnInit {
     private snackbar: MatSnackBar
   ) { }
 
+  /**
+   * Initializes the item form.
+   */
   ngOnInit(): void {
     this.item = this.itemData.item;
 
@@ -36,6 +42,9 @@ export class ItemDetailsComponent implements OnInit {
     });
   }
 
+  /**
+   * Returns data based on the user's intention on whether to edit or create an item
+   */
   getDialogTitle() {
     if (this.itemData.mode === 'create') {
       return 'Create Item';
@@ -44,6 +53,9 @@ export class ItemDetailsComponent implements OnInit {
     }
   }
 
+  /**
+   * Process the user input once the submit button is clicked.
+   */
   onSubmit() {
     this.dialogRef.close();
     const data = this.itemForm.value;

@@ -64,6 +64,13 @@
     <code>src/app/logout/logout.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component for the logout feature.</p>
+
+    </p>
 
 
     <p class="comment">
@@ -169,17 +176,19 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(loginService: <a href="../injectables/LoginService.html">LoginService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(loginService: <a href="../injectables/LoginService.html">LoginService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/logout/logout.component.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/logout/logout.component.ts:14</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Changes the status of user to logout.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -188,6 +197,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -202,18 +212,10 @@
                                                             No
                                                     </td>
                                                     
-                                                </tr>
-                                                <tr>
-                                                        <td>router</td>
-                                                  
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                                <code><p>LoginService object.</p>
+</code>
                                                         </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -255,14 +257,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/app/logout/logout.component.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/app/logout/logout.component.ts:36</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Logs user out.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -294,8 +298,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/app/logout/logout.component.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/app/logout/logout.component.ts:29</a></div>
                 </td>
             </tr>
 
@@ -338,7 +342,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/logout/logout.component.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/logout/logout.component.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -353,9 +357,11 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { LoginService } from &#x27;./../model-service/users/login.service&#x27;;
 import { Component, OnInit, OnChanges } from &#x27;@angular/core&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
 import { BehaviorSubject } from &#x27;rxjs&#x27;;
 
+/**
+ * Component for the logout feature.
+ */
 @Component({
   selector: &#x27;app-logout&#x27;,
   templateUrl: &#x27;./logout.component.html&#x27;,
@@ -364,9 +370,12 @@ import { BehaviorSubject } from &#x27;rxjs&#x27;;
 export class LogoutComponent implements OnInit {
   public loginStatus: BehaviorSubject&lt;boolean&gt;;
 
+  /**
+   * Changes the status of user to logout.
+   * @param loginService LoginService object.
+   */
   constructor(
     private loginService: LoginService,
-    private router: Router
   ) {
     this.loginStatus &#x3D; new BehaviorSubject&lt;boolean&gt;(false);
     this.loginService.observableUser.subscribe({
@@ -378,6 +387,9 @@ export class LogoutComponent implements OnInit {
 
   }
 
+  /**
+   * Logs user out.
+   */
   logout() {
     this.loginService.logout();
   }

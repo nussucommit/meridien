@@ -9,6 +9,6 @@ export class Booking{
     loan_start_time: Date;
     loan_end_time: Date;
     deposit_left: number;
-    amount_paid: number;
+    deposit_paid: boolean;
     status: string;
 }

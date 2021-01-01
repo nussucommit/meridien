@@ -235,7 +235,7 @@ export class BookingListDialog {
     bookingDataCopy.status = status;
     this.bookingData.source.status = status;
     if (status === 'GET') {
-      bookingDataCopy.amount_paid = bookingDataCopy.deposit_left;
+      bookingDataCopy.deposit_paid = true;
     }
     this.bookingsService.updateBooking(this.bookingData.source.id, bookingDataCopy).subscribe();
     this.dialogRef.close();

@@ -1,8 +1,10 @@
 import { LoginService } from './../model-service/users/login.service';
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
+/**
+ * Component for the logout feature.
+ */
 @Component({
   selector: 'app-logout',
   templateUrl: './logout.component.html',
@@ -11,9 +13,12 @@ import { BehaviorSubject } from 'rxjs';
 export class LogoutComponent implements OnInit {
   public loginStatus: BehaviorSubject<boolean>;
 
+  /**
+   * Changes the status of user to logout.
+   * @param loginService LoginService object.
+   */
   constructor(
     private loginService: LoginService,
-    private router: Router
   ) {
     this.loginStatus = new BehaviorSubject<boolean>(false);
     this.loginService.observableUser.subscribe({
@@ -25,6 +30,9 @@ export class LogoutComponent implements OnInit {
 
   }
 
+  /**
+   * Logs user out.
+   */
   logout() {
     this.loginService.logout();
   }

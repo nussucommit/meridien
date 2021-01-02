@@ -1,0 +1,1325 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>angular-view documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">angular-view documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>TemplateDetailDialog</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/template-list/template-detail.dialog.ts</code>
+</p>
+
+
+
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-template-detail-dialog</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./template-detail.dialog.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#apiKey">apiKey</a>
+                            </li>
+                            <li>
+                                <a href="#bookedItems">bookedItems</a>
+                            </li>
+                            <li>
+                                <a href="#booking">booking</a>
+                            </li>
+                            <li>
+                                <a href="#checkBox">checkBox</a>
+                            </li>
+                            <li>
+                                <a href="#checkedItems">checkedItems</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#dialog">dialog</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#dialogRef">dialogRef</a>
+                            </li>
+                            <li>
+                                <a href="#isEdit">isEdit</a>
+                            </li>
+                            <li>
+                                <a href="#isNew">isNew</a>
+                            </li>
+                            <li>
+                                <a href="#isSendingEmail">isSendingEmail</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#params">params</a>
+                            </li>
+                            <li>
+                                <a href="#template">template</a>
+                            </li>
+                            <li>
+                                <a href="#templateParams">templateParams</a>
+                            </li>
+                            <li>
+                                <a href="#updateForm">updateForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#closeDialog">closeDialog</a>
+                            </li>
+                            <li>
+                                <a href="#confirmDelete">confirmDelete</a>
+                            </li>
+                            <li>
+                                <a href="#deleteTemplate">deleteTemplate</a>
+                            </li>
+                            <li>
+                                <a href="#getFinalDeposit">getFinalDeposit</a>
+                            </li>
+                            <li>
+                                <a href="#send_data">send_data</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(dialog: MatDialog, emailTemplatesService: <a href="../injectables/EmailTemplatesService.html">EmailTemplatesService</a>, bookingService: <a href="../injectables/BookingsService.html">BookingsService</a>, dialogRef: <a href="../components/TemplateDetailDialog.html">MatDialogRef<TemplateDetailDialog></a>, params: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, snackbar: MatSnackBar, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/template-list/template-detail.dialog.ts:33</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>emailTemplatesService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/EmailTemplatesService.html" target="_self" >EmailTemplatesService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>bookingService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BookingsService.html" target="_self" >BookingsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialogRef</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../components/TemplateDetailDialog.html" target="_self" >MatDialogRef&lt;TemplateDetailDialog&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>params</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>formBuilder</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>snackbar</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeDialog"></a>
+                    <span class="name">
+                        <b>
+                            closeDialog
+                        </b>
+                        <a href="#closeDialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeDialog()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="109"
+                            class="link-to-prism">src/app/template-list/template-detail.dialog.ts:109</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmDelete"></a>
+                    <span class="name">
+                        <b>
+                            confirmDelete
+                        </b>
+                        <a href="#confirmDelete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>confirmDelete()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="120"
+                            class="link-to-prism">src/app/template-list/template-detail.dialog.ts:120</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteTemplate"></a>
+                    <span class="name">
+                        <b>
+                            deleteTemplate
+                        </b>
+                        <a href="#deleteTemplate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteTemplate()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="113"
+                            class="link-to-prism">src/app/template-list/template-detail.dialog.ts:113</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFinalDeposit"></a>
+                    <span class="name">
+                        <b>
+                            getFinalDeposit
+                        </b>
+                        <a href="#getFinalDeposit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getFinalDeposit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">src/app/template-list/template-detail.dialog.ts:105</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="send_data"></a>
+                    <span class="name">
+                        <b>
+                            send_data
+                        </b>
+                        <a href="#send_data"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>send_data(data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/app/template-list/template-detail.dialog.ts:75</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="apiKey"></a>
+                        <span class="name">
+                            <b>
+                            apiKey</b>
+                            <a href="#apiKey"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>apiKey</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/template-list/template-detail.dialog.ts:33</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="bookedItems"></a>
+                        <span class="name">
+                            <b>
+                            bookedItems</b>
+                            <a href="#bookedItems"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/BookedItem.html" target="_self" >BookedItem[]</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/template-list/template-detail.dialog.ts:31</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="booking"></a>
+                        <span class="name">
+                            <b>
+                            booking</b>
+                            <a href="#booking"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/Booking.html" target="_self" >Booking</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/template-list/template-detail.dialog.ts:25</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="checkBox"></a>
+                        <span class="name">
+                            <b>
+                            checkBox</b>
+                            <a href="#checkBox"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>QueryList&lt;any&gt;</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChildren(&#x27;checkBox&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/template-list/template-detail.dialog.ts:29</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="checkedItems"></a>
+                        <span class="name">
+                            <b>
+                            checkedItems</b>
+                            <a href="#checkedItems"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/template-list/template-detail.dialog.ts:30</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dialog"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            dialog</b>
+                            <a href="#dialog"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>MatDialog</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/template-list/template-detail.dialog.ts:36</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dialogRef"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            dialogRef</b>
+                            <a href="#dialogRef"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../components/TemplateDetailDialog.html" target="_self" >MatDialogRef&lt;TemplateDetailDialog&gt;</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/template-list/template-detail.dialog.ts:39</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isEdit"></a>
+                        <span class="name">
+                            <b>
+                            isEdit</b>
+                            <a href="#isEdit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/template-list/template-detail.dialog.ts:23</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isNew"></a>
+                        <span class="name">
+                            <b>
+                            isNew</b>
+                            <a href="#isNew"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/template-list/template-detail.dialog.ts:22</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isSendingEmail"></a>
+                        <span class="name">
+                            <b>
+                            isSendingEmail</b>
+                            <a href="#isSendingEmail"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/template-list/template-detail.dialog.ts:24</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="params"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            params</b>
+                            <a href="#params"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Inject(MAT_DIALOG_DATA)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/template-list/template-detail.dialog.ts:40</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="template"></a>
+                        <span class="name">
+                            <b>
+                            template</b>
+                            <a href="#template"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/EmailTemplate.html" target="_self" >EmailTemplate</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/template-list/template-detail.dialog.ts:26</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="templateParams"></a>
+                        <span class="name">
+                            <b>
+                            templateParams</b>
+                            <a href="#templateParams"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/template-list/template-detail.dialog.ts:27</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updateForm"></a>
+                        <span class="name">
+                            <b>
+                            updateForm</b>
+                            <a href="#updateForm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/template-list/template-detail.dialog.ts:20</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Booking } from &#x27;./../model-service/bookings/bookings&#x27;;
+import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from &#x27;@angular/material/dialog&#x27;;
+import { EmailTemplatesService } from &#x27;./../model-service/emailtemplates/emailtemplates.service&#x27;;
+import { FormGroup, FormBuilder, Validators } from &#x27;@angular/forms&#x27;;
+import { EmailTemplate } from &#x27;./../model-service/emailtemplates/emailtemplates&#x27;;
+import { Component, Inject, ViewChildren, QueryList } from &#x27;@angular/core&#x27;;
+import { apiKey } from &#x27;../settings&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { BookedItem } from &#x27;../model-service/items/items&#x27;;
+import { BookingsService } from &#x27;../model-service/bookings/bookings.service&#x27;;
+import { ConfirmationDialogComponent } from &#x27;../confirmation-dialog/confirmation-dialog.component&#x27;;
+
+@Component({
+  selector: &#x27;app-template-detail-dialog&#x27;,
+  templateUrl: &#x27;./template-detail.dialog.html&#x27;,
+})
+// tslint:disable-next-line: component-class-suffix
+export class TemplateDetailDialog {
+  updateForm: FormGroup;
+
+  isNew: boolean;
+  isEdit: boolean;
+  isSendingEmail: boolean;
+  booking: Booking &#x3D; null;
+  template: EmailTemplate;
+  templateParams: any;
+
+  @ViewChildren(&#x27;checkBox&#x27;) checkBox: QueryList&lt;any&gt;;
+  checkedItems &#x3D; [];
+  bookedItems: BookedItem[] &#x3D; [];
+
+  apiKey &#x3D; apiKey;
+
+  constructor(
+    public dialog: MatDialog,
+    private emailTemplatesService: EmailTemplatesService,
+    private bookingService: BookingsService,
+    public dialogRef: MatDialogRef&lt;TemplateDetailDialog&gt;,
+    @Inject(MAT_DIALOG_DATA) public params: any,
+    private formBuilder: FormBuilder,
+    private snackbar: MatSnackBar,
+    private router: Router
+  ) {
+    this.isNew &#x3D; params.isNew;
+    this.isEdit &#x3D; params.isEdit;
+    this.isSendingEmail &#x3D; params.isSendingEmail;
+    this.updateForm &#x3D; this.formBuilder.group({
+      name: [&#x27;&#x27;, [Validators.required]],
+      subject: [&#x27;&#x27;, [Validators.required]],
+      template: [&#x27;&#x27;, [Validators.required]]
+    });
+    if (this.isEdit) {
+      this.template &#x3D; params.template;
+      this.templateParams &#x3D; { ...this.template };
+      delete this.templateParams.id;
+      this.updateForm.setValue(this.templateParams);
+    } else if (this.isSendingEmail) {
+      this.template &#x3D; params.template;
+      this.templateParams &#x3D; { ...this.template };
+      this.booking &#x3D; params.booking.source;
+
+      delete this.templateParams.id;
+      this.updateForm.setValue(this.templateParams);
+
+      this.updateForm.get(&#x27;name&#x27;).disable();
+      this.updateForm.get(&#x27;subject&#x27;).disable();
+
+      params.booking.booked_items.forEach((ele: BookedItem) &#x3D;&gt; { this.bookedItems.push(ele); });
+    } else {
+      this.template &#x3D; null;
+    }
+  }
+
+  send_data(data: any) {
+    if (this.isEdit) {
+      this.emailTemplatesService.updateTemplate(this.template.id, data).subscribe();
+    } else if (this.isSendingEmail) {
+      this.checkBox.forEach((ele) &#x3D;&gt; {
+        const stat &#x3D; ele.checked ? &#x27;ACC&#x27; : &#x27;REJ&#x27;;
+        this.bookingService.updateBookedItem(ele.value.id,
+          { booking_source: ele.value.booking_source.id, item: ele.value.item.id, quantity: ele.value.quantity, status: stat }).subscribe();
+      });
+      const bookingDataCopy &#x3D; { ...this.booking };
+      delete bookingDataCopy.id;
+      bookingDataCopy.deposit_left &#x3D; this.getFinalDeposit();
+      this.bookingService.updateBooking(this.booking.id, bookingDataCopy).subscribe();
+      this.router.navigate([&#x27;/mailer&#x27;], { state: { booking: this.booking, template: data } });
+    } else {
+      this.emailTemplatesService.createTemplate(data).subscribe();
+    }
+
+    this.closeDialog();
+
+    let snackbarString &#x3D; &#x27;&#x27;;
+    if (this.isEdit) {
+      snackbarString &#x3D; &#x27;Edited template&#x27;;
+    } else {
+      snackbarString &#x3D; &#x27;Added template&#x27;;
+    }
+
+    this.snackbar.open(snackbarString, &#x27;OK&#x27;, { duration: 5000, });
+  }
+
+  getFinalDeposit() {
+    return this.checkBox ? this.checkBox.reduce((acc, ele) &#x3D;&gt; ele.checked ? acc + ele.value.item.deposit * ele.value.quantity : acc, 0) : 0;
+  }
+
+  closeDialog() {
+    this.dialogRef.close();
+  }
+
+  deleteTemplate() {
+    this.closeDialog();
+    this.emailTemplatesService.deleteTemplate(this.template.id).subscribe(() &#x3D;&gt; {
+      this.snackbar.open(&#x60;Template #${this.template.id} deleted&#x60;, &#x27;OK&#x27;, { duration: 5000 });
+    });
+  }
+
+  confirmDelete() {
+    const dialogR &#x3D; this.dialog.open(ConfirmationDialogComponent, { data: &#x60;template # ${this.template.id}&#x60; });
+    dialogR.afterClosed().subscribe(
+      (result) &#x3D;&gt; {
+        if (result.event &#x3D;&#x3D;&#x3D; &#x27;yes&#x27;) {
+          this.deleteTemplate();
+        }
+      }
+    );
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;style&gt;
+  .column-left {
+    float: left;
+    width: 30%;
+  }
+
+  .column-right {
+    float: right;
+    width: 70%;
+  }
+
+  .row:after {
+    content: &quot;&quot;;
+    display: table;
+    clear: both;
+  }
+
+  ul {
+    list-style-type: none;
+    margin-top: 4px;
+  }
+&lt;/style&gt;
+
+&lt;h1 mat-dialog-title&gt;{{(isEdit||isSendingEmail)?&#x27;Edit Template&#x27;:&#x27;New Template&#x27;}}&lt;/h1&gt;
+&lt;div class&#x3D;&quot;row&quot;&gt;
+  &lt;div class&#x3D;&quot;column-left&quot;&gt;
+    &lt;div *ngIf&#x3D;&quot;isSendingEmail; else editTemplate&quot;&gt;
+      &lt;h2&gt;Booking #{{booking.id}}&lt;/h2&gt;
+      &lt;mat-label&gt;Name: {{booking.name}}&lt;/mat-label&gt;
+      &lt;br&gt;
+      &lt;mat-label&gt;Loan date: {{booking.loan_start_time}}&lt;/mat-label&gt;
+      &lt;br&gt;
+      &lt;mat-label&gt;Return date: {{booking.loan_end_time}}&lt;/mat-label&gt;
+      &lt;br&gt;
+      &lt;mat-label&gt;Items:&lt;/mat-label&gt;
+      &lt;br&gt;
+      &lt;ul&gt;
+        &lt;li *ngFor&#x3D;&quot;let bookedItem of bookedItems&quot;&gt;
+          &lt;mat-checkbox style&#x3D;&quot;margin-left: -15px&quot; #checkBox [value]&#x3D;&quot;bookedItem&quot;&gt;
+            {{bookedItem.item.name}} - {{bookedItem.quantity}} items
+          &lt;/mat-checkbox&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;br&gt;
+      &lt;mat-label&gt;Deposit: {{getFinalDeposit()|currency}}&lt;/mat-label&gt;
+    &lt;/div&gt;
+    &lt;ng-template #editTemplate&gt;
+      &lt;p style&#x3D;&quot;margin-top: 100%; color: #cccccc;&quot;&gt;You cannot view bookings with this option.&lt;/p&gt;
+    &lt;/ng-template&gt;
+  &lt;/div&gt;
+  &lt;div class&#x3D;&quot;column-right&quot;&gt;
+    &lt;form [formGroup]&#x3D;&quot;updateForm&quot;&gt;
+      &lt;mat-form-field appearance&#x3D;&quot;fill&quot; style&#x3D;&quot;width: 100%&quot;&gt;
+        &lt;mat-label for&#x3D;&quot;name&quot;&gt;Name&lt;/mat-label&gt;
+        &lt;input matInput formControlName&#x3D;&quot;name&quot;&gt;
+      &lt;/mat-form-field&gt;
+      &lt;br&gt;
+      &lt;mat-form-field appearance&#x3D;&quot;fill&quot; style&#x3D;&quot;width: 100%&quot;&gt;
+        &lt;mat-label for&#x3D;&quot;subject&quot;&gt;Subject&lt;/mat-label&gt;
+        &lt;input matInput formControlName&#x3D;&quot;subject&quot;&gt;
+      &lt;/mat-form-field&gt;
+      &lt;br&gt;
+      &lt;editor formControlName&#x3D;&quot;template&quot; [apiKey]&#x3D;&quot;apiKey&quot; [init]&#x3D;&quot;{
+      height: 300,
+      menubar: false,
+      plugins: [
+        &#x27;advlist autolink lists link image charmap print preview anchor&#x27;,
+        &#x27;searchreplace visualblocks code fullscreen&#x27;,
+        &#x27;insertdatetime media table paste code help wordcount&#x27;,
+        &#x27;table&#x27;
+      ],
+      toolbar:
+        &#x27;undo redo | formatselect | bold italic underline backcolor | \
+        alignleft aligncenter alignright alignjustify | \
+        bullist numlist outdent indent | removeformat | help \
+        table tabledelete | tableprops tablerowprops tablecellprops | \
+        tableinsertrowbefore tableinsertrowafter tabledeleterow | \ 
+        tableinsertcolbefore tableinsertcolafter tabledeletecol | tablemergecells&#x27;
+    }&quot;&gt;&lt;/editor&gt;
+      &lt;br&gt;
+      &lt;div mat-dialog-actions align&#x3D;&quot;end&quot;&gt;
+        &lt;button mat-button (click)&#x3D;&quot;closeDialog()&quot; type&#x3D;&quot;click&quot;&gt;
+          &lt;mat-icon&gt;clear&lt;/mat-icon&gt;
+          Cancel
+        &lt;/button&gt;
+        &lt;button mat-raised-button color&#x3D;&quot;primary&quot; type&#x3D;&quot;submit&quot; (click)&#x3D;&quot;send_data(updateForm.value)&quot; [disabled]&#x3D;&quot;!updateForm.valid&quot;&gt;
+          &lt;mat-icon&gt;{{(isEdit || isNew) ? &#x27;done&#x27; : &#x27;email&#x27;}}&lt;/mat-icon&gt;
+          {{(isEdit || isNew) ? &#x27;Submit&#x27; : &#x27;Send&#x27;}}
+        &lt;/button&gt;
+        &lt;button mat-raised-button color&#x3D;&quot;warn&quot; [disabled]&#x3D;&quot;isNew||isSendingEmail&quot; (click)&#x3D;&quot;confirmDelete()&quot;&gt;
+          &lt;mat-icon&gt;delete_forever&lt;/mat-icon&gt;
+          Delete
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><style>  .column-left {    float: left;    width: 30%;  }  .column-right {    float: right;    width: 70%;  }  .row:after {    content: "";    display: table;    clear: both;  }  ul {    list-style-type: none;    margin-top: 4px;  }</style><h1 mat-dialog-title>{{(isEdit||isSendingEmail)?\'Edit Template\':\'New Template\'}}</h1><div class="row">  <div class="column-left">    <div *ngIf="isSendingEmail; else editTemplate">      <h2>Booking #{{booking.id}}</h2>      <mat-label>Name: {{booking.name}}</mat-label>      <br>      <mat-label>Loan date: {{booking.loan_start_time}}</mat-label>      <br>      <mat-label>Return date: {{booking.loan_end_time}}</mat-label>      <br>      <mat-label>Items:</mat-label>      <br>      <ul>        <li *ngFor="let bookedItem of bookedItems">          <mat-checkbox style="margin-left: -15px" #checkBox [value]="bookedItem">            {{bookedItem.item.name}} - {{bookedItem.quantity}} items          </mat-checkbox>        </li>      </ul>      <br>      <mat-label>Deposit: {{getFinalDeposit()|currency}}</mat-label>    </div>    <ng-template #editTemplate>      <p style="margin-top: 100%; color: #cccccc;">You cannot view bookings with this option.</p>    </ng-template>  </div>  <div class="column-right">    <form [formGroup]="updateForm">      <mat-form-field appearance="fill" style="width: 100%">        <mat-label for="name">Name</mat-label>        <input matInput formControlName="name">      </mat-form-field>      <br>      <mat-form-field appearance="fill" style="width: 100%">        <mat-label for="subject">Subject</mat-label>        <input matInput formControlName="subject">      </mat-form-field>      <br>      <editor formControlName="template" [apiKey]="apiKey" [init]="{      height: 300,      menubar: false,      plugins: [        \'advlist autolink lists link image charmap print preview anchor\',        \'searchreplace visualblocks code fullscreen\',        \'insertdatetime media table paste code help wordcount\',        \'table\'      ],      toolbar:        \'undo redo | formatselect | bold italic underline backcolor | \        alignleft aligncenter alignright alignjustify | \        bullist numlist outdent indent | removeformat | help \        table tabledelete | tableprops tablerowprops tablecellprops | \        tableinsertrowbefore tableinsertrowafter tabledeleterow | \         tableinsertcolbefore tableinsertcolafter tabledeletecol | tablemergecells\'    }"></editor>      <br>      <div mat-dialog-actions align="end">        <button mat-button (click)="closeDialog()" type="click">          <mat-icon>clear</mat-icon>          Cancel        </button>        <button mat-raised-button color="primary" type="submit" (click)="send_data(updateForm.value)" [disabled]="!updateForm.valid">          <mat-icon>{{(isEdit || isNew) ? \'done\' : \'email\'}}</mat-icon>          {{(isEdit || isNew) ? \'Submit\' : \'Send\'}}        </button>        <button mat-raised-button color="warn" [disabled]="isNew||isSendingEmail" (click)="confirmDelete()">          <mat-icon>delete_forever</mat-icon>          Delete        </button>      </div>    </form>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BookingConfirmationComponent', 'selector': 'app-booking-confirmation'},{'name': 'BookingConfirmComponent', 'selector': 'app-booking-confirm'},{'name': 'BookingDetailsComponent', 'selector': 'app-booking-details'},{'name': 'BookingListComponent', 'selector': 'booking-list'},{'name': 'BookingListDialog', 'selector': 'booking-list-dialog'},{'name': 'BookingSummaryDialog', 'selector': 'booking-summary-dialog'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'ConfirmationTemplateComponent', 'selector': 'app-confirmation-template'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'ItemDetailsComponent', 'selector': 'app-item-details'},{'name': 'ItemListComponent', 'selector': 'item-list'},{'name': 'ItemListDialog', 'selector': 'item-list-dialog'},{'name': 'LoginFormComponent', 'selector': 'app-login-form'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MailSenderComponent', 'selector': 'app-mail-sender'},{'name': 'NotFoundComponent', 'selector': 'not-found'},{'name': 'TemplateDetailDialog', 'selector': 'app-template-detail-dialog'},{'name': 'TemplateListComponent', 'selector': 'app-template-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'TemplateDetailDialog'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TemplateDetailDialog.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

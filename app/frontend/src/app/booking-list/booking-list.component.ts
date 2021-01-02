@@ -22,6 +22,9 @@ import { merge, of } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { ComponentBridgingService } from '../model-service/componentbridging.service';
 
+/**
+ * Main component for displaying the list of bookings.
+ */
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'booking-list',
@@ -57,6 +60,9 @@ export class BookingListComponent implements OnInit, AfterViewInit {
     private formBuilder: FormBuilder
   ) { }
 
+  /**
+   * Initializes the filter form.
+   */
   ngOnInit() {
     this.filterForm = this.formBuilder.group({
       name: ['', ''],
@@ -66,11 +72,20 @@ export class BookingListComponent implements OnInit, AfterViewInit {
     });
   }
 
+  /**
+   * Load the data after the component's view has been properly initialized.
+   * It also initializes the behaviour when the sorting parameter changes.
+   */
   ngAfterViewInit(): void {
     this.reloadData();
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
   }
 
+  /**
+   * Method to load data. When the data is loading, this method will broadcast a message
+   * to turn on the progress bar, until the data is done loading, in which case the
+   * progress bar is turned off and the bookings data are updated.
+   */
   reloadData() {
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(
@@ -95,6 +110,10 @@ export class BookingListComponent implements OnInit, AfterViewInit {
       ).subscribe(data => { this.bookings = data; });
   }
 
+  /**
+   * Process the filter form so that the data format can be parsed by the backend.
+   * @param filterForm Filter form
+   */
   parseFilterForm(filterForm: FormGroup) {
     const sortCriterion = addHyphen(this.sort.active, this.sort.direction);
     let filterParams = { ...this.filterForm.value }
@@ -113,11 +132,19 @@ export class BookingListComponent implements OnInit, AfterViewInit {
     return filterParams;
   }
 
+  /**
+   * Reload the data after the page number has changed.
+   * @param pageNumber Page number.
+   */
   onInputPageChange(pageNumber: number) {
     this.paginator.pageIndex = Math.min(pageNumber - 1, this.paginator.getNumberOfPages() - 1);
     this.reloadData();
   }
 
+  /**
+   * Opens a dialog with booking details when a row of table is clicked.
+   * @param row Table row
+   */
   openDialog(row: { [x: string]: number; }) {
     this.bookingsService.getBookedItemsByBooker(row.id)
       .subscribe(
@@ -136,6 +163,9 @@ export class BookingListComponent implements OnInit, AfterViewInit {
       );
   }
 
+  /**
+   * Opens a dialog with weekly summary of bookings.
+   */
   openWeeklySummary() {
     if (!this.summaryDialogOpened) {
       this.summaryDialogOpened = true;
@@ -149,22 +179,35 @@ export class BookingListComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Checks if the date format is correct.
+   * @param control Date input
+   */
   dateCheck(control: AbstractControl): any {
     const d = control.value;
     return (d === null || (typeof d === 'string') &&
       d.length === 0 || moment(d).isValid()) ? null : { date: true };
   }
 
+  /**
+   * Reloads the data after the filter form is submitted.
+   */
   onSubmit() {
     this.reloadData();
   }
 
+  /**
+   * Returns the full string given the status code.
+   * @param code Status code
+   */
   returnStatusString(code: string) {
     return getStatus(code);
   }
 }
 
-// dialog details for each booking
+/**
+ * Dialog with each booking details.
+ */
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'booking-list-dialog',
@@ -182,19 +225,27 @@ export class BookingListDialog {
     private router: Router
   ) { }
 
+  /**
+   * Updates the status of the booking.
+   * @param status New status
+   */
   updateStatus(status: string) {
     const bookingDataCopy = { ...this.bookingData.source };
     delete bookingDataCopy.id;
     bookingDataCopy.status = status;
     this.bookingData.source.status = status;
     if (status === 'GET') {
-      bookingDataCopy.amount_paid = bookingDataCopy.deposit_left;
+      bookingDataCopy.deposit_paid = true;
     }
     this.bookingsService.updateBooking(this.bookingData.source.id, bookingDataCopy).subscribe();
     this.dialogRef.close();
     this.printSnackBarStatus(status);
   }
 
+  /**
+   * Opens a snackbar stating the status of booking has changed.
+   * @param status New status
+   */
   printSnackBarStatus(status: string) {
     this.snackbar.open(
       `Status of Booking #${this.bookingData.source.id} changed to: ${getStatus(status)}`,
@@ -203,15 +254,25 @@ export class BookingListDialog {
     );
   }
 
+  /**
+   * Returns the full string given the status code.
+   * @param code Status code
+   */
   returnStatusString(code: string) {
     return getStatus(code);
   }
 
+  /**
+   * Processes the booking and redirect user to choose an email template.
+   */
   processAndEmail() {
     this.updateStatus('PRO');
     this.router.navigate(['/templates'], { state: { booking: this.bookingData } });
   }
 
+  /**
+   * Revokes the approval.
+   */
   revoke() {
     this.updateStatus('PEN');
     this.bookingData.booked_items.forEach((ele) => {
@@ -225,20 +286,32 @@ export class BookingListDialog {
     });
   }
 
+  /**
+   * Called when the logistics booked are loaned.
+   */
   getLogistics() {
     this.updateStatus('GET');
   }
 
+  /**
+   * Called when the logistics are returned.
+   */
   returnLogistics() {
     this.updateStatus('RET');
   }
 
+  /**
+   * Deletes the booking.
+   */
   deleteBooking() {
     this.bookingsService.deleteBooking(this.bookingData.source.id).subscribe();
     this.dialogRef.close();
     this.snackbar.open(`Booking #${this.bookingData.source.id} deleted`, 'OK', { duration: 5000 });
   }
 
+  /**
+   * Opens a confirmation dialog to ensure that the user really wants to delete the booking.
+   */
   confirmDelete() {
     const dialogR = this.dialog.open(ConfirmationDialogComponent,
       { data: `booking #${this.bookingData.source.id}` });
@@ -250,6 +323,9 @@ export class BookingListDialog {
       });
   }
 
+  /**
+   * Navigates the user to edit the booking.
+   */
   editBooking() {
     this.dialogRef.close();
     this.router.navigate(['/edit'],
@@ -265,13 +341,18 @@ export class BookingListDialog {
   }
 }
 
-// weekly summary
+/**
+ * Component for the weekly summary table.
+ */
 @Component({
   selector: 'booking-summary-dialog',
   templateUrl: './booking-summary-dialog.html',
 })
 export class BookingSummaryDialog {
 
+  /**
+   * Initializes the calendar component.
+   */
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridWeek',
     height: '500px',
@@ -286,12 +367,22 @@ export class BookingSummaryDialog {
     public bookingsService: BookingsService
   ) { }
 
-  // this is to circumvent the problem that this.bookingService is undefined
+  /**
+   * Helper method to circumvent the problem that this.bookingService is undefined.
+   * @param bookingService BookingService object.
+   */
   putEventsCurry(bookingService: BookingsService) {
     return (args, successCallback, failureCallback) =>
       this.putEvents(args, successCallback, failureCallback, bookingService);
   }
 
+  /**
+   * Returns the events to be put in the calendar.
+   * @param args Current configuration of the calendar
+   * @param successCallback Callback method if the data retrieval is successful.
+   * @param failureCallback Callback method if the data retrieval is not successful.
+   * @param bookingsService BookingService object
+   */
   putEvents(args: any, successCallback, failureCallback, bookingsService: BookingsService) {
     const options = { year: 'numeric', month: 'numeric', day: 'numeric', locale: 'en-ca' }
     const startDate = formatDate(args.start, options);
@@ -313,6 +404,10 @@ export class BookingSummaryDialog {
     );
   }
 
+  /**
+   * Returns a colour based on the booking id
+   * @param num Booking id.
+   */
   getColour(num: number) {
     switch (num % 4) {
       case 0:

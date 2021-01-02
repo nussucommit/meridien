@@ -11,6 +11,10 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 
+/**
+ * After a user has made a booking, the user will receive a confirmation email that contains a link to confirm that the booking is indeed made by the user.
+ * This is the component for the confirmation page.
+ */
 @Component({
   selector: 'app-booking-confirmation',
   templateUrl: './booking-confirmation.component.html',
@@ -30,11 +34,13 @@ export class BookingConfirmationComponent implements OnInit {
     public dialog: MatDialog
   ) { }
 
+  /**
+   * Initializes the booking based on the token.
+   */
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.token = params.token;
     });
-    console.log(this.token);
     this.bookingsService.getBookingByToken(this.token).subscribe(
       (booking: Booking) => {
         this.booking = booking;
@@ -46,14 +52,24 @@ export class BookingConfirmationComponent implements OnInit {
     );
   }
 
+  /**
+   * Returns the full string given the status code.
+   * @param code Status code.
+   */
   returnStatusString(code: string){
     return getStatus(code);
   }
 
+  /**
+   * Prints the page.
+   */
   print(){
     window.print();
   }
 
+  /**
+   * Called when the user presses confirm button.
+   */
   confirm_booking() {
     this.bookingsService.confirmBookingByToken(this.token).subscribe(
       (success: any) => {
@@ -64,6 +80,9 @@ export class BookingConfirmationComponent implements OnInit {
     );
   }
 
+  /**
+   * Called when the user decides to revoke the booking by pressing the delete button.
+   */
   delete_booking() {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, { data: 'this booking' });
     dialogRef.afterClosed().subscribe((result) => {

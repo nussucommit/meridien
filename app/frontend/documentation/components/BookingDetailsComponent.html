@@ -1,0 +1,2328 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>angular-view documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">angular-view documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>BookingDetailsComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/booking-details/booking-details.component.ts</code>
+</p>
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Main component for the booking form.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code>{ provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] }</code>
+                            <code>{ provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS }</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-booking-details</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./booking-details.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./booking-details.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#bookingSubmitted">bookingSubmitted</a>
+                            </li>
+                            <li>
+                                <a href="#detailsForm">detailsForm</a>
+                            </li>
+                            <li>
+                                <a href="#editMode">editMode</a>
+                            </li>
+                            <li>
+                                <a href="#inputGroup1">inputGroup1</a>
+                            </li>
+                            <li>
+                                <a href="#inputGroup2">inputGroup2</a>
+                            </li>
+                            <li>
+                                <a href="#itemArray">itemArray</a>
+                            </li>
+                            <li>
+                                <a href="#itemColumns">itemColumns</a>
+                            </li>
+                            <li>
+                                <a href="#itemsForm">itemsForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addBlankItem">addBlankItem</a>
+                            </li>
+                            <li>
+                                <a href="#checkForErrors">checkForErrors</a>
+                            </li>
+                            <li>
+                                <a href="#checkForRepeat">checkForRepeat</a>
+                            </li>
+                            <li>
+                                <a href="#checkout">checkout</a>
+                            </li>
+                            <li>
+                                <a href="#createItemInputWithData">createItemInputWithData</a>
+                            </li>
+                            <li>
+                                <a href="#dateCheck">dateCheck</a>
+                            </li>
+                            <li>
+                                <a href="#emailCheck">emailCheck</a>
+                            </li>
+                            <li>
+                                <a href="#getItemInputForm">getItemInputForm</a>
+                            </li>
+                            <li>
+                                <a href="#getTotalDeposit">getTotalDeposit</a>
+                            </li>
+                            <li>
+                                <a href="#initialItemInput">initialItemInput</a>
+                            </li>
+                            <li>
+                                <a href="#newItemInput">newItemInput</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit">onSubmit</a>
+                            </li>
+                            <li>
+                                <a href="#phoneCheck">phoneCheck</a>
+                            </li>
+                            <li>
+                                <a href="#print">print</a>
+                            </li>
+                            <li>
+                                <a href="#removeItemInput">removeItemInput</a>
+                            </li>
+                            <li>
+                                <a href="#returnItemGivenId">returnItemGivenId</a>
+                            </li>
+                            <li>
+                                <a href="#selectionChange">selectionChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, bookingsService: <a href="../injectables/BookingsService.html">BookingsService</a>, itemsService: <a href="../injectables/ItemsService.html">ItemsService</a>, service: <a href="../injectables/ComponentBridgingService.html">ComponentBridgingService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/booking-details/booking-details.component.ts:44</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>formBuilder</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>bookingsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BookingsService.html" target="_self" >BookingsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>itemsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ItemsService.html" target="_self" >ItemsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>service</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ComponentBridgingService.html" target="_self" >ComponentBridgingService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addBlankItem"></a>
+                    <span class="name">
+                        <b>
+                            addBlankItem
+                        </b>
+                        <a href="#addBlankItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addBlankItem()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="147"
+                            class="link-to-prism">src/app/booking-details/booking-details.component.ts:147</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Adds a new row to the form when the user presses add row button.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkForErrors"></a>
+                    <span class="name">
+                        <b>
+                            checkForErrors
+                        </b>
+                        <a href="#checkForErrors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkForErrors()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="218"
+                            class="link-to-prism">src/app/booking-details/booking-details.component.ts:218</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Checks if the form returns duplicate error.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkForRepeat"></a>
+                    <span class="name">
+                        <b>
+                            checkForRepeat
+                        </b>
+                        <a href="#checkForRepeat"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkForRepeat(formArray: <a href="https://angular.io/api/forms/FormArray" target="_blank">FormArray</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="199"
+                            class="link-to-prism">src/app/booking-details/booking-details.component.ts:199</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Helper method to check if there are duplicate items in the form.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>formArray</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/forms/FormArray" target="_blank" >FormArray</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Item input form.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{ duplicate: boolean; }</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkout"></a>
+                    <span class="name">
+                        <b>
+                            checkout
+                        </b>
+                        <a href="#checkout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkout()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="162"
+                            class="link-to-prism">src/app/booking-details/booking-details.component.ts:162</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Updates the current form input.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createItemInputWithData"></a>
+                    <span class="name">
+                        <b>
+                            createItemInputWithData
+                        </b>
+                        <a href="#createItemInputWithData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createItemInputWithData(bookedItem: <a href="../classes/BookedItem.html">BookedItem</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="130"
+                            class="link-to-prism">src/app/booking-details/booking-details.component.ts:130</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Returns filled rows when the user is editing a booking.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>bookedItem</td>
+                                    <td>
+                                                <code><a href="../classes/BookedItem.html" target="_self" >BookedItem</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Initial booked items.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dateCheck"></a>
+                    <span class="name">
+                        <b>
+                            dateCheck
+                        </b>
+                        <a href="#dateCheck"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>dateCheck(control: <a href="https://angular.io/api/forms/AbstractControl" target="_blank">AbstractControl</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/app/booking-details/booking-details.component.ts:84</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Checks if the date is of correct format.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>control</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/forms/AbstractControl" target="_blank" >AbstractControl</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Date input.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="emailCheck"></a>
+                    <span class="name">
+                        <b>
+                            emailCheck
+                        </b>
+                        <a href="#emailCheck"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>emailCheck(control: <a href="https://angular.io/api/forms/AbstractControl" target="_blank">AbstractControl</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/app/booking-details/booking-details.component.ts:100</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Checks if the email follows the NUS email format.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>control</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/forms/AbstractControl" target="_blank" >AbstractControl</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Email input.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getItemInputForm"></a>
+                    <span class="name">
+                        <b>
+                            getItemInputForm
+                        </b>
+                        <a href="#getItemInputForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getItemInputForm()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="140"
+                            class="link-to-prism">src/app/booking-details/booking-details.component.ts:140</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Returns the list of items to be booked.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://angular.io/api/forms/FormArray" target="_blank" >FormArray</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTotalDeposit"></a>
+                    <span class="name">
+                        <b>
+                            getTotalDeposit
+                        </b>
+                        <a href="#getTotalDeposit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getTotalDeposit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="178"
+                            class="link-to-prism">src/app/booking-details/booking-details.component.ts:178</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Returns the total deposit payable.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initialItemInput"></a>
+                    <span class="name">
+                        <b>
+                            initialItemInput
+                        </b>
+                        <a href="#initialItemInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initialItemInput(data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">src/app/booking-details/booking-details.component.ts:118</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Parses the booking data from <code>history.state.source</code> into an array.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Booking data.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="newItemInput"></a>
+                    <span class="name">
+                        <b>
+                            newItemInput
+                        </b>
+                        <a href="#newItemInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>newItemInput()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">src/app/booking-details/booking-details.component.ts:107</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Returns a new row.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/app/booking-details/booking-details.component.ts:57</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Initializes the booking form based on whether the user is editing a booking or creating a new booking.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <b>
+                            onSubmit
+                        </b>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="233"
+                            class="link-to-prism">src/app/booking-details/booking-details.component.ts:233</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Parses the data to be sent to the backend.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="phoneCheck"></a>
+                    <span class="name">
+                        <b>
+                            phoneCheck
+                        </b>
+                        <a href="#phoneCheck"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>phoneCheck(control: <a href="https://angular.io/api/forms/AbstractControl" target="_blank">AbstractControl</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">src/app/booking-details/booking-details.component.ts:92</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Checks if the phone number is of correct format.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>control</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/forms/AbstractControl" target="_blank" >AbstractControl</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Phone number input.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="print"></a>
+                    <span class="name">
+                        <b>
+                            print
+                        </b>
+                        <a href="#print"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>print()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="226"
+                            class="link-to-prism">src/app/booking-details/booking-details.component.ts:226</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Prints the current page.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeItemInput"></a>
+                    <span class="name">
+                        <b>
+                            removeItemInput
+                        </b>
+                        <a href="#removeItemInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeItemInput(i: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="155"
+                            class="link-to-prism">src/app/booking-details/booking-details.component.ts:155</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Removes the i-th row when the user presses the delete button.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>i</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Row number.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="returnItemGivenId"></a>
+                    <span class="name">
+                        <b>
+                            returnItemGivenId
+                        </b>
+                        <a href="#returnItemGivenId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>returnItemGivenId(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="171"
+                            class="link-to-prism">src/app/booking-details/booking-details.component.ts:171</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Returns the item given the item id.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Item id.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectionChange"></a>
+                    <span class="name">
+                        <b>
+                            selectionChange
+                        </b>
+                        <a href="#selectionChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectionChange(event)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="189"
+                            class="link-to-prism">src/app/booking-details/booking-details.component.ts:189</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Helper method to allow user to navigate the stepper back and forth 
+while at the same time updating the form contents for use in the checkout page</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Page change event</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="bookingSubmitted"></a>
+                        <span class="name">
+                            <b>
+                            bookingSubmitted</b>
+                            <a href="#bookingSubmitted"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/booking-details/booking-details.component.ts:44</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="detailsForm"></a>
+                        <span class="name">
+                            <b>
+                            detailsForm</b>
+                            <a href="#detailsForm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/booking-details/booking-details.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="editMode"></a>
+                        <span class="name">
+                            <b>
+                            editMode</b>
+                            <a href="#editMode"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/booking-details/booking-details.component.ts:43</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="inputGroup1"></a>
+                        <span class="name">
+                            <b>
+                            inputGroup1</b>
+                            <a href="#inputGroup1"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/booking-details/booking-details.component.ts:38</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="inputGroup2"></a>
+                        <span class="name">
+                            <b>
+                            inputGroup2</b>
+                            <a href="#inputGroup2"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/booking-details/booking-details.component.ts:39</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="itemArray"></a>
+                        <span class="name">
+                            <b>
+                            itemArray</b>
+                            <a href="#itemArray"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/Items.html" target="_self" >Items[]</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/booking-details/booking-details.component.ts:36</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="itemColumns"></a>
+                        <span class="name">
+                            <b>
+                            itemColumns</b>
+                            <a href="#itemColumns"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[&#x27;item&#x27;, &#x27;quantity&#x27;]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/booking-details/booking-details.component.ts:41</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="itemsForm"></a>
+                        <span class="name">
+                            <b>
+                            itemsForm</b>
+                            <a href="#itemsForm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/booking-details/booking-details.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+import { ConfirmationTemplatesService } from &#x27;./../model-service/confirmationtemplates/confirmationtemplates.service&#x27;;
+import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { FormBuilder, FormGroup, Validators, AbstractControl, FormArray, ValidationErrors, AsyncValidatorFn } from &#x27;@angular/forms&#x27;;
+import { BookingsService } from &#x27;../model-service/bookings/bookings.service&#x27;;
+
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from &#x27;@angular/material-moment-adapter&#x27;;
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from &#x27;@angular/material/core&#x27;;
+import moment from &#x27;moment&#x27;;
+import { Items, BookedItem } from &#x27;../model-service/items/items&#x27;;
+import { ItemsService } from &#x27;../model-service/items/items.service&#x27;;
+import { Booking } from &#x27;../model-service/bookings/bookings&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { Dictionary } from &#x27;@fullcalendar/core&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { map } from &#x27;rxjs/operators&#x27;;
+import { ComponentBridgingService } from &#x27;../model-service/componentbridging.service&#x27;;
+
+/**
+ * Main component for the booking form.
+ */
+@Component({
+  selector: &#x27;app-booking-details&#x27;,
+  templateUrl: &#x27;./booking-details.component.html&#x27;,
+  styleUrls: [&#x27;./booking-details.component.scss&#x27;],
+  providers: [
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+  ],
+})
+export class BookingDetailsComponent implements OnInit {
+
+  detailsForm: FormGroup;
+  itemsForm: FormGroup;
+
+  itemArray: Items[];
+
+  inputGroup1: any;
+  inputGroup2: any;
+
+  itemColumns &#x3D; [&#x27;item&#x27;, &#x27;quantity&#x27;];
+
+  editMode: boolean;
+  bookingSubmitted &#x3D; false;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private bookingsService: BookingsService,
+    private itemsService: ItemsService,
+    private service: ComponentBridgingService,
+    private router: Router
+  ) { this.itemsService.getItemsList().subscribe((data) &#x3D;&gt; this.itemArray &#x3D; data); }
+
+  /**
+   * Initializes the booking form based on whether the user is editing a booking or creating a new booking.
+   */
+  ngOnInit() {
+    this.editMode &#x3D; history.state.edit ? true : false;
+
+    this.detailsForm &#x3D; this.formBuilder.group({
+      name: [history.state.source ? history.state.source.name : &#x27;&#x27;, Validators.required],
+      email: [history.state.source ? history.state.source.email : &#x27;&#x27;, [Validators.required, this.emailCheck]],
+      organization: [history.state.source ? history.state.source.organization : &#x27;&#x27;, Validators.required],
+      phone_no: [history.state.source ? history.state.source.phone_no : &#x27;&#x27;, [Validators.required, this.phoneCheck]],
+      reason: [history.state.source ? history.state.source.reason : &#x27;&#x27;, Validators.required],
+      loan_start_time: [history.state.source ? history.state.source.loan_start_time : &#x27;&#x27;, [Validators.required, this.dateCheck]],
+      loan_end_time: [history.state.source ? history.state.source.loan_end_time : &#x27;&#x27;, [Validators.required, this.dateCheck]],
+    });
+    this.itemsForm &#x3D; this.formBuilder.group({
+      items: history.state.booked_items ?
+        new FormArray(this.initialItemInput(history.state.booked_items),
+          [this.checkForRepeat], ExceedAmountValidator.createExceedAmountValidator(this.itemsService)) :
+        new FormArray([this.newItemInput()],
+          [this.checkForRepeat], ExceedAmountValidator.createExceedAmountValidator(this.itemsService))
+    });
+
+    this.checkout();
+  }
+
+  /**
+   * Checks if the date is of correct format.
+   * @param control Date input.
+   */
+  dateCheck(control: AbstractControl): any {
+    return moment(control.value).isValid() ? null : { date: true };
+  }
+
+  /**
+   * Checks if the phone number is of correct format.
+   * @param control Phone number input.
+   */
+  phoneCheck(control: AbstractControl): any {
+    return new RegExp(&#x27;(8[1-8][0-9]{6}|9[0-8][0-9]{6})&#x27;).test(control.value) ? null : { phone: true };
+  }
+
+  /**
+   * Checks if the email follows the NUS email format.
+   * @param control Email input.
+   */
+  emailCheck(control: AbstractControl): any {
+    return new RegExp(&#x27;e[0-9]{7}@u\.nus\.edu&#x27;).test(control.value) ? null : { email: true };
+  }
+
+  /**
+   * Returns a new row.
+   */
+  newItemInput(): FormGroup {
+    return this.formBuilder.group({
+      item: [2, [Validators.required]],
+      quantity: [1, [Validators.required, Validators.min(1)]]
+    });
+  }
+
+  /**
+   * Parses the booking data from &lt;code&gt;history.state.source&lt;/code&gt; into an array.
+   * @param data Booking data.
+   */
+  initialItemInput(data: any) {
+    const result &#x3D; [];
+    data.forEach((element: BookedItem) &#x3D;&gt; {
+      result.push(this.createItemInputWithData(element));
+    });
+    return result;
+  }
+
+  /**
+   * Returns filled rows when the user is editing a booking.
+   * @param bookedItem Initial booked items.
+   */
+  createItemInputWithData(bookedItem: BookedItem): FormGroup {
+    return this.formBuilder.group({
+      item: [bookedItem.item.id, Validators.required],
+      quantity: [bookedItem.quantity, [Validators.required, Validators.min(1)]]
+    });
+  }
+
+  /**
+   * Returns the list of items to be booked.
+   */
+  getItemInputForm(): FormArray {
+    return this.itemsForm.get(&#x27;items&#x27;) as FormArray;
+  }
+
+  /**
+   * Adds a new row to the form when the user presses add row button.
+   */
+  addBlankItem() {
+    this.getItemInputForm().push(this.newItemInput());
+  }
+
+  /**
+   * Removes the i-th row when the user presses the delete button.
+   * @param i Row number.
+   */
+  removeItemInput(i: number) {
+    this.getItemInputForm().removeAt(i);
+  }
+
+  /**
+   * Updates the current form input.
+   */
+  checkout() {
+    this.inputGroup1 &#x3D; this.detailsForm.value;
+    this.inputGroup2 &#x3D; this.itemsForm.value;
+  }
+
+  /**
+   * Returns the item given the item id.
+   * @param id Item id.
+   */
+  returnItemGivenId(id: number) {
+    return this.itemArray.filter(element &#x3D;&gt; element.id &#x3D;&#x3D;&#x3D; id)[0];
+  }
+
+  /**
+   * Returns the total deposit payable.
+   */
+  getTotalDeposit() {
+    return this.itemArray ? Math.min(200, this.inputGroup2.items.reduce((acc: number, currentItem: any) &#x3D;&gt;
+      acc + this.returnItemGivenId(currentItem.item).deposit * currentItem.quantity
+      , 0)) : 0;
+  }
+
+  /**
+   * Helper method to allow user to navigate the stepper back and forth 
+   * while at the same time updating the form contents for use in the checkout page
+   * @param event Page change event
+   */
+  selectionChange(event) {
+    if (event.selectedIndex &#x3D;&#x3D;&#x3D; 2) {
+      this.checkout();
+    }
+  }
+
+  /**
+   * Helper method to check if there are duplicate items in the form.
+   * @param formArray Item input form.
+   */
+  checkForRepeat(formArray: FormArray) {
+    const itemDict: Dictionary &#x3D; {};
+    formArray.value.forEach((ele) &#x3D;&gt; {
+      if (itemDict[ele.item]) {
+        itemDict[ele.item] +&#x3D; 1;
+      } else {
+        itemDict[ele.item] &#x3D; 1;
+      }
+    });
+    for (const key in itemDict) {
+      if (itemDict[key] &gt; 1) {
+        return { duplicate: true };
+      }
+    }
+  }
+
+  /**
+   * Checks if the form returns duplicate error.
+   */
+  checkForErrors() {
+    const controlErrors: ValidationErrors &#x3D; this.itemsForm.get(&#x27;items&#x27;).errors;
+    return controlErrors ? controlErrors : { duplicate: false, exceed: false };
+  }
+
+  /**
+   * Prints the current page.
+   */
+  print() {
+    window.print();
+  }
+
+  /**
+   * Parses the data to be sent to the backend.
+   */
+  onSubmit() {
+    this.service.publish(&#x27;progressBarOn&#x27;);
+    const bookingDataCopy &#x3D; { ...this.inputGroup1 };
+    const finalData: Booking &#x3D; Object.assign(bookingDataCopy,
+      {
+        time_booked: (history.state.source ? history.state.source.time_booked : new Date()),
+        status: &#x27;PEN&#x27;,
+        deposit_left: this.getTotalDeposit(),
+        amount_paid: 0
+      }) as Booking;
+    if (!history.state.edit) {
+      bookingDataCopy.loan_start_time &#x3D; bookingDataCopy.loan_start_time.format(&#x27;YYYY-MM-DD&#x27;);
+      bookingDataCopy.loan_end_time &#x3D; bookingDataCopy.loan_end_time.format(&#x27;YYYY-MM-DD&#x27;);
+      this.bookingsService.createBooking(finalData).subscribe(
+        (data: any) &#x3D;&gt; {
+          this.inputGroup2.items.forEach(element &#x3D;&gt; {
+            const finalItemData &#x3D; { booking_source: data.id, item: element.item, quantity: element.quantity, status: &#x27;PEN&#x27; };
+            this.bookingsService.createBookedItem(finalItemData).subscribe();
+          });
+          this.router.navigate([&#x27;/edit/confirmed&#x27;], { state: { id: data.id, name: data.name, email: data.email, submitted: true } });
+          this.service.publish(&#x27;progressBarOff&#x27;);
+        });
+    } else if (history.state.edit &#x3D;&#x3D;&#x3D; true) { // touchwood condition lol
+      this.bookingsService.updateBooking(history.state.source.id, finalData).subscribe(
+        (data: any) &#x3D;&gt; {
+          // reason for deletion: I don&#x27;t bother to check whether the booked item exists or not
+          this.bookingsService.deleteBookedItemsByBooker(data.id).subscribe();
+          this.inputGroup2.items.forEach(element &#x3D;&gt; {
+            const finalItemData &#x3D; { booking_source: data.id, item: element.item, quantity: element.quantity, status: &#x27;PEN&#x27; };
+            this.bookingsService.createBookedItem(finalItemData).subscribe();
+          });
+          this.router.navigate([&#x27;/edit/confirmed&#x27;], { state: { id: data.id, name: data.name, email: data.email, submitted: true } });
+          this.service.publish(&#x27;progressBarOff&#x27;);
+        });
+    }
+  }
+}
+
+/**
+ * After the user submits a booking, the user will be redirected to a page saying that their booking request has been received.
+ */
+@Component({
+  selector: &#x27;app-booking-confirm&#x27;,
+  templateUrl: &#x27;./booking-confirm.component.html&#x27;,
+})
+export class BookingConfirmComponent implements OnInit {
+
+  constructor(
+    private router: Router,
+    private snackbar: MatSnackBar,
+    private confirmationTemplatesService: ConfirmationTemplatesService
+  ) { }
+
+  /**
+   * If the form is not submitted, the user will be redirected to the page.
+   */
+  ngOnInit(): void {
+    if (!history.state.submitted) {
+      this.router.navigate([&#x27;/edit&#x27;]);
+    }
+  }
+
+  /**
+   * Resends the confirmation email.
+   */
+  resend(): void {
+    this.confirmationTemplatesService.resendConfirmation({
+      id: history.state.id,
+      email: history.state.email
+    }).subscribe(
+      (success: any) &#x3D;&gt; {
+        this.snackbar.open(&#x27;Email resent. Please wait...&#x27;, &#x27;OK&#x27;, { duration: 5000, });
+      }
+    );
+  }
+}
+
+/**
+ * Helper class to check if the number of items booked exceeds the number available in the database.
+ */
+export class ExceedAmountValidator {
+  /**
+   * Returns a method to carry out the validation.
+   * @param itemsService &lt;code&gt;ItemsService&lt;/code&gt; object.
+   */
+  static createExceedAmountValidator(itemsService: ItemsService): AsyncValidatorFn {
+    return (formArray: FormArray): Observable&lt;ValidationErrors&gt; &#x3D;&gt; {
+      return itemsService.getItemsList().pipe(map((items) &#x3D;&gt; {
+        for (const element of formArray.value) {
+          if (element.quantity &gt; items.filter(ele &#x3D;&gt; ele.id &#x3D;&#x3D;&#x3D; element.item)[0].quantity) {
+            return { exceed: true };
+          }
+        }
+      }));
+    };
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D; &quot;container&quot;&gt;
+&lt;mat-horizontal-stepper style&#x3D;&quot;padding-left: 10%; padding-right: 10%; background-color: rgba(0, 0, 0, 0);&quot; #stepper [linear]&#x3D;true (selectionChange)&#x3D;&quot;selectionChange($event)&quot;&gt;
+
+    &lt;mat-step [stepControl]&#x3D;&quot;detailsForm&quot;&gt;
+        &lt;form [formGroup]&#x3D;&quot;detailsForm&quot; (ngSubmit)&#x3D;&quot;checkout()&quot;&gt;
+            &lt;ng-template matStepLabel&gt;Applicant Details&lt;/ng-template&gt;
+            &lt;mat-form-field style&#x3D;&quot;width:40%&quot;&gt;
+                &lt;mat-label&gt;Name&lt;/mat-label&gt;
+                &lt;input matInput required class&#x3D;&quot;form-control&quot; formControlName&#x3D;&quot;name&quot;&gt;
+                &lt;mat-error&gt;Please enter a name.&lt;/mat-error&gt;
+            &lt;/mat-form-field&gt;
+
+            &lt;span style&#x3D;&quot;margin-left: 10%;&quot;&gt;&lt;/span&gt;
+
+            &lt;mat-form-field style&#x3D;&quot;width:40%&quot;&gt;
+                &lt;mat-label&gt;Organization&lt;/mat-label&gt;
+                &lt;input matInput required class&#x3D;&quot;form-control&quot; formControlName&#x3D;&quot;organization&quot;&gt;
+                &lt;mat-error&gt;Please enter a student organization.&lt;/mat-error&gt;
+            &lt;/mat-form-field&gt;
+
+            &lt;br&gt;
+
+            &lt;mat-form-field style&#x3D;&quot;width:40%&quot;&gt;
+                &lt;mat-label&gt;NUS Email (e.g. e1234567@u.nus.edu)&lt;/mat-label&gt;
+                &lt;input matInput required class&#x3D;&quot;form-control&quot; formControlName&#x3D;&quot;email&quot;&gt;
+                &lt;mat-error&gt;Please enter a valid NUS email.&lt;/mat-error&gt;
+            &lt;/mat-form-field&gt;
+
+            &lt;span style&#x3D;&quot;margin-left: 10%;&quot;&gt;&lt;/span&gt;
+
+            &lt;mat-form-field style&#x3D;&quot;width:40%&quot;&gt;
+                &lt;mat-label&gt;Contact Number&lt;/mat-label&gt;
+                &lt;input matInput required class&#x3D;&quot;form-control&quot; formControlName&#x3D;&quot;phone_no&quot;&gt;
+                &lt;mat-error&gt;Please enter a valid contact number.&lt;/mat-error&gt;
+            &lt;/mat-form-field&gt;
+
+            &lt;br&gt;
+
+            &lt;mat-form-field style&#x3D;&quot;width:90%&quot;&gt;
+                &lt;mat-label&gt;Purpose&lt;/mat-label&gt;
+                &lt;textarea matInput required class&#x3D;&quot;form-control&quot; formControlName&#x3D;&quot;reason&quot;&gt;&lt;/textarea&gt;
+                &lt;mat-error&gt;Please provide reasons for loaning.&lt;/mat-error&gt;
+            &lt;/mat-form-field&gt;
+
+            &lt;br&gt;
+
+            &lt;mat-form-field style&#x3D;&quot;width:40%&quot;&gt;
+                &lt;mat-label&gt;From (dd/mm/yyyy)&lt;/mat-label&gt;
+                &lt;input matInput required class&#x3D;&quot;form-control&quot; [matDatepicker]&#x3D;&quot;startpicker&quot;
+                    formControlName&#x3D;&quot;loan_start_time&quot; [max]&#x3D;&quot;detailsForm.controls.loan_end_time.value&quot;&gt;
+                &lt;mat-datepicker-toggle matSuffix [for]&#x3D;&quot;startpicker&quot;&gt;&lt;/mat-datepicker-toggle&gt;
+                &lt;mat-datepicker #startpicker&gt;&lt;/mat-datepicker&gt;
+                &lt;mat-error&gt;Please enter a valid date.&lt;/mat-error&gt;
+            &lt;/mat-form-field&gt;
+
+            &lt;span style&#x3D;&quot;margin-left: 10%;&quot;&gt;&lt;/span&gt;
+
+            &lt;mat-form-field style&#x3D;&quot;width:40%&quot;&gt;
+                &lt;mat-label&gt;To (dd/mm/yyyy)&lt;/mat-label&gt;
+                &lt;input matInput required class&#x3D;&quot;form-control&quot; [matDatepicker]&#x3D;&quot;endpicker&quot;
+                    formControlName&#x3D;&quot;loan_end_time&quot; [min]&#x3D;&quot;detailsForm.controls.loan_start_time.value&quot;&gt;
+                &lt;mat-datepicker-toggle matSuffix [for]&#x3D;&quot;endpicker&quot;&gt;&lt;/mat-datepicker-toggle&gt;
+                &lt;mat-datepicker #endpicker&gt;&lt;/mat-datepicker&gt;
+                &lt;mat-error&gt;Please enter a valid date.&lt;/mat-error&gt;
+            &lt;/mat-form-field&gt;
+
+            &lt;br&gt;
+            
+            &lt;button matStepperNext mat-raised-button color&#x3D;&quot;primary&quot; [disabled]&#x3D;&quot;!detailsForm.valid&quot;&gt;Next&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/mat-step&gt;
+
+    &lt;mat-step [stepControl]&#x3D;&quot;itemsForm&quot;&gt;
+        &lt;form [formGroup]&#x3D;&quot;itemsForm&quot; (ngSubmit)&#x3D;&quot;checkout&quot;&gt;
+            &lt;ng-template matStepLabel&gt;Select Items&lt;/ng-template&gt;
+            &lt;div formArrayName&#x3D;&quot;items&quot; *ngFor&#x3D;&quot;let itemControl of getItemInputForm().controls; let i &#x3D; index;&quot;
+                style&#x3D;&quot;margin-bottom: 2%;&quot;&gt;
+                &lt;div [formGroupName]&#x3D;&quot;i&quot;&gt;
+                    &lt;mat-form-field style&#x3D;&quot;width:50%&quot;&gt;
+                        &lt;mat-label&gt;Items&lt;/mat-label&gt;
+                        &lt;mat-select required class&#x3D;&quot;form-control&quot; formControlName&#x3D;&quot;item&quot;&gt;
+                            &lt;mat-option *ngFor&#x3D;&quot;let item of itemArray&quot; [value]&#x3D;&quot;item.id&quot;&gt;{{item.name}}&lt;/mat-option&gt;
+                        &lt;/mat-select&gt;
+                        &lt;mat-error&gt;Please choose a different item.&lt;/mat-error&gt;
+                    &lt;/mat-form-field&gt;
+                    &lt;span style&#x3D;&quot;margin-left: 10%;&quot;&gt;&lt;/span&gt;
+                    &lt;mat-form-field style&#x3D;&quot;width:15%&quot;&gt;
+                        &lt;mat-label&gt;Quantity&lt;/mat-label&gt;
+                        &lt;input matInput type&#x3D;&quot;number&quot; min&#x3D;&quot;1&quot; value&#x3D;&quot;1&quot; pattern&#x3D;&quot;\d+&quot; required class&#x3D;&quot;form-control&quot;
+                            formControlName&#x3D;&quot;quantity&quot;&gt;
+                        &lt;mat-error&gt;Please enter a positive number.&lt;/mat-error&gt;
+                    &lt;/mat-form-field&gt;
+                    &lt;button mat-raised-button color&#x3D;&quot;warn&quot; style&#x3D;&quot;float:right;&quot; (click)&#x3D;&quot;removeItemInput(i)&quot;
+                        [disabled]&#x3D;&quot;getItemInputForm().controls.length&#x3D;&#x3D;1&quot;&gt;
+                        &lt;mat-icon matPrefix&gt;delete_forever&lt;/mat-icon&gt;
+                        Delete
+                    &lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;button mat-raised-button color&#x3D;&quot;primary&quot; style&#x3D;&quot;margin-right: 1%;&quot; (click)&#x3D;&quot;addBlankItem()&quot;&gt;
+                &lt;mat-icon matPrefix&gt;add&lt;/mat-icon&gt;
+                Add Row
+            &lt;/button&gt;
+            &lt;button matStepperNext mat-raised-button color&#x3D;&quot;primary&quot; [disabled]&#x3D;&quot;!itemsForm.valid&quot;
+                type&#x3D;&quot;submit&quot;&gt;Next&lt;/button&gt;
+        &lt;/form&gt;
+        &lt;div class&#x3D;&quot;parent&quot; style&#x3D;&quot;margin-top: 10px;&quot;&gt;
+            &lt;p class&#x3D;&quot;fade child&quot; style&#x3D;&quot;color: #f44336;&quot; [style.opacity]&#x3D;&quot;checkForErrors().duplicate ? &#x27;1&#x27; : &#x27;0&#x27;&quot;
+                [style.visibility]&#x3D;&quot;checkForErrors().duplicate ? &#x27;visible&#x27; : &#x27;hidden&#x27;&quot;&gt;There are duplicate items in your
+                booking.&lt;/p&gt;
+            &lt;p class&#x3D;&quot;fade child&quot; style&#x3D;&quot;color: #f44336;&quot; [style.opacity]&#x3D;&quot;checkForErrors().exceed ? &#x27;1&#x27; : &#x27;0&#x27;&quot;
+                [style.visibility]&#x3D;&quot;checkForErrors().exceed ? &#x27;visible&#x27; : &#x27;hidden&#x27;&quot;&gt;Some of your bookings are not
+                fulfillable.&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/mat-step&gt;
+
+    &lt;mat-step&gt;
+        &lt;ng-template matStepLabel&gt;Checkout&lt;/ng-template&gt;
+        &lt;p&gt;You may want to print this page for your reference. Note that you are required to agree to the PDPA clause
+            before you submit a booking.&lt;/p&gt;
+        &lt;div class&#x3D;&quot;row&quot; style&#x3D;&quot;margin-bottom: 20px;&quot;&gt;
+            &lt;h2&gt;Booking Details&lt;/h2&gt;
+            &lt;div class&#x3D;&quot;column-left&quot; style&#x3D;&quot;margin-top: -20px; margin-left: -15px;&quot;&gt;
+                &lt;mat-list role&#x3D;&quot;list&quot;&gt;
+                    &lt;mat-list-item role&#x3D;&quot;listitem&quot;&gt;Name: {{inputGroup1[&#x27;name&#x27;]}}&lt;/mat-list-item&gt;
+                    &lt;mat-list-item role&#x3D;&quot;listitem&quot;&gt;Organization: {{inputGroup1[&#x27;organization&#x27;]}}&lt;/mat-list-item&gt;
+                    &lt;mat-list-item role&#x3D;&quot;listitem&quot;&gt;Email: {{inputGroup1[&#x27;email&#x27;]}}&lt;/mat-list-item&gt;
+                    &lt;mat-list-item role&#x3D;&quot;listitem&quot;&gt;Contact Number: {{inputGroup1[&#x27;phone_no&#x27;]}}&lt;/mat-list-item&gt;
+                    &lt;mat-list-item role&#x3D;&quot;listitem&quot;&gt;Purpose: {{inputGroup1[&#x27;reason&#x27;]}}&lt;/mat-list-item&gt;
+                    &lt;mat-list-item role&#x3D;&quot;listitem&quot;&gt;From: {{inputGroup1[&#x27;loan_start_time&#x27;]|date: &#x27;d/M/yyyy&#x27;}}
+                    &lt;/mat-list-item&gt;
+                    &lt;mat-list-item role&#x3D;&quot;listitem&quot;&gt;To: {{inputGroup1[&#x27;loan_end_time&#x27;]|date: &#x27;d/M/yyyy&#x27;}}&lt;/mat-list-item&gt;
+                &lt;/mat-list&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;column-right&quot;&gt;
+                &lt;mat-table [dataSource]&#x3D;&quot;inputGroup2.items&quot; class&#x3D;&quot;mat-elevation-z8&quot;&gt;
+                    &lt;ng-container matColumnDef&#x3D;&quot;item&quot;&gt;
+                        &lt;mat-header-cell *matHeaderCellDef&gt; Item &lt;/mat-header-cell&gt;
+                        &lt;mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt; {{returnItemGivenId(element.item).name}}
+                        &lt;/mat-cell&gt;
+                        &lt;mat-footer-cell *matFooterCellDef&gt;Deposit Payable&lt;/mat-footer-cell&gt;
+                    &lt;/ng-container&gt;
+                    &lt;ng-container matColumnDef&#x3D;&quot;quantity&quot;&gt;
+                        &lt;mat-header-cell *matHeaderCellDef&gt; Quantity &lt;/mat-header-cell&gt;
+                        &lt;mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt; {{element.quantity}} &lt;/mat-cell&gt;
+                        &lt;mat-footer-cell *matFooterCellDef&gt;{{getTotalDeposit()|currency}}&lt;/mat-footer-cell&gt;
+                    &lt;/ng-container&gt;
+                    &lt;mat-header-row *matHeaderRowDef&#x3D;&quot;itemColumns&quot;&gt;&lt;/mat-header-row&gt;
+                    &lt;mat-row *matRowDef&#x3D;&quot;let row; columns: itemColumns;&quot;&gt;&lt;/mat-row&gt;
+                    &lt;mat-footer-row *matFooterRowDef&#x3D;&quot;itemColumns&quot;&gt;&lt;/mat-footer-row&gt;
+                &lt;/mat-table&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div style&#x3D;&quot;margin-bottom: 30px;&quot;&gt;
+            &lt;h2&gt;Personal Data Protection Act&lt;/h2&gt;
+
+            &lt;mat-checkbox #c required [checked]&#x3D;&quot;editMode&quot;&gt;
+                &lt;span&gt;I consent to providing my Personal Data to NUSSU EXCO. By indicating my consent to provide my
+                    personal
+                    data in this form, I agree to receive updates and important announcements for the purpose of
+                    logistics
+                    sharing from NUSSU EXCO by email and phone. All personal information will be kept confidential and
+                    used
+                    for the purpose(s) stated only.&lt;/span&gt;
+            &lt;/mat-checkbox&gt;
+
+            &lt;h2 style&#x3D;&quot;margin-top: 30px&quot;&gt;Withdrawal of Consent&lt;/h2&gt;
+
+            &lt;mat-checkbox #d required [checked]&#x3D;&quot;editMode&quot;&gt;
+                &lt;span&gt;To help you make an informed decision, withdrawing consent will result in not being able to
+                    receive
+                    updates and important announcements for the purpose of logistics loans and sharing with NUSSU EXCO.
+                    Should you wish to withdraw your consent for NUSSU EXCO to contact you for the purposes stated
+                    above,
+                    please notify us in writing to logistics@nussu.org.sg. We will then remove your personal information
+                    from our database. Please allow 10 business days for your request to take effect.&lt;/span&gt;
+            &lt;/mat-checkbox&gt;
+        &lt;/div&gt;
+        &lt;button mat-raised-button color&#x3D;&quot;primary&quot; (click)&#x3D;onSubmit() [disabled]&#x3D;&quot;!c.checked||!d.checked&quot;&gt;
+            &lt;mat-icon&gt;send&lt;/mat-icon&gt;
+            Submit
+        &lt;/button&gt;
+        &lt;button mat-raised-button color&#x3D;&quot;primary&quot; (click)&#x3D;print() style&#x3D;&quot;margin-left: 10px&quot;&gt;
+            &lt;mat-icon&gt;print&lt;/mat-icon&gt;
+            Print
+        &lt;/button&gt;
+    &lt;/mat-step&gt;
+&lt;/mat-horizontal-stepper&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./booking-details.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@media print {
+    button {
+        display: none;
+    }
+}
+
+.fade{
+    transition: all 0.2s
+}
+
+.parent{
+    position: relative
+}
+
+.child{
+    position: absolute;
+    top: 0;
+}
+
+.container {
+    height: 90vh;
+    margin-top: 10vh;
+    background-image: url(&quot;../../assets/Blue.jpg&quot;);
+    background-position: right bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.form {
+    margin-bottom: 0%;
+}
+
+.column-left {
+    float: left;
+    width: 40%;
+}
+
+.column-right {
+    float: right;
+    width: 55%;
+}
+
+.row:after {
+    content: &quot;&quot;;
+    display: table;
+    clear: both;
+}
+
+mat-list-item {
+    margin-top: 1%;
+    height: auto !important;
+    white-space: pre-wrap;
+}
+
+mat-checkbox.mat-checkbox-layout {
+    white-space: normal !important;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class= "container"><mat-horizontal-stepper style="padding-left: 10%; padding-right: 10%; background-color: rgba(0, 0, 0, 0);" #stepper [linear]=true (selectionChange)="selectionChange($event)">    <mat-step [stepControl]="detailsForm">        <form [formGroup]="detailsForm" (ngSubmit)="checkout()">            <ng-template matStepLabel>Applicant Details</ng-template>            <mat-form-field style="width:40%">                <mat-label>Name</mat-label>                <input matInput required class="form-control" formControlName="name">                <mat-error>Please enter a name.</mat-error>            </mat-form-field>            <span style="margin-left: 10%;"></span>            <mat-form-field style="width:40%">                <mat-label>Organization</mat-label>                <input matInput required class="form-control" formControlName="organization">                <mat-error>Please enter a student organization.</mat-error>            </mat-form-field>            <br>            <mat-form-field style="width:40%">                <mat-label>NUS Email (e.g. e1234567@u.nus.edu)</mat-label>                <input matInput required class="form-control" formControlName="email">                <mat-error>Please enter a valid NUS email.</mat-error>            </mat-form-field>            <span style="margin-left: 10%;"></span>            <mat-form-field style="width:40%">                <mat-label>Contact Number</mat-label>                <input matInput required class="form-control" formControlName="phone_no">                <mat-error>Please enter a valid contact number.</mat-error>            </mat-form-field>            <br>            <mat-form-field style="width:90%">                <mat-label>Purpose</mat-label>                <textarea matInput required class="form-control" formControlName="reason"></textarea>                <mat-error>Please provide reasons for loaning.</mat-error>            </mat-form-field>            <br>            <mat-form-field style="width:40%">                <mat-label>From (dd/mm/yyyy)</mat-label>                <input matInput required class="form-control" [matDatepicker]="startpicker"                    formControlName="loan_start_time" [max]="detailsForm.controls.loan_end_time.value">                <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>                <mat-datepicker #startpicker></mat-datepicker>                <mat-error>Please enter a valid date.</mat-error>            </mat-form-field>            <span style="margin-left: 10%;"></span>            <mat-form-field style="width:40%">                <mat-label>To (dd/mm/yyyy)</mat-label>                <input matInput required class="form-control" [matDatepicker]="endpicker"                    formControlName="loan_end_time" [min]="detailsForm.controls.loan_start_time.value">                <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>                <mat-datepicker #endpicker></mat-datepicker>                <mat-error>Please enter a valid date.</mat-error>            </mat-form-field>            <br>                        <button matStepperNext mat-raised-button color="primary" [disabled]="!detailsForm.valid">Next</button>        </form>    </mat-step>    <mat-step [stepControl]="itemsForm">        <form [formGroup]="itemsForm" (ngSubmit)="checkout">            <ng-template matStepLabel>Select Items</ng-template>            <div formArrayName="items" *ngFor="let itemControl of getItemInputForm().controls; let i = index;"                style="margin-bottom: 2%;">                <div [formGroupName]="i">                    <mat-form-field style="width:50%">                        <mat-label>Items</mat-label>                        <mat-select required class="form-control" formControlName="item">                            <mat-option *ngFor="let item of itemArray" [value]="item.id">{{item.name}}</mat-option>                        </mat-select>                        <mat-error>Please choose a different item.</mat-error>                    </mat-form-field>                    <span style="margin-left: 10%;"></span>                    <mat-form-field style="width:15%">                        <mat-label>Quantity</mat-label>                        <input matInput type="number" min="1" value="1" pattern="\d+" required class="form-control"                            formControlName="quantity">                        <mat-error>Please enter a positive number.</mat-error>                    </mat-form-field>                    <button mat-raised-button color="warn" style="float:right;" (click)="removeItemInput(i)"                        [disabled]="getItemInputForm().controls.length==1">                        <mat-icon matPrefix>delete_forever</mat-icon>                        Delete                    </button>                </div>            </div>            <button mat-raised-button color="primary" style="margin-right: 1%;" (click)="addBlankItem()">                <mat-icon matPrefix>add</mat-icon>                Add Row            </button>            <button matStepperNext mat-raised-button color="primary" [disabled]="!itemsForm.valid"                type="submit">Next</button>        </form>        <div class="parent" style="margin-top: 10px;">            <p class="fade child" style="color: #f44336;" [style.opacity]="checkForErrors().duplicate ? \'1\' : \'0\'"                [style.visibility]="checkForErrors().duplicate ? \'visible\' : \'hidden\'">There are duplicate items in your                booking.</p>            <p class="fade child" style="color: #f44336;" [style.opacity]="checkForErrors().exceed ? \'1\' : \'0\'"                [style.visibility]="checkForErrors().exceed ? \'visible\' : \'hidden\'">Some of your bookings are not                fulfillable.</p>        </div>    </mat-step>    <mat-step>        <ng-template matStepLabel>Checkout</ng-template>        <p>You may want to print this page for your reference. Note that you are required to agree to the PDPA clause            before you submit a booking.</p>        <div class="row" style="margin-bottom: 20px;">            <h2>Booking Details</h2>            <div class="column-left" style="margin-top: -20px; margin-left: -15px;">                <mat-list role="list">                    <mat-list-item role="listitem">Name: {{inputGroup1[\'name\']}}</mat-list-item>                    <mat-list-item role="listitem">Organization: {{inputGroup1[\'organization\']}}</mat-list-item>                    <mat-list-item role="listitem">Email: {{inputGroup1[\'email\']}}</mat-list-item>                    <mat-list-item role="listitem">Contact Number: {{inputGroup1[\'phone_no\']}}</mat-list-item>                    <mat-list-item role="listitem">Purpose: {{inputGroup1[\'reason\']}}</mat-list-item>                    <mat-list-item role="listitem">From: {{inputGroup1[\'loan_start_time\']|date: \'d/M/yyyy\'}}                    </mat-list-item>                    <mat-list-item role="listitem">To: {{inputGroup1[\'loan_end_time\']|date: \'d/M/yyyy\'}}</mat-list-item>                </mat-list>            </div>            <div class="column-right">                <mat-table [dataSource]="inputGroup2.items" class="mat-elevation-z8">                    <ng-container matColumnDef="item">                        <mat-header-cell *matHeaderCellDef> Item </mat-header-cell>                        <mat-cell *matCellDef="let element"> {{returnItemGivenId(element.item).name}}                        </mat-cell>                        <mat-footer-cell *matFooterCellDef>Deposit Payable</mat-footer-cell>                    </ng-container>                    <ng-container matColumnDef="quantity">                        <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>                        <mat-cell *matCellDef="let element"> {{element.quantity}} </mat-cell>                        <mat-footer-cell *matFooterCellDef>{{getTotalDeposit()|currency}}</mat-footer-cell>                    </ng-container>                    <mat-header-row *matHeaderRowDef="itemColumns"></mat-header-row>                    <mat-row *matRowDef="let row; columns: itemColumns;"></mat-row>                    <mat-footer-row *matFooterRowDef="itemColumns"></mat-footer-row>                </mat-table>            </div>        </div>        <div style="margin-bottom: 30px;">            <h2>Personal Data Protection Act</h2>            <mat-checkbox #c required [checked]="editMode">                <span>I consent to providing my Personal Data to NUSSU EXCO. By indicating my consent to provide my                    personal                    data in this form, I agree to receive updates and important announcements for the purpose of                    logistics                    sharing from NUSSU EXCO by email and phone. All personal information will be kept confidential and                    used                    for the purpose(s) stated only.</span>            </mat-checkbox>            <h2 style="margin-top: 30px">Withdrawal of Consent</h2>            <mat-checkbox #d required [checked]="editMode">                <span>To help you make an informed decision, withdrawing consent will result in not being able to                    receive                    updates and important announcements for the purpose of logistics loans and sharing with NUSSU EXCO.                    Should you wish to withdraw your consent for NUSSU EXCO to contact you for the purposes stated                    above,                    please notify us in writing to logistics@nussu.org.sg. We will then remove your personal information                    from our database. Please allow 10 business days for your request to take effect.</span>            </mat-checkbox>        </div>        <button mat-raised-button color="primary" (click)=onSubmit() [disabled]="!c.checked||!d.checked">            <mat-icon>send</mat-icon>            Submit        </button>        <button mat-raised-button color="primary" (click)=print() style="margin-left: 10px">            <mat-icon>print</mat-icon>            Print        </button>    </mat-step></mat-horizontal-stepper></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BookingConfirmationComponent', 'selector': 'app-booking-confirmation'},{'name': 'BookingConfirmComponent', 'selector': 'app-booking-confirm'},{'name': 'BookingDetailsComponent', 'selector': 'app-booking-details'},{'name': 'BookingListComponent', 'selector': 'booking-list'},{'name': 'BookingListDialog', 'selector': 'booking-list-dialog'},{'name': 'BookingSummaryDialog', 'selector': 'booking-summary-dialog'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'ConfirmationTemplateComponent', 'selector': 'app-confirmation-template'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'ItemDetailsComponent', 'selector': 'app-item-details'},{'name': 'ItemListComponent', 'selector': 'item-list'},{'name': 'ItemListDialog', 'selector': 'item-list-dialog'},{'name': 'LoginFormComponent', 'selector': 'app-login-form'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MailSenderComponent', 'selector': 'app-mail-sender'},{'name': 'NotFoundComponent', 'selector': 'not-found'},{'name': 'TemplateDetailDialog', 'selector': 'app-template-detail-dialog'},{'name': 'TemplateListComponent', 'selector': 'app-template-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'BookingDetailsComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'BookingDetailsComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

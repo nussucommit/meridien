@@ -1,0 +1,1849 @@
+openapi: 3.0.2
+info:
+  title: meridien
+  version: 0.1.0
+paths:
+  /api/items/:
+    get:
+      operationId: listItems
+      description: Retrieves the list of items from the database.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    name:
+                      type: string
+                      maxLength: 256
+                    quantity:
+                      type: integer
+                      maximum: 2147483647
+                      minimum: 0
+                    item_status:
+                      type: string
+                      maxLength: 256
+                    remarks:
+                      type: string
+                    category:
+                      type: string
+                      maxLength: 256
+                    deposit:
+                      type: number
+                      multipleOf: 0.01
+                      maximum: 200.0
+                      minimum: 0.0
+                  required:
+                  - name
+          description: Successfully retrieved list of items.
+    post:
+      operationId: CreateItem
+      description: Creates an item in the database.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id001
+              properties:
+                name:
+                  type: string
+                  maxLength: 256
+                quantity:
+                  type: integer
+                  maximum: 2147483647
+                  minimum: 0
+                item_status:
+                  type: string
+                  maxLength: 256
+                remarks:
+                  type: string
+                category:
+                  type: string
+                  maxLength: 256
+                deposit:
+                  type: number
+                  multipleOf: 0.01
+                  maximum: 200.0
+                  minimum: 0.0
+              required:
+              - name
+          application/x-www-form-urlencoded:
+            schema: *id001
+          multipart/form-data:
+            schema: *id001
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 256
+                  quantity:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: 0
+                  item_status:
+                    type: string
+                    maxLength: 256
+                  remarks:
+                    type: string
+                  category:
+                    type: string
+                    maxLength: 256
+                  deposit:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 200.0
+                    minimum: 0.0
+                required:
+                - name
+          description: Successfully created item.
+  /api/items/{id}/:
+    get:
+      operationId: RetrieveItem
+      description: Retrieves a particular item in database.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this item.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 256
+                  quantity:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: 0
+                  item_status:
+                    type: string
+                    maxLength: 256
+                  remarks:
+                    type: string
+                  category:
+                    type: string
+                    maxLength: 256
+                  deposit:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 200.0
+                    minimum: 0.0
+                required:
+                - name
+          description: Successfully retrieved item.
+    put:
+      operationId: UpdateItem
+      description: Modifies the detail of a particular item in database.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this item.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id002
+              properties:
+                name:
+                  type: string
+                  maxLength: 256
+                quantity:
+                  type: integer
+                  maximum: 2147483647
+                  minimum: 0
+                item_status:
+                  type: string
+                  maxLength: 256
+                remarks:
+                  type: string
+                category:
+                  type: string
+                  maxLength: 256
+                deposit:
+                  type: number
+                  multipleOf: 0.01
+                  maximum: 200.0
+                  minimum: 0.0
+              required:
+              - name
+          application/x-www-form-urlencoded:
+            schema: *id002
+          multipart/form-data:
+            schema: *id002
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 256
+                  quantity:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: 0
+                  item_status:
+                    type: string
+                    maxLength: 256
+                  remarks:
+                    type: string
+                  category:
+                    type: string
+                    maxLength: 256
+                  deposit:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 200.0
+                    minimum: 0.0
+                required:
+                - name
+          description: Successfully modified item.
+    patch:
+      operationId: PartialUpdateItem
+      description: Modifies some fields of a particular item in database.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this item.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id003
+              properties:
+                name:
+                  type: string
+                  maxLength: 256
+                quantity:
+                  type: integer
+                  maximum: 2147483647
+                  minimum: 0
+                item_status:
+                  type: string
+                  maxLength: 256
+                remarks:
+                  type: string
+                category:
+                  type: string
+                  maxLength: 256
+                deposit:
+                  type: number
+                  multipleOf: 0.01
+                  maximum: 200.0
+                  minimum: 0.0
+          application/x-www-form-urlencoded:
+            schema: *id003
+          multipart/form-data:
+            schema: *id003
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 256
+                  quantity:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: 0
+                  item_status:
+                    type: string
+                    maxLength: 256
+                  remarks:
+                    type: string
+                  category:
+                    type: string
+                    maxLength: 256
+                  deposit:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 200.0
+                    minimum: 0.0
+                required:
+                - name
+          description: Successfully modified item.
+    delete:
+      operationId: DestroyItem
+      description: Deletes all items from the database.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this item.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No content.
+  /api/booked-items/:
+    get:
+      operationId: listBookedItems
+      description: Retrieves a list of item bookings from the database.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    quantity:
+                      type: integer
+                      maximum: 2147483647
+                      minimum: 0
+                    status:
+                      enum:
+                      - ACC
+                      - REJ
+                      - PEN
+                    booking_source:
+                      type: integer
+                    item:
+                      type: integer
+                  required:
+                  - booking_source
+                  - item
+          description: Successfully retrieved list of item bookings.
+    post:
+      operationId: CreateBookedItem
+      description: Creates an item booking in database.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id004
+              properties:
+                quantity:
+                  type: integer
+                  maximum: 2147483647
+                  minimum: 0
+                status:
+                  enum:
+                  - ACC
+                  - REJ
+                  - PEN
+                booking_source:
+                  type: integer
+                item:
+                  type: integer
+              required:
+              - booking_source
+              - item
+          application/x-www-form-urlencoded:
+            schema: *id004
+          multipart/form-data:
+            schema: *id004
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  quantity:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: 0
+                  status:
+                    enum:
+                    - ACC
+                    - REJ
+                    - PEN
+                  booking_source:
+                    type: integer
+                  item:
+                    type: integer
+                required:
+                - booking_source
+                - item
+          description: Successfully created item booking.
+  /api/booked-items/{id}/:
+    get:
+      operationId: RetrieveBookedItem
+      description: Retrieves a particular item booking from database.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this booked item.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  quantity:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: 0
+                  status:
+                    enum:
+                    - ACC
+                    - REJ
+                    - PEN
+                  booking_source:
+                    type: integer
+                  item:
+                    type: integer
+                required:
+                - booking_source
+                - item
+          description: Successfully retrieved item booking.
+    put:
+      operationId: UpdateBookedItem
+      description: Modifies a particular item booking in database.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this booked item.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id005
+              properties:
+                quantity:
+                  type: integer
+                  maximum: 2147483647
+                  minimum: 0
+                status:
+                  enum:
+                  - ACC
+                  - REJ
+                  - PEN
+                booking_source:
+                  type: integer
+                item:
+                  type: integer
+              required:
+              - booking_source
+              - item
+          application/x-www-form-urlencoded:
+            schema: *id005
+          multipart/form-data:
+            schema: *id005
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  quantity:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: 0
+                  status:
+                    enum:
+                    - ACC
+                    - REJ
+                    - PEN
+                  booking_source:
+                    type: integer
+                  item:
+                    type: integer
+                required:
+                - booking_source
+                - item
+          description: Successfully updated item booking.
+    patch:
+      operationId: PartialUpdateBookedItem
+      description: Modifies some fields of a particular item booking in database.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this booked item.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id006
+              properties:
+                quantity:
+                  type: integer
+                  maximum: 2147483647
+                  minimum: 0
+                status:
+                  enum:
+                  - ACC
+                  - REJ
+                  - PEN
+                booking_source:
+                  type: integer
+                item:
+                  type: integer
+          application/x-www-form-urlencoded:
+            schema: *id006
+          multipart/form-data:
+            schema: *id006
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  quantity:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: 0
+                  status:
+                    enum:
+                    - ACC
+                    - REJ
+                    - PEN
+                  booking_source:
+                    type: integer
+                  item:
+                    type: integer
+                required:
+                - booking_source
+                - item
+          description: Successfully updated item booking.
+    delete:
+      operationId: DestroyBookedItem
+      description: Deletes all item bookings from database.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this booked item.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No content.
+  /api/booked-items/booking_source_id/{booking_id}/:
+    get:
+      operationId: RetrieveBookedItem
+      description: Retrieves the list of item bookings associated with a particular booking from database.
+      parameters:
+      - name: booking_id
+        in: path
+        required: true
+        description: A unique integer value identifying a booking.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  quantity:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: 0
+                  status:
+                    enum:
+                    - ACC
+                    - REJ
+                    - PEN
+                  booking_source:
+                    type: integer
+                  item:
+                    type: integer
+                required:
+                - booking_source
+                - item
+          description: Successfully retrieved list of booked items.
+    delete:
+      operationId: DestroyBookedItem
+      description: Destroy all item bookings associated with a particular booking from database.
+      parameters:
+      - name: booking_id
+        in: path
+        required: true
+        description: A unique integer value identifying a booking.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No content.
+  /api/booked-items/item_id/{item_id}/:
+    get:
+      operationId: RetrieveBookedItem
+      description: Retrieves the list of item bookings associated with a particular item from database.
+      parameters:
+      - name: item_id
+        in: path
+        required: true
+        description: A unique integer value identifying an item.
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  quantity:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: 0
+                  status:
+                    enum:
+                    - ACC
+                    - REJ
+                    - PEN
+                  booking_source:
+                    type: integer
+                  item:
+                    type: integer
+                required:
+                - booking_source
+                - item
+          description: Successfully retrieved list of item bookings.
+  /api/bookings/:
+    get:
+      operationId: listBookings
+      description: Retrieves list of bookings from database.
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        name:
+                          type: string
+                          maxLength: 256
+                        email:
+                          type: string
+                          format: email
+                          maxLength: 254
+                        organization:
+                          type: string
+                          maxLength: 1000
+                        phone_no:
+                          type: string
+                          pattern: (8[1-8][0-9]{6}|9[0-8][0-9]{6})
+                          maxLength: 8
+                        reason:
+                          type: string
+                        time_booked:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                        loan_start_time:
+                          type: string
+                          format: date
+                        loan_end_time:
+                          type: string
+                          format: date
+                        deposit_left:
+                          type: number
+                          multipleOf: 0.01
+                          maximum: 200.0
+                          minimum: 0.0
+                        amount_paid:
+                          type: number
+                          multipleOf: 0.01
+                          maximum: 200.0
+                          minimum: 0.0
+                        status:
+                          enum:
+                          - PEN
+                          - EVA
+                          - PRO
+                          - UNC
+                          - GET
+                          - RET
+          description: 'Successfully retrieves list of bookings'
+  /api/bookings/week:
+    get:
+      operationId: listBookings
+      description: Retrieves list of bookings for the week from database.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    name:
+                      type: string
+                      maxLength: 256
+                    email:
+                      type: string
+                      format: email
+                      maxLength: 254
+                    organization:
+                      type: string
+                      maxLength: 1000
+                    phone_no:
+                      type: string
+                      pattern: (8[1-8][0-9]{6}|9[0-8][0-9]{6})
+                      maxLength: 8
+                    reason:
+                      type: string
+                    time_booked:
+                      type: string
+                      format: date-time
+                      readOnly: true
+                    loan_start_time:
+                      type: string
+                      format: date
+                    loan_end_time:
+                      type: string
+                      format: date
+                    deposit_left:
+                      type: number
+                      multipleOf: 0.01
+                      maximum: 200.0
+                      minimum: 0.0
+                    amount_paid:
+                      type: number
+                      multipleOf: 0.01
+                      maximum: 200.0
+                      minimum: 0.0
+                    status:
+                      enum:
+                      - PEN
+                      - EVA
+                      - PRO
+                      - UNC
+                      - GET
+                      - RET
+          description: Successfully retrieved list of bookings.
+  /api/bookings/{id}:
+    get:
+      operationId: RetrieveBooking
+      description: Retrieves a particular booking from database.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this booking.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 256
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  organization:
+                    type: string
+                    maxLength: 1000
+                  phone_no:
+                    type: string
+                    pattern: (8[1-8][0-9]{6}|9[0-8][0-9]{6})
+                    maxLength: 8
+                  reason:
+                    type: string
+                  time_booked:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  loan_start_time:
+                    type: string
+                    format: date
+                  loan_end_time:
+                    type: string
+                    format: date
+                  deposit_left:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 200.0
+                    minimum: 0.0
+                  amount_paid:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 200.0
+                    minimum: 0.0
+                  status:
+                    enum:
+                    - PEN
+                    - EVA
+                    - PRO
+                    - UNC
+                    - GET
+                    - RET
+          description: Successfully retrieved booking.
+    put:
+      operationId: UpdateBooking
+      description: Modifies a particular booking in database.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this booking.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id007
+              properties:
+                name:
+                  type: string
+                  maxLength: 256
+                email:
+                  type: string
+                  format: email
+                  maxLength: 254
+                organization:
+                  type: string
+                  maxLength: 1000
+                phone_no:
+                  type: string
+                  pattern: (8[1-8][0-9]{6}|9[0-8][0-9]{6})
+                  maxLength: 8
+                reason:
+                  type: string
+                loan_start_time:
+                  type: string
+                  format: date
+                loan_end_time:
+                  type: string
+                  format: date
+                deposit_left:
+                  type: number
+                  multipleOf: 0.01
+                  maximum: 200.0
+                  minimum: 0.0
+                amount_paid:
+                  type: number
+                  multipleOf: 0.01
+                  maximum: 200.0
+                  minimum: 0.0
+                status:
+                  enum:
+                  - PEN
+                  - EVA
+                  - PRO
+                  - UNC
+                  - GET
+                  - RET
+          application/x-www-form-urlencoded:
+            schema: *id007
+          multipart/form-data:
+            schema: *id007
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 256
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  organization:
+                    type: string
+                    maxLength: 1000
+                  phone_no:
+                    type: string
+                    pattern: (8[1-8][0-9]{6}|9[0-8][0-9]{6})
+                    maxLength: 8
+                  reason:
+                    type: string
+                  time_booked:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  loan_start_time:
+                    type: string
+                    format: date
+                  loan_end_time:
+                    type: string
+                    format: date
+                  deposit_left:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 200.0
+                    minimum: 0.0
+                  amount_paid:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 200.0
+                    minimum: 0.0
+                  status:
+                    enum:
+                    - PEN
+                    - EVA
+                    - PRO
+                    - UNC
+                    - GET
+                    - RET
+          description: Successfully modified booking.
+    patch:
+      operationId: PartialUpdateBooking
+      description: Modifies some fields of a particular booking in database.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this booking.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id008
+              properties:
+                name:
+                  type: string
+                  maxLength: 256
+                email:
+                  type: string
+                  format: email
+                  maxLength: 254
+                organization:
+                  type: string
+                  maxLength: 1000
+                phone_no:
+                  type: string
+                  pattern: (8[1-8][0-9]{6}|9[0-8][0-9]{6})
+                  maxLength: 8
+                reason:
+                  type: string
+                loan_start_time:
+                  type: string
+                  format: date
+                loan_end_time:
+                  type: string
+                  format: date
+                deposit_left:
+                  type: number
+                  multipleOf: 0.01
+                  maximum: 200.0
+                  minimum: 0.0
+                amount_paid:
+                  type: number
+                  multipleOf: 0.01
+                  maximum: 200.0
+                  minimum: 0.0
+                status:
+                  enum:
+                  - PEN
+                  - EVA
+                  - PRO
+                  - UNC
+                  - GET
+                  - RET
+          application/x-www-form-urlencoded:
+            schema: *id008
+          multipart/form-data:
+            schema: *id008
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 256
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  organization:
+                    type: string
+                    maxLength: 1000
+                  phone_no:
+                    type: string
+                    pattern: (8[1-8][0-9]{6}|9[0-8][0-9]{6})
+                    maxLength: 8
+                  reason:
+                    type: string
+                  time_booked:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  loan_start_time:
+                    type: string
+                    format: date
+                  loan_end_time:
+                    type: string
+                    format: date
+                  deposit_left:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 200.0
+                    minimum: 0.0
+                  amount_paid:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 200.0
+                    minimum: 0.0
+                  status:
+                    enum:
+                    - PEN
+                    - EVA
+                    - PRO
+                    - UNC
+                    - GET
+                    - RET
+          description: Successfully updated booking.
+    delete:
+      operationId: DestroyBooking
+      description: Deletes a particular booking in the database.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this booking.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No content.
+  /api/bookings/token/{token}:
+    get:
+      operationId: RetrieveBookingDetailByToken
+      description: Retrieves detail of a booking given a token for the booking.
+      parameters:
+      - name: token
+        in: path
+        required: true
+        description: JSON Web Token given at creation of booking.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 256
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  organization:
+                    type: string
+                    maxLength: 1000
+                  phone_no:
+                    type: string
+                    pattern: (8[1-8][0-9]{6}|9[0-8][0-9]{6})
+                    maxLength: 8
+                  reason:
+                    type: string
+                  time_booked:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  loan_start_time:
+                    type: string
+                    format: date
+                  loan_end_time:
+                    type: string
+                    format: date
+                  deposit_left:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 200.0
+                    minimum: 0.0
+                  amount_paid:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 200.0
+                    minimum: 0.0
+                  status:
+                    enum:
+                    - PEN
+                    - EVA
+                    - PRO
+                    - UNC
+                    - GET
+                    - RET
+          description: Successfully retrieved booking.
+    delete:
+      operationId: DestroyBookingDetailByToken
+      description: Deletes a booking given a token for the booking.
+      parameters:
+      - name: token
+        in: path
+        required: true
+        description: JSON Web Token given at creation of booking.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No content.
+  /api/email_templates:
+    get:
+      operationId: ListEmailTemplates
+      description: Retrieves list of email templates from database.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 256
+                  subject:
+                    type: string
+                    maxLength: 256
+                  template:
+                    type: string
+                    maxLength: 1000
+          description: ''
+    post:
+      operationId: CreateEmailTemplate
+      description: Creates an email template in database.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  maxLength: 256
+                subject:
+                  type: string
+                  maxLength: 256
+                template:
+                  type: string
+              required:
+              - name
+              - subject
+              - template
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 256
+                  subject:
+                    type: string
+                    maxLength: 256
+                  template:
+                    type: string
+          description: Successfully created email template.
+  /api/email_template/{id}:
+    get:
+      operationId: RetrieveEmailTemplateDetail
+      description: Retrieves a particular email template from database.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Unique integer indicating this email template.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 256
+                  subject:
+                    type: string
+                    maxLength: 256
+                  template:
+                    type: string
+          description: Successfully retreived email template.
+    put:
+      operationId: UpdateEmailTemplateDetail
+      description: Modifies detail of a particular email template.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Unique integer indicating this email template.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 256
+                  subject:
+                    type: string
+                    maxLength: 256
+                  template:
+                    type: string
+          description: Successfully modified email template.
+    delete:
+      operationId: DestroyEmailTemplateDetail
+      description: Deletes a particular email template from database
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Unique integer indicating this email template.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No content.
+  /api/get_confirmation:
+    get:
+      operationId: RetrieveConfirmationTemplate
+      description: Retrieve confirmation template from database.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    link_string:
+                      type: string
+                      maxLength: 256
+                    subject:
+                      type: string
+                      maxLength: 256
+                    template:
+                      type: string
+          description: Successfully retrieved confirmation template.
+  /api/issues/booking_source_id/{booking_id}/:
+    get:
+      operationId: RetrieveIssueByBooking
+      description: Retrieves issues associated to a particular booking.
+      parameters:
+      - name: booking_id
+        in: path
+        required: true
+        description: Unique integer indicating a booking.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 256
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  detail:
+                    type: string
+                    maxLength: 3000
+                  time_reported:
+                    type: string
+                    format: date-time
+                    readOnly: true
+          description: Successfully retrieves issues.
+    delete:
+      operationId: DestroyIssueByBooking
+      description: Deletes issues associated to a particular booking.
+      parameters:
+      - name: booking_id
+        in: path
+        required: true
+        description: Unique integer indicating a booking.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No content.
+  /api/issues/{id}:
+    get:
+      operationId: RetrieveIssue
+      description: Retrieves a particular issue from database.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this issue.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 256
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  detail:
+                    type: string
+                    maxLength: 3000
+                  time_reported:
+                    type: string
+                    format: date-time
+                    readOnly: true
+          description: Successfully retrieved issue.
+    put:
+      operationId: UpdateIssue
+      description: Modifies details of a particular issue in database.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this issue.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id009
+              properties:
+                name:
+                  type: string
+                  maxLength: 256
+                email:
+                  type: string
+                  format: email
+                  maxLength: 254
+                detail:
+                  type: string
+                  maxLength: 3000
+          application/x-www-form-urlencoded:
+            schema: *id009
+          multipart/form-data:
+            schema: *id009
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 256
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  detail:
+                    type: string
+                    maxLength: 3000
+                  time_reported:
+                    type: string
+                    format: date-time
+                    readOnly: true
+          description: Successfully updated issue.
+    patch:
+      operationId: PartialUpdateIssue
+      description: Modifies some fields of a paricular issue in database.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this issue.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id010
+              properties:
+                name:
+                  type: string
+                  maxLength: 256
+                email:
+                  type: string
+                  format: email
+                  maxLength: 254
+                detail:
+                  type: string
+                  maxLength: 3000
+          application/x-www-form-urlencoded:
+            schema: *id010
+          multipart/form-data:
+            schema: *id010
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 256
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  detail:
+                    type: string
+                    maxLength: 3000
+                  time_reported:
+                    type: string
+                    format: date-time
+                    readOnly: true
+          description: Successfully updated issue.
+    delete:
+      operationId: DestroyIssue
+      description: Deletes a particular issue from database.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this issue.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No content.
+  /api/bookings/edit:
+    post:
+      operationId: CreateBooking
+      description: Creates a new booking in database.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id011
+              properties:
+                name:
+                  type: string
+                  maxLength: 256
+                email:
+                  type: string
+                  format: email
+                  maxLength: 254
+                organization:
+                  type: string
+                  maxLength: 1000
+                phone_no:
+                  type: string
+                  pattern: (8[1-8][0-9]{6}|9[0-8][0-9]{6})
+                  maxLength: 8
+                reason:
+                  type: string
+                loan_start_time:
+                  type: string
+                  format: date
+                loan_end_time:
+                  type: string
+                  format: date
+                deposit_left:
+                  type: number
+                  multipleOf: 0.01
+                  maximum: 200.0
+                  minimum: 0.0
+                amount_paid:
+                  type: number
+                  multipleOf: 0.01
+                  maximum: 200.0
+                  minimum: 0.0
+                status:
+                  enum:
+                  - PEN
+                  - EVA
+                  - PRO
+                  - UNC
+                  - GET
+                  - RET
+          application/x-www-form-urlencoded:
+            schema: *id011
+          multipart/form-data:
+            schema: *id011
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 256
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  organization:
+                    type: string
+                    maxLength: 1000
+                  phone_no:
+                    type: string
+                    pattern: (8[1-8][0-9]{6}|9[0-8][0-9]{6})
+                    maxLength: 8
+                  reason:
+                    type: string
+                  time_booked:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  loan_start_time:
+                    type: string
+                    format: date
+                  loan_end_time:
+                    type: string
+                    format: date
+                  deposit_left:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 200.0
+                    minimum: 0.0
+                  amount_paid:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 200.0
+                    minimum: 0.0
+                  status:
+                    enum:
+                    - PEN
+                    - EVA
+                    - PRO
+                    - UNC
+                    - GET
+                    - RET
+          description: Successfully created booking.
+  /api/token:
+    post:
+      operationId: CreateTokenObtainPair
+      description: 'Takes a set of user credentials and returns an access and refresh
+        JSON web
+
+        token pair to prove the authentication of those credentials.'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id012
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                  writeOnly: true
+              required:
+              - username
+              - password
+          application/x-www-form-urlencoded:
+            schema: *id012
+          multipart/form-data:
+            schema: *id012
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  username:
+                    type: string
+                required:
+                - username
+          description: ''
+  /api/token/refresh:
+    post:
+      operationId: CreateTokenRefresh
+      description: 'Takes a refresh type JSON web token and returns an access type
+        JSON web
+
+        token if the refresh token is valid.'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id013
+              properties:
+                refresh:
+                  type: string
+              required:
+              - refresh
+          application/x-www-form-urlencoded:
+            schema: *id013
+          multipart/form-data:
+            schema: *id013
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  refresh:
+                    type: string
+                required:
+                - refresh
+          description: ''
+  /api/send_html_email:
+    post:
+      operationId: SendMail
+      description: Send an email through an email server.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  subject:
+                    type: string
+                  recipient:
+                    type: string
+                  message:
+                    type: string
+          description: Successfully sent email.
+  /api/update_confirmation:
+    post:
+      operationId: CreateUpdateConfirmationTemplate
+      description: Creates a new confirmation template, or updates if one already exists.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  link_string:
+                    type: string
+                    maxLength: 256
+                  subject:
+                    type: string
+                    maxLength: 256
+                  template:
+                    type: string
+          description: ''
+  /api/resend_confirmation:
+    post:
+      operationId: ResendConfirmation
+      description: Resends confirmation email for a booking.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: 
+                properties:
+                  id:
+                    type: integer
+                  email:
+                    type: string
+                    format: email
+          description: Successfully resend confirmation.
+  /api/issues/:
+    post:
+      operationId: CreateIssue
+      description: Create a new issue in database.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id014
+              properties:
+                name:
+                  type: string
+                  maxLength: 256
+                email:
+                  type: string
+                  format: email
+                  maxLength: 254
+                detail:
+                  type: string
+                  maxLength: 3000
+          application/x-www-form-urlencoded:
+            schema: *id014
+          multipart/form-data:
+            schema: *id014
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 256
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  detail:
+                    type: string
+                    maxLength: 3000
+                  time_reported:
+                    type: string
+                    format: date-time
+                    readOnly: true
+          description: Successfully created issue.
+  /api/bookings/token/confirm/{token}:
+    patch:
+      operationId: ConfirmBookingToken
+      description: Confirm of a booking given a token.
+      parameters:
+      - name: token
+        in: path
+        required: true
+        description: JSON Web Token generated at creation of booking
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successfully confirmed booking.

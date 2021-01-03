@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>angular-view documentation</title>
+        <title>Application documentation</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">angular-view documentation</a>
+            <a href="../" class="navbar-brand">Application documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -388,7 +388,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>apiKey</code>
+                            <i>Default value : </i><code>environment.apiKey</code>
                         </td>
                     </tr>
                         <tr>
@@ -433,13 +433,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { environment } from &#x27;./../../environments/environment&#x27;;
+import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
 import { ConfirmationTemplate } from &#x27;./../model-service/confirmationtemplates/confirmationtemplates&#x27;;
 import { ConfirmationTemplatesService } from &#x27;./../model-service/confirmationtemplates/confirmationtemplates.service&#x27;;
 import { FormGroup, FormBuilder } from &#x27;@angular/forms&#x27;;
 import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
-import { apiKey } from &#x27;../settings&#x27;;
 
 @Component({
   selector: &#x27;app-confirmation-template&#x27;,
@@ -448,7 +448,7 @@ import { apiKey } from &#x27;../settings&#x27;;
 })
 export class ConfirmationTemplateComponent implements OnInit {
   confirmationMailForm: FormGroup;
-  apiKey &#x3D; apiKey;
+  apiKey &#x3D; environment.apiKey;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -485,7 +485,8 @@ export class ConfirmationTemplateComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;form class&#x3D;&quot;container&quot; style&#x3D;&quot;padding-top:15px; padding-left: 30px; padding-right: 30px; padding-bottom: 20px;&quot; [formGroup]&#x3D;&quot;confirmationMailForm&quot; (ngSubmit)&#x3D;&quot;create_or_update(confirmationMailForm.value)&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;app-toolbar&gt;&lt;/app-toolbar&gt;
+&lt;form class&#x3D;&quot;container&quot; style&#x3D;&quot;padding-top:15px; padding-left: 30px; padding-right: 30px; padding-bottom: 20px;&quot; [formGroup]&#x3D;&quot;confirmationMailForm&quot; (ngSubmit)&#x3D;&quot;create_or_update(confirmationMailForm.value)&quot;&gt;
   &lt;mat-form-field appearance&#x3D;&quot;fill&quot; style&#x3D;&quot;width: 100%&quot;&gt;
     &lt;mat-label for&#x3D;&quot;link_string&quot;&gt;Link Placeholder&lt;/mat-label&gt;
     &lt;input matInput formControlName&#x3D;&quot;link_string&quot;&gt;
@@ -560,8 +561,8 @@ export class ConfirmationTemplateComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><form class="container" style="padding-top:15px; padding-left: 30px; padding-right: 30px; padding-bottom: 20px;" [formGroup]="confirmationMailForm" (ngSubmit)="create_or_update(confirmationMailForm.value)">  <mat-form-field appearance="fill" style="width: 100%">    <mat-label for="link_string">Link Placeholder</mat-label>    <input matInput formControlName="link_string">  </mat-form-field>  <br>  <mat-form-field appearance="fill" style="width: 100%">    <mat-label for="subject">Subject</mat-label>    <input matInput formControlName="subject">  </mat-form-field>  <br>  <editor     formControlName="template"    [apiKey]="apiKey"    [init]="{      height: 300,      menubar: false,      plugins: [        \'advlist autolink lists link image charmap print preview anchor\',        \'searchreplace visualblocks code fullscreen\',        \'insertdatetime media table paste code help wordcount\',        \'table\'      ],      toolbar:        \'undo redo | formatselect | bold italic underline backcolor | \        alignleft aligncenter alignright alignjustify | \        bullist numlist outdent indent | removeformat | help \        table tabledelete | tableprops tablerowprops tablecellprops | \        tableinsertrowbefore tableinsertrowafter tabledeleterow | \         tableinsertcolbefore tableinsertcolafter tabledeletecol | tablemergecells\'    }"  ></editor>  <br>  <button mat-raised-button color="primary">Submit</button></form></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BookingConfirmationComponent', 'selector': 'app-booking-confirmation'},{'name': 'BookingConfirmComponent', 'selector': 'app-booking-confirm'},{'name': 'BookingDetailsComponent', 'selector': 'app-booking-details'},{'name': 'BookingListComponent', 'selector': 'booking-list'},{'name': 'BookingListDialog', 'selector': 'booking-list-dialog'},{'name': 'BookingSummaryDialog', 'selector': 'booking-summary-dialog'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'ConfirmationTemplateComponent', 'selector': 'app-confirmation-template'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'ItemDetailsComponent', 'selector': 'app-item-details'},{'name': 'ItemListComponent', 'selector': 'item-list'},{'name': 'ItemListDialog', 'selector': 'item-list-dialog'},{'name': 'LoginFormComponent', 'selector': 'app-login-form'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MailSenderComponent', 'selector': 'app-mail-sender'},{'name': 'NotFoundComponent', 'selector': 'not-found'},{'name': 'TemplateDetailDialog', 'selector': 'app-template-detail-dialog'},{'name': 'TemplateListComponent', 'selector': 'app-template-list'}];
+        var COMPONENT_TEMPLATE = '<div><app-toolbar></app-toolbar><form class="container" style="padding-top:15px; padding-left: 30px; padding-right: 30px; padding-bottom: 20px;" [formGroup]="confirmationMailForm" (ngSubmit)="create_or_update(confirmationMailForm.value)">  <mat-form-field appearance="fill" style="width: 100%">    <mat-label for="link_string">Link Placeholder</mat-label>    <input matInput formControlName="link_string">  </mat-form-field>  <br>  <mat-form-field appearance="fill" style="width: 100%">    <mat-label for="subject">Subject</mat-label>    <input matInput formControlName="subject">  </mat-form-field>  <br>  <editor     formControlName="template"    [apiKey]="apiKey"    [init]="{      height: 300,      menubar: false,      plugins: [        \'advlist autolink lists link image charmap print preview anchor\',        \'searchreplace visualblocks code fullscreen\',        \'insertdatetime media table paste code help wordcount\',        \'table\'      ],      toolbar:        \'undo redo | formatselect | bold italic underline backcolor | \        alignleft aligncenter alignright alignjustify | \        bullist numlist outdent indent | removeformat | help \        table tabledelete | tableprops tablerowprops tablecellprops | \        tableinsertrowbefore tableinsertrowafter tabledeleterow | \         tableinsertcolbefore tableinsertcolafter tabledeletecol | tablemergecells\'    }"  ></editor>  <br>  <button mat-raised-button color="primary">Submit</button></form></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BookingConfirmationComponent', 'selector': 'app-booking-confirmation'},{'name': 'BookingConfirmComponent', 'selector': 'app-booking-confirm'},{'name': 'BookingDetailsComponent', 'selector': 'app-booking-details'},{'name': 'BookingListComponent', 'selector': 'booking-list'},{'name': 'BookingListDialog', 'selector': 'booking-list-dialog'},{'name': 'BookingSummaryDialog', 'selector': 'booking-summary-dialog'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'ConfirmationTemplateComponent', 'selector': 'app-confirmation-template'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'ItemDetailsComponent', 'selector': 'app-item-details'},{'name': 'ItemListComponent', 'selector': 'item-list'},{'name': 'ItemListDialog', 'selector': 'item-list-dialog'},{'name': 'LoginFormComponent', 'selector': 'app-login-form'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MailSenderComponent', 'selector': 'app-mail-sender'},{'name': 'NotFoundComponent', 'selector': 'not-found'},{'name': 'TemplateDetailDialog', 'selector': 'app-template-detail-dialog'},{'name': 'TemplateListComponent', 'selector': 'app-template-list'},{'name': 'ToolbarComponent', 'selector': 'app-toolbar'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ConfirmationTemplateComponent'};
 </script>

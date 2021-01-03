@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>angular-view documentation</title>
+        <title>Application documentation</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">angular-view documentation</a>
+            <a href="../" class="navbar-brand">Application documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -778,7 +778,8 @@ export class TemplateListComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container&quot; style&#x3D;&quot;padding-top:15px; padding-left: 30px; padding-right: 30px; padding-bottom: 20px;&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;app-toolbar&gt;&lt;/app-toolbar&gt;
+&lt;div class&#x3D;&quot;container&quot; style&#x3D;&quot;padding-top:15px; padding-left: 30px; padding-right: 30px; padding-bottom: 20px;&quot;&gt;
   &lt;h1 style&#x3D;&quot;padding-top:10px&quot;&gt;Email Templates List&lt;/h1&gt;
   &lt;p&gt;Click each row for more details.&lt;/p&gt;
 
@@ -862,8 +863,8 @@ export class TemplateListComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container" style="padding-top:15px; padding-left: 30px; padding-right: 30px; padding-bottom: 20px;">  <h1 style="padding-top:10px">Email Templates List</h1>  <p>Click each row for more details.</p>  <mat-table [dataSource]="templates" matSort class="mat-elevation-z8">    <ng-container  matColumnDef="id">      <mat-header-cell *matHeaderCellDef [ngClass]="\'w-40\'" mat-sort-header>S/N</mat-header-cell>      <mat-cell *matCellDef="let template" [ngClass]="\'w-40\'">{{template.id}}</mat-cell>    </ng-container>    <ng-container  matColumnDef="name">      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>      <mat-cell *matCellDef="let template">{{template.name}}</mat-cell>    </ng-container>    <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>    <mat-row matRipple *matRowDef="let template; columns: tableColumns;" (click)=openDetail(template)></mat-row>  </mat-table>  <mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>  <div style="text-align: center; width: 100%; margin: 10px">    <button mat-raised-button color="primary" (click)=openNew()>Add New Template</button>  <div></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BookingConfirmationComponent', 'selector': 'app-booking-confirmation'},{'name': 'BookingConfirmComponent', 'selector': 'app-booking-confirm'},{'name': 'BookingDetailsComponent', 'selector': 'app-booking-details'},{'name': 'BookingListComponent', 'selector': 'booking-list'},{'name': 'BookingListDialog', 'selector': 'booking-list-dialog'},{'name': 'BookingSummaryDialog', 'selector': 'booking-summary-dialog'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'ConfirmationTemplateComponent', 'selector': 'app-confirmation-template'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'ItemDetailsComponent', 'selector': 'app-item-details'},{'name': 'ItemListComponent', 'selector': 'item-list'},{'name': 'ItemListDialog', 'selector': 'item-list-dialog'},{'name': 'LoginFormComponent', 'selector': 'app-login-form'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MailSenderComponent', 'selector': 'app-mail-sender'},{'name': 'NotFoundComponent', 'selector': 'not-found'},{'name': 'TemplateDetailDialog', 'selector': 'app-template-detail-dialog'},{'name': 'TemplateListComponent', 'selector': 'app-template-list'}];
+        var COMPONENT_TEMPLATE = '<div><app-toolbar></app-toolbar><div class="container" style="padding-top:15px; padding-left: 30px; padding-right: 30px; padding-bottom: 20px;">  <h1 style="padding-top:10px">Email Templates List</h1>  <p>Click each row for more details.</p>  <mat-table [dataSource]="templates" matSort class="mat-elevation-z8">    <ng-container  matColumnDef="id">      <mat-header-cell *matHeaderCellDef [ngClass]="\'w-40\'" mat-sort-header>S/N</mat-header-cell>      <mat-cell *matCellDef="let template" [ngClass]="\'w-40\'">{{template.id}}</mat-cell>    </ng-container>    <ng-container  matColumnDef="name">      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>      <mat-cell *matCellDef="let template">{{template.name}}</mat-cell>    </ng-container>    <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>    <mat-row matRipple *matRowDef="let template; columns: tableColumns;" (click)=openDetail(template)></mat-row>  </mat-table>  <mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>  <div style="text-align: center; width: 100%; margin: 10px">    <button mat-raised-button color="primary" (click)=openNew()>Add New Template</button>  <div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BookingConfirmationComponent', 'selector': 'app-booking-confirmation'},{'name': 'BookingConfirmComponent', 'selector': 'app-booking-confirm'},{'name': 'BookingDetailsComponent', 'selector': 'app-booking-details'},{'name': 'BookingListComponent', 'selector': 'booking-list'},{'name': 'BookingListDialog', 'selector': 'booking-list-dialog'},{'name': 'BookingSummaryDialog', 'selector': 'booking-summary-dialog'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'ConfirmationTemplateComponent', 'selector': 'app-confirmation-template'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'ItemDetailsComponent', 'selector': 'app-item-details'},{'name': 'ItemListComponent', 'selector': 'item-list'},{'name': 'ItemListDialog', 'selector': 'item-list-dialog'},{'name': 'LoginFormComponent', 'selector': 'app-login-form'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MailSenderComponent', 'selector': 'app-mail-sender'},{'name': 'NotFoundComponent', 'selector': 'not-found'},{'name': 'TemplateDetailDialog', 'selector': 'app-template-detail-dialog'},{'name': 'TemplateListComponent', 'selector': 'app-template-list'},{'name': 'ToolbarComponent', 'selector': 'app-toolbar'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TemplateListComponent'};
 </script>

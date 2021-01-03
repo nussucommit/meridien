@@ -4,26 +4,32 @@
     }
 }
 
-.fade{
-    transition: all 0.2s
+.fade {
+    transition: all 0.2s;
 }
 
-.parent{
-    position: relative
+.parent {
+    position: relative;
 }
 
-.child{
+.child {
     position: absolute;
     top: 0;
 }
 
 .container {
     height: 90vh;
-    margin-top: 10vh;
     background-image: url("../../assets/Blue.jpg");
     background-position: right bottom;
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+.stepper-style {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 2%;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .form {

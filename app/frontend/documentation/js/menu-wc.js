@@ -16,7 +16,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
         <nav>
             <ul class="list">
                 <li class="title">
-                    <a href="index.html" data-type="index-link">angular-view documentation</a>
+                    <a href="index.html" data-type="index-link">Application documentation</a>
                 </li>
 
                 <li class="divider"></li>
@@ -34,11 +34,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <span class="icon ion-ios-paper"></span>README
                             </a>
                         </li>
-                                <li class="link">
-                                    <a href="dependencies.html" data-type="chapter-link">
-                                        <span class="icon ion-ios-list"></span>Dependencies
-                                    </a>
-                                </li>
                     </ul>
                 </li>
                     <li class="chapter modules">
@@ -55,13 +50,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-AppModule-a61f5c4a0d3342faef9c51c01db700af"' : 'data-target="#xs-components-links-module-AppModule-a61f5c4a0d3342faef9c51c01db700af"' }>
+                                            'data-target="#components-links-module-AppModule-dd3125169c18489252314ee4573c49f1"' : 'data-target="#xs-components-links-module-AppModule-dd3125169c18489252314ee4573c49f1"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-a61f5c4a0d3342faef9c51c01db700af"' :
-                                            'id="xs-components-links-module-AppModule-a61f5c4a0d3342faef9c51c01db700af"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-dd3125169c18489252314ee4573c49f1"' :
+                                            'id="xs-components-links-module-AppModule-dd3125169c18489252314ee4573c49f1"' }>
                                             <li class="link">
                                                 <a href="components/AppComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
@@ -138,17 +133,21 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                                 <a href="components/TemplateListComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">TemplateListComponent</a>
                                             </li>
+                                            <li class="link">
+                                                <a href="components/ToolbarComponent.html"
+                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolbarComponent</a>
+                                            </li>
                                         </ul>
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-AppModule-a61f5c4a0d3342faef9c51c01db700af"' : 'data-target="#xs-injectables-links-module-AppModule-a61f5c4a0d3342faef9c51c01db700af"' }>
+                                        'data-target="#injectables-links-module-AppModule-dd3125169c18489252314ee4573c49f1"' : 'data-target="#xs-injectables-links-module-AppModule-dd3125169c18489252314ee4573c49f1"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AppModule-a61f5c4a0d3342faef9c51c01db700af"' :
-                                        'id="xs-injectables-links-module-AppModule-a61f5c4a0d3342faef9c51c01db700af"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AppModule-dd3125169c18489252314ee4573c49f1"' :
+                                        'id="xs-injectables-links-module-AppModule-dd3125169c18489252314ee4573c49f1"' }>
                                         <li class="link">
                                             <a href="injectables/ComponentBridgingService.html"
                                                 data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>ComponentBridgingService</a>

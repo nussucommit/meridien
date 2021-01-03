@@ -50,6 +50,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 import { ConfirmationTemplateComponent } from './confirmation-template/confirmation-template.component';
 import { BookingConfirmationComponent } from './booking-confirmation/booking-confirmation.component';
 import { HomeComponent } from './home/home.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin
@@ -75,7 +76,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ConfirmationDialogComponent,
     ConfirmationTemplateComponent,
     BookingConfirmationComponent,
-    HomeComponent
+    HomeComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,

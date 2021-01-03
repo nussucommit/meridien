@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>angular-view documentation</title>
+        <title>Application documentation</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">angular-view documentation</a>
+            <a href="../" class="navbar-brand">Application documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -588,7 +588,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>apiKey</code>
+                            <i>Default value : </i><code>environment.apiKey</code>
                         </td>
                     </tr>
                         <tr>
@@ -993,14 +993,14 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Booking } from &#x27;./../model-service/bookings/bookings&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { environment } from &#x27;./../../environments/environment&#x27;;
+import { Booking } from &#x27;./../model-service/bookings/bookings&#x27;;
 import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from &#x27;@angular/material/dialog&#x27;;
 import { EmailTemplatesService } from &#x27;./../model-service/emailtemplates/emailtemplates.service&#x27;;
 import { FormGroup, FormBuilder, Validators } from &#x27;@angular/forms&#x27;;
 import { EmailTemplate } from &#x27;./../model-service/emailtemplates/emailtemplates&#x27;;
 import { Component, Inject, ViewChildren, QueryList } from &#x27;@angular/core&#x27;;
-import { apiKey } from &#x27;../settings&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 import { BookedItem } from &#x27;../model-service/items/items&#x27;;
 import { BookingsService } from &#x27;../model-service/bookings/bookings.service&#x27;;
@@ -1025,7 +1025,7 @@ export class TemplateDetailDialog {
   checkedItems &#x3D; [];
   bookedItems: BookedItem[] &#x3D; [];
 
-  apiKey &#x3D; apiKey;
+  apiKey &#x3D; environment.apiKey;;
 
   constructor(
     public dialog: MatDialog,
@@ -1253,7 +1253,7 @@ export class TemplateDetailDialog {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><style>  .column-left {    float: left;    width: 30%;  }  .column-right {    float: right;    width: 70%;  }  .row:after {    content: "";    display: table;    clear: both;  }  ul {    list-style-type: none;    margin-top: 4px;  }</style><h1 mat-dialog-title>{{(isEdit||isSendingEmail)?\'Edit Template\':\'New Template\'}}</h1><div class="row">  <div class="column-left">    <div *ngIf="isSendingEmail; else editTemplate">      <h2>Booking #{{booking.id}}</h2>      <mat-label>Name: {{booking.name}}</mat-label>      <br>      <mat-label>Loan date: {{booking.loan_start_time}}</mat-label>      <br>      <mat-label>Return date: {{booking.loan_end_time}}</mat-label>      <br>      <mat-label>Items:</mat-label>      <br>      <ul>        <li *ngFor="let bookedItem of bookedItems">          <mat-checkbox style="margin-left: -15px" #checkBox [value]="bookedItem">            {{bookedItem.item.name}} - {{bookedItem.quantity}} items          </mat-checkbox>        </li>      </ul>      <br>      <mat-label>Deposit: {{getFinalDeposit()|currency}}</mat-label>    </div>    <ng-template #editTemplate>      <p style="margin-top: 100%; color: #cccccc;">You cannot view bookings with this option.</p>    </ng-template>  </div>  <div class="column-right">    <form [formGroup]="updateForm">      <mat-form-field appearance="fill" style="width: 100%">        <mat-label for="name">Name</mat-label>        <input matInput formControlName="name">      </mat-form-field>      <br>      <mat-form-field appearance="fill" style="width: 100%">        <mat-label for="subject">Subject</mat-label>        <input matInput formControlName="subject">      </mat-form-field>      <br>      <editor formControlName="template" [apiKey]="apiKey" [init]="{      height: 300,      menubar: false,      plugins: [        \'advlist autolink lists link image charmap print preview anchor\',        \'searchreplace visualblocks code fullscreen\',        \'insertdatetime media table paste code help wordcount\',        \'table\'      ],      toolbar:        \'undo redo | formatselect | bold italic underline backcolor | \        alignleft aligncenter alignright alignjustify | \        bullist numlist outdent indent | removeformat | help \        table tabledelete | tableprops tablerowprops tablecellprops | \        tableinsertrowbefore tableinsertrowafter tabledeleterow | \         tableinsertcolbefore tableinsertcolafter tabledeletecol | tablemergecells\'    }"></editor>      <br>      <div mat-dialog-actions align="end">        <button mat-button (click)="closeDialog()" type="click">          <mat-icon>clear</mat-icon>          Cancel        </button>        <button mat-raised-button color="primary" type="submit" (click)="send_data(updateForm.value)" [disabled]="!updateForm.valid">          <mat-icon>{{(isEdit || isNew) ? \'done\' : \'email\'}}</mat-icon>          {{(isEdit || isNew) ? \'Submit\' : \'Send\'}}        </button>        <button mat-raised-button color="warn" [disabled]="isNew||isSendingEmail" (click)="confirmDelete()">          <mat-icon>delete_forever</mat-icon>          Delete        </button>      </div>    </form>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BookingConfirmationComponent', 'selector': 'app-booking-confirmation'},{'name': 'BookingConfirmComponent', 'selector': 'app-booking-confirm'},{'name': 'BookingDetailsComponent', 'selector': 'app-booking-details'},{'name': 'BookingListComponent', 'selector': 'booking-list'},{'name': 'BookingListDialog', 'selector': 'booking-list-dialog'},{'name': 'BookingSummaryDialog', 'selector': 'booking-summary-dialog'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'ConfirmationTemplateComponent', 'selector': 'app-confirmation-template'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'ItemDetailsComponent', 'selector': 'app-item-details'},{'name': 'ItemListComponent', 'selector': 'item-list'},{'name': 'ItemListDialog', 'selector': 'item-list-dialog'},{'name': 'LoginFormComponent', 'selector': 'app-login-form'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MailSenderComponent', 'selector': 'app-mail-sender'},{'name': 'NotFoundComponent', 'selector': 'not-found'},{'name': 'TemplateDetailDialog', 'selector': 'app-template-detail-dialog'},{'name': 'TemplateListComponent', 'selector': 'app-template-list'}];
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BookingConfirmationComponent', 'selector': 'app-booking-confirmation'},{'name': 'BookingConfirmComponent', 'selector': 'app-booking-confirm'},{'name': 'BookingDetailsComponent', 'selector': 'app-booking-details'},{'name': 'BookingListComponent', 'selector': 'booking-list'},{'name': 'BookingListDialog', 'selector': 'booking-list-dialog'},{'name': 'BookingSummaryDialog', 'selector': 'booking-summary-dialog'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'ConfirmationTemplateComponent', 'selector': 'app-confirmation-template'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'ItemDetailsComponent', 'selector': 'app-item-details'},{'name': 'ItemListComponent', 'selector': 'item-list'},{'name': 'ItemListDialog', 'selector': 'item-list-dialog'},{'name': 'LoginFormComponent', 'selector': 'app-login-form'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MailSenderComponent', 'selector': 'app-mail-sender'},{'name': 'NotFoundComponent', 'selector': 'not-found'},{'name': 'TemplateDetailDialog', 'selector': 'app-template-detail-dialog'},{'name': 'TemplateListComponent', 'selector': 'app-template-list'},{'name': 'ToolbarComponent', 'selector': 'app-toolbar'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TemplateDetailDialog'};
 </script>

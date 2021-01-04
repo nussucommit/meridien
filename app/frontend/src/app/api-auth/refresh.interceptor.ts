@@ -17,6 +17,11 @@ export class RefreshInterceptor implements HttpInterceptor {
     return next.handle(request)
       .pipe(
         catchError((error: HttpErrorResponse) => {
+          if (error.status != 401) {
+            // ignore if it is not unauthorized error
+            return throwError(error);
+          }
+
           if (this.isAuthRequest(request)) {
             if (this.isRefreshRequest(request)) {
               this.loginService.logout();

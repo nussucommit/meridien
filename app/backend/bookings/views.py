@@ -50,7 +50,10 @@ class MakeBooking(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         response = views_template.obj_list(request, Booking, BookingSerializer)
         if response.status_code == status.HTTP_201_CREATED:
-            send_confirmation_email(json.loads(response.content.decode("utf-8")))
+            try:
+                send_confirmation_email(json.loads(response.content.decode("utf-8")))
+            except SMTPException:
+                return JsonResponse({"message": "Problem with email sending"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         return response
 
 class BookingsByBookingPeriod(generics.ListAPIView):

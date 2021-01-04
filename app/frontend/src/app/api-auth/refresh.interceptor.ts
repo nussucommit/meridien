@@ -3,6 +3,7 @@ import { LoginService } from './../model-service/users/login.service';
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class RefreshInterceptor implements HttpInterceptor {
@@ -11,14 +12,17 @@ export class RefreshInterceptor implements HttpInterceptor {
     null
   );
 
-  constructor(private loginService: LoginService) {}
+  constructor(
+    private loginService: LoginService,
+    private snackbar: MatSnackBar
+  ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status != 401) {
-            // ignore if it is not unauthorized error
+            this.snackbar.open(`An error occured. Error code: ${error.status}.`, 'OK', { duration: 5000 });
             return throwError(error);
           }
 

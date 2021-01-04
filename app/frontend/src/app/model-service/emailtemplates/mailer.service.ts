@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Observable } from 'rxjs';
 import { Email } from './email';
 import { Injectable } from '@angular/core';
@@ -7,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class MailerService {
-  private mailerUrl = 'http://localhost:8000/api/send_html_email';
+  private mailerUrl = environment.apiUrl + 'send_html_email';
 
   constructor(private http: HttpClient) { }
 

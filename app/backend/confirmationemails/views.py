@@ -4,6 +4,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.parsers import JSONParser
 from rest_framework.permissions import IsAuthenticated
+from smtplib import SMTPException, SMTPRecipientsRefused
 
 from bookings.models import Booking
 from confirmationemails.templates import send_confirmation_email
@@ -51,7 +52,12 @@ def resend_confirmation(request):
     request_data = JSONParser().parse(request)
     booking = Booking.objects.get(pk=request_data['id'])
     if booking.email == request_data['email']:
-        send_confirmation_email(request_data)
-        return JsonResponse({"message": "Success"}, status=status.HTTP_200_OK)
+        try:
+            send_confirmation_email(request_data)
+            return JsonResponse({"message": "Success"}, status=status.HTTP_200_OK)
+        except SMTPRecipientsRefused:
+            return JsonResponse({"message": "Email recipients refused"}, status=status.HTTP_400_BAD_REQUEST)
+        except SMTPException:
+            return JsonResponse({"message": "Problem with email sending"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     else:
         return JsonResponse({"message": "Forbidden"}, status=status.HTTP_403_FORBIDDEN)

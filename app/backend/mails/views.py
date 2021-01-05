@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.parsers import JSONParser
 from rest_framework.permissions import IsAuthenticated
+from smtplib import SMTPRecipientsRefused, SMTPException
 
 from rest_framework import status
 
@@ -25,3 +26,7 @@ def mail(request):
             return HttpResponse(status=status.HTTP_204_NO_CONTENT)
         except KeyError as err:
             return JsonResponse({'error': 'Bad request {}'.format(err.args[0])}, status=status.HTTP_400_BAD_REQUEST)
+        except SMTPRecipientsRefused:
+            return JsonResponse({"message": "Email recipients refused"}, status=status.HTTP_400_BAD_REQUEST)
+        except SMTPException:
+            return JsonResponse({"message": "Problem with email sending"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

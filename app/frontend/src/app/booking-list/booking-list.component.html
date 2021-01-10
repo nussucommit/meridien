@@ -67,7 +67,7 @@
           <mat-cell *matCellDef="let booking">{{booking.name}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="time_booked">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Time Booked</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Booking Date</mat-header-cell>
           <mat-cell *matCellDef="let booking">{{booking.time_booked|date: 'dd/MM/yyyy'}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="loan_start_time">

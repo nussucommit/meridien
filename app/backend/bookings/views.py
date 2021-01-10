@@ -1,5 +1,5 @@
 import json
-import datetime
+from datetime import datetime, timedelta
 
 from django.db.models import Q
 from django.http.response import JsonResponse
@@ -35,7 +35,8 @@ class BookingList(generics.ListAPIView):
         if fromDate and fromDate != 'null':
             q &= Q(time_booked__gte=fromDate)
         if toDate and toDate != 'null':
-            q &= Q(time_booked__lte=toDate)
+            toDateObj = datetime.strptime(toDate, '%Y-%m-%d %H:%M') + timedelta(days=1)
+            q &= Q(time_booked__lte=toDateObj)
         if status and status != 'null':
             q &= Q(status__icontains=status.lower())
 

@@ -101,7 +101,8 @@ export class BookingListComponent implements OnInit, AfterViewInit {
           this.resultsLength = data.count;
           return data.results
         }),
-        catchError(() => {
+        catchError((err) => {
+          console.log(err);
           this.isLoadingResults = false;
           this.service.publish('progressBarOff');
           this.snackbar.open("An error occured.", "OK", { duration: 5000 });
@@ -120,8 +121,8 @@ export class BookingListComponent implements OnInit, AfterViewInit {
     if (filterForm.value.fromDate) {
       filterParams.fromDate = filterParams.fromDate.format("YYYY-MM-DD HH:mm");
     }
-    if (filterForm.value.endDate) {
-      filterParams.endDate = filterParams.endDate.format("YYYY-MM-DD HH:mm");
+    if (filterForm.value.toDate) {
+      filterParams.toDate = filterParams.toDate.format("YYYY-MM-DD HH:mm");
     }
     filterParams = Object.assign(filterParams,
       {

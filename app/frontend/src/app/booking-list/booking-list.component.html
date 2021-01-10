@@ -68,19 +68,19 @@
         </ng-container>
         <ng-container matColumnDef="time_booked">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Time Booked</mat-header-cell>
-          <mat-cell *matCellDef="let booking">{{booking.time_booked|date: 'd/M/yyyy'}}</mat-cell>
+          <mat-cell *matCellDef="let booking">{{booking.time_booked|date: 'dd/MM/yyyy'}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="loan_start_time">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Loan date</mat-header-cell>
-          <mat-cell *matCellDef="let booking">{{booking.loan_start_time|date: 'd/M/yyyy'}}</mat-cell>
+          <mat-cell *matCellDef="let booking">{{booking.loan_start_time|date: 'dd/MM/yyyy'}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="loan_end_time">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Return date</mat-header-cell>
-          <mat-cell *matCellDef="let booking">{{booking.loan_end_time|date: 'd/M/yyyy'}}</mat-cell>
+          <mat-cell *matCellDef="let booking">{{booking.loan_end_time|date: 'dd/MM/yyyy'}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="deposit_left">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Deposit Left (S$)</mat-header-cell>
-          <mat-cell *matCellDef="let booking">{{booking.deposit_left}}</mat-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'w-120'" style="display: flex; justify-content: flex-end;">Deposit Left (S$)</mat-header-cell>
+          <mat-cell *matCellDef="let booking" [ngClass]="'w-120'" style="display: flex; justify-content: flex-end;">{{booking.deposit_left}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="status">
           <mat-header-cell *matHeaderCellDef [ngClass]="'w-100'" mat-sort-header>Status</mat-header-cell>

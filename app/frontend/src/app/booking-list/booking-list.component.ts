@@ -126,7 +126,7 @@ export class BookingListComponent implements OnInit, AfterViewInit {
     }
     filterParams = Object.assign(filterParams,
       {
-        ordering: sortCriterion ? sortCriterion : 'id',
+        ordering: sortCriterion ? sortCriterion : '-time_booked',
         page: this.paginator.pageIndex + 1,
         page_size: this.paginator.pageSize
       });

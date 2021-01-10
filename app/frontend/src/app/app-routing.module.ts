@@ -16,7 +16,7 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'items', component: ItemListComponent },
     { path: 'bookings', component: BookingListComponent, canActivate: [AuthGuard] },
-    { path: '', redirectTo: 'bookings', pathMatch: 'full', canActivate: [AuthGuard] },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'login', component: LoginFormComponent },
     { path: 'confirmation_template', component: ConfirmationTemplateComponent, canActivate: [AuthGuard] },
     { path: 'confirm_booking', component: BookingConfirmationComponent },

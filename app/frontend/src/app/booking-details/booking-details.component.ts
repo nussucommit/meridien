@@ -34,6 +34,7 @@ export class BookingDetailsComponent implements OnInit {
   itemsForm: FormGroup;
 
   itemArray: Items[];
+  itemGroups = [];
 
   inputGroup1: any;
   inputGroup2: any;
@@ -49,7 +50,12 @@ export class BookingDetailsComponent implements OnInit {
     private itemsService: ItemsService,
     private service: ComponentBridgingService,
     private router: Router
-  ) { this.itemsService.getItemsList().subscribe((data) => this.itemArray = data); }
+  ) {
+    this.itemsService.getItemsList().subscribe((data) => {
+      this.itemArray = data;
+      this.itemGroups = this.parseItems(data);
+    });
+  }
 
   /**
    * Initializes the booking form based on whether the user is editing a booking or creating a new booking.
@@ -75,6 +81,27 @@ export class BookingDetailsComponent implements OnInit {
     });
 
     this.checkout();
+  }
+
+  parseItems(itemArray: Items[]) {
+    const itemDict: Dictionary = {};
+    itemArray.forEach((item) => {
+      if (!itemDict[item.category]) {
+        itemDict[item.category] = []
+      }
+      itemDict[item.category].push({ value: item.id, viewValue: item.name });
+    });
+    const result = [];
+    for (const category in itemDict) {
+      result.push({ name: category, items: itemDict[category] });
+    }
+    return result;
+  }
+
+  filterItems(search: string) {
+    this.itemGroups = this.parseItems(this.itemArray.filter(
+      (item) => item.name.toLowerCase().includes(search.toLowerCase())
+    ));
   }
 
   /**

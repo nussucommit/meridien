@@ -3,9 +3,17 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from bookings.models import Booking
 
 class Item(models.Model):
+    active = 'Active'
+    inactive = 'Inactive'
+
+    ITEM_STATUSES = [
+        (active, active),
+        (inactive, inactive)
+    ]
+
     name = models.CharField(max_length=256, blank=False)
     quantity = models.PositiveIntegerField(default=0)
-    item_status = models.CharField(max_length=256, default='N/A')
+    item_status = models.CharField(max_length=256, choices=ITEM_STATUSES, default=active)
     remarks = models.TextField(default='-')
     category = models.CharField(max_length=256, default='-')
     deposit = models.DecimalField(default=0.00, decimal_places=2, max_digits=10, validators=[MinValueValidator(0.00), MaxValueValidator(200.00)])

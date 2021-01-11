@@ -34,7 +34,7 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 export class ItemListComponent implements OnInit, OnDestroy {
 
   items = new MatTableDataSource<Items>();
-  tableColumns: string[] = ['id', 'name', 'category', 'quantity', 'deposit', 'status'];
+  tableColumns: string[] = ['id', 'name', 'category', 'quantity', 'deposit'];
 
   filterForm: FormGroup;
 
@@ -45,6 +45,8 @@ export class ItemListComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   subscription: Subscription;
+
+  isUserLogin: boolean;
 
   constructor(
     private bookingsService: BookingsService,
@@ -60,6 +62,10 @@ export class ItemListComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     this.reloadData();
+    this.isUserLogin = this.lc.loginStatus.value;
+    if (this.isUserLogin) {
+      this.tableColumns.push('status');
+    }
     this.items.paginator = this.paginator;
     this.items.sort = this.sort;
 
@@ -95,7 +101,9 @@ export class ItemListComponent implements OnInit, OnDestroy {
     this.itemsService.getItemsList()
       .subscribe(
         data => {
-          this.items.data = data;
+          this.items.data = this.isUserLogin
+            ? data
+            : data.filter(item => item.item_status === 'Active');
         });
   }
 

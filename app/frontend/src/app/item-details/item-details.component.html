@@ -27,10 +27,12 @@
             <mat-error>Please enter a positive number.</mat-error>
         </mat-form-field>
         <br>
-        <mat-form-field class="field-full-width" appearance="legacy">
+        <mat-form-field class="field-full-width">
             <mat-label>Status</mat-label>
-            <input matInput class="form-control" formControlName="item_status" required>
-            <mat-error>This field is required.</mat-error>
+            <mat-select class="form-control" formControlName="item_status">
+                <mat-option [value]="true">Active</mat-option>
+                <mat-option [value]="false">Inactive</mat-option>
+            </mat-select>
         </mat-form-field>
         <br>
         <mat-form-field class="field-full-width" appearance="legacy">

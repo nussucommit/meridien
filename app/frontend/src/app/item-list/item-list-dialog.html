@@ -15,22 +15,32 @@
     clear: both;
   }
 
-  table, th, td {
+  table,
+  th,
+  td {
     border: 1px solid #ddd;
     border-collapse: collapse;
     margin-top: 2.5%;
   }
-  th, td {
+
+  th,
+  td {
     padding: 5px;
     text-align: left;
   }
+
   #item_detail_table {
-    width:100%;
+    width: 100%;
   }
 
-  #item_detail_table tr:nth-child(odd){background-color: #f2f2f2;}
+  #item_detail_table tr:nth-child(odd) {
+    background-color: #f2f2f2;
+  }
 
-  #item_detail_table tr:hover {background-color: #ddd;}
+  #item_detail_table tr:hover {
+    background-color: #ddd;
+    transition: all 0.2s;
+  }
 
   mat-list-item {
     margin-top: 1%;
@@ -95,9 +105,9 @@
           <th>Deposit</th>
           <td>{{itemData.item.deposit}}</td>
         </tr>
-        <tr>
+        <tr *ngIf="lc.loginStatus.value">
           <th>Status</th>
-          <td>{{itemData.item.status}}</td>
+          <td>{{itemData.item.item_status}}</td>
         </tr>
         <tr>
           <th>Remarks</th>

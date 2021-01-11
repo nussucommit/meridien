@@ -37,7 +37,7 @@ export class ItemDetailsComponent implements OnInit {
       category: [this.item ? this.item.category : '', Validators.required],
       quantity: [this.item ? this.item.quantity : '', Validators.required],
       deposit: [this.item ? this.item.deposit : '', Validators.required],
-      item_status: [this.item ? this.item.item_status : '', Validators.required],
+      item_status: [this.item ? this.item.item_status : true, ''],
       remarks: [this.item ? this.item.remarks : '', '']
     });
   }
@@ -59,6 +59,7 @@ export class ItemDetailsComponent implements OnInit {
   onSubmit() {
     this.dialogRef.close();
     const data = this.itemForm.value;
+    data.item_status = data.item_status ? 'Active' : 'Inactive';
     if (data.remarks.length === 0) {
       data.remarks = 'N/A';
     }

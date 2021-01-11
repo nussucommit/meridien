@@ -64,7 +64,7 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header style="margin-left: 70px; display: flex; justify-content: flex-end;">Deposit(S$)</mat-header-cell>
           <mat-cell *matCellDef="let item" style="margin-left: 70px; display: flex; justify-content: flex-end;">{{item.deposit}}</mat-cell>
         </ng-container>
-        <ng-container matColumnDef="status">
+        <ng-container matColumnDef="status" *ngIf="lc.loginStatus.value">
           <mat-header-cell *matHeaderCellDef mat-sort-header style="margin-left: 70px;">Status</mat-header-cell>
           <mat-cell *matCellDef="let item" style="margin-left: 70px;">{{item.item_status}}</mat-cell>
         </ng-container>

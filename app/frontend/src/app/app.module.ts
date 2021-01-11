@@ -34,6 +34,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { EditorModule } from '@tinymce/tinymce-angular';
 
@@ -107,6 +108,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatCheckboxModule,
     MatTabsModule,
     MatProgressBarModule,
+    MatSlideToggleModule,
     FullCalendarModule,
     EditorModule
   ],

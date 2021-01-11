@@ -52,8 +52,8 @@ export class BookingDetailsComponent implements OnInit {
     private router: Router
   ) {
     this.itemsService.getItemsList().subscribe((data) => {
-      this.itemArray = data;
-      this.itemGroups = this.parseItems(data);
+      this.itemArray = data.filter((item) => item.item_status === 'Active');
+      this.itemGroups = this.parseItems(this.itemArray);
     });
   }
 

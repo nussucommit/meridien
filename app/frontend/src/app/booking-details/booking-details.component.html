@@ -1,6 +1,6 @@
 <app-toolbar></app-toolbar>
 <div class="container">
-    <mat-horizontal-stepper class="stepper-style" #stepper (selectionChange)="selectionChange($event)">
+    <mat-horizontal-stepper class="stepper-style" #stepper [linear]="true" (selectionChange)="selectionChange($event)">
 
         <mat-step [stepControl]="detailsForm">
             <form [formGroup]="detailsForm" (ngSubmit)="checkout()">

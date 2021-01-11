@@ -31,6 +31,6 @@
   </mat-toolbar>
 
   <mat-progress-bar class="fast-fade" mode="indeterminate" color="accent"
-    [style.visibility]="progressBarVisible ? 'visible' : 'hidden'" [style.opacity]="progressBarVisible ? '1' : '0' ">
+    *ngIf="progressBarVisible">
   </mat-progress-bar>
 </div>

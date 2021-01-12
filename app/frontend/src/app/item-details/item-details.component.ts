@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ItemsService } from '../model-service/items/items.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 /**
@@ -35,11 +35,15 @@ export class ItemDetailsComponent implements OnInit {
     this.itemForm = this.formBuilder.group({
       name: [this.item ? this.item.name : '', Validators.required],
       category: [this.item ? this.item.category : '', Validators.required],
-      quantity: [this.item ? this.item.quantity : '', Validators.required],
-      deposit: [this.item ? this.item.deposit : '', Validators.required],
+      quantity: [this.item ? this.item.quantity : '', [Validators.required, Validators.min(0)]],
+      deposit: [this.item ? this.item.deposit : '', [Validators.required, Validators.min(0)]],
       item_status: [this.item ? this.item.item_status : true, ''],
       remarks: [this.item ? this.item.remarks : '', '']
     });
+  }
+
+  nonNegativeNumberCheck(control: AbstractControl): any{
+    return new RegExp('^\d+$').test(control.value) ? null : { number: true };
   }
 
   /**

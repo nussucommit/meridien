@@ -117,7 +117,7 @@ export class BookingDetailsComponent implements OnInit {
    * @param control Phone number input.
    */
   phoneCheck(control: AbstractControl): any {
-    return new RegExp('(8[1-8][0-9]{6}|9[0-8][0-9]{6})').test(control.value) ? null : { phone: true };
+    return new RegExp('^(8[1-8][0-9]{6}|9[0-8][0-9]{6})$').test(control.value) ? null : { phone: true };
   }
 
   /**
@@ -125,7 +125,7 @@ export class BookingDetailsComponent implements OnInit {
    * @param control Email input.
    */
   emailCheck(control: AbstractControl): any {
-    return new RegExp('e[0-9]{7}@u\.nus\.edu').test(control.value) ? null : { email: true };
+    return new RegExp('^e[0-9]{7}@u\.nus\.edu$').test(control.value) ? null : { email: true };
   }
 
   /**

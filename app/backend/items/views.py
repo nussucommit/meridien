@@ -20,11 +20,15 @@ class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ItemSerializer
     permission_classes = (IsAuthenticated,)
 
-class BookedItemList(generics.ListCreateAPIView):
+class BookedItemList(generics.ListAPIView):
     queryset = BookedItem.objects.all()
     serializer_class = BookedItemSerializer
     permission_classes = (IsAuthenticated,)
 
+class CreateBookedItem(generics.CreateAPIView):
+    queryset = BookedItem.objects.all()
+    serializer_class = BookedItemSerializer
+    permission_classes = ()
     def create(self, request, *args, **kwargs):
         try:
             return super().create(request, *args, **kwargs)

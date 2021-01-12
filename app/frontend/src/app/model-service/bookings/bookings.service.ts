@@ -39,7 +39,7 @@ export class BookingsService {
   }
 
   createBookedItem(item: object): Observable<object> {
-    return this.http.post(`${this.baseUrlBookedItems}/`, item);
+    return this.http.post(`${this.baseUrlBookedItems}/edit`, item);
   }
 
   updateBooking(id: number, value: any): Observable<object> {

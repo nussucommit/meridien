@@ -1,3 +1,4 @@
+from bookings.models import Booking
 from items.models import Item, BookedItem
 from items.serializers import ItemSerializer, BookedItemSerializer
 
@@ -23,6 +24,14 @@ class BookedItemList(generics.ListCreateAPIView):
     queryset = BookedItem.objects.all()
     serializer_class = BookedItemSerializer
     permission_classes = (IsAuthenticated,)
+
+    def create(self, request, *args, **kwargs):
+        try:
+            return super().create(request, *args, **kwargs)
+        except:
+            booking_id = self.request.data.booking_source
+            Booking.objects.get(pk=booking_id).delete()
+            return JsonResponse({'message': 'An error occured.'}, status=status.HTTP_400_BAD_REQUEST)
 
 class BookedItemDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = BookedItem.objects.all()

@@ -32,12 +32,14 @@ export class ItemDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.item = this.itemData.item;
 
+    const choice = this.item.item_status === 'Active'
+
     this.itemForm = this.formBuilder.group({
       name: [this.item ? this.item.name : '', Validators.required],
       category: [this.item ? this.item.category : '', Validators.required],
       quantity: [this.item ? this.item.quantity : '', [Validators.required, Validators.min(0)]],
       deposit: [this.item ? this.item.deposit : '', [Validators.required, Validators.min(0)]],
-      item_status: [this.item ? this.item.item_status : true, ''],
+      item_status: [this.item ? choice : true, ''],
       remarks: [this.item ? this.item.remarks : '', '']
     });
   }

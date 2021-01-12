@@ -30,8 +30,8 @@ export class BookingsService {
     return this.http.get(`${this.baseUrlBookedItems}/booking_source_id/${id}/`);
   }
 
-  getBookersbyBookedItem(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrlBookedItems}/item_id/${id}/`);
+  getBookersbyBookedItem(id: number, dateRange?: any): Observable<any> {
+    return this.http.get(`${this.baseUrlBookedItems}/item_id/${id}/`, { params: dateRange });
   }
 
   createBooking(booking: object): Observable<object> {

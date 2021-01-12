@@ -54,35 +54,26 @@
 </style>
 
 <h1 mat-dialog-title>Item Details for {{itemData.item.name}}</h1>
-<mat-tab-group mat-dialog-content style="height: 550px">
+<mat-tab-group mat-dialog-content style="height: 600px">
   <mat-tab label="Availability">
     <div class="row">
       <div class="column-left">
-        <mat-table [dataSource]=bookers matSort>
-          <ng-container matColumnDef="orgs">
-            <mat-header-cell *matHeaderCellDef> Organization </mat-header-cell>
-            <mat-cell *matCellDef="let bookings"> {{bookings.booking_source.organization}} </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="loan_start_time">
-            <mat-header-cell *matHeaderCellDef> Loan date </mat-header-cell>
-            <mat-cell *matCellDef="let bookings"> {{bookings.booking_source.loan_start_time|date: 'd/M/yyyy'}}
-            </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="loan_end_time">
-            <mat-header-cell *matHeaderCellDef> Return date </mat-header-cell>
-            <mat-cell *matCellDef="let bookings"> {{bookings.booking_source.loan_end_time|date: 'd/M/yyyy'}} </mat-cell>
+        <mat-table [dataSource]=bookers>
+          <ng-container matColumnDef="date">
+            <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+            <mat-cell *matCellDef="let bookings"> {{bookings.date | date: 'dd/MM/yyyy'}} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="quantity">
-            <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
-            <mat-cell *matCellDef="let bookings"> {{bookings.quantity}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef> Estimated Quantity Left </mat-header-cell>
+            <mat-cell *matCellDef="let bookings"> {{bookings.quantity}}
+            </mat-cell>
           </ng-container>
           <mat-header-row *matHeaderRowDef="tableColumns_dialog"></mat-header-row>
           <mat-row *matRowDef="let row; columns: tableColumns_dialog;"></mat-row>
         </mat-table>
-        <mat-paginator pageSize="5" showFirstLastButtons></mat-paginator>
       </div>
-      <div class="column-right">
-        <full-calendar [options]="calendarOptions"></full-calendar>
+      <div class="column-right" style="margin-top: 10px;">
+        <full-calendar #calendar [options]="calendarOptions"></full-calendar>
       </div>
     </div>
   </mat-tab>

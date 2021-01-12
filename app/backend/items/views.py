@@ -2,6 +2,7 @@ from bookings.models import Booking
 from items.models import Item, BookedItem
 from items.serializers import ItemSerializer, BookedItemSerializer
 
+from django.db.models import Q
 from django.http import HttpResponse
 from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -67,4 +68,12 @@ class BookedItemFromItem(generics.ListAPIView):
         queryset = BookedItem.objects.all()
         if 'item_id' in self.kwargs:
             queryset = queryset.filter(item=self.kwargs['item_id'])
+        
+        fromDate = self.request.query_params.get('start', None)
+        toDate = self.request.query_params.get('end', None)
+
+        if fromDate and toDate:
+            queryset = queryset.filter((Q(booking_source__loan_start_time__lte=fromDate) & Q(booking_source__loan_end_time__gte=toDate))
+                                        | (Q(booking_source__loan_start_time__range=(fromDate, toDate))
+                                        | Q(booking_source__loan_end_time__range=(fromDate, toDate))))
         return queryset

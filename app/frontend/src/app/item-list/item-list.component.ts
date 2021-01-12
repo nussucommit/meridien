@@ -17,7 +17,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
-import { CalendarOptions } from '@fullcalendar/angular';
+import { CalendarOptions, formatDate } from '@fullcalendar/angular';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
@@ -49,7 +49,6 @@ export class ItemListComponent implements OnInit, OnDestroy {
   isUserLogin: boolean;
 
   constructor(
-    private bookingsService: BookingsService,
     private itemsService: ItemsService,
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
@@ -142,16 +141,11 @@ export class ItemListComponent implements OnInit, OnDestroy {
    * @param row Table row.
    */
   openDialog(row: { [x: string]: any; }) {
-    this.bookingsService.getBookersbyBookedItem(row.id)
-      .subscribe(
-        (data: BookedItem[]) => {
-          if (!this.itemDialogOpened) {
-            this.itemDialogOpened = true;
-            const dialogRef = this.dialog.open(ItemListDialog, { width: '1200px', height: '600px', data: { item: row, people: data } });
-            dialogRef.afterClosed().subscribe(() => { this.itemDialogOpened = false; });
-          }
-        }
-      );
+    if (!this.itemDialogOpened) {
+      this.itemDialogOpened = true;
+      const dialogRef = this.dialog.open(ItemListDialog, { width: '1200px', height: '650px', data: { item: row } });
+      dialogRef.afterClosed().subscribe(() => { this.itemDialogOpened = false; });
+    }
   }
 
   /**
@@ -186,13 +180,14 @@ export class ItemListDialog implements OnInit {
    */
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridWeek',
-    locale: 'en-au',
-    height: '500px',
-    events: []
+    locale: 'en-sg',
+    height: '400px',
+    events: this.putEventsCurry(this.bookingsService),
+    rerenderDelay: 150
   };
 
   // tslint:disable-next-line: variable-name
-  tableColumns_dialog = ['orgs', 'loan_start_time', 'loan_end_time', 'quantity'];
+  tableColumns_dialog = ['date', 'quantity'];
 
   editFormOpened = false;
 
@@ -206,30 +201,73 @@ export class ItemListDialog implements OnInit {
     public dialogRef: MatDialogRef<ItemListDialog>,
     private service: ComponentBridgingService,
     private snackbar: MatSnackBar,
+    private bookingsService: BookingsService,
     private itemsService: ItemsService,
     @Inject(MAT_DIALOG_DATA) public itemData: any,
     public lc: LogoutComponent
   ) { }
 
-  /**
-   * Initializes the bookings for each item.
-   */
   ngOnInit() {
-    this.bookers.data = this.itemData.people;
-    this.bookers.paginator = this.paginator;
-    this.bookers.sort = this.sort;
+  }
 
-    for (const events of this.itemData.people) {
-      this.calendarEvents.push(
-        {
-          title: `${events.booking_source.organization} - ${events.quantity} items`,
-          start: events.booking_source.loan_start_time,
-          // substr(0,10) is to extract the date only, 86400000 is added to include the return date
-          end: new Date(new Date(events.booking_source.loan_end_time).getTime() + 86400000).toISOString().substr(0, 10)
+  /**
+  * Helper method to circumvent the problem that this.bookingService is undefined.
+  * @param bookingService BookingService object.
+  */
+  putEventsCurry(bookingService: BookingsService) {
+    return (args, successCallback, failureCallback) =>
+      this.putEvents(args, successCallback, failureCallback, bookingService);
+  }
+
+  /**
+   * Returns the events to be put in the calendar. This method also populates the estimated quantity
+   * of items at a given date.
+   * @param args Current configuration of the calendar
+   * @param successCallback Callback method if the data retrieval is successful.
+   * @param failureCallback Callback method if the data retrieval is not successful.
+   * @param bookingsService BookingService object
+   */
+  putEvents(args: any, successCallback, failureCallback, bookingsService: BookingsService) {
+    const options = { year: 'numeric', month: 'numeric', day: 'numeric', locale: 'en-ca' }
+    const start = formatDate(args.start, options);
+    const end = formatDate(args.end - 86400000, options);
+    bookingsService.getBookersbyBookedItem(this.itemData.item.id, { start, end }).subscribe(
+      (bookingData: BookedItem[]) => {
+        this.bookers.data = this.populateAvailability(bookingData, args.start, args.end);
+        successCallback(bookingData.filter((element) => element.status !== 'REJ').map((element) => {
+          let title = `${element.booking_source.organization} - ${element.quantity}`;
+          if (element.status === 'PEN'){
+            title += ' (Pending)';
+          }
+          return {
+            title,
+            start: element.booking_source.loan_start_time,
+            end: new Date(new Date(element.booking_source.loan_end_time).getTime() + 86400000)
+              .toISOString()
+              .substr(0, 10),
+            color: element.status === 'ACC' ? '#0dd186' : '#ebb134'
+          };
+        }));
+      },
+      failureCallback
+    );
+  }
+
+  populateAvailability(bookingData: BookedItem[], start: Date, end: Date) {
+    let result = [];
+    while (start < end) {
+      let initialQuantity = this.itemData.item.quantity;
+      for (const booking of bookingData) {
+        const loan_start_time = new Date(booking.booking_source.loan_start_time);
+        const loan_end_time = new Date(booking.booking_source.loan_end_time);
+        if (start >= loan_start_time && start <= loan_end_time && booking.status === 'ACC') {
+          initialQuantity -= booking.quantity;
         }
-      );
+      }
+      result.push({ date: start, quantity: initialQuantity });
+      start = new Date(start.getTime() + 86400000);
     }
-    this.calendarOptions.events = this.calendarEvents;
+    return result;
   }
 
   /**

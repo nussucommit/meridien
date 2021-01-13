@@ -44,6 +44,8 @@ export class BookingDetailsComponent implements OnInit {
   editMode: boolean;
   bookingSubmitted = false;
 
+  stockLeftArray = [];
+
   constructor(
     private formBuilder: FormBuilder,
     private bookingsService: BookingsService,
@@ -74,13 +76,15 @@ export class BookingDetailsComponent implements OnInit {
     });
     this.itemsForm = this.formBuilder.group({
       items: history.state.booked_items ?
-        new FormArray(this.initialItemInput(history.state.booked_items),
-          [this.checkForRepeat], ExceedAmountValidator.createExceedAmountValidator(this.itemsService)) :
-        new FormArray([this.newItemInput()],
-          [this.checkForRepeat], ExceedAmountValidator.createExceedAmountValidator(this.itemsService))
+        new FormArray(this.initialItemInput(history.state.booked_items), [this.checkForRepeat, this.checkExceed(this.stockLeftArray)]) :
+        new FormArray([this.newItemInput()], [this.checkForRepeat, this.checkExceed(this.stockLeftArray)])
     });
 
     this.checkout();
+  }
+
+  compareItems(option, value): boolean {
+    return option.id === value.id;
   }
 
   parseItems(itemArray: Items[]) {
@@ -89,7 +93,7 @@ export class BookingDetailsComponent implements OnInit {
       if (!itemDict[item.category]) {
         itemDict[item.category] = []
       }
-      itemDict[item.category].push({ value: item.id, viewValue: item.name });
+      itemDict[item.category].push({ value: item, viewValue: item.name });
     });
     const result = [];
     for (const category in itemDict) {
@@ -133,8 +137,8 @@ export class BookingDetailsComponent implements OnInit {
    */
   newItemInput(): FormGroup {
     return this.formBuilder.group({
-      item: [2, [Validators.required]],
-      quantity: [1, [Validators.required, Validators.min(1)]]
+      item: ['', [Validators.required]],
+      quantity: ['', [Validators.required, Validators.min(1)]]
     });
   }
 
@@ -144,8 +148,11 @@ export class BookingDetailsComponent implements OnInit {
    */
   initialItemInput(data: any) {
     const result = [];
+    let i = 0;
     data.forEach((element: BookedItem) => {
       result.push(this.createItemInputWithData(element));
+      this.updateStockLeft(element.item, i);
+      i++;
     });
     return result;
   }
@@ -156,7 +163,7 @@ export class BookingDetailsComponent implements OnInit {
    */
   createItemInputWithData(bookedItem: BookedItem): FormGroup {
     return this.formBuilder.group({
-      item: [bookedItem.item.id, Validators.required],
+      item: [bookedItem.item, Validators.required],
       quantity: [bookedItem.quantity, [Validators.required, Validators.min(1)]]
     });
   }
@@ -180,7 +187,50 @@ export class BookingDetailsComponent implements OnInit {
    * @param i Row number.
    */
   removeItemInput(i: number) {
+    this.stockLeftArray = this.stockLeftArray.filter((value, index) => index != i);
     this.getItemInputForm().removeAt(i);
+  }
+
+  updateStockLeft(item, i) {
+    let start = this.detailsForm.value.loan_start_time;
+    let end = this.detailsForm.value.loan_end_time;
+    if (!(typeof start === 'string')) {
+      start = start.format("YYYY-MM-DD");
+    }
+    if (!(typeof end === 'string')) {
+      end = end.format("YYYY-MM-DD");
+    }
+    this.stockUpdaterFactory(item, start, end, i).subscribe();
+  }
+
+  stockUpdaterFactory(item, start, end, i) {
+    return this.bookingsService.getBookersbyBookedItem(item.id, { start, end })
+      .pipe(map((data) => {
+        let dailyData: number[] = [];
+        data.forEach(element => {
+          let startDate = new Date(start).getTime();
+          let endDate = new Date(end).getTime();
+          while (startDate <= endDate) {
+            let initialQuantity = item.quantity;
+            let bookingStart = new Date(element.booking_source.loan_start_time).getTime();
+            let bookingEnd = new Date(element.booking_source.loan_end_time).getTime();
+            if (element.status === 'ACC' && bookingStart <= startDate && bookingEnd >= startDate) {
+              initialQuantity -= element.quantity;
+            }
+            dailyData.push(initialQuantity);
+            startDate += 86400000;
+          }
+        });
+        if (dailyData.length === 0) {
+          dailyData.push(item.quantity);
+        }
+        if (this.stockLeftArray.length > i) {
+          this.stockLeftArray[i] = Math.min(...dailyData);
+        } else {
+          this.stockLeftArray.push(Math.min(...dailyData));
+        }
+        return this.stockLeftArray;
+      }));
   }
 
   /**
@@ -189,6 +239,7 @@ export class BookingDetailsComponent implements OnInit {
   checkout() {
     this.inputGroup1 = this.detailsForm.value;
     this.inputGroup2 = this.itemsForm.value;
+    console.log(this.itemsForm.value);
   }
 
   /**
@@ -203,9 +254,12 @@ export class BookingDetailsComponent implements OnInit {
    * Returns the total deposit payable.
    */
   getTotalDeposit() {
-    return this.itemArray ? Math.min(200, this.inputGroup2.items.reduce((acc: number, currentItem: any) =>
-      acc + this.returnItemGivenId(currentItem.item).deposit * currentItem.quantity
-      , 0)) : 0;
+    return this.itemArray
+      ? Math.min(200, this.inputGroup2.items.reduce(
+        (acc: number, currentItem: any) =>
+          acc + currentItem.item.deposit * currentItem.quantity
+        , 0))
+      : 0;
   }
 
   /**
@@ -214,8 +268,10 @@ export class BookingDetailsComponent implements OnInit {
    * @param event Page change event
    */
   selectionChange(event) {
-    if (event.selectedIndex === 2) {
-      this.checkout();
+    this.checkout();
+    const currentInput = this.itemsForm.value.items;
+    for (let i = 0; i < currentInput.length; i++) {
+      this.updateStockLeft(currentInput[i].item, i);
     }
   }
 
@@ -226,15 +282,25 @@ export class BookingDetailsComponent implements OnInit {
   checkForRepeat(formArray: FormArray) {
     const itemDict: Dictionary = {};
     formArray.value.forEach((ele) => {
-      if (itemDict[ele.item]) {
-        itemDict[ele.item] += 1;
+      if (itemDict[ele.item.id]) {
+        itemDict[ele.item.id] += 1;
       } else {
-        itemDict[ele.item] = 1;
+        itemDict[ele.item.id] = 1;
       }
     });
     for (const key in itemDict) {
       if (itemDict[key] > 1) {
         return { duplicate: true };
+      }
+    }
+  }
+
+  checkExceed(stockLeftArray: number[]) {
+    return (formArray) => {
+      for (let i = 0; i < formArray.value.length; i++) {
+        if (formArray.value[i].quantity > stockLeftArray[i]) {
+          return { exceed: true };
+        }
       }
     }
   }
@@ -264,8 +330,7 @@ export class BookingDetailsComponent implements OnInit {
       {
         time_booked: (history.state.source ? history.state.source.time_booked : new Date()),
         status: 'PEN',
-        deposit_left: this.getTotalDeposit(),
-        amount_paid: 0
+        deposit_left: this.getTotalDeposit()
       }) as Booking;
     if (!history.state.edit) {
       bookingDataCopy.loan_start_time = bookingDataCopy.loan_start_time.format('YYYY-MM-DD');
@@ -273,7 +338,7 @@ export class BookingDetailsComponent implements OnInit {
       this.bookingsService.createBooking(finalData).subscribe(
         (data: any) => {
           this.inputGroup2.items.forEach(element => {
-            const finalItemData = { booking_source: data.id, item: element.item, quantity: element.quantity, status: 'PEN' };
+            const finalItemData = { booking_source: data.id, item: element.item.id, quantity: element.quantity, status: 'PEN' };
             this.bookingsService.createBookedItem(finalItemData).subscribe();
           });
           this.router.navigate(['/edit/confirmed'], { state: { id: data.id, name: data.name, email: data.email, submitted: true } });
@@ -285,7 +350,7 @@ export class BookingDetailsComponent implements OnInit {
           // reason for deletion: I don't bother to check whether the booked item exists or not
           this.bookingsService.deleteBookedItemsByBooker(data.id).subscribe();
           this.inputGroup2.items.forEach(element => {
-            const finalItemData = { booking_source: data.id, item: element.item, quantity: element.quantity, status: 'PEN' };
+            const finalItemData = { booking_source: data.id, item: element.item.id, quantity: element.quantity, status: 'PEN' };
             this.bookingsService.createBookedItem(finalItemData).subscribe();
           });
           this.router.navigate(['/edit/confirmed'], { state: { id: data.id, name: data.name, email: data.email, submitted: true } });
@@ -336,6 +401,7 @@ export class BookingConfirmComponent implements OnInit {
 
 /**
  * Helper class to check if the number of items booked exceeds the number available in the database.
+ * (Legacy code, for future learners who want to learn about asynchronous validators lol)
  */
 export class ExceedAmountValidator {
   /**
@@ -346,7 +412,7 @@ export class ExceedAmountValidator {
     return (formArray: FormArray): Observable<ValidationErrors> => {
       return itemsService.getItemsList().pipe(map((items) => {
         for (const element of formArray.value) {
-          if (element.quantity > items.filter(ele => ele.id === element.item)[0].quantity) {
+          if (element.quantity > items.filter(ele => ele.id === element.item.id)[0].quantity) {
             return { exceed: true };
           }
         }

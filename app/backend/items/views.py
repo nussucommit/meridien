@@ -34,7 +34,7 @@ class CreateBookedItem(generics.CreateAPIView):
         try:
             return super().create(request, *args, **kwargs)
         except:
-            booking_id = self.request.data.booking_source
+            booking_id = self.request.data['booking_source']
             Booking.objects.get(pk=booking_id).delete()
             return JsonResponse({'message': 'An error occured.'}, status=status.HTTP_400_BAD_REQUEST)
 

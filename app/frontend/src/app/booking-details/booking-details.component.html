@@ -1,6 +1,6 @@
 <app-toolbar></app-toolbar>
 <div class="container">
-    <mat-horizontal-stepper class="stepper-style" #stepper [linear]="true" (selectionChange)="selectionChange($event)">
+    <mat-horizontal-stepper class="stepper-style" #stepper (selectionChange)="selectionChange($event)">
 
         <mat-step [stepControl]="detailsForm">
             <form [formGroup]="detailsForm" (ngSubmit)="checkout()">
@@ -79,7 +79,8 @@
                     <div [formGroupName]="i">
                         <mat-form-field style="width:50%">
                             <mat-label>Items</mat-label>
-                            <mat-select required class="form-control" formControlName="item">
+                            <mat-select required class="form-control" formControlName="item" [compareWith]="compareItems"
+                            (selectionChange)="updateStockLeft($event.source.value, i)">
                                 <mat-form-field appearance="outline" style="width: 95%; margin: 5px;">
                                     <input matInput #filter (keyup)="filterItems(filter.value)" placeholder="Search...">
                                 </mat-form-field>
@@ -89,15 +90,14 @@
                                     </mat-option>
                                 </mat-optgroup>
                             </mat-select>
-                            <mat-error>Please choose a different item.</mat-error>
                         </mat-form-field>
                         <span style="margin-left: 10%;"></span>
                         <mat-form-field style="width:15%">
                             <mat-label>Quantity</mat-label>
                             <input matInput type="number" min="1" value="1" pattern="\d+" required class="form-control"
                                 formControlName="quantity">
-                            <mat-error>Please enter a positive number.</mat-error>
                         </mat-form-field>
+                        <span matSuffix>/{{i < stockLeftArray.length ? stockLeftArray[i] : '--'}} left (est.)</span>
                         <button mat-raised-button color="warn" style="float:right;" (click)="removeItemInput(i)"
                             [disabled]="getItemInputForm().controls.length==1">
                             <mat-icon matPrefix>delete_forever</mat-icon>
@@ -105,7 +105,6 @@
                         </button>
                     </div>
                 </div>
-
                 <button mat-raised-button color="primary" style="margin-right: 1%;" (click)="addBlankItem()">
                     <mat-icon matPrefix>add</mat-icon>
                     Add Row
@@ -145,10 +144,10 @@
                     </mat-list>
                 </div>
                 <div class="column-right">
-                    <mat-table [dataSource]="inputGroup2.items" class="mat-elevation-z8">
+                    <mat-table [dataSource]="inputGroup2.items" class="mat-elevation-z8" *ngIf="itemsForm.valid">
                         <ng-container matColumnDef="item">
                             <mat-header-cell *matHeaderCellDef> Item </mat-header-cell>
-                            <mat-cell *matCellDef="let element"> {{returnItemGivenId(element.item).name}}
+                            <mat-cell *matCellDef="let element"> {{element.item.name}}
                             </mat-cell>
                             <mat-footer-cell *matFooterCellDef>Deposit Payable</mat-footer-cell>
                         </ng-container>

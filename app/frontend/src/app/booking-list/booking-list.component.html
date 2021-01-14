@@ -49,9 +49,16 @@
         <br>
         <mat-label>Filter by booking status</mat-label>
         <br>
-        <mat-form-field style="margin-top:10px;" appearance="legacy">
-          <mat-label>Status</mat-label>
-          <input matInput formControlName="status">
+        <mat-form-field style="margin-top:10px;" appearance="fill">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status" matNativeControl required>
+              <mat-option value="PEN">Pending</mat-option>
+              <mat-option value="EVA">Evaluating</mat-option>
+              <mat-option value="PRO">Processed</mat-option>
+              <mat-option value="UNC">Unconfirmed</mat-option>
+              <mat-option value="GET">Retrieved</mat-option>
+              <mat-option value="RET">Return</mat-option>
+            </mat-select>
         </mat-form-field>
         <br>
         <button type="submit" mat-raised-button color="primary" [disabled]="!filterForm.valid">

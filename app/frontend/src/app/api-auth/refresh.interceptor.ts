@@ -22,7 +22,6 @@ export class RefreshInterceptor implements HttpInterceptor {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status != 401) {
-            this.snackbar.open(`An error occured. Error code: ${error.status}.`, 'OK', { duration: 5000 });
             return throwError(error);
           }
 

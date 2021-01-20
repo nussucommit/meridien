@@ -39,7 +39,7 @@ export class ItemDetailsComponent implements OnInit {
       category: [this.item ? this.item.category : '', Validators.required],
       quantity: [this.item ? this.item.quantity : '', [Validators.required, Validators.min(0)]],
       deposit: [this.item ? this.item.deposit : '', [Validators.required, Validators.min(0)]],
-      item_status: [this.item ? choice : true, ''],
+      item_status: [this.item? this.item.item_status : true, ''],
       remarks: [this.item ? this.item.remarks : '', '']
     });
   }

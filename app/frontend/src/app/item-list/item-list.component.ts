@@ -21,6 +21,8 @@ import { CalendarOptions, formatDate } from '@fullcalendar/angular';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { subscribeOn } from 'rxjs/operators';
+
 
 /**
  * Component for the page displaying the list of items.
@@ -35,7 +37,7 @@ export class ItemListComponent implements OnInit, OnDestroy {
 
   items = new MatTableDataSource<Items>();
   tableColumns: string[] = ['id', 'name', 'category', 'quantity', 'deposit'];
-
+  categories: string[];
   filterForm: FormGroup;
 
   itemDialogOpened = false;
@@ -61,6 +63,7 @@ export class ItemListComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     this.reloadData();
+    this.getCategoryData();
     this.isUserLogin = this.lc.loginStatus.value;
     if (this.isUserLogin) {
       this.tableColumns.push('status');
@@ -104,6 +107,16 @@ export class ItemListComponent implements OnInit, OnDestroy {
             ? data
             : data.filter(item => item.item_status === 'Active');
         });
+  }
+
+  /**
+   * Get all the existing category in string array
+   */
+  getCategoryData(){
+    this.itemsService.getItemCategoryList()
+      .subscribe(data => {
+        this.categories = data;
+      });
   }
 
   /**

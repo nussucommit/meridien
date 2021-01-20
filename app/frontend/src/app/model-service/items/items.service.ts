@@ -16,6 +16,10 @@ export class ItemsService {
     return this.http.get(`${this.baseUrl}/`);
   }
 
+  getItemCategoryList(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/category/`);
+  }
+
   getItem(id: number): Observable<Object> {
     return this.http.get(`${this.baseUrl}/${id}/`);
   }

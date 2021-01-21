@@ -9,12 +9,21 @@ from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework import generics, status, mixins
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, AllowAny
+
+from rest_framework.response import Response
+
 
 class ItemList(generics.ListCreateAPIView):
     queryset = Item.objects.all().order_by('id')
     serializer_class = ItemSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+@csrf_exempt
+def ItemCategoryList(request):
+    return Response(Item.objects.order_by().values_list('category', flat=True).distinct())
 
 class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Item.objects.all()

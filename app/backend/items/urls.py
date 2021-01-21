@@ -3,6 +3,7 @@ from items import views
 
 urlpatterns = [
     url(r'^items/$', views.ItemList.as_view()),
+    url(r'^items/category/$', views.ItemCategoryList),
     url(r'^items/(?P<pk>[0-9]+)/$', views.ItemDetail.as_view()),
     url(r'^booked-items/$', views.BookedItemList.as_view()),
     url(r'^booked-items/edit$', views.CreateBookedItem.as_view()),

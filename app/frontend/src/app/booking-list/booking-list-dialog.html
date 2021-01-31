@@ -94,7 +94,7 @@
     Revoke
   </button>
 
-  <button mat-button (click)="getLogistics()">
+  <button mat-button (click)="getLogistics()" [disabled]="disableRetrieve()">
     Retrieve Logistics
   </button>
 </div>

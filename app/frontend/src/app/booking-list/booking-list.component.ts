@@ -294,6 +294,17 @@ export class BookingListDialog {
     this.updateStatus('GET');
   }
 
+  disableRetrieve(): boolean {
+    for (let item of this.bookingData.booked_items) {
+      if (item.status === 'PEN') {
+        return true;
+      } else if (item.status === 'ACC') {
+        return false;
+      }
+    }
+    return false;
+  }
+
   /**
    * Called when the logistics are returned.
    */

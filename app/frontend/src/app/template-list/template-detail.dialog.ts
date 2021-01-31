@@ -92,14 +92,17 @@ export class TemplateDetailDialog {
       this.bookingService.updateBooking(this.booking.id, bookingDataCopy).subscribe();
       const subject = this.updateForm.get('subject').value;
       this.router.navigate(['/mailer'],
-      { state:
-        { booking: this.booking,
-          template:
-          { subject,
-            template: data.template
+        {
+          state:
+          {
+            booking: this.booking,
+            template:
+            {
+              subject,
+              template: data.template
+            }
           }
-        }
-      });
+        });
     } else {
       this.emailTemplatesService.createTemplate(data).subscribe();
     }
@@ -117,7 +120,14 @@ export class TemplateDetailDialog {
   }
 
   getFinalDeposit() {
-    return this.checkBox ? this.checkBox.reduce((acc, ele) => ele.checked ? acc + ele.value.item.deposit * ele.value.quantity : acc, 0) : 0;
+    return this.checkBox
+      ? Math.min(
+        this.checkBox.reduce(
+          (acc, ele) => ele.checked
+            ? acc + ele.value.item.deposit * ele.value.quantity
+            : acc, 0),
+        200)
+      : 0;
   }
 
   closeDialog() {

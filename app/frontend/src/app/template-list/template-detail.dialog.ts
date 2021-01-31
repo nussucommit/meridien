@@ -79,13 +79,27 @@ export class TemplateDetailDialog {
       this.checkBox.forEach((ele) => {
         const stat = ele.checked ? 'ACC' : 'REJ';
         this.bookingService.updateBookedItem(ele.value.id,
-          { booking_source: ele.value.booking_source.id, item: ele.value.item.id, quantity: ele.value.quantity, status: stat }).subscribe();
+          {
+            booking_source: ele.value.booking_source.id,
+            item: ele.value.item.id,
+            quantity: ele.value.quantity,
+            status: stat
+          }).subscribe();
       });
       const bookingDataCopy = { ...this.booking };
       delete bookingDataCopy.id;
       bookingDataCopy.deposit_left = this.getFinalDeposit();
       this.bookingService.updateBooking(this.booking.id, bookingDataCopy).subscribe();
-      this.router.navigate(['/mailer'], { state: { booking: this.booking, template: data } });
+      const subject = this.updateForm.get('subject').value;
+      this.router.navigate(['/mailer'],
+      { state:
+        { booking: this.booking,
+          template:
+          { subject,
+            template: data.template
+          }
+        }
+      });
     } else {
       this.emailTemplatesService.createTemplate(data).subscribe();
     }

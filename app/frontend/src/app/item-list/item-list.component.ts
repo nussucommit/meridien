@@ -21,7 +21,7 @@ import { CalendarOptions, formatDate } from '@fullcalendar/angular';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
-import { subscribeOn } from 'rxjs/operators';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 
 /**
@@ -31,7 +31,28 @@ import { subscribeOn } from 'rxjs/operators';
   // tslint:disable-next-line: component-selector
   selector: 'item-list',
   templateUrl: './item-list.component.html',
-  styleUrls: ['./item-list.component.scss']
+  styleUrls: ['./item-list.component.scss'],
+  animations: [
+    trigger(
+      'fade',
+      [
+        transition(
+          ':enter',
+          [ 
+            style({opacity: 0}),
+            animate('0.1s ease-out', style({opacity: 1}))
+          ]
+        ),
+        transition(
+          ':leave',
+          [
+            style({opacity: 1}),
+            animate('0.1s ease-in', style({opacity: 0}))
+          ]
+        )
+      ]
+    )
+  ]
 })
 export class ItemListComponent implements OnInit, OnDestroy {
 
@@ -120,6 +141,21 @@ export class ItemListComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Clears the filter form.
+   */
+  clearFilter() {
+    this.filterForm.reset();
+    this.reloadData();
+  }
+
+  /**
+   * Checks if the form contains at least one input.
+   */
+  checkAtLeastOneInput() {
+    return Object.values(this.filterForm.value).some(val => !!val);
+  }
+
+  /**
    * Set the filter parameters.
    */
   onSubmit() {
@@ -142,6 +178,9 @@ export class ItemListComponent implements OnInit, OnDestroy {
    */
   itemFilterPredicate(data: Items, filter: any): boolean {
     for (const value in filter) {
+      if (!filter[value]) {
+        continue;
+      }
       if (!data[value].toLowerCase().includes(filter[value].toLowerCase())) {
         return false;
       }

@@ -21,6 +21,7 @@ import { formatDate } from '@fullcalendar/core'
 import { merge, of } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { ComponentBridgingService } from '../model-service/componentbridging.service';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 /**
  * Main component for displaying the list of bookings.
@@ -34,6 +35,27 @@ import { ComponentBridgingService } from '../model-service/componentbridging.ser
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
   ],
+  animations: [
+    trigger(
+      'fade',
+      [
+        transition(
+          ':enter',
+          [ 
+            style({opacity: 0}),
+            animate('0.1s ease-out', style({opacity: 1}))
+          ]
+        ),
+        transition(
+          ':leave',
+          [
+            style({opacity: 1}),
+            animate('0.1s ease-in', style({opacity: 0}))
+          ]
+        )
+      ]
+    )
+  ]
 })
 
 export class BookingListComponent implements OnInit, AfterViewInit {
@@ -131,6 +153,21 @@ export class BookingListComponent implements OnInit, AfterViewInit {
         page_size: this.paginator.pageSize
       });
     return filterParams;
+  }
+
+  /**
+   * Clears the filter form.
+   */
+  clearFilter() {
+    this.filterForm.reset();
+    this.reloadData();
+  }
+
+  /**
+   * Checks if the form contains at least one input.
+   */
+  checkAtLeastOneInput() {
+    return Object.values(this.filterForm.value).some(val => !!val);
   }
 
   /**

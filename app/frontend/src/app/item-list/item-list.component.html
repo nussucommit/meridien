@@ -42,6 +42,11 @@
           <mat-icon matPrefix>search</mat-icon>
           Filter
         </button>
+        <button mat-raised-button style="margin-left: 10px;" color="warn" (click)="clearFilter()"
+          *ngIf="checkAtLeastOneInput()" [@fade]>
+          <mat-icon matPrefix>clear</mat-icon>
+          Clear Filter
+        </button>
       </form>
     </div>
 

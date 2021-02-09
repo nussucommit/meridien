@@ -18,6 +18,22 @@
   <mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
   <div style="text-align: center; width: 100%; margin: 10px">
     <button mat-raised-button color="primary" (click)=openNew()>Add New Template</button>
-  <div>
+  </div>
+  <h1 style="padding-top:10px">Confirmation Templates List</h1>
+  <p>Click the row to edit.</p>
+  
+  <mat-table [dataSource]="confirmationTemplates" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef [ngClass]="'w-40'" mat-sort-header>S/N</mat-header-cell>
+      <mat-cell *matCellDef="let confirmationTemplate" [ngClass]="'w-40'">{{confirmationTemplate.id}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+      <mat-cell *matCellDef="let confirmationTemplate">{{confirmationTemplate.link_string}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="confirmationTableColumns"></mat-header-row>
+    <mat-row matRipple *matRowDef="let confirmationTemplate; columns: confirmationTableColumns;" (click)=openConfirmationDetail(confirmationTemplate)></mat-row>
+  </mat-table>
+  <mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
 </div>
 

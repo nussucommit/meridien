@@ -7,6 +7,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { EmailTemplate } from './../model-service/emailtemplates/emailtemplates';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
+import { ConfirmationDetailDialog } from './confirmation-detail.dialog';
+import { ConfirmationTemplatesService } from './../model-service/confirmationtemplates/confirmationtemplates.service';
+import { ConfirmationTemplate } from './../model-service/confirmationtemplates/confirmationtemplates';
+
 @Component({
   selector: 'app-template-list',
   templateUrl: './template-list.component.html',
@@ -26,9 +30,13 @@ export class TemplateListComponent implements OnInit {
 
   isDialogOpen: boolean;
 
+  confirmationTemplates = new MatTableDataSource<ConfirmationTemplate>();
+  confirmationTableColumns: string[] = ['id', 'name'];
+
   constructor(
     public dialog: MatDialog,
-    private emailTemplatesService: EmailTemplatesService
+    private emailTemplatesService: EmailTemplatesService,
+    private confirmationTemplatesService: ConfirmationTemplatesService
   ) {
     this.isDialogOpen = false;
   }
@@ -40,6 +48,9 @@ export class TemplateListComponent implements OnInit {
     this.reloadData();
     this.templates.paginator = this.paginator;
     this.templates.sort = this.sort;
+    // Added here
+    this.confirmationTemplates.paginator = this.paginator;
+    this.confirmationTemplates.sort = this.sort;
   }
 
   openNew() {
@@ -96,6 +107,28 @@ export class TemplateListComponent implements OnInit {
       );
   }
 
+  openConfirmationDetail(row: { [x: string]: number; }) {
+    this.confirmationTemplatesService.getConfirmationTemplateById(row.id)
+      .subscribe(
+        (data: ConfirmationTemplate) => {
+          if (!this.isDialogOpen) {
+            this.isDialogOpen = true;
+            const dialogRef = this.dialog.open(ConfirmationDetailDialog,
+              { width: '800px',
+                data: {
+                  isEdit: true,
+                  confirmationTemplate: data
+                }
+              });
+            dialogRef.afterClosed().subscribe(() => {
+              this.reloadData();
+              this.isDialogOpen = false;
+            });
+          }
+        }
+      );
+  }
+
   reloadData() {
     this.emailTemplatesService.getTemplateList()
       .subscribe(
@@ -103,5 +136,11 @@ export class TemplateListComponent implements OnInit {
           this.templates.data = data;
         }
       );
+    this.confirmationTemplatesService.getConfirmationTemplateList()
+        .subscribe(
+          (data: ConfirmationTemplate[]) => {
+            this.confirmationTemplates.data = data;
+          }
+        )
   }
 }

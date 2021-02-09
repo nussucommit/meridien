@@ -1,6 +1,7 @@
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 
+import { ConfirmationDetailDialog } from './template-list/confirmation-detail.dialog'
 import { TemplateDetailDialog } from './template-list/template-detail.dialog';
 import { RefreshInterceptor } from './api-auth/refresh.interceptor';
 import { JwtInterceptor } from './api-auth/jwt.interceptor';
@@ -71,6 +72,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     LoginFormComponent,
     LogoutComponent,
     TemplateListComponent,
+    ConfirmationDetailDialog,
     TemplateDetailDialog,
     MailSenderComponent,
     BookingConfirmComponent,

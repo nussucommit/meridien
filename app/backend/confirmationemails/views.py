@@ -11,6 +11,21 @@ from confirmationemails.templates import send_confirmation_email
 from confirmationemails.models import ConfirmationEmail
 from confirmationemails.serializers import ConfirmationEmailSerializer
 
+import sys
+sys.path.append('../')
+from meridien import views_template
+
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+@csrf_exempt
+def confirmation_template_list(request):
+    return views_template.obj_list(request, ConfirmationEmail, ConfirmationEmailSerializer)
+
+@api_view(['GET', 'PUT'])
+@permission_classes([IsAuthenticated])
+@csrf_exempt
+def confirmation_template_detail(request, pk):
+    return views_template.obj_detail(request, pk, ConfirmationEmail, ConfirmationEmailSerializer)
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])

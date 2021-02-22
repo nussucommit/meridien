@@ -48,7 +48,7 @@
                 <mat-form-field style="width:40%">
                     <mat-label>From (dd/mm/yyyy)</mat-label>
                     <input matInput required class="form-control" [matDatepicker]="startpicker"
-                        formControlName="loan_start_time" [max]="detailsForm.controls.loan_end_time.value">
+                        formControlName="loan_start_time" [min]="today" [max]="detailsForm.controls.loan_end_time.value">
                     <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
                     <mat-datepicker #startpicker></mat-datepicker>
                     <mat-error>Please enter a valid date.</mat-error>
@@ -59,7 +59,7 @@
                 <mat-form-field style="width:40%">
                     <mat-label>To (dd/mm/yyyy)</mat-label>
                     <input matInput required class="form-control" [matDatepicker]="endpicker"
-                        formControlName="loan_end_time" [min]="detailsForm.controls.loan_start_time.value">
+                        formControlName="loan_end_time" [min]="detailsForm.controls.loan_start_time.value || today">
                     <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
                     <mat-datepicker #endpicker></mat-datepicker>
                     <mat-error>Please enter a valid date.</mat-error>

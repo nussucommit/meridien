@@ -46,6 +46,8 @@ export class BookingDetailsComponent implements OnInit {
 
   stockLeftArray = [];
 
+  today = new Date();
+
   constructor(
     private formBuilder: FormBuilder,
     private bookingsService: BookingsService,

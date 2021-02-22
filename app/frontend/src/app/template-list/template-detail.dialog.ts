@@ -5,7 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dial
 import { EmailTemplatesService } from './../model-service/emailtemplates/emailtemplates.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EmailTemplate } from './../model-service/emailtemplates/emailtemplates';
-import { Component, Inject, ViewChildren, QueryList } from '@angular/core';
+import { Component, Inject, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookedItem } from '../model-service/items/items';
 import { BookingsService } from '../model-service/bookings/bookings.service';
@@ -16,7 +16,7 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
   templateUrl: './template-detail.dialog.html',
 })
 // tslint:disable-next-line: component-class-suffix
-export class TemplateDetailDialog {
+export class TemplateDetailDialog implements AfterViewInit {
   updateForm: FormGroup;
 
   isNew: boolean;
@@ -66,9 +66,35 @@ export class TemplateDetailDialog {
       this.updateForm.get('name').disable();
       this.updateForm.get('subject').disable();
 
-      params.booking.booked_items.forEach((ele: BookedItem) => { this.bookedItems.push(ele); });
+      params.booking.booked_items.forEach(
+        (ele: BookedItem) => {
+          Object.assign(ele, { disabled: false });
+          this.bookedItems.push(ele);
+        });
     } else {
       this.template = null;
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.isSendingEmail) {
+      this.bookedItems.forEach(pendingItem => {
+        this.bookingService.getBookersbyBookedItem(pendingItem.item.id,
+          {
+            start: this.params.booking.source.loan_start_time,
+            end: this.params.booking.source.loan_end_time
+          }).subscribe(bookedItems => {
+            let initialQuantity = pendingItem.item.quantity;
+            bookedItems.forEach(ele => {
+              if (ele.status === 'ACC') {
+                initialQuantity -= ele.quantity;
+              }
+            });
+            if (initialQuantity < pendingItem.quantity) {
+              pendingItem.disabled = true;
+            }
+          });
+      });
     }
   }
 

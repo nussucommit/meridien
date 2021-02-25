@@ -28,7 +28,7 @@ export class TemplateDetailDialog implements AfterViewInit {
 
   @ViewChildren('checkBox') checkBox: QueryList<any>;
   checkedItems = [];
-  bookedItems: BookedItem[] = [];
+  bookedItems = [];
 
   apiKey = environment.apiKey;;
 
@@ -91,7 +91,6 @@ export class TemplateDetailDialog implements AfterViewInit {
               }
             });
             if (initialQuantity < pendingItem.quantity) {
-              // ignore this error. the disabled property was assigned above.
               pendingItem.disabled = true;
             }
           });

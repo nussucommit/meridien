@@ -14,8 +14,10 @@
       </div>
 
       <ng-template #elseBar>
-        <a mat-button routerLink="/items" routerLinkActive="active">Items</a>
-        <a mat-button routerLink="/edit" routerLinkActive="active">Make a Booking</a>
+        <div class="services">
+          <a mat-button routerLink="/items" routerLinkActive="active">Items</a>
+          <a mat-button routerLink="/edit" routerLinkActive="active">Make a Booking</a>
+        </div>
         <a mat-raised-button color="accent" mat-button routerLink="/login" routerLinkActive="active">
           Admin Login
         </a>
@@ -28,7 +30,6 @@
     </mat-toolbar-row>
   </mat-toolbar>
 
-  <mat-progress-bar class="fast-fade" mode="indeterminate" color="accent"
-    *ngIf="progressBarVisible">
+  <mat-progress-bar class="fast-fade" mode="indeterminate" color="accent" *ngIf="progressBarVisible">
   </mat-progress-bar>
 </div>

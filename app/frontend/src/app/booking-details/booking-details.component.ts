@@ -331,7 +331,7 @@ export class BookingDetailsComponent implements OnInit {
     const finalData: Booking = Object.assign(bookingDataCopy,
       {
         time_booked: (history.state.source ? history.state.source.time_booked : new Date()),
-        status: 'PEN',
+        status: 'UNC',
         deposit_left: this.getTotalDeposit()
       }) as Booking;
     if (!history.state.edit) {

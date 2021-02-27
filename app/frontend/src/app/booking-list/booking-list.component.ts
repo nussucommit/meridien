@@ -272,8 +272,10 @@ export class BookingListDialog {
     delete bookingDataCopy.id;
     bookingDataCopy.status = status;
     this.bookingData.source.status = status;
-    if (status === 'GET') {
+    if (status === 'GET' || status === 'RET') {
       bookingDataCopy.deposit_paid = true;
+    } else {
+      bookingDataCopy.deposit_paid = false;
     }
     this.bookingsService.updateBooking(this.bookingData.source.id, bookingDataCopy).subscribe();
     this.dialogRef.close();
@@ -339,7 +341,7 @@ export class BookingListDialog {
         return false;
       }
     }
-    return false;
+    return true;
   }
 
   /**
@@ -347,6 +349,14 @@ export class BookingListDialog {
    */
   returnLogistics() {
     this.updateStatus('RET');
+  }
+
+  undoRetrieve() {
+    this.updateStatus('PRO');
+  }
+
+  undoReturn() {
+    this.getLogistics();
   }
 
   /**

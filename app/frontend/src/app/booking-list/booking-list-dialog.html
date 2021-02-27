@@ -103,4 +103,16 @@
   <button mat-button (click)="returnLogistics()">
     Return Logistics
   </button>
+
+  <button mat-button (click)="undoRetrieve()">
+    <mat-icon matPrefix>undo</mat-icon>
+    Undo
+  </button>
+</div>
+
+<div mat-dialog-actions *ngIf="bookingData.source.status === 'RET'" align="end">
+  <button mat-button (click)="undoReturn()">
+    <mat-icon matPrefix>undo</mat-icon>
+    Undo
+  </button>
 </div>

@@ -22,8 +22,6 @@ def populate_template(template, booking_pk):
     item_list_str = "<ul>" + item_list_str + "</ul>"
     template = template.replace("[ITEM LIST]", item_list_str)
 
-    print(template)
-
     return template
 
     

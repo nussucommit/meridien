@@ -56,15 +56,19 @@ export class TemplateDetailDialog implements AfterViewInit {
       delete this.templateParams.id;
       this.updateForm.setValue(this.templateParams);
     } else if (this.isSendingEmail) {
-      this.template = params.template;
-      this.templateParams = { ...this.template };
       this.booking = params.booking.source;
+      this.emailTemplatesService.getPopulatedTemplate(params.template.id, this.booking.id)
+        .subscribe((data: any) => {
+          this.template = data;
+          this.templateParams = { ...data };
 
-      delete this.templateParams.id;
-      this.updateForm.setValue(this.templateParams);
+          delete this.templateParams.id;
 
-      this.updateForm.get('name').disable();
-      this.updateForm.get('subject').disable();
+          this.updateForm.setValue(this.templateParams);
+          
+          this.updateForm.get('name').disable();
+          this.updateForm.get('subject').disable();
+        });
 
       params.booking.booked_items.forEach(
         (ele: BookedItem) => {

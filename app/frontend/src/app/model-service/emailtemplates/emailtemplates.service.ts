@@ -11,7 +11,7 @@ export class EmailTemplatesService {
 
   private baseUrlTemplates = environment.apiUrl + 'email_templates';
   private baseUrlTemplate = environment.apiUrl + 'email_template';
-
+  private baseUrlPopulatedTemplate = environment.apiUrl + 'populated_template';
 
   constructor(private http: HttpClient) { }
 
@@ -21,6 +21,10 @@ export class EmailTemplatesService {
 
   getTemplateById(id: number): Observable<any> {
     return this.http.get(`${this.baseUrlTemplate}/${id}`);
+  }
+
+  getPopulatedTemplate(template_id: number, booking_id: number){
+    return this.http.get(`${this.baseUrlPopulatedTemplate}/${template_id}/${booking_id}`);
   }
 
   createTemplate(template: EmailTemplate): Observable<Object> {

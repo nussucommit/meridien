@@ -82,9 +82,9 @@
                             <mat-select required class="form-control" formControlName="item" [compareWith]="compareItems"
                             (selectionChange)="updateStockLeft($event.source.value, i)">
                                 <mat-form-field appearance="outline" style="width: 95%; margin: 5px;">
-                                    <input matInput #filter (keyup)="filterItems(filter.value)" placeholder="Search...">
+                                    <input matInput #filter (keyup)="filterItems(filter.value, i)" placeholder="Search...">
                                 </mat-form-field>
-                                <mat-optgroup *ngFor="let group of itemGroups" [label]="group.name">
+                                <mat-optgroup *ngFor="let group of itemGroups[i]" [label]="group.name">
                                     <mat-option *ngFor="let item of group.items" [value]="item.value">
                                         {{item.viewValue}}
                                     </mat-option>

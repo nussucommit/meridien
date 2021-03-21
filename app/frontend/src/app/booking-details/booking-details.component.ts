@@ -34,7 +34,7 @@ export class BookingDetailsComponent implements OnInit {
   itemsForm: FormGroup;
 
   itemArray: Items[];
-  itemGroups = [];
+  itemGroups = [[]];
 
   inputGroup1: any;
   inputGroup2: any;
@@ -57,7 +57,7 @@ export class BookingDetailsComponent implements OnInit {
   ) {
     this.itemsService.getItemsList().subscribe((data) => {
       this.itemArray = data.filter((item) => item.item_status === 'Active');
-      this.itemGroups = this.parseItems(this.itemArray);
+      this.itemGroups = [this.parseItems(this.itemArray)];
     });
   }
 
@@ -104,8 +104,8 @@ export class BookingDetailsComponent implements OnInit {
     return result;
   }
 
-  filterItems(search: string) {
-    this.itemGroups = this.parseItems(this.itemArray.filter(
+  filterItems(search: string, i: number) {
+    this.itemGroups[i] = this.parseItems(this.itemArray.filter(
       (item) => item.name.toLowerCase().includes(search.toLowerCase())
     ));
   }
@@ -154,6 +154,7 @@ export class BookingDetailsComponent implements OnInit {
     data.forEach((element: BookedItem) => {
       result.push(this.createItemInputWithData(element));
       this.updateStockLeft(element.item, i);
+      this.itemGroups[i] = this.parseItems(this.itemArray)
       i++;
     });
     return result;
@@ -181,6 +182,7 @@ export class BookingDetailsComponent implements OnInit {
    * Adds a new row to the form when the user presses add row button.
    */
   addBlankItem() {
+    this.itemGroups.push(this.parseItems(this.itemArray));
     this.getItemInputForm().push(this.newItemInput());
   }
 

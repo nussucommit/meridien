@@ -57,7 +57,15 @@ export class BookingDetailsComponent implements OnInit {
   ) {
     this.itemsService.getItemsList().subscribe((data) => {
       this.itemArray = data.filter((item) => item.item_status === 'Active');
-      this.itemGroups = [this.parseItems(this.itemArray)];
+      const itemGroupTemplate = this.parseItems(this.itemArray);
+      if (history.state.edit) {
+        this.itemGroups = [itemGroupTemplate];
+      } else {
+        history.state.booked_items.forEach(() => {
+          const itemGroupCopy = { ...itemGroupTemplate };
+          this.itemGroups.push(itemGroupCopy);
+        });
+      }
     });
   }
 
@@ -154,7 +162,6 @@ export class BookingDetailsComponent implements OnInit {
     data.forEach((element: BookedItem) => {
       result.push(this.createItemInputWithData(element));
       this.updateStockLeft(element.item, i);
-      this.itemGroups[i] = this.parseItems(this.itemArray)
       i++;
     });
     return result;
@@ -243,7 +250,6 @@ export class BookingDetailsComponent implements OnInit {
   checkout() {
     this.inputGroup1 = this.detailsForm.value;
     this.inputGroup2 = this.itemsForm.value;
-    console.log(this.itemsForm.value);
   }
 
   /**
@@ -336,9 +342,9 @@ export class BookingDetailsComponent implements OnInit {
         status: 'UNC',
         deposit_left: this.getTotalDeposit()
       }) as Booking;
+    bookingDataCopy.loan_start_time = bookingDataCopy.loan_start_time.format('YYYY-MM-DD');
+    bookingDataCopy.loan_end_time = bookingDataCopy.loan_end_time.format('YYYY-MM-DD');
     if (!history.state.edit) {
-      bookingDataCopy.loan_start_time = bookingDataCopy.loan_start_time.format('YYYY-MM-DD');
-      bookingDataCopy.loan_end_time = bookingDataCopy.loan_end_time.format('YYYY-MM-DD');
       this.bookingsService.createBooking(finalData).subscribe(
         (data: any) => {
           this.inputGroup2.items.forEach(element => {

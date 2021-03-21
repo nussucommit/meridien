@@ -1,5 +1,5 @@
 <app-toolbar></app-toolbar>
-<div class= "container" style="padding-top:15px; padding-left: 30px; padding-right: 30px; padding-bottom: 20px;">
+<div class="container" style="padding-top:15px; padding-left: 30px; padding-right: 30px; padding-bottom: 20px;">
   <h1 style="padding-top:10px">Items List</h1>
   <div class="row">
     <div class="column-left">
@@ -65,12 +65,16 @@
           <mat-cell *matCellDef="let item">{{item.category}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="quantity">
-          <mat-header-cell *matHeaderCellDef mat-sort-header style="display: flex; justify-content: flex-end;">Quantity</mat-header-cell>
-          <mat-cell *matCellDef="let item" style="display: flex; justify-content: flex-end;">{{item.quantity}}</mat-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header style="display: flex; justify-content: flex-end;">Quantity
+          </mat-header-cell>
+          <mat-cell *matCellDef="let item" style="display: flex; justify-content: flex-end;">{{item.quantity}}
+          </mat-cell>
         </ng-container>
         <ng-container matColumnDef="deposit">
-          <mat-header-cell *matHeaderCellDef mat-sort-header style="margin-left: 70px; display: flex; justify-content: flex-end;">Deposit(S$)</mat-header-cell>
-          <mat-cell *matCellDef="let item" style="margin-left: 70px; display: flex; justify-content: flex-end;">{{item.deposit}}</mat-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            style="margin-left: 70px; display: flex; justify-content: flex-end;">Deposit(S$)</mat-header-cell>
+          <mat-cell *matCellDef="let item" style="margin-left: 70px; display: flex; justify-content: flex-end;">
+            {{item.deposit}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="status" *ngIf="lc.loginStatus.value">
           <mat-header-cell *matHeaderCellDef mat-sort-header style="margin-left: 70px;">Status</mat-header-cell>
@@ -82,7 +86,8 @@
       </mat-table>
       <div class="mat-elevation-z8" style="display: flex; background-color: white; flex-direction: row-reverse;">
         <mat-form-field style="padding-right: 1%; width: 7%;">
-          <input #page matInput type="number" min="1" [max]="paginator.getNumberOfPages()" [value]="paginator.pageIndex + 1" (change)="onInputPageChange(page.value)">
+          <input #page matInput type="number" min="1" [max]="paginator.getNumberOfPages()"
+            [value]="paginator.pageIndex + 1" (change)="onInputPageChange(page.value)">
         </mat-form-field>
         <p style="padding-right: 1%; margin: auto 0; font-size: 12px; color: #777777;">Page: </p>
         <mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>

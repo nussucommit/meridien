@@ -169,6 +169,12 @@ export class ItemListComponent implements OnInit, OnDestroy {
    */
   onInputPageChange(pageNumber: number) {
     this.paginator.pageIndex = Math.min(pageNumber - 1, this.paginator.getNumberOfPages() - 1);
+    console.log(this.paginator.pageIndex);
+    this.items.paginator.page.emit({
+      length: this.paginator.getNumberOfPages(),
+      pageIndex: this.paginator.pageIndex,
+      pageSize: this.paginator.pageSize
+    });
   }
 
   /**

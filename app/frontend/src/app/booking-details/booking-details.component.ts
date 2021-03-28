@@ -58,7 +58,7 @@ export class BookingDetailsComponent implements OnInit {
     this.itemsService.getItemsList().subscribe((data) => {
       this.itemArray = data.filter((item) => item.item_status === 'Active');
       const itemGroupTemplate = this.parseItems(this.itemArray);
-      if (history.state.edit) {
+      if (!history.state.edit) {
         this.itemGroups = [itemGroupTemplate];
       } else {
         history.state.booked_items.forEach(() => {

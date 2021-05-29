@@ -34,7 +34,7 @@ export class BookingDetailsComponent implements OnInit {
   itemsForm: FormGroup;
 
   itemArray: Items[];
-  itemGroups = [[]];
+  itemGroups = [];
 
   inputGroup1: any;
   inputGroup2: any;
@@ -62,7 +62,7 @@ export class BookingDetailsComponent implements OnInit {
         this.itemGroups = [itemGroupTemplate];
       } else {
         history.state.booked_items.forEach(() => {
-          const itemGroupCopy = { ...itemGroupTemplate };
+          const itemGroupCopy = JSON.parse(JSON.stringify(itemGroupTemplate));
           this.itemGroups.push(itemGroupCopy);
         });
       }
